@@ -6,6 +6,8 @@ https://www.raylib.com/
 
 Launch on Linux:
 
+```bash
 cd ../launcher
 make
 ./DrackLauncher
+```
