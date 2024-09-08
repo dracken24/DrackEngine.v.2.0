@@ -15,12 +15,16 @@
 
 # include "../../library/extern/raylib/src/raylib.h"
 # include "../../library/libft/libft.h"
+# include "struct_globale.h"
+# include "../../library/drackengine_lib/drackengine_lib.h"
 
 typedef struct  Engine
 {
-    Vector2   screenSize;
+    Vector2         screenSize;
+    MultipleCam3D	*allCameras;
 
     bool    exitCt;
+    bool    introCt;
 }   Engine;
 
 void    dr_init(Engine *engine);

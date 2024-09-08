@@ -6,6 +6,11 @@ https://www.raylib.com/
 
 Launch on Linux:
 
+Need those libraries:
+```bash
+sudo apt install libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxinerama-dev libwayland-dev libxkbcommon-dev
+```
+
 ```bash
 cd ../launcher
 make

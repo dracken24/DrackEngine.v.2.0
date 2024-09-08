@@ -3,53 +3,17 @@
 /* |            ------------------------------------------------             | */
 /* |            *--*  PROJET: DrackLauncher PAR: Dracken24  *--*             | */
 /* |            ------------------------------------------------             | */
-/* |            *--*  DATE:	  	    09-11-2022  	     	*--*             | */
+/* |            *--*  DATE:	  	    06-09-2024  	     	*--*             | */
 /* |            ------------------------------------------------             | */
-/* |            *--*  FILE: 	 	 Main.h       		    *--*             | */
+/* |            *--*  FILE: 	 	 Main.c       		    *--*             | */
 /* |            ------------------------------------------------             | */
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
 # include "../includes/launcher.h"
-
-void    draw(void)
-{
-    BeginDrawing();
-    ClearBackground(LIGHTGRAY);
-
-    DrawText("Press Enter to start", 375, 250, 40, BLACK);
-    DrawText("       Engine       ", 340, 320, 60, BLACK);
-    
-    EndDrawing();
-}
-
-void    dr_update(Launcher *launcher)
-{
-    if (IsKeyPressed(KEY_ENTER))
-    {
-        system("cd ../engine && make && ./DrackEngine");
-    }
-    if (IsKeyPressed(KEY_ESCAPE))
-    {
-        launcher->_exitCt = true;
-    }
-
-    draw();
-}
-
-void    dr_init(Launcher *launcher)
-{
-    InitWindow(1200, 750, "DrackLanucher");
-	SetTargetFPS(60);
-    launcher->_exitCt = false;
-}
-
-void    dr_exit(Launcher *launcher)
-{
-    (void)launcher;
-
-    CloseWindow();
-}
+# include "../../library/drackengine_lib/drackengine_lib.h"
+# include "../../library/drackengine_lib/utility/colors.h"
+# include "../includes/temp_for_build.h"
 
 int main(void)
 {
@@ -57,12 +21,14 @@ int main(void)
 
     dr_init(&launcher);
 
-    while (!WindowShouldClose() && !launcher._exitCt)
+    test_log();
+
+    while (!WindowShouldClose() && !launcher.exitCt)
 	{
         dr_update(&launcher);
 	}
 
     dr_exit(&launcher);
-	
+
     return (0);
 }

@@ -14,14 +14,14 @@
 // #include "defines.h"
 #include "utility/colors.h"
 
-void	PlatconsoleWrite(char *message, uint8 color)
+void	console_write(char *message, uint8 color)
 {
 	// WARN,INFO,DEBUG,TRACE
 	char *colorStr[] = {T_YELLOW, T_GREEN, T_BLUE, T_CYAN};
 
 	printf("%s%s%s", colorStr[color - 2], message, T_RESET);
 }
-void	PlatconsoleWriteError(char *message, uint8 color)
+void	console_write_error(char *message, uint8 color)
 {
 	// FATAL,ERROR
 	char *colorStr[] = {T_RED, T_MAGENTA};
@@ -29,7 +29,7 @@ void	PlatconsoleWriteError(char *message, uint8 color)
 	printf("%s%s%s", colorStr[color], message, T_RESET);
 }
 
-void	LogMessage(logLevel level, const char *message, ...)
+void	log_message(logLevel level, const char *message, ...)
 {
 	const char	*levelStr[6] = {"[*FATAL*]   : ", "[*ERROR*]   : ", "[*WARNING*] : ",
 		"[*INFO*]    : ", "[*DEBUG*]   : ", "[*TRACE*]   : "};
@@ -51,18 +51,18 @@ void	LogMessage(logLevel level, const char *message, ...)
 
 	if (shouldLog)
 	{
-		PlatconsoleWriteError(outBuffer, level);
+		console_write_error(outBuffer, level);
 	}
 	else
 	{
-		PlatconsoleWrite(outBuffer, level);
+		console_write(outBuffer, level);
 	}
 }
 
 // From Code/includes/core/assert.hpp
-void	ReportAssertionFailure( char *expression, char *message,
+void	report_assertion_failure( char *expression, char *message,
 			char *file, sint32 line)
 {
-	LogMessage(DE_LOG_LEVEL_FATAL, "Assertion failed: %s, message: %s, file: %s, line: %d\n",
+	log_message(DE_LOG_LEVEL_FATAL, "Assertion failed: %s, message: %s, file: %s, line: %d\n",
 		expression, message, file, line);
 }

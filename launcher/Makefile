@@ -12,7 +12,7 @@ INC_DIR = includes
 OBJ_DIR = obj
 LIBFT_DIR = ../library/libft
 RAYLIB_DIR = ../library/extern/raylib/src
-
+LIBDRACKENGINE_DIR = ../library/drackengine_lib
 # Sources et objets
 SRCS = $(shell find $(SRC_DIR) -name '*.c')
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -20,6 +20,7 @@ OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # Libft et Raylib
 LIBFT = $(LIBFT_DIR)/libft.a
 RAYLIB = $(RAYLIB_DIR)/libraylib.a
+LIBDRACKENGINE = $(LIBDRACKENGINE_DIR)/libdrackengine.a
 
 # Couleurs
 RED = \033[0;31m
@@ -32,11 +33,11 @@ RESET = \033[0m
 all: $(NAME)
 
 # Création de l'exécutable
-$(NAME): $(OBJS) $(LIBFT) $(RAYLIB)
+$(NAME): $(OBJS) $(LIBFT) $(RAYLIB) $(LIBDRACKENGINE)
 	@echo "$(BLUE)╔══════════════════════════════════════╗$(RESET)"
 	@echo "$(BLUE)║     Création de l'exécutable...      ║$(RESET)"
 	@echo "$(BLUE)╚══════════════════════════════════════╝$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft $(RAYLIB) $(LINKFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft $(RAYLIB) $(LIBDRACKENGINE) $(LINKFLAGS) -o $(NAME)
 	@echo "$(GREEN)✓ Exécutable $(NAME) créé avec succès !$(RESET)"
 
 # Compilation des fichiers sources
@@ -47,17 +48,24 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 # Compilation de la libft
 $(LIBFT):
-	@echo "$(BLUE)╔══════════════════════════════════════╗$(RESET)"
-	@echo "$(BLUE)║      Compilation de la libft...      ║$(RESET)"
-	@echo "$(BLUE)╚══════════════════════════════════════╝$(RESET)"
+	@echo "$(BLUE)╔════════════════════════════════════════╗$(RESET)"
+	@echo "$(BLUE)║       Compilation de la libft...       ║$(RESET)"
+	@echo "$(BLUE)╚════════════════════════════════════════╝$(RESET)"
 	@$(MAKE) -C $(LIBFT_DIR)
 
 # Compilation de Raylib
 $(RAYLIB):
-	@echo "$(BLUE)╔══════════════════════════════════════╗$(RESET)"
-	@echo "$(BLUE)║     Compilation de Raylib...         ║$(RESET)"
-	@echo "$(BLUE)╚══════════════════════════════════════╝$(RESET)"
+	@echo "$(BLUE)╔════════════════════════════════════════╗$(RESET)"
+	@echo "$(BLUE)║       Compilation de Raylib...         ║$(RESET)"
+	@echo "$(BLUE)╚════════════════════════════════════════╝$(RESET)"
 	@$(MAKE) -C $(RAYLIB_DIR) PLATFORM=PLATFORM_DESKTOP
+
+# Compilation de la libdrackengine
+$(LIBDRACKENGINE):
+	@echo "$(BLUE)╔════════════════════════════════════════╗$(RESET)"
+	@echo "$(BLUE)║  Compilation de la libdrackengine...   ║$(RESET)"
+	@echo "$(BLUE)╚════════════════════════════════════════╝$(RESET)"
+	@$(MAKE) -C $(LIBDRACKENGINE_DIR)
 
 
 
@@ -71,8 +79,8 @@ fclean: clean
 	@echo "$(RED)Suppression de l'exécutable $(NAME)...$(RESET)"
 	@rm -f $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(RAYLIB_DIR) clean
+	@$(MAKE) -C $(LIBDRACKENGINE_DIR) fclean
 	@echo "$(GREEN)✓ Nettoyage complet terminé !$(RESET)"
 
 # Recompilation

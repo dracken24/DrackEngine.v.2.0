@@ -58,6 +58,8 @@
       "logger.h": "c",
       "temp_for_build.h": "c",
       "drackengine_lib.h": "c",
-      "defines.h": "c"
+      "defines.h": "c",
+      "colors.h": "c",
+      "raylib.h": "c"
     },
 }
