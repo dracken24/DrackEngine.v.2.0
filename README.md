@@ -1,6 +1,6 @@
 # DrackEngine 2.0
 
-Rebuild of DrackEngine 1.0 with a new architecture and new features
+Rebuild of DrackEngine with a new architecture and new features
 
 Powerd by raylib:
 https://www.raylib.com/
