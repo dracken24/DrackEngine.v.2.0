@@ -1,7 +1,8 @@
-# Engine-2D
+# DrackEngine 2.0
 
-A little 2D game engine powered by raylib
+Rebuild of DrackEngine 1.0 with a new architecture and new features
 
+Powerd by raylib:
 https://www.raylib.com/
 
 Launch on Linux:
