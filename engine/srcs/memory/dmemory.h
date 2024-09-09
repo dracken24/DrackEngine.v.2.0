@@ -1,3 +1,15 @@
+/*******************************************************************************/
+/*\|/-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-\|/*/
+/* |            ------------------------------------------------             | */
+/* |            *--*  PROJET: DrackLauncher PAR: Dracken24  *--*             | */
+/* |            ------------------------------------------------             | */
+/* |            *--*  DATE:	  	    06-09-2024  	     	*--*             | */
+/* |            ------------------------------------------------             | */
+/* |            *--*  FILE: 	 	 dmemory.h              *--*             | */
+/* |            ------------------------------------------------             | */
+/*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
+/*******************************************************************************/
+
 #ifndef DMEMORY_H
 # define DMEMORY_H
 
@@ -8,6 +20,7 @@ typedef enum memory_tag
     // For temporary use. Should be assigned one of the below or have a new tag created.
     MEMORY_TAG_UNKNOWN,
     MEMORY_TAG_ENGINE,
+    MEMORY_TAG_UI,
     MEMORY_TAG_ARRAY,
     MEMORY_TAG_DARRAY,
     MEMORY_TAG_DICT,
@@ -41,6 +54,6 @@ DE_API void* de_copy_memory(void* dest, const void* source, uint64 size);
 
 DE_API void* de_set_memory(void* dest, sint32 value, uint64 size);
 
-DE_API char* get_memory_usage_str();
+DE_API char* get_memory_usage_str(const char* type);
 
 #endif // DMEMORY_H

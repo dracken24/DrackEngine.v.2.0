@@ -37,11 +37,11 @@ void    input_events(Engine *engine)
 
 void    adjust_menu_camera(Engine *engine)
 {
-    engine->allCameras->camera03.textForCam = LoadRenderTexture(engine->screenSize.x, 40);
+    engine->allCameras->camera03.textForCam = LoadRenderTexture(engine->screenSize.x, 30);
     engine->allCameras->camera03.rectForCam = (Rectangle){0.0f, 0.0f, (float)engine->allCameras->camera03.textForCam.texture.width,
     (float)-engine->allCameras->camera03.textForCam.texture.height};
     
-    engine->allCameras->camera02.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3 * 2 - 40);
+    engine->allCameras->camera02.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3 * 2 - 30);
     engine->allCameras->camera02.rectForCam = (Rectangle){0.0f, 0.0f, (float)engine->allCameras->camera02.textForCam.texture.width,
     (float)-engine->allCameras->camera02.textForCam.texture.height};
 
@@ -49,7 +49,7 @@ void    adjust_menu_camera(Engine *engine)
     engine->allCameras->camera01.rectForCam = (Rectangle){0.0f, 0.0f, (float)engine->allCameras->camera01.textForCam.texture.width,
     (float)-engine->allCameras->camera01.textForCam.texture.height};
 
-    engine->allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 300, engine->screenSize.y - 40);
+    engine->allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 300, engine->screenSize.y - 30);
     engine->allCameras->camera00.rectForCam = (Rectangle){0.0f, 0.0f, (float)engine->allCameras->camera00.textForCam.texture.width,
     (float)-engine->allCameras->camera00.textForCam.texture.height};
 }
@@ -67,10 +67,10 @@ void    window_events(Engine *engine)
 
 void	ftDrawBoarders(Engine *engine)
 {
-	DrawLineEx((Vector2){(float)engine->screenSize.y - 302, 40}, (Vector2){(float)engine->screenSize.x - 302, (float)engine->screenSize.y}, 5, DARKGRAY1);
+	DrawLineEx((Vector2){(float)engine->screenSize.y - 302, 30}, (Vector2){(float)engine->screenSize.x - 302, (float)engine->screenSize.y}, 5, DARKGRAY1);
 	DrawLineEx((Vector2){(float)engine->screenSize.x - 2, 0}, (Vector2){(float)engine->screenSize.x - 2, (float)engine->screenSize.y}, 5, DARKGRAY1);
-	DrawLineEx((Vector2){(float)engine->screenSize.x - 300, (float)engine->screenSize.y / 3 + 40}, (Vector2){(float)engine->screenSize.x, (float)engine->screenSize.y / 3 + 40}, 5, DARKGRAY1);
-	DrawLineEx((Vector2){0, 40}, (Vector2){(float)engine->screenSize.x - 305, 40}, 5, DARKGRAY1);
+	DrawLineEx((Vector2){(float)engine->screenSize.x - 300, (float)engine->screenSize.y / 3 + 30}, (Vector2){(float)engine->screenSize.x, (float)engine->screenSize.y / 3 + 30}, 5, DARKGRAY1);
+	DrawLineEx((Vector2){0, 30}, (Vector2){(float)engine->screenSize.x - 305, 30}, 5, DARKGRAY1);
 	DrawLineEx((Vector2){(float)engine->screenSize.x - 300, (float)engine->screenSize.y - 2}, (Vector2){(float)engine->screenSize.x, (float)engine->screenSize.y - 2}, 5, DARKGRAY1);
 }
 
@@ -100,7 +100,7 @@ void    draw_events(Engine *engine)
         ClearBackground(DARKGRAY);
         BeginMode2D(engine->allCameras->camera01.camera2D);
 
-            // ftSideUpMenu3D(game);
+            // ftSideUpMenu2D(game);
 
         EndMode2D();
     EndTextureMode();
@@ -124,7 +124,7 @@ void    draw_events(Engine *engine)
         ClearBackground(DARKGRAY1);
         BeginMode2D(engine->allCameras->camera03.camera2D);
 
-            // ftUpMenu3D(game);
+            ftUpMenu2D(engine, &engine->allCameras->camera03.camera2D);
 
         EndMode2D();
     EndTextureMode();
@@ -134,10 +134,13 @@ void    draw_events(Engine *engine)
     // Draw render textures to the screen for all cameras
     BeginDrawing();
         ClearBackground(BLACK);
-        DrawTextureRec(engine->allCameras->camera00.textForCam.texture, engine->allCameras->camera00.rectForCam, (Vector2){0, 40}, WHITE);
-        DrawTextureRec(engine->allCameras->camera01.textForCam.texture, engine->allCameras->camera01.rectForCam, (Vector2){(float)engine->screenSize.x - 300.0f, 40}, WHITE);
-        DrawTextureRec(engine->allCameras->camera02.textForCam.texture, engine->allCameras->camera02.rectForCam, (Vector2){(float)engine->screenSize.x - 300.0f, (float)engine->screenSize.y / 3 + 40}, WHITE);
+        DrawTextureRec(engine->allCameras->camera00.textForCam.texture, engine->allCameras->camera00.rectForCam, (Vector2){0, 30}, WHITE);
+        DrawTextureRec(engine->allCameras->camera01.textForCam.texture, engine->allCameras->camera01.rectForCam, (Vector2){(float)engine->screenSize.x - 300.0f, 30}, WHITE);
+        DrawTextureRec(engine->allCameras->camera02.textForCam.texture, engine->allCameras->camera02.rectForCam, (Vector2){(float)engine->screenSize.x - 300.0f, (float)engine->screenSize.y / 3 + 30}, WHITE);
         DrawTextureRec(engine->allCameras->camera03.textForCam.texture, engine->allCameras->camera03.rectForCam, (Vector2){0, 0}, WHITE);
+
+        ftDrawDropdownMenu(engine);
+
         // ftDrawBoarders(engine);
     EndDrawing();
 }

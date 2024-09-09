@@ -1,3 +1,15 @@
+/*******************************************************************************/
+/*\|/-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-\|/*/
+/* |            ------------------------------------------------             | */
+/* |            *--*  PROJET: DrackLauncher PAR: Dracken24  *--*             | */
+/* |            ------------------------------------------------             | */
+/* |            *--*  DATE:	  	    06-09-2024  	     	*--*             | */
+/* |            ------------------------------------------------             | */
+/* |            *--*  FILE: 	    dmemory.c               *--*             | */
+/* |            ------------------------------------------------             | */
+/*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
+/*******************************************************************************/
+
 #include "dmemory.h"
 
 #include "../../library/drackengine_lib/logger.h"
@@ -19,6 +31,7 @@ struct memory_stats
 static const char* memory_tag_strings[MEMORY_TAG_MAX_TAGS] = {
     "UNKNOWN    ",
     "ENGINE     ",
+    "UI         ",
     "ARRAY      ",
     "DARRAY     ",
     "DICT       ",
@@ -92,14 +105,13 @@ void* de_set_memory(void* dest, sint32 value, uint64 size)
     return platform_set_memory(dest, value, size);
 }
 
-char* get_memory_usage_str()
+char* get_memory_usage_str(const char* type)
 {
-    // const uint64 gib = 1024 * 1024 * 1024;
-    // const uint64 mib = 1024 * 1024;
-    // const uint64 kib = 1024;
-
-    char buffer[8000] = "System memory use (tagged):\n";
+    char buffer[8000] = "\n-----------------------------------\nSystem memory in use: ";
+    strcat(buffer, type);
+    strcat(buffer, "\n-----------------------------------\n");
     uint64 offset = strlen(buffer);
+
     for (uint32 i = 0; i < MEMORY_TAG_MAX_TAGS; ++i)
     {
         char unit[4] = "XiB";
@@ -126,9 +138,10 @@ char* get_memory_usage_str()
             amount = (float)stats.tagged_allocations[i];
         }
 
-        sint32 length = snprintf(buffer + offset, 8000, "  %s: %.2f%s\n", memory_tag_strings[i], amount, unit);
+        sint32 length = snprintf(buffer + offset, 8000, "  %s: %.2f %s\n", memory_tag_strings[i], amount, unit);
         offset += length;
     }
+    strcat(buffer, "-----------------------------------\n");
     char* out_string = string_duplicate(buffer);
     return out_string;
 }

@@ -53,7 +53,8 @@ void* _darray_push(void* array, const void* value_ptr)
 {
     uint64 length = darray_length(array);
     uint64 stride = darray_stride(array);
-    if (length >= darray_capacity(array)) {
+    if (length >= darray_capacity(array))
+    {
         array = _darray_resize(array);
     }
 
@@ -78,7 +79,8 @@ void* _darray_pop_at(void* array, uint64 index, void* dest)
 {
     uint64 length = darray_length(array);
     uint64 stride = darray_stride(array);
-    if (index >= length) {
+    if (index >= length)
+    {
         DE_ERROR("Index outside the bounds of this array! Length: %i, index: %index", length, index);
         return array;
     }
@@ -87,7 +89,8 @@ void* _darray_pop_at(void* array, uint64 index, void* dest)
     de_copy_memory(dest, (void*)(addr + (index * stride)), stride);
 
     // If not on the last element, snip out the entry and copy the rest inward.
-    if (index != length - 1) {
+    if (index != length - 1)
+    {
         de_copy_memory(
             (void*)(addr + (index * stride)),
             (void*)(addr + ((index + 1) * stride)),
@@ -102,18 +105,21 @@ void* _darray_insert_at(void* array, uint64 index, void* value_ptr)
 {
     uint64 length = darray_length(array);
     uint64 stride = darray_stride(array);
-    if (index >= length) {
+    if (index >= length)
+    {
         DE_ERROR("Index outside the bounds of this array! Length: %i, index: %index", length, index);
         return array;
     }
-    if (length >= darray_capacity(array)) {
+    if (length >= darray_capacity(array))
+    {
         array = _darray_resize(array);
     }
 
     uint64 addr = (uint64)array;
 
     // If not on the last element, copy the rest outward.
-    if (index != length - 1) {
+    if (index != length - 1)
+    {
         de_copy_memory(
             (void*)(addr + ((index + 1) * stride)),
             (void*)(addr + (index * stride)),
