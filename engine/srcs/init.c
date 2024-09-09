@@ -11,6 +11,7 @@
 /*******************************************************************************/
 
 # include "../includes/engine.h"
+# include "memory/dmemory.h"
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras);
 
@@ -21,18 +22,15 @@ void    dr_init(Engine *engine)
 
     InitWindow(engine->screenSize.x, engine->screenSize.y, "DrackEngine");
 
-    // ToggleBorderlessWindowed();
     SetWindowMinSize(800, 600);
-    // SetWindowMaxSize(1920, 1080);
-    // ToggleFullscreen();
     SetWindowState(FLAG_WINDOW_RESIZABLE);
 	SetTargetFPS(60);
 
-    DE_DEBUG("init %f", 1);
-    engine->allCameras = malloc(sizeof(MultipleCam3D));
+    // DE_DEBUG("init %f", 1);
+    engine->allCameras = (MultipleCam3D *)de_allocate(sizeof(MultipleCam3D), MEMORY_TAG_ENGINE);
     engine->allCameras = ftInitCameras(engine, engine->allCameras);
     engine->introCt = true;
-    DE_DEBUG("init %f", 2);
+    // DE_DEBUG("init %f", 2);
 }
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)

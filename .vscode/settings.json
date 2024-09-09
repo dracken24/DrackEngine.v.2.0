@@ -60,6 +60,12 @@
       "drackengine_lib.h": "c",
       "defines.h": "c",
       "colors.h": "c",
-      "raylib.h": "c"
+      "raylib.h": "c",
+      "input.h": "c",
+      "array": "c",
+      "dmemory.h": "c",
+      "engine_defines.h": "c",
+      "*.tcc": "c",
+      "memory_resource": "c"
     },
 }

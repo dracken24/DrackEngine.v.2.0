@@ -11,6 +11,7 @@
 /*******************************************************************************/
 
 # include "../includes/engine.h"
+# include "memory/dmemory.h"
 
 void    free_engine(Engine *engine);
 
@@ -25,5 +26,5 @@ void    dr_exit(Engine *engine)
 
 void    free_engine(Engine *engine)
 {
-    free(engine->allCameras);
+    de_free(engine->allCameras, sizeof(MultipleCam3D), MEMORY_TAG_ENGINE);
 }

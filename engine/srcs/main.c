@@ -14,12 +14,15 @@
 # include "../../library/drackengine_lib/drackengine_lib.h"
 # include "../../library/drackengine_lib/utility/colors.h"
 # include "../includes/temp_for_build.h"
+# include "memory/dmemory.h"
 
 int main(void)
 {
     Engine   engine;
 
+    initialize_memory();
     dr_init(&engine);
+    DE_TRACE(get_memory_usage_str());
 
     // test_log();
 
@@ -29,6 +32,8 @@ int main(void)
 	}
 
     dr_exit(&engine);
+    shutdown_memory();
+    DE_TRACE(get_memory_usage_str());
 
     return (0);
 }
