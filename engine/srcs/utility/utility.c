@@ -19,3 +19,14 @@ void    print_memory_usage(const char* phase)
     DE_INFO(mem_usage);
     de_free(mem_usage, strlen(mem_usage) + 1, MEMORY_TAG_STRING);
 }
+
+// char* enum_to_string(MainMenus menu)
+// {
+//     switch (menu)
+//     {
+//         case FILES:
+//             return "Files";
+//         case EDIT:
+//             return "Edit";
+//     }
+// }

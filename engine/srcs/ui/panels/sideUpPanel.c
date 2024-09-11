@@ -34,15 +34,55 @@
 // 	}
 // }
 
+void    draw_play_stop(Engine *engine)
+{
+    Vector2 mousePos = GetMousePosition();
+    
+    // Bouton Play
+    Rectangle playRect = (Rectangle){
+        button_get_position(engine->buttonsMenuUp.play).x,
+        button_get_position(engine->buttonsMenuUp.play).y,
+        engine->buttonsMenuUp.play->texture.width * engine->buttonsMenuUp.play->scale,
+        engine->buttonsMenuUp.play->texture.height * engine->buttonsMenuUp.play->scale
+    };
+    
+    // Bouton Stop
+    Rectangle stopRect = (Rectangle){
+        button_get_position(engine->buttonsMenuUp.stop).x,
+        button_get_position(engine->buttonsMenuUp.stop).y,
+        engine->buttonsMenuUp.stop->texture.width * engine->buttonsMenuUp.stop->scale,
+        engine->buttonsMenuUp.stop->texture.height * engine->buttonsMenuUp.stop->scale
+    };
+
+    // Vérifier si la souris est sur le bouton Play
+    if (CheckCollisionPointRec(mousePos, playRect)) {
+        DrawTextureEx(engine->buttonsMenuUp.play->texture_hover,
+            button_get_position(engine->buttonsMenuUp.play), 0, engine->buttonsMenuUp.play->scale, WHITE);
+    } else {
+        DrawTextureEx(engine->buttonsMenuUp.play->texture,
+            button_get_position(engine->buttonsMenuUp.play), 0, engine->buttonsMenuUp.play->scale, WHITE);
+    }
+
+    // Vérifier si la souris est sur le bouton Stop
+    if (CheckCollisionPointRec(mousePos, stopRect)) {
+        DrawTextureEx(engine->buttonsMenuUp.stop->texture_hover,
+            button_get_position(engine->buttonsMenuUp.stop), 0, engine->buttonsMenuUp.stop->scale, WHITE);
+    } else {
+        DrawTextureEx(engine->buttonsMenuUp.stop->texture,
+            button_get_position(engine->buttonsMenuUp.stop), 0, engine->buttonsMenuUp.stop->scale, WHITE);
+    }
+    // DrawTextureEx(engine->buttonsMenuUp.play->texture,
+	// 	button_get_position(engine->buttonsMenuUp.play), 0, engine->buttonsMenuUp.play->scale, WHITE);
+	// DrawTextureEx(engine->buttonsMenuUp.stop->texture,
+	// 	button_get_position(engine->buttonsMenuUp.stop), 0, engine->buttonsMenuUp.stop->scale, WHITE);
+}
+
 void	ftDrawMenuUp(Engine *engine)
 {
 	// (void)engine;
     // Vector2 pos = {0, 0};
     // DE_DEBUG("Play texture : %f, %f", engine->buttonsMenuUp.play->texture.width, engine->buttonsMenuUp.play->texture.height);
-	DrawTextureEx(engine->buttonsMenuUp.play->texture,
-		button_get_position(engine->buttonsMenuUp.play), 0, engine->buttonsMenuUp.play->scale, WHITE);
-	DrawTextureEx(engine->buttonsMenuUp.stop->texture,
-		button_get_position(engine->buttonsMenuUp.stop), 0, engine->buttonsMenuUp.stop->scale, WHITE);
+	    draw_play_stop(engine);
 	// if (game->ctMenuUpButtons == 1) // Button Top Right
 	// {
 	// 	DrawTextureEx(game->buttonsMenuUp.buttonColorOpen.ftReturnTexture(),
@@ -88,7 +128,7 @@ void ftDrawDropdownMenu(Engine *engine)
     int fontSize = 20;
     int padding = 10;
 
-    bool clickedOutside = true;  // Supposons que le clic est en dehors par défaut
+    bool clickedOutside = true;
 
     for (int i = 0; i < numTabs; i++)
     {
@@ -118,7 +158,7 @@ void ftDrawDropdownMenu(Engine *engine)
                 isDropdownOpen = true;
                 
                 // Ajuster la largeur du menu déroulant
-                const char *options[] = {"Option 1", "Option 2", "Option 3"};
+                const char *options[] = {"Banane", "Option 2", "Option 3"};
                 int numOptions = sizeof(options) / sizeof(options[0]);
                 int maxWidth = tabWidth;
                 for (int j = 0; j < numOptions; j++)
@@ -141,7 +181,7 @@ void ftDrawDropdownMenu(Engine *engine)
         DrawRectangleRec(dropdownRect, RAYWHITE);
         DrawRectangleLinesEx(dropdownRect, 1, BLACK);
 
-        const char *options[] = {"Option 1", "Option 2", "Option 3"};
+        const char *options[] = {"Banane", "Option 2", "Option 3"};
         int numOptions = sizeof(options) / sizeof(options[0]);
         
         for (int i = 0; i < numOptions; i++)

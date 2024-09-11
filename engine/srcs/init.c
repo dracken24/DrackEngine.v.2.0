@@ -39,8 +39,10 @@ void    dr_init(Engine *engine)
 
 void	init_buttons_menu_up(Engine *engine)
 {
-	engine->buttonsMenuUp.play = button_init((Vector2){engine->screenSize.x /2 - 15, 2}, (Vector2){100, 100}, RED, WHITE, "../assets/buttons/play_00.png", 0.85, 0);
-	engine->buttonsMenuUp.stop = button_init((Vector2){engine->screenSize.x /2 + 15, 2}, (Vector2){100, 100}, RED, WHITE, "../assets/buttons/stop_00.png", 0.85, 0);
+	engine->buttonsMenuUp.play = button_init((Vector2){engine->screenSize.x /2 - 15, 2}, (Vector2){100, 100}, RED, WHITE, "../assets/buttons/play_00.png", 0.085, 0);
+	engine->buttonsMenuUp.play->texture_hover = LoadTexture("../assets/buttons/play_00_selected.png");
+	engine->buttonsMenuUp.stop = button_init((Vector2){engine->screenSize.x /2 + 15, 2}, (Vector2){100, 100}, RED, WHITE, "../assets/buttons/stop_00.png", 0.085, 0);
+	engine->buttonsMenuUp.stop->texture_hover = LoadTexture("../assets/buttons/stop_00_selected.png");
 	// DE_DEBUG("Play texture : %f, %f", engine->buttonsMenuUp.play->texture.width, engine->buttonsMenuUp.play->texture.height);
 
 }
@@ -55,7 +57,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera00.camera3D.fovy = 45.0f;                                // Camera field-of-view Y
 	allCameras->camera00.camera3D.projection = CAMERA_PERSPECTIVE;             // Camera mode type
 	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 300, engine->screenSize.y - 30);
-	allCameras->camera00.rectForCam = (Rectangle){0.0f, 0.0f, (float)allCameras->camera00.textForCam.texture.width,
+	allCameras->camera00.rectForCam = (Rectangle){0.0f, 30.0f, (float)allCameras->camera00.textForCam.texture.width,
 		(float)-allCameras->camera00.textForCam.texture.height};
 
 	// Camera panel side up
@@ -65,7 +67,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera01.camera2D.rotation = 0.0f;
 	allCameras->camera01.camera2D.zoom = 1.0f;
 	allCameras->camera01.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3);
-	allCameras->camera01.rectForCam = (Rectangle){0.0f, 0.0f, (float)allCameras->camera01.textForCam.texture.width,
+	allCameras->camera01.rectForCam = (Rectangle){(float)engine->screenSize.x - 300.0f, 30, (float)allCameras->camera01.textForCam.texture.width,
 		(float)-allCameras->camera01.textForCam.texture.height};
 
 	// Camera panel side down
@@ -75,7 +77,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera02.camera2D.rotation = 0.0f;
 	allCameras->camera02.camera2D.zoom = 1.0f;
 	allCameras->camera02.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3 * 2 - 30);
-	allCameras->camera02.rectForCam = (Rectangle){0.0f, 0.0f, (float)allCameras->camera02.textForCam.texture.width,
+	allCameras->camera02.rectForCam = (Rectangle){(float)engine->screenSize.x - 300.0f, (float)engine->screenSize.y / 3 + 30, (float)allCameras->camera02.textForCam.texture.width,
 		(float)-allCameras->camera02.textForCam.texture.height};
 
 	// Camera panel up

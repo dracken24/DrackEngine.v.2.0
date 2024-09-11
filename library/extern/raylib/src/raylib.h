@@ -169,6 +169,7 @@
 #define LIGHTGRAY  CLITERAL(Color){ 200, 200, 200, 255 }   // Light Gray
 #define GRAY       CLITERAL(Color){ 130, 130, 130, 255 }   // Gray
 #define DARKGRAY   CLITERAL(Color){ 80, 80, 80, 255 }      // Dark Gray
+#define VERRYDARKGRAY   CLITERAL(Color){ 50, 50, 50, 255 }      // Very Dark Gray
 #define YELLOW     CLITERAL(Color){ 253, 249, 0, 255 }     // Yellow
 #define GOLD       CLITERAL(Color){ 255, 203, 0, 255 }     // Gold
 #define ORANGE     CLITERAL(Color){ 255, 161, 0, 255 }     // Orange

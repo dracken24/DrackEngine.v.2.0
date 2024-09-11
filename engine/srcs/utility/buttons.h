@@ -19,6 +19,8 @@ typedef struct Button
 {
 	Rectangle		rect;
 	Texture2D		texture;
+	Texture2D		texture_hover;
+	Texture2D		texture_click;
 	Color			bg_color;
 	Color			bg_hover_color;
 	Color			bg_click_color;
@@ -52,6 +54,7 @@ Color		button_get_text_color(Button* button);
 Color		button_get_text_hover_color(Button* button);
 Color		button_get_text_click_color(Button* button);
 
+void        button_set_position(Button* button, Vector2 pos);
 void		button_set_size(Button* button, Vector2 size);
 void		button_set_bg_color(Button* button, Color bg_color);
 void		button_set_bg_hover_color(Button* button, Color bg_hover_color);

@@ -52,7 +52,7 @@
       "overviewRulerColor": "rgba(0,0,0,0)",
       "isWholeLine": false
     },
-    "cmake.sourceDirectory": "/home/dracken24/Documents/Engine-2D/library/extern/raylib",
+    "cmake.sourceDirectory": "/home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib",
     "files.associations": {
       "stdio.h": "c",
       "logger.h": "c",
@@ -71,6 +71,7 @@
       "functional": "c",
       "tuple": "c",
       "type_traits": "c",
-      "utility": "c"
+      "utility": "c",
+      "engine.h": "c"
     },
 }

@@ -40,6 +40,8 @@ Button*		button_init(Vector2 pos, Vector2 size,
 void    button_unload(Button* button)
 {
     UnloadTexture(button->texture);
+    UnloadTexture(button->texture_hover);
+    UnloadTexture(button->texture_click);
     de_free(button, sizeof(Button), MEMORY_TAG_UI);
 }
 
