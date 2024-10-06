@@ -3,7 +3,8 @@ NAME = DrackEngine
 
 # Compilateur et options
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I./includes -I../library/extern/raylib/src
+# CFLAGS = -Wall -Wextra -Werror -I./includes -I../library/extern/raylib/src
+CFLAGS = -I./includes -I../library/extern/raylib/src
 LINKFLAGS = -lGL -lm -lpthread -ldl -lrt -lX11
 
 # Dossiers

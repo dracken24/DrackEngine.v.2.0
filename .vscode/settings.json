@@ -72,6 +72,7 @@
       "tuple": "c",
       "type_traits": "c",
       "utility": "c",
-      "engine.h": "c"
+      "engine.h": "c",
+      "buttons.h": "c"
     },
 }
