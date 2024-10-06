@@ -73,6 +73,7 @@
       "type_traits": "c",
       "utility": "c",
       "engine.h": "c",
-      "buttons.h": "c"
+      "buttons.h": "c",
+      "launcher.h": "c"
     },
 }

@@ -12,7 +12,7 @@
 
 # include "../includes/launcher.h"
 
-void    dr_init(Launcher *launcher)
+void    dr_launcher_init(Launcher *launcher)
 {
     launcher->exitCt = false;
     launcher->screenSize = (Vector2){1200, 750};

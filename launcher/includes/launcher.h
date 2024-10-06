@@ -23,8 +23,8 @@ typedef struct  Launcher
     bool    exitCt;
 }   Launcher;
 
-void    dr_init(Launcher *launcher);
-void    dr_update(Launcher *launcher);
-void    dr_exit(Launcher *launcher);
+void    dr_launcher_init(Launcher *launcher);
+void    dr_launcher_update(Launcher *launcher);
+void    dr_launcher_exit(Launcher *launcher);
 
 #endif

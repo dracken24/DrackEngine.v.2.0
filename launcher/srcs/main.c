@@ -19,16 +19,16 @@ int main(void)
 {
     Launcher   launcher;
 
-    dr_init(&launcher);
+    dr_launcher_init(&launcher);
 
     test_log();
 
     while (!WindowShouldClose() && !launcher.exitCt)
 	{
-        dr_update(&launcher);
+        dr_launcher_update(&launcher);
 	}
 
-    dr_exit(&launcher);
+    dr_launcher_exit(&launcher);
 
     return (0);
 }

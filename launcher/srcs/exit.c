@@ -12,7 +12,7 @@
 
 # include "../includes/launcher.h"
 
-void    dr_exit(Launcher *launcher)
+void    dr_launcher_exit(Launcher *launcher)
 {
     (void)launcher;
 

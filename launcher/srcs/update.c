@@ -52,7 +52,7 @@ void    window_events(Launcher *launcher)
     }
 }
 
-void    dr_update(Launcher *launcher)
+void    dr_launcher_update(Launcher *launcher)
 {
     input_events(launcher);
     window_events(launcher);
