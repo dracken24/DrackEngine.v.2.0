@@ -16,13 +16,14 @@ void    dr_launcher_init(Launcher *launcher)
 {
     launcher->exitCt = false;
     launcher->screenSize = (Vector2){1200, 750};
+    launcher->engine_running = false;
 
     InitWindow(launcher->screenSize.x, launcher->screenSize.y, "DrackLauncher");
 
     // ToggleBorderlessWindowed();
+    SetWindowState(FLAG_WINDOW_RESIZABLE);
     SetWindowMinSize(800, 600);
     // SetWindowMaxSize(1920, 1080);
     // ToggleFullscreen();
-    SetWindowState(FLAG_WINDOW_RESIZABLE);
 	SetTargetFPS(60);
 }

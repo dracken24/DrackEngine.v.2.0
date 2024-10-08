@@ -76,6 +76,9 @@
       "buttons.h": "c",
       "launcher.h": "c",
       "types.h": "c",
-      "signal.h": "c"
+      "signal.h": "c",
+      "wait.h": "c",
+      "stdlib.h": "c",
+      "signal_ext.h": "c"
     },
 }

@@ -14,6 +14,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include "../../library/drackengine_lib/drackengine_lib.h"
 
 #define SIGNAL_CLEANUP SIGUSR1
 
@@ -63,14 +64,13 @@ void    input_events(Launcher *launcher)
 
 void    window_events(Launcher *launcher)
 {
-    if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+    if (IsWindowResized())
     {
-        if (IsWindowResized())
-        {
-            launcher->screenSize.x = GetScreenWidth();
-            launcher->screenSize.y = GetScreenHeight();
-            SetWindowSize(launcher->screenSize.x, launcher->screenSize.y);
-        }
+        // SetWindowMinSize(800, 600);
+        launcher->screenSize.x = GetScreenWidth();
+        launcher->screenSize.y = GetScreenHeight();
+        SetWindowSize(launcher->screenSize.x, launcher->screenSize.y);
+        DE_INFO("Window resized in luncher");
     }
 }
 

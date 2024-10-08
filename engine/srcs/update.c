@@ -70,6 +70,8 @@ void    window_events(Engine *engine)
         engine->screenSize.y = GetScreenHeight();
 
         adjust_menu_camera(engine);
+        // SetWindowMinSize(800, 600);
+        DE_INFO("Window resized in engine");
     }
 }
 

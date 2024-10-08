@@ -10,11 +10,14 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
+#define _XOPEN_SOURCE 700
+
 # include "../includes/engine.h"
 # include "../../library/drackengine_lib/drackengine_lib.h"
 # include "../../library/drackengine_lib/utility/colors.h"
 # include "../includes/temp_for_build.h"
 # include "memory/dmemory.h"
+
 # include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
