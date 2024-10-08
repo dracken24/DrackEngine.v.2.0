@@ -74,6 +74,8 @@
       "utility": "c",
       "engine.h": "c",
       "buttons.h": "c",
-      "launcher.h": "c"
+      "launcher.h": "c",
+      "types.h": "c",
+      "signal.h": "c"
     },
 }

@@ -1,11 +1,11 @@
 /*****************************************************************************/
 /*\|/~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~\|/*/
 /* |             ---------------------------------------------             | */
-/* |             *--*  PROJET: DrackEngine PAR: Dracken24  *--*             | */
+/* |             *--* PROJET: DrackEngine PAR: Dracken24  *--*             | */
 /* |             ---------------------------------------------             | */
-/* |             *--*  DATE:		 09-11-2022  		  *--*             | */
+/* |             *--* DATE:		     06-09-2024           *--*             | */
 /* |             ---------------------------------------------             | */
-/* |             *--*  FILE: 	  sideUpPanel.hpp         *--*             | */
+/* |             *--* FILE: 	     up_panel.c           *--*            | */
 /* |             ---------------------------------------------             | */
 /*/|\~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~/|\*/
 /*****************************************************************************/
@@ -100,6 +100,7 @@ void ftDrawDropdownMenu(Engine *engine)
         DrawRectangleLinesEx(tabRect, 1, BLACK);
         DrawText(tabs[i], tabRect.x + padding, tabRect.y + 5, fontSize, BLACK);
 
+#if DE_PLATFORM_LINUX
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && isMouseOver)
         {
             clickedOutside = false;  // Le clic n'est pas en dehors
@@ -127,6 +128,7 @@ void ftDrawDropdownMenu(Engine *engine)
                 dropdownRect = (Rectangle){tabRect.x, tabRect.y + tabRect.height, maxWidth, numOptions * 30};
             }
         }
+#endif
 
         startX += tabWidth + 1;
     }
@@ -190,7 +192,7 @@ void ftDrawDropdownMenu(Engine *engine)
             {
                 switch (selectedTab)
                 {
-                    case 0:
+                    case (enum MainMenus)FILES:
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (files[i] && files[i] == "New")
                         {
@@ -218,7 +220,7 @@ void ftDrawDropdownMenu(Engine *engine)
                             break;
                         }
                         break;
-                    case 1:
+                    case (enum MainMenus)EDIT:
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (edit[i] && edit[i] == "Undo")
                         {
@@ -246,7 +248,7 @@ void ftDrawDropdownMenu(Engine *engine)
                             break;
                         }
                         break;
-                    case 2:
+                    case (enum MainMenus)VIEW:
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (settings[i] && settings[i] == "Language")
                         {
@@ -264,7 +266,7 @@ void ftDrawDropdownMenu(Engine *engine)
                             break;
                         }
                         break;
-                    case 3:
+                    case (enum MainMenus)HELP:
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (help[i] && help[i] == "About")
                         {
@@ -282,7 +284,6 @@ void ftDrawDropdownMenu(Engine *engine)
                             break;
                         }
                         break;
-
                 default:
                     break;
                 }

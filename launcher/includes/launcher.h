@@ -20,7 +20,10 @@ typedef struct  Launcher
 {
     Vector2   screenSize;
 
-    bool    exitCt;
+    pid_t engine_pid;
+    bool engine_running;
+    
+    bool exitCt;
 }   Launcher;
 
 void    dr_launcher_init(Launcher *launcher);

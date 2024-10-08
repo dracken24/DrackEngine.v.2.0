@@ -22,41 +22,41 @@ typedef enum  MainMenus
     HELP
 }   MainMenus;
 
-#define SUB_MENU_FILES_LENGTH 5
-typedef enum  SubMenusFiles
-{
-    NEW,
-    OPEN,
-    SAVE,
-    SAVE_AS,
-    EXPORT
-}   SubMenusFiles;
+// #define SUB_MENU_FILES_LENGTH 5
+// typedef enum  SubMenusFiles
+// {
+//     NEW,
+//     OPEN,
+//     SAVE,
+//     SAVE_AS,
+//     EXPORT
+// }   SubMenusFiles;
 
-#define SUB_MENU_EDIT_LENGTH 5
-typedef enum  SubMenusEdit
-{
-    UNDO,
-    REDO,
-    CUT,
-    COPY,
-    PASTE
-}   SubMenusEdit;
+// #define SUB_MENU_EDIT_LENGTH 5
+// typedef enum  SubMenusEdit
+// {
+//     UNDO,
+//     REDO,
+//     CUT,
+//     COPY,
+//     PASTE
+// }   SubMenusEdit;
 
-#define SUB_MENU_SETTINGS_LENGTH 3
-typedef enum  SubMenusSettings
-{
-    LANGUAGE,
-    THEME,
-    OPTIONS
-}   SubMenusSettings;
+// #define SUB_MENU_SETTINGS_LENGTH 3
+// typedef enum  SubMenusSettings
+// {
+//     LANGUAGE,
+//     THEME,
+//     OPTIONS
+// }   SubMenusSettings;
 
-#define SUB_MENU_HELP_LENGTH 3
-typedef enum  SubMenusHelp
-{
-    ABOUT,
-    SUPPORT,
-    DOCUMENTATION
-}   SubMenusHelp;
+// #define SUB_MENU_HELP_LENGTH 3
+// typedef enum  SubMenusHelp
+// {
+//     ABOUT,
+//     SUPPORT,
+//     DOCUMENTATION
+// }   SubMenusHelp;
 
 //******************************************************************************//
 //***                             menu_functions.c                           ***//

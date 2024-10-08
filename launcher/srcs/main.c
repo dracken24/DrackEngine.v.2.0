@@ -24,9 +24,11 @@ int main(void)
     test_log();
 
     while (!WindowShouldClose() && !launcher.exitCt)
-	{
+    {
         dr_launcher_update(&launcher);
-	}
+    }
+
+    // cleanup_engine();
 
     dr_launcher_exit(&launcher);
 
