@@ -21,12 +21,14 @@ void    dr_init(Engine *engine)
     engine->exitCt = false;
     engine->screenSize = (Vector2){1500, 750};
 
-    open_window(engine->screenSize, (Vector2){400, 200}, "DrackEngine", true);
-
+    open_window(engine->screenSize, (Vector2){600, 400}, "DrackEngine", true);
 	SetTargetFPS(60);
+
+	engine->engine_pid_ct = 0;
 
     // DE_DEBUG("init %f", 1);
     engine->allCameras = (MultipleCam3D *)de_allocate(sizeof(MultipleCam3D), MEMORY_TAG_ENGINE);
+	engine->engine_pid = (d_Pid *)de_allocate(sizeof(d_Pid) * 10, MEMORY_TAG_ENTITY);
     engine->allCameras = ftInitCameras(engine, engine->allCameras);
     engine->introCt = true;
 

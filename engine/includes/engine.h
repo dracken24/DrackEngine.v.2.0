@@ -25,6 +25,14 @@ typedef struct ButtonsMenu
     Button*  stop;
 }   ButtonsMenu;
 
+typedef struct d_Pid
+{
+    bool    engine_running;
+    int     enum_link;
+    pid_t   engine_pid;
+}   d_Pid;
+
+
 typedef struct  Engine
 {
     Vector2         screenSize;
@@ -32,6 +40,10 @@ typedef struct  Engine
 
     // Buttons Menu Up Bar
     ButtonsMenu buttonsMenuUp;
+
+    // PID for new window
+    int     engine_pid_ct;
+    d_Pid   *engine_pid;
 
     bool    exitCt;
     bool    introCt;

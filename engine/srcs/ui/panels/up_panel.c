@@ -100,7 +100,6 @@ void ftDrawDropdownMenu(Engine *engine)
         DrawRectangleLinesEx(tabRect, 1, BLACK);
         DrawText(tabs[i], tabRect.x + padding, tabRect.y + 5, fontSize, BLACK);
 
-#if DE_PLATFORM_LINUX
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && isMouseOver)
         {
             clickedOutside = false;  // Le clic n'est pas en dehors
@@ -128,7 +127,6 @@ void ftDrawDropdownMenu(Engine *engine)
                 dropdownRect = (Rectangle){tabRect.x, tabRect.y + tabRect.height, maxWidth, numOptions * 30};
             }
         }
-#endif
 
         startX += tabWidth + 1;
     }
@@ -196,7 +194,7 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (files[i] && files[i] == "New")
                         {
-                            menu_files_new();
+                            menu_files_new(engine);
                             break;
                         }
                         else if (files[i] && files[i] == "Open")
