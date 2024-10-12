@@ -1,8 +1,8 @@
-if(NOT EXISTS "/home/dracken24/Documents/Engine-2D/build/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: /home/dracken24/Documents/Engine-2D/build/install_manifest.txt")
+if(NOT EXISTS "/home/dracken24/prog/DrackEngine.v.2.0/build/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: /home/dracken24/prog/DrackEngine.v.2.0/build/install_manifest.txt")
 endif()
 
-file(READ "/home/dracken24/Documents/Engine-2D/build/install_manifest.txt" files)
+file(READ "/home/dracken24/prog/DrackEngine.v.2.0/build/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach(file ${files})
   message(STATUS "Uninstalling $ENV{DESTDIR}${file}")

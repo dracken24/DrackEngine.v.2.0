@@ -19,12 +19,10 @@ void	init_buttons_menu_up(Engine *engine);
 void    dr_init(Engine *engine)
 {
     engine->exitCt = false;
-    engine->screenSize = (Vector2){1200, 750};
+    engine->screenSize = (Vector2){1500, 750};
 
-    InitWindow(engine->screenSize.x, engine->screenSize.y, "DrackEngine");
+    open_window(engine->screenSize, (Vector2){400, 200}, "DrackEngine", true);
 
-    SetWindowMinSize(800, 600);
-    SetWindowState(FLAG_WINDOW_RESIZABLE);
 	SetTargetFPS(60);
 
     // DE_DEBUG("init %f", 1);

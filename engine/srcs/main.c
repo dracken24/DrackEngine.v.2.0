@@ -1,7 +1,7 @@
 /*******************************************************************************/
 /*\|/-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-\|/*/
 /* |            ------------------------------------------------             | */
-/* |            *--*  PROJET: DrackLauncher PAR: Dracken24  *--*             | */
+/* |            *--*  PROJET: DrackEngine   PAR: Dracken24  *--*             | */
 /* |            ------------------------------------------------             | */
 /* |            *--*  DATE:	  	    06-09-2024  	     	*--*             | */
 /* |            ------------------------------------------------             | */
@@ -16,6 +16,7 @@
 # include "../../library/drackengine_lib/drackengine_lib.h"
 # include "../../library/drackengine_lib/utility/colors.h"
 # include "../includes/temp_for_build.h"
+# include "signals/signals.h"
 # include "memory/dmemory.h"
 
 # include <signal.h>
@@ -23,22 +24,9 @@
 # include <sys/wait.h>
 # include <stdlib.h>
 
-#define SIGNAL_CLEANUP SIGUSR1
 
 // Déclaration globale de l'engine
 Engine *g_engine = NULL;
-
-void cleanup_handler(int signum)
-{
-    if (signum == SIGNAL_CLEANUP && g_engine != NULL)
-    {
-        // Effectuer le nettoyage ici
-        dr_exit(g_engine);
-        print_memory_usage("EXIT");
-        shutdown_memory();
-        exit(EXIT_SUCCESS);
-    }
-}
 
 int main(void)
 {
@@ -56,7 +44,6 @@ int main(void)
     sigaction(SIGNAL_CLEANUP, &sa, NULL);
 
     // test_log();
-
     while (!WindowShouldClose() && !engine.exitCt)
 	{
         dr_update(&engine);

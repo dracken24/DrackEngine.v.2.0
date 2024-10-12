@@ -49,10 +49,11 @@ void    dr_exit(Engine *engine);
 //***                              utility.h                                 ***//
 //******************************************************************************//
 
+void	open_window(Vector2 screenSize, Vector2 minSize, char *title, bool resizable);
 void    print_memory_usage(const char* phase);
 
 //******************************************************************************//
-//***                              sideUpPanel.h                              ***//
+//***                              sideUpPanel.h                             ***//
 //******************************************************************************//
 
 void	ftUpMenu2D(Engine *engine, Camera2D *camera);
