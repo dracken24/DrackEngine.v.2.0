@@ -18,6 +18,7 @@
 # include "struct_globale.h"
 # include "../../library/drackengine_lib/drackengine_lib.h"
 # include "../srcs/utility/buttons.h"
+# include "Config/menus.h"
 
 typedef struct ButtonsMenu
 {
@@ -43,7 +44,7 @@ typedef struct  Engine
 
     // PID for new window
     int     engine_pid_ct;
-    d_Pid   *engine_pid;
+    d_Pid   new_window_pid[SUB_MENU_FILES_LENGTH];
 
     bool    exitCt;
     bool    introCt;

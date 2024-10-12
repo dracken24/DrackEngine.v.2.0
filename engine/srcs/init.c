@@ -15,6 +15,7 @@
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras);
 void	init_buttons_menu_up(Engine *engine);
+void	init_windows_pid(Engine *engine);
 
 void    dr_init(Engine *engine)
 {
@@ -28,13 +29,23 @@ void    dr_init(Engine *engine)
 
     // DE_DEBUG("init %f", 1);
     engine->allCameras = (MultipleCam3D *)de_allocate(sizeof(MultipleCam3D), MEMORY_TAG_ENGINE);
-	engine->engine_pid = (d_Pid *)de_allocate(sizeof(d_Pid) * 10, MEMORY_TAG_ENTITY);
+	// engine->engine_pid = (d_Pid *)de_allocate(sizeof(d_Pid) * SUB_MENU_FILES_LENGTH, MEMORY_TAG_ENTITY);
+	init_windows_pid(engine);
     engine->allCameras = ftInitCameras(engine, engine->allCameras);
     engine->introCt = true;
 
 	// Init Buttons 
 	init_buttons_menu_up(engine);
     // DE_DEBUG("init %f", 2);
+}
+
+void	init_windows_pid(Engine *engine)
+{
+	for (int i = 0; i < SUB_MENU_FILES_LENGTH; i++)
+	{
+		engine->new_window_pid[i].engine_running = false;
+		engine->new_window_pid[i].engine_pid = -24;
+	}
 }
 
 void	init_buttons_menu_up(Engine *engine)

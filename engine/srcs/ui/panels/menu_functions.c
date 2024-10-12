@@ -24,20 +24,15 @@ void    fork_for_new_window(d_Pid *pid_struct, int enum_link, const char *title)
     if (pid_struct->engine_pid == 0)
     {
         // Processus enfant
-        // char width[20], height[20];
-        // snprintf(width, sizeof(width), "%d", 1000);
-        // snprintf(height, sizeof(height), "%d", 650);
-
-        chdir("../../../../../windows_gestion/new_project");
-        execl("ls -la", "ls -la", NULL);
-        // system("ls -la");
-        // system("./new_project 1000 650 New Project");
-        // system("./new_project");
-        // execl("./new_project", width, height, title, NULL);
-
-        // Si execl échoue
-        perror("Erreur lors de l'exécution de NewWindowProgram");
-        exit(EXIT_FAILURE);
+        chdir("../windows_gestion/new_project");
+        pid_struct->engine_running = true;
+        if (system("./new_project 1000 650 \"New Project\"") == -1)
+        {
+            DE_ERROR("Error launching new_project");
+            exit(EXIT_FAILURE);
+        }
+        pid_struct->engine_running = false;
+        exit(EXIT_SUCCESS);
     }
     else if (pid_struct->engine_pid < 0)
     {
@@ -60,11 +55,10 @@ int    get_pid_tab_index(Engine *engine)
 void    menu_files_new(Engine *engine)
 {
     DE_DEBUG("Option selected: %s", "New !");
-    int index = get_pid_tab_index(engine);
-    DE_DEBUG("Index: %d", index);
+    // int index = get_pid_tab_index(engine);
+    // DE_DEBUG("Index: %d", index);
 
-    fork_for_new_window(&engine->engine_pid[index], (SubMenus)FILES_NEW, "New Project");
-    // open_window((Vector2){1000, 650}, (Vector2){600, 400}, "New Project", true);
+    fork_for_new_window(&engine->new_window_pid[FILES_NEW], (SubMenus)FILES_NEW, "New Project");
     DrawText("New Project !", 20, 20, 20, PINK);
 }
 

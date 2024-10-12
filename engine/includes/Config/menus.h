@@ -13,6 +13,8 @@
 #ifndef MENUS_H
 # define MENUS_H
 
+struct Engine;
+
 #define MAIN_MENU_LENGTH 4
 typedef enum  MainMenus
 {
@@ -50,7 +52,7 @@ typedef enum  SubMenus
 //***                             menu_functions.c                           ***//
 //******************************************************************************//
 
-void    menu_files_new(Engine *engine);
+void    menu_files_new(struct Engine *engine);
 void    menu_files_open(void);
 void    menu_files_save(void);
 void    menu_files_save_as(void);

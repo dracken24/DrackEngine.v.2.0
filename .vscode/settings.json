@@ -80,6 +80,7 @@
       "wait.h": "c",
       "stdlib.h": "c",
       "signal_ext.h": "c",
-      "libft.h": "c"
+      "libft.h": "c",
+      "windows_utility.h": "c"
     },
 }
