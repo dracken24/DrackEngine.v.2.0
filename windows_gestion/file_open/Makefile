@@ -1,4 +1,4 @@
-NAME = new_project
+NAME = file_open
 
 # Compilateur et options
 CC = gcc

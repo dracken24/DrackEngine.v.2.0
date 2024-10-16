@@ -81,6 +81,7 @@
       "stdlib.h": "c",
       "signal_ext.h": "c",
       "libft.h": "c",
-      "windows_utility.h": "c"
+      "windows_utility.h": "c",
+      "menus.h": "c"
     },
 }

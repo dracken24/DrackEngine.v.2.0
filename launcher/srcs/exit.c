@@ -34,6 +34,7 @@ void    dr_launcher_exit(Launcher *launcher)
         launcher->engine_running = false;
         launcher->engine_pid = -1;
     }
+    usleep(1800000);  // Attendre 1000ms
 
     CloseWindow();
 }

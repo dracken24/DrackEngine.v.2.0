@@ -73,14 +73,14 @@ int main(int argc, char *argv[])
     {
         BeginDrawing();
         ClearBackground(DARKGRAY);
-        DrawText("New Project !", width / 2 - MeasureText("New Project !", 20) / 2, height / 2, 20, LIGHTGRAY);
+        DrawText("Open Project !", width / 2 - MeasureText("Open Project !", 20) / 2, height / 2, 20, LIGHTGRAY);
         EndDrawing();
         if (running == false)
         {
             DE_INFO("Signal reçu, sortie de la boucle");
         }
     }
-    DE_INFO("New Project window closed successfully");
+    DE_INFO("Open Project window closed successfully");
 
     CloseWindow();
 

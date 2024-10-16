@@ -199,7 +199,7 @@ void ftDrawDropdownMenu(Engine *engine)
                         }
                         else if (files[i] && files[i] == "Open")
                         {
-                            menu_files_open();
+                            menu_files_open(engine);
                             break;
                         }
                         else if (files[i] && files[i] == "Save")

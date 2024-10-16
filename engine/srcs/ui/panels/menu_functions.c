@@ -10,61 +10,34 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-#include "../../../includes/engine.h"
 #include "../../../includes/Config/menus.h"
-#include <unistd.h>
-#include <sys/wait.h>
+
 //******************************************************************************//
 //***                              Files Menu                                ***//
 //******************************************************************************//
 
-void    fork_for_new_window(d_Pid *pid_struct, int enum_link, const char *title)
-{
-    pid_struct->engine_pid = fork();
-    if (pid_struct->engine_pid == 0)
-    {
-        // Processus enfant
-        chdir("../windows_gestion/new_project");
-        pid_struct->engine_running = true;
-        if (system("./new_project 1000 650 \"New Project\"") == -1)
-        {
-            DE_ERROR("Error launching new_project");
-            exit(EXIT_FAILURE);
-        }
-        pid_struct->engine_running = false;
-        exit(EXIT_SUCCESS);
-    }
-    else if (pid_struct->engine_pid < 0)
-    {
-        // Erreur lors du fork
-        perror("Erreur lors du fork");
-    }
-    else
-    {
-        // Processus parent
-        pid_struct->enum_link = enum_link;
-        pid_struct->engine_running = true;
-    }
-}
-
-int    get_pid_tab_index(Engine *engine)
-{
-    return (engine->engine_pid_ct++);
-}
-
 void    menu_files_new(Engine *engine)
 {
     DE_DEBUG("Option selected: %s", "New !");
-    // int index = get_pid_tab_index(engine);
-    // DE_DEBUG("Index: %d", index);
+    if (engine->new_window_pid[FILES_NEW].engine_pid > 0)
+    {
+        return;
+    }
 
     fork_for_new_window(&engine->new_window_pid[FILES_NEW], (SubMenus)FILES_NEW, "New Project");
-    DrawText("New Project !", 20, 20, 20, PINK);
+    // DrawText("New Project !", 20, 20, 20, PINK);
 }
 
-void    menu_files_open(void)
+void    menu_files_open(Engine *engine)
 {
     DE_DEBUG("Option selected: %s", "Open !");
+    if (engine->new_window_pid[FILES_OPEN].engine_pid > 0)
+    {
+        return;
+    }
+
+    fork_for_file_open(&engine->new_window_pid[FILES_OPEN], (SubMenus)FILES_OPEN, "Open Project");
+    // DrawText("Open Project !", 20, 20, 20, PINK);
 }
 
 void    menu_files_save(void)

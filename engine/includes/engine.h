@@ -18,7 +18,42 @@
 # include "struct_globale.h"
 # include "../../library/drackengine_lib/drackengine_lib.h"
 # include "../srcs/utility/buttons.h"
-# include "Config/menus.h"
+// # include "Config/menus.h"
+
+# include <signal.h>
+
+#define MAIN_MENU_LENGTH 4
+typedef enum  MainMenus
+{
+    FILES,
+    EDIT,
+    VIEW,
+    HELP
+}   MainMenus;
+
+#define SUB_MENU_FILES_LENGTH 16
+typedef enum  SubMenus
+{
+    FILES_NEW,
+    FILES_OPEN,
+    FILES_SAVE,
+    FILES_SAVE_AS,
+    FILES_EXPORT,
+
+    EDIT_UNDO,
+    EDIT_REDO,
+    EDIT_CUT,
+    EDIT_COPY,
+    EDIT_PASTE,
+
+    SETTINGS_LANGUAGE,
+    SETTINGS_THEME,
+    SETTINGS_OPTIONS,
+
+    HELP_ABOUT,
+    HELP_SUPPORT,
+    HELP_DOCUMENTATION,
+}   SubMenus;
 
 typedef struct ButtonsMenu
 {
@@ -46,7 +81,7 @@ typedef struct  Engine
     int     engine_pid_ct;
     d_Pid   new_window_pid[SUB_MENU_FILES_LENGTH];
 
-    bool    exitCt;
+    volatile sig_atomic_t exitCt;
     bool    introCt;
 }   Engine;
 

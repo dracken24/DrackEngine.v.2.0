@@ -41,7 +41,7 @@ void    input_events(Launcher *launcher)
         {
             // Processus enfant
             chdir("../engine");
-            system("make");
+            system("make re");
             execl("./DrackEngine", "DrackEngine", NULL);
             exit(EXIT_FAILURE);  // En cas d'échec de execl
         }
