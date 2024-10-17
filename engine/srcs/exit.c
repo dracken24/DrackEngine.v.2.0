@@ -30,14 +30,15 @@ void    dr_exit(Engine *engine)
     DE_INFO("Closing open windows in engine");
     close_open_windows(engine);
 
-    usleep(1200000);  // Attendre 1000ms
     // DE_WARNING("engine Files EXIT PID: %d", engine->new_window_pid[FILES_NEW].engine_pid);
     // DE_WARNING("engine Open EXIT PID: %d", engine->new_window_pid[FILES_OPEN].engine_pid);
 
+    DE_INFO("Waiting for 750ms in engine");
+    usleep(350000);  // Attendre 350ms
+    
     DE_INFO("Freeing engine in engine");
     free_engine(engine);
 
-    DE_INFO("Waiting for 1000ms in engine");
 
     DE_INFO("Closing window in engine");
     CloseWindow();
