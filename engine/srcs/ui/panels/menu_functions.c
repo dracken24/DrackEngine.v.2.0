@@ -19,7 +19,7 @@
 void    menu_files_new(Engine *engine)
 {
     DE_DEBUG("Option selected: %s", "New !");
-    if (engine->new_window_pid[FILES_NEW].engine_pid > 0)
+    if (engine->new_window_pid[FILES_NEW].engine_pid > 0 || engine->new_window_pid[FILES_OPEN].engine_pid > 0)
     {
         return;
     }
@@ -31,7 +31,7 @@ void    menu_files_new(Engine *engine)
 void    menu_files_open(Engine *engine)
 {
     DE_DEBUG("Option selected: %s", "Open !");
-    if (engine->new_window_pid[FILES_OPEN].engine_pid > 0)
+    if (engine->new_window_pid[FILES_OPEN].engine_pid > 0 || engine->new_window_pid[FILES_NEW].engine_pid > 0)
     {
         return;
     }
