@@ -62,35 +62,54 @@ void    adjust_menu_camera(Engine *engine)
     button_set_position(engine->buttonsMenuUp.stop, (Vector2){engine->screenSize.x /2 + 15, 2});
 }
 
-void    adjust_right_panel(Engine *engine, int x)
+void    adjust_right_panel_vert(Engine *engine, int x)
 {
-    x *= 1.1;
-
     engine->allCameras->camera02.rectForCam.width -= x;
     engine->allCameras->camera02.rectForCam.x += x;
-    engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->screenSize.y / 3 * 2 - 30);
+    engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height * -1);
 
     engine->allCameras->camera01.rectForCam.width -= x;
     engine->allCameras->camera01.rectForCam.x += x;
-    engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->screenSize.y / 3);
+    engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height * -1);
 
     engine->allCameras->camera00.rectForCam.width += x;
-    engine->allCameras->camera00.textForCam = LoadRenderTexture(engine->allCameras->camera00.rectForCam.width, engine->screenSize.y - 30);
+    engine->allCameras->camera00.textForCam = LoadRenderTexture(engine->allCameras->camera00.rectForCam.width, engine->allCameras->camera00.rectForCam.height * -1);
 }
 
-bl8     mouse_on_line = false;
-bl8     mouse_on_line_ct = false;
+void    adjust_right_panel_hori(Engine *engine, int y)
+{
+    DE_INFO("Adjust Right Panel Horisontal");
+    DE_INFO("Y: %d", y);
+    DE_INFO("Height: %d", engine->allCameras->camera02.rectForCam.height);
+
+    engine->allCameras->camera02.rectForCam.height -= y;
+    engine->allCameras->camera02.rectForCam.y += y;
+    engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height * -1);
+
+    engine->allCameras->camera01.rectForCam.height -= y;
+    engine->allCameras->camera01.rectForCam.y += y;
+    engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height * -1);
+}
+
+bl8     mouse_on_line_vert = false;
+bl8     mouse_on_line_vert_ct = false;
+bl8     mouse_on_line_hori = false;
+bl8     mouse_on_line_hori_ct = false;
 Vector2 mouse_on_line_pos = (Vector2){0, 0};
 Vector2 mouse_on_line_pos_old = (Vector2){0, 0};
-int line_width = 4;
+int line_hori_width = 4;
+int line_vert_width = 4;
 
 void    reset_resize_values(Engine *engine)
 {
-    mouse_on_line_ct = false;
+    mouse_on_line_vert_ct = false;
+    mouse_on_line_hori_ct = false;
     SetMouseCursor(MOUSE_CURSOR_DEFAULT);
     mouse_on_line_pos = (Vector2){0, 0};
-    mouse_on_line = false;
-    line_width = 4;
+    mouse_on_line_vert = false;
+    mouse_on_line_hori = false;
+    line_hori_width = 4;
+    line_vert_width = 4;
 }
 
 void    resize_right_panel(Engine *engine)
@@ -130,38 +149,73 @@ void    resize_right_panel(Engine *engine)
         return;
     }
 
-    if (mouse_on_line)
-    {
-        mouse_on_line_ct = true;
-    }
+    // if (mouse_on_line_vert_ct)
+    // {
+    //     mouse_on_line_vert_ct = true;
+    // }
+
+    // DE_DEBUG("cam 2 width: %d", engine->allCameras->camera02.rectForCam.width);
+    // DE_DEBUG("cam 2 height: %d", engine->allCameras->camera02.rectForCam.height);
+    // DE_DEBUG("cam 2 x: %d", engine->allCameras->camera02.rectForCam.x);
+    // DE_DEBUG("cam 2 y: %d", engine->allCameras->camera02.rectForCam.y);
 
     if (CheckCollisionPointLine(GetMousePosition(), (Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y},
-        (Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y - engine->allCameras->camera01.rectForCam.height}, line_width)
+        (Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y - engine->allCameras->camera01.rectForCam.height}, line_vert_width)
             || CheckCollisionPointLine(GetMousePosition(), (Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y},
-                (Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y - engine->allCameras->camera02.rectForCam.height}, line_width))
+                (Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y - engine->allCameras->camera02.rectForCam.height}, line_vert_width))
     {
-        DE_INFO("Mouse Hit Line");
-        mouse_on_line = true;
+        // DE_INFO("Mouse Hit Line");
+        mouse_on_line_vert_ct = true;
+        mouse_on_line_hori_ct = false;
         mouse_on_line_pos = GetMousePosition();
+        SetMouseCursor(MOUSE_CURSOR_RESIZE_EW);
     }
-    else if (mouse_on_line)
+    else if (mouse_on_line_vert_ct)
     {
         DE_INFO("Mouse not on line");
         reset_resize_values(engine);
     }
 
-    if (mouse_on_line_ct)
+    if (CheckCollisionPointLine(GetMousePosition(), (Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y},
+        (Vector2){engine->allCameras->camera02.rectForCam.x + engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.y}, line_hori_width))
     {
-        SetMouseCursor(MOUSE_CURSOR_RESIZE_EW);
+        DE_INFO("Mouse Hit Horizontal Line");
+        mouse_on_line_hori_ct = true;
+        mouse_on_line_vert_ct = false;
+        mouse_on_line_pos = GetMousePosition();
+        SetMouseCursor(MOUSE_CURSOR_RESIZE_NS);
+    }
+    else if (mouse_on_line_hori_ct)
+    {
+        DE_INFO("Mouse not on line");
+        reset_resize_values(engine);
+    }
+
+    if (mouse_on_line_vert_ct)
+    {
         if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
         {
             // DE_INFO("Click on line");
             if (mouse_on_line_pos.x != mouse_on_line_pos_old.x)
             {
                 DE_INFO("Mouse move on line");
-                adjust_right_panel(engine, mouse_on_line_pos.x - mouse_on_line_pos_old.x);
+                adjust_right_panel_vert(engine, mouse_on_line_pos.x - mouse_on_line_pos_old.x);
             }
-            line_width = 500;
+            line_vert_width = 1000;
+        }
+        mouse_on_line_pos_old = mouse_on_line_pos;
+    }
+    else if (mouse_on_line_hori_ct)
+    {
+        if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+        {
+            DE_INFO("Click on line");
+            if (mouse_on_line_pos.y != mouse_on_line_pos_old.y)
+            {
+                DE_INFO("Mouse move on line");
+                adjust_right_panel_hori(engine, mouse_on_line_pos.y - mouse_on_line_pos_old.y);
+            }
+            line_hori_width = 1000;
         }
         mouse_on_line_pos_old = mouse_on_line_pos;
     }
@@ -197,8 +251,8 @@ void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness)
 void    draw_events(Engine *engine)
 {
 //--------------------------------------------------------------------------------------
-    // Update
-    //----------------------------------------------------------------------------------
+// Update
+//----------------------------------------------------------------------------------
     // UpdateCamera(&allCameras->camera00.camera3D, CAMERA_FREE);
     //** Drawning **//
 
@@ -254,6 +308,8 @@ void    draw_events(Engine *engine)
     // Draw render textures to the screen for all cameras
     BeginDrawing();
         ClearBackground(BLACK);
+        ImageClearBackground(&engine->allCameras->camera02.image, BLACK);
+        ImageDrawRectangle(&engine->allCameras->camera02.image, engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y, engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height, BLACK);
         Rectangle rec00 = engine->allCameras->camera00.rectForCam;
         Rectangle rec01 = engine->allCameras->camera01.rectForCam;
         Rectangle rec02 = engine->allCameras->camera02.rectForCam;

@@ -87,6 +87,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera02.camera2D.offset = (Vector2){0.0f, 0.0f};
 	allCameras->camera02.camera2D.rotation = 0.0f;
 	allCameras->camera02.camera2D.zoom = 1.0f;
+	allCameras->camera02.image = LoadImage("../assets/buttons/colorSideUpSelected.png");
 	allCameras->camera02.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3 * 2 - 30);
 	allCameras->camera02.rectForCam = (Rectangle){(float)engine->screenSize.x - 300.0f, (float)engine->screenSize.y / 3 + 30, (float)allCameras->camera02.textForCam.texture.width,
 		(float)-allCameras->camera02.textForCam.texture.height};
