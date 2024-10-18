@@ -72,6 +72,7 @@ typedef struct d_Pid
 typedef struct  Engine
 {
     Vector2         screenSize;
+    Vector2         lastScreenSize;
     MultipleCam3D	*allCameras;
 
     // Buttons Menu Up Bar

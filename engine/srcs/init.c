@@ -69,7 +69,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera00.camera3D.projection = CAMERA_PERSPECTIVE;             // Camera mode type
 	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 300, engine->screenSize.y - 30);
 	allCameras->camera00.rectForCam = (Rectangle){0.0f, 30.0f, (float)allCameras->camera00.textForCam.texture.width,
-		(float)-allCameras->camera00.textForCam.texture.height};
+		(float)-allCameras->camera00.textForCam.texture.height * -1};
 
 	// Camera panel side up
 	allCameras->camera01.camera2D = (Camera2D){0};
@@ -79,7 +79,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera01.camera2D.zoom = 1.0f;
 	allCameras->camera01.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3);
 	allCameras->camera01.rectForCam = (Rectangle){(float)engine->screenSize.x - 300.0f, 30, (float)allCameras->camera01.textForCam.texture.width,
-		(float)-allCameras->camera01.textForCam.texture.height};
+		(float)-allCameras->camera01.textForCam.texture.height * -1};
 
 	// Camera panel side down
 	allCameras->camera02.camera2D = (Camera2D){0};
@@ -87,10 +87,10 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera02.camera2D.offset = (Vector2){0.0f, 0.0f};
 	allCameras->camera02.camera2D.rotation = 0.0f;
 	allCameras->camera02.camera2D.zoom = 1.0f;
-	allCameras->camera02.image = LoadImage("../assets/buttons/colorSideUpSelected.png");
+	// allCameras->camera02.image = LoadImage("../assets/buttons/colorSideUpSelected.png");
 	allCameras->camera02.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3 * 2 - 30);
 	allCameras->camera02.rectForCam = (Rectangle){(float)engine->screenSize.x - 300.0f, (float)engine->screenSize.y / 3 + 30, (float)allCameras->camera02.textForCam.texture.width,
-		(float)-allCameras->camera02.textForCam.texture.height};
+		(float)-allCameras->camera02.textForCam.texture.height * -1};
 
 	// Camera panel up
 	allCameras->camera03.camera2D = (Camera2D){0};
@@ -100,7 +100,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera03.camera2D.zoom = 1.0f;
 	allCameras->camera03.textForCam = LoadRenderTexture(engine->screenSize.x, 30);
 	allCameras->camera03.rectForCam = (Rectangle){0.0f, 0.0f, (float)allCameras->camera03.textForCam.texture.width,
-		(float)-allCameras->camera03.textForCam.texture.height};
+		(float)-allCameras->camera03.textForCam.texture.height * -1};
 	
 	return (allCameras);
 }

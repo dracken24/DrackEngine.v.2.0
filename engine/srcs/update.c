@@ -64,16 +64,16 @@ void    adjust_menu_camera(Engine *engine)
 
 void    adjust_right_panel_vert(Engine *engine, int x)
 {
+    engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height);
     engine->allCameras->camera02.rectForCam.width -= x;
     engine->allCameras->camera02.rectForCam.x += x;
-    engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height * -1);
 
+    engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height);
     engine->allCameras->camera01.rectForCam.width -= x;
     engine->allCameras->camera01.rectForCam.x += x;
-    engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height * -1);
 
+    engine->allCameras->camera00.textForCam = LoadRenderTexture(engine->allCameras->camera00.rectForCam.width, engine->allCameras->camera00.rectForCam.height);
     engine->allCameras->camera00.rectForCam.width += x;
-    engine->allCameras->camera00.textForCam = LoadRenderTexture(engine->allCameras->camera00.rectForCam.width, engine->allCameras->camera00.rectForCam.height * -1);
 }
 
 void    adjust_right_panel_hori(Engine *engine, int y)
@@ -82,13 +82,13 @@ void    adjust_right_panel_hori(Engine *engine, int y)
     DE_INFO("Y: %d", y);
     DE_INFO("Height: %d", engine->allCameras->camera02.rectForCam.height);
 
+    engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height);
     engine->allCameras->camera02.rectForCam.height -= y;
     engine->allCameras->camera02.rectForCam.y += y;
-    engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height * -1);
 
-    engine->allCameras->camera01.rectForCam.height -= y;
-    engine->allCameras->camera01.rectForCam.y += y;
-    engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height * -1);
+    engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height);
+    engine->allCameras->camera01.rectForCam.height += y;
+    // engine->allCameras->camera01.rectForCam.y += y;
 }
 
 bl8     mouse_on_line_vert = false;
@@ -119,11 +119,11 @@ void    resize_right_panel(Engine *engine)
         DE_INFO("Resize Right Panel Up");
         engine->allCameras->camera01.rectForCam.width = engine->screenSize.x - 300;
         engine->allCameras->camera01.rectForCam.x = engine->screenSize.x - engine->allCameras->camera01.rectForCam.width;
-        engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height * -1);
+        engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height);
 
         engine->allCameras->camera02.rectForCam.width = engine->screenSize.x - 300;
         engine->allCameras->camera02.rectForCam.x = engine->screenSize.x - engine->allCameras->camera02.rectForCam.width;
-        engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height * -1 - 30);
+        engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height - 30);
 
         engine->allCameras->camera00.rectForCam.width = engine->screenSize.x - engine->allCameras->camera01.rectForCam.width;
         engine->allCameras->camera00.textForCam = LoadRenderTexture(engine->allCameras->camera00.rectForCam.width, engine->screenSize.y - 30);
@@ -136,11 +136,11 @@ void    resize_right_panel(Engine *engine)
         DE_INFO("Resize Right Panel Down");
         engine->allCameras->camera01.rectForCam.width = 301;
         engine->allCameras->camera01.rectForCam.x = engine->screenSize.x - engine->allCameras->camera01.rectForCam.width;
-        engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height * -1);
+        engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height);
 
         engine->allCameras->camera02.rectForCam.width = 301;
         engine->allCameras->camera02.rectForCam.x = engine->screenSize.x - engine->allCameras->camera02.rectForCam.width;
-        engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height * -1 - 30);
+        engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height - 30);
 
         engine->allCameras->camera00.rectForCam.width = engine->screenSize.x - engine->allCameras->camera01.rectForCam.width;
         engine->allCameras->camera00.textForCam = LoadRenderTexture(engine->allCameras->camera00.rectForCam.width, engine->screenSize.y - 30);
@@ -149,10 +149,29 @@ void    resize_right_panel(Engine *engine)
         return;
     }
 
-    // if (mouse_on_line_vert_ct)
-    // {
-    //     mouse_on_line_vert_ct = true;
-    // }
+    if (engine->allCameras->camera02.rectForCam.height > engine->screenSize.y / 4 * 3 - 30)
+    {
+        DE_INFO("Resize Right Panel Down");
+        engine->allCameras->camera01.rectForCam.height = engine->screenSize.y / 4;
+        engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height);
+
+        engine->allCameras->camera02.rectForCam.height = engine->screenSize.y / 4 * 3 - 30;
+        engine->allCameras->camera02.rectForCam.y = engine->screenSize.y / 4 + 30;
+        engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height);
+        reset_resize_values(engine);
+    }
+    else if (engine->allCameras->camera02.rectForCam.height < 200)
+    {
+        DE_INFO("Resize Right Panel Up");
+        engine->allCameras->camera01.rectForCam.height = engine->screenSize.y / 4 * 3 -30;
+        // engine->allCameras->camera01.rectForCam.y = engine->screenSize.y / 3 + 30;
+        engine->allCameras->camera01.textForCam = LoadRenderTexture(engine->allCameras->camera01.rectForCam.width, engine->allCameras->camera01.rectForCam.height);
+
+        engine->allCameras->camera02.rectForCam.height = 200;
+        engine->allCameras->camera02.rectForCam.y = engine->screenSize.y / 4 * 3;
+        engine->allCameras->camera02.textForCam = LoadRenderTexture(engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height);
+        reset_resize_values(engine);
+    }
 
     // DE_DEBUG("cam 2 width: %d", engine->allCameras->camera02.rectForCam.width);
     // DE_DEBUG("cam 2 height: %d", engine->allCameras->camera02.rectForCam.height);
@@ -160,9 +179,9 @@ void    resize_right_panel(Engine *engine)
     // DE_DEBUG("cam 2 y: %d", engine->allCameras->camera02.rectForCam.y);
 
     if (CheckCollisionPointLine(GetMousePosition(), (Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y},
-        (Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y - engine->allCameras->camera01.rectForCam.height}, line_vert_width)
+        (Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y + engine->allCameras->camera01.rectForCam.height}, line_vert_width)
             || CheckCollisionPointLine(GetMousePosition(), (Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y},
-                (Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y - engine->allCameras->camera02.rectForCam.height}, line_vert_width))
+                (Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y + engine->allCameras->camera02.rectForCam.height}, line_vert_width))
     {
         // DE_INFO("Mouse Hit Line");
         mouse_on_line_vert_ct = true;
@@ -179,7 +198,7 @@ void    resize_right_panel(Engine *engine)
     if (CheckCollisionPointLine(GetMousePosition(), (Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y},
         (Vector2){engine->allCameras->camera02.rectForCam.x + engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.y}, line_hori_width))
     {
-        DE_INFO("Mouse Hit Horizontal Line");
+        // DE_INFO("Mouse Hit Horizontal Line");
         mouse_on_line_hori_ct = true;
         mouse_on_line_vert_ct = false;
         mouse_on_line_pos = GetMousePosition();
@@ -242,10 +261,10 @@ void    window_events(Engine *engine)
 
 void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness)
 {
-    DrawLineEx((Vector2){rectangle.x, rectangle.y}, (Vector2){rectangle.x + rectangle.width, rectangle.y}, thickness, color);
-    DrawLineEx((Vector2){rectangle.x + rectangle.width, rectangle.y}, (Vector2){rectangle.x + rectangle.width, rectangle.y - rectangle.height}, thickness, color);
-    DrawLineEx((Vector2){rectangle.x + rectangle.width, rectangle.y + rectangle.height}, (Vector2){rectangle.x, rectangle.y + rectangle.height}, thickness, color);
-    DrawLineEx((Vector2){rectangle.x, rectangle.y - rectangle.height}, (Vector2){rectangle.x, rectangle.y}, thickness, color);
+    DrawLineEx((Vector2){rectangle.x, rectangle.y}, (Vector2){rectangle.x + rectangle.width, rectangle.y}, thickness, color); // Line up
+    DrawLineEx((Vector2){rectangle.x + rectangle.width, rectangle.y + rectangle.height}, (Vector2){rectangle.x, rectangle.y + rectangle.height}, thickness, color); // Line down
+    DrawLineEx((Vector2){rectangle.x + rectangle.width, rectangle.y}, (Vector2){rectangle.x + rectangle.width, rectangle.y + rectangle.height}, thickness, color); // Line right
+    DrawLineEx((Vector2){rectangle.x, rectangle.y + rectangle.height}, (Vector2){rectangle.x, rectangle.y}, thickness, color); // Line left
 }
 
 void    draw_events(Engine *engine)
@@ -308,8 +327,8 @@ void    draw_events(Engine *engine)
     // Draw render textures to the screen for all cameras
     BeginDrawing();
         ClearBackground(BLACK);
-        ImageClearBackground(&engine->allCameras->camera02.image, BLACK);
-        ImageDrawRectangle(&engine->allCameras->camera02.image, engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y, engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height, BLACK);
+        // ImageClearBackground(&engine->allCameras->camera02.image, BLACK);
+        // ImageDrawRectangle(&engine->allCameras->camera02.image, engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y, engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height, BLACK);
         Rectangle rec00 = engine->allCameras->camera00.rectForCam;
         Rectangle rec01 = engine->allCameras->camera01.rectForCam;
         Rectangle rec02 = engine->allCameras->camera02.rectForCam;
@@ -320,10 +339,13 @@ void    draw_events(Engine *engine)
         DrawTextureRec(engine->allCameras->camera02.textForCam.texture, rec02, (Vector2){rec02.x, rec02.y}, WHITE);
         DrawTextureRec(engine->allCameras->camera03.textForCam.texture, rec03, (Vector2){rec03.x, rec03.y}, WHITE);
 
-        draw_rectangle_borders(rec00, VERRYDARKGRAY, 3);
-        draw_rectangle_borders(rec01, VERRYDARKGRAY, 3);
-        draw_rectangle_borders(rec02, PINK, 3);
-        draw_rectangle_borders(rec03, VERRYDARKGRAY, 3);
+        // draw_rectangle_borders(rec00, PURPLE, 3);
+        draw_rectangle_borders(rec01, BLUE, 3);
+        draw_rectangle_borders(rec02, RED, 3);
+        // draw_rectangle_borders(rec03, PURPLE, 3);
+
+        // Rectangle test = (Rectangle){100, 100, 200, 200};
+        // draw_rectangle_borders(test, RED, 3);
 
         ftDrawDropdownMenu(engine);
     EndDrawing();
