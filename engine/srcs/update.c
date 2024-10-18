@@ -42,21 +42,29 @@ void    input_events(Engine *engine)
 void    adjust_menu_camera(Engine *engine)
 {
     DE_DEBUG("Adjust Menu Camera");
+
+    Vector2 diff = (Vector2){engine->screenSize.x - engine->lastScreenSize.x, engine->screenSize.y - engine->lastScreenSize.y};
+
+    Rectangle rec00 = engine->allCameras->camera00.rectForCam;
+    Rectangle rec01 = engine->allCameras->camera01.rectForCam;
+    Rectangle rec02 = engine->allCameras->camera02.rectForCam;
+    Rectangle rec03 = engine->allCameras->camera03.rectForCam;
+
+    engine->allCameras->camera03.rectForCam = (Rectangle){0.0f, 0.0f,
+        rec03.width + diff.x, rec03.height};
     engine->allCameras->camera03.textForCam = LoadRenderTexture(engine->screenSize.x, 30);
-    engine->allCameras->camera03.rectForCam = (Rectangle){0.0f, 0.0f, engine->allCameras->camera03.textForCam.texture.width,
-    engine->allCameras->camera03.textForCam.texture.height};
     
-    engine->allCameras->camera02.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3 * 2 - 30);
-    engine->allCameras->camera02.rectForCam = (Rectangle){engine->screenSize.x - 300.0f, engine->screenSize.y / 3 + 30, engine->allCameras->camera02.textForCam.texture.width,
-		engine->allCameras->camera02.textForCam.texture.height};
+    engine->allCameras->camera02.rectForCam = (Rectangle){rec02.x + diff.x / 2, rec02.y + diff.y / 2,
+        rec02.width + diff.x / 2, rec02.height + diff.y / 2};
+    engine->allCameras->camera02.textForCam = LoadRenderTexture(rec02.width, rec02.height);
 
-    engine->allCameras->camera01.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3);
-    engine->allCameras->camera01.rectForCam = (Rectangle){engine->screenSize.x - 300.0f, 30, engine->allCameras->camera01.textForCam.texture.width,
-    engine->allCameras->camera01.textForCam.texture.height};
+    engine->allCameras->camera01.rectForCam = (Rectangle){rec01.x + diff.x / 2, rec01.y,
+        rec01.width + diff.x / 2, rec01.height + diff.y / 2};
+    engine->allCameras->camera01.textForCam = LoadRenderTexture(rec01.width, rec01.height);
 
-    engine->allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 300, engine->screenSize.y - 30);
-    engine->allCameras->camera00.rectForCam = (Rectangle){0.0f, 30.0f, engine->allCameras->camera00.textForCam.texture.width,
-    engine->allCameras->camera00.textForCam.texture.height};
+    engine->allCameras->camera00.rectForCam = (Rectangle){rec00.x, rec00.y,
+        rec00.width + diff.x / 2, rec00.height + diff.y};
+    engine->allCameras->camera00.textForCam = LoadRenderTexture(rec00.width, rec00.height);
 
     // Adjust buttons menus
     button_set_position(engine->buttonsMenuUp.play, (Vector2){engine->screenSize.x /2 - 15, 2});
@@ -115,7 +123,7 @@ void    reset_resize_values(Engine *engine)
 
 void    resize_right_panel(Engine *engine)
 {
-    if (engine->allCameras->camera01.rectForCam.width > engine->screenSize.x - 302)
+    if (engine->allCameras->camera01.rectForCam.width > engine->screenSize.x - 300)
     {
         DE_INFO("Resize Right Panel Up");
         engine->allCameras->camera01.rectForCam.width = engine->screenSize.x - 301;
@@ -250,6 +258,7 @@ void    window_events(Engine *engine)
 {
     if (IsWindowResized()) // Resize window events
     {
+        engine->lastScreenSize = engine->screenSize;
         engine->screenSize.x = GetScreenWidth();
         engine->screenSize.y = GetScreenHeight();
 
