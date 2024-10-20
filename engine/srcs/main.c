@@ -27,10 +27,14 @@
 // Déclaration globale de l'engine
 Engine *g_engine = NULL;
 
+void test_log(void);
+
 int main(void)
 {
     Engine engine;
     g_engine = &engine;
+
+    test_log();
 
     initialize_memory();
     dr_init(&engine);

@@ -82,6 +82,7 @@
       "signal_ext.h": "c",
       "libft.h": "c",
       "windows_utility.h": "c",
-      "menus.h": "c"
+      "menus.h": "c",
+      "struct_globale.h": "c"
     },
 }

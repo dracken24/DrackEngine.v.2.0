@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#define CLOCK_MONOTONIC 1
 
 typedef struct internal_state
 {

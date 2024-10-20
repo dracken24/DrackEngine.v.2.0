@@ -65,10 +65,10 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera00.camera3D.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // Camera position
 	allCameras->camera00.camera3D.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
 	allCameras->camera00.camera3D.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-	allCameras->camera00.camera3D.fovy = 45.0f;                                // Camera field-of-view Y
+	allCameras->camera00.camera3D.fovy = 60.0f;                                // Camera field-of-view Y
 	allCameras->camera00.camera3D.projection = CAMERA_PERSPECTIVE;             // Camera mode type
-	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 300, engine->screenSize.y - 30);
-	allCameras->camera00.rectForCam = (Rectangle){0.0f, 30.0f, (float)allCameras->camera00.textForCam.texture.width,
+	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30);
+	allCameras->camera00.rectForCam = (Rectangle){300.0f, 30.0f, (float)allCameras->camera00.textForCam.texture.width,
 		(float)-allCameras->camera00.textForCam.texture.height * -1};
 
 	// Camera panel side up
@@ -101,6 +101,16 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera03.textForCam = LoadRenderTexture(engine->screenSize.x, 30);
 	allCameras->camera03.rectForCam = (Rectangle){0.0f, 0.0f, (float)allCameras->camera03.textForCam.texture.width,
 		(float)-allCameras->camera03.textForCam.texture.height * -1};
+
+	// Camera Hyerarchy Left
+	allCameras->camera04.camera2D = (Camera2D){0};
+	allCameras->camera04.camera2D.target = (Vector2){0, 0};
+	allCameras->camera04.camera2D.offset = (Vector2){0.0f, 0.0f};
+	allCameras->camera04.camera2D.rotation = 0.0f;
+	allCameras->camera04.camera2D.zoom = 1.0f;
+	allCameras->camera04.textForCam = LoadRenderTexture(300, engine->screenSize.y - 30);
+	allCameras->camera04.rectForCam = (Rectangle){0.0f, 30, (float)allCameras->camera04.textForCam.texture.width,
+		(float)-allCameras->camera04.textForCam.texture.height * -1};
 	
 	return (allCameras);
 }

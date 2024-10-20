@@ -63,7 +63,7 @@ typedef struct ButtonsMenu
 
 typedef struct d_Pid
 {
-    bool    engine_running;
+    bl8    engine_running;
     int     enum_link;
     pid_t   engine_pid;
 }   d_Pid;
@@ -83,7 +83,7 @@ typedef struct  Engine
     d_Pid   new_window_pid[SUB_MENU_FILES_LENGTH];
 
     volatile sig_atomic_t exitCt;
-    bool    introCt;
+    bl8    introCt;
 }   Engine;
 
 //******************************************************************************//
@@ -107,5 +107,11 @@ void    print_memory_usage(const char* phase);
 
 void	ftUpMenu2D(Engine *engine, Camera2D *camera);
 void    ftDrawDropdownMenu(Engine *engine);
+
+//******************************************************************************//
+//***                             windows_events.c                           ***//
+//******************************************************************************//
+
+void    window_events(Engine *engine);
 
 #endif
