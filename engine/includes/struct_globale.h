@@ -11,7 +11,8 @@
 # define CENTER_SCREEN {(float)game->screenWidth / 2 - 150, (float)game->screenHeight / 2 - 20}
 
 # define DARKGRAY1   CLITERAL(Color){ 60, 60, 60, 255 }
-# define DARKGRAY2   CLITERAL(Color){ 140, 140, 140, 255 }
+# define DARKGRAY2   CLITERAL(Color){ 120, 120, 120, 255 }
+# define DARKGRAY3   CLITERAL(Color){ 140, 140, 140, 255 }
 # define DARKPURPLE2 CLITERAL(Color){ 46, 23, 126, 255 } 
 # define MYDARKGREEN  CLITERAL(Color){ 0, 148, 54, 255 }
 
