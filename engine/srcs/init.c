@@ -67,7 +67,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera00.camera3D.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
 	allCameras->camera00.camera3D.fovy = 60.0f;                                // Camera field-of-view Y
 	allCameras->camera00.camera3D.projection = CAMERA_PERSPECTIVE;             // Camera mode type
-	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30 -200);
+	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30 -120);
 	allCameras->camera00.rectForCam = (Rectangle){300.0f, 30.0f, allCameras->camera00.textForCam.texture.width,
 		allCameras->camera00.textForCam.texture.height};
 
@@ -119,7 +119,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera05.camera2D.offset = (Vector2){0.0f, 0.0f};
 	allCameras->camera05.camera2D.rotation = 0.0f;
 	allCameras->camera05.camera2D.zoom = 1.0f;
-	allCameras->camera05.textForCam = LoadRenderTexture(allCameras->camera00.rectForCam.width, 200);
+	allCameras->camera05.textForCam = LoadRenderTexture(allCameras->camera00.rectForCam.width, 120);
 	allCameras->camera05.rectForCam = (Rectangle){allCameras->camera04.rectForCam.width, allCameras->camera00.rectForCam.height + allCameras->camera03.rectForCam.height,
 		allCameras->camera05.textForCam.texture.width, allCameras->camera05.textForCam.texture.height};
 	

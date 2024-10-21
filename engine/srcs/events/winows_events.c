@@ -3,8 +3,6 @@
 
 #define CAMERA_UP_BAR 30
 
-// TODO: bouger division hyerarchie
-
 bl8     mouse_on_line_vert      			= false;
 bl8     mouse_on_line_vert_ct   			= false;
 bl8     mouse_on_line_vert_hyerarchy      	= false;
@@ -155,8 +153,6 @@ void	adjust_vert_hyerarchy_panels(Engine *engine, int x)
 		adjust_camera_pos_size(&engine->allCameras->camera04, (Vector2){0, 0}, (Vector2){-x, 0});
 		adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){-x, 0}, (Vector2){x, 0});
 		adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){-x, 0}, (Vector2){x, 0});
-
-		// reset_resize_values(engine);
 	}
 }
 
@@ -236,15 +232,6 @@ bl8		check_max_min_panels(Engine *engine)
 		return (true);
 	}
 
-	// if (rec00->width < 200)
-	// {
-	// 	DE_INFO("Resize Right 7");
-	// 	set_camera_pos_size(&engine->allCameras->camera00, (Vector2){engine->screenSize.x - 200, rec00->y}, (Vector2){200, rec00->height});
-	// 	set_camera_size(&engine->allCameras->camera05, (Vector2){engine->screenSize.x - rec00->width - rec04->width, rec05->height});
-
-	// 	reset_resize_values(engine);
-	// 	return (true);
-	// }
 	return (false);
 }
 
@@ -273,7 +260,8 @@ void    resize_right_panel(Engine *engine)
 	}
 
 	// Line horizontale separation 01 et 02 panels
-	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec02.x, rec02.y}, (Vector2){rec02.x + rec02.width, rec02.y}, line_hori_right_width))
+	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec02.x, rec02.y},
+		(Vector2){rec02.x + rec02.width, rec02.y}, line_hori_right_width))
 	{
 		DE_INFO("Mouse Hit Horizontal Line Right 02");
 		mouse_on_line_hori_right_panels_ct = true;

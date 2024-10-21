@@ -14,6 +14,7 @@
 # include "../../includes/struct_globale.h"
 
 #define BORDER_COLOR DARKPURPLE2
+#define BORDER_THICK 2
 
 void    draw_msg_intro(void)
 {
@@ -148,12 +149,19 @@ void    draw_events(Engine *engine)
 		DrawTextureRec(engine->allCameras->camera04.textForCam.texture, rec04, (Vector2){rec04.x, rec04.y}, WHITE);
 		DrawTextureRec(engine->allCameras->camera05.textForCam.texture, rec05, (Vector2){rec05.x, rec05.y}, WHITE);
 
-		draw_rectangle_borders(rec00, BLUE, 3);
-		draw_rectangle_borders(rec01, RED, 3);
-		draw_rectangle_borders(rec02, PURPLE, 3);
-		draw_rectangle_borders(rec03, GREEN, 3);
-		draw_rectangle_borders(rec04, ORANGE, 3);
-		draw_rectangle_borders(rec05, DARKPURPLE2, 3);
+		// draw_rectangle_borders(rec00, BLUE, 3);
+		// draw_rectangle_borders(rec01, RED, 3);
+		// draw_rectangle_borders(rec02, PURPLE, 3);
+		// draw_rectangle_borders(rec03, GREEN, 3);
+		// draw_rectangle_borders(rec04, ORANGE, 3);
+		// draw_rectangle_borders(rec05, DARKPURPLE2, 3);
+
+		draw_rectangle_borders(rec00, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(rec01, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(rec02, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(rec03, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(rec04, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(rec05, BORDER_COLOR, BORDER_THICK);
 
 		// Rectangle test = (Rectangle){100, 100, 200, 200};
 		// draw_rectangle_borders(test, RED, 3);
