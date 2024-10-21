@@ -3,29 +3,40 @@
 
 #define CAMERA_UP_BAR 30
 
-bl8     mouse_on_line_vert      = false;
-bl8     mouse_on_line_vert_ct   = false;
-bl8     mouse_on_line_hori_right_panels = false;
-bl8     mouse_on_line_hori_right_panels_ct   = false;
-bl8     mouse_on_line_hori_center_panels = false;
+// TODO: bouger division hyerarchie
+
+bl8     mouse_on_line_vert      			= false;
+bl8     mouse_on_line_vert_ct   			= false;
+bl8     mouse_on_line_vert_hyerarchy      	= false;
+bl8     mouse_on_line_vert_hyerarchy_ct  	= false;
+bl8     mouse_on_line_hori_right_panels 	= false;
+bl8     mouse_on_line_hori_right_panels_ct  = false;
+bl8     mouse_on_line_hori_center_panels	= false;
 bl8     mouse_on_line_hori_center_panels_ct = false;
-Vector2 mouse_on_line_pos     	= (Vector2){0, 0};
-Vector2 mouse_on_line_pos_old 	= (Vector2){0, 0};
-int     line_hori_width         = 4;
-int     line_vert_width         = 4;
+Vector2 mouse_on_line_pos     				= (Vector2){0, 0};
+Vector2 mouse_on_line_pos_old 				= (Vector2){0, 0};
+int     line_hori_right_width         		= 4;
+int     line_vert_right_width         		= 4;
+int     line_hori_center_width        		= 4;
+int     line_vert_hierarchy_width     		= 4;
 
 void    reset_resize_values(Engine *engine)
 {
-	mouse_on_line_vert_ct = false;
-	mouse_on_line_hori_right_panels_ct = false;
-	mouse_on_line_hori_center_panels_ct = false;
+	mouse_on_line_vert      				= false;
+	mouse_on_line_vert_ct   				= false;
+	mouse_on_line_vert_hyerarchy      		= false;
+	mouse_on_line_vert_hyerarchy_ct   		= false;
+	mouse_on_line_hori_right_panels 		= false;
+	mouse_on_line_hori_right_panels_ct  	= false;
+	mouse_on_line_hori_center_panels 		= false;
+	mouse_on_line_hori_center_panels_ct 	= false;
+	mouse_on_line_pos 						= (Vector2){0, 0};
+	line_hori_right_width 					= 4;
+	line_vert_right_width 					= 4;
+	line_hori_center_width         			= 4;
+	line_vert_hierarchy_width       		= 4;
 	SetMouseCursor(MOUSE_CURSOR_DEFAULT);
-	mouse_on_line_pos = (Vector2){0, 0};
-	mouse_on_line_vert = false;
-	mouse_on_line_hori_right_panels = false;
-	mouse_on_line_hori_center_panels = false;
-	line_hori_width = 4;
-	line_vert_width = 4;
+	DE_DEBUG("RESET");
 }
 
 void    adjust_camera_pos_size(NeedBy3DCam *camera, Vector2 pos, Vector2 diff)
@@ -71,12 +82,12 @@ void    adjust_menu_camera(Engine *engine)
 	// DE_DEBUG("Adjust Menu Camera");
 	Vector2 diff = (Vector2){engine->screenSize.x - engine->lastScreenSize.x, engine->screenSize.y - engine->lastScreenSize.y};
 
-	adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){0, 0}, (Vector2){diff.x / 2, diff.y});
-	adjust_camera_pos_size(&engine->allCameras->camera01, (Vector2){diff.x / 2, 0}, (Vector2){diff.x / 2, diff.y / 2});
-	adjust_camera_pos_size(&engine->allCameras->camera02, (Vector2){diff.x / 2, diff.y / 2}, (Vector2){diff.x / 2, diff.y / 2});
+	adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){0, 0}, (Vector2){diff.x / 3 * 2, diff.y});
+	adjust_camera_pos_size(&engine->allCameras->camera01, (Vector2){diff.x / 3 * 2, 0}, (Vector2){diff.x / 3, diff.y / 2});
+	adjust_camera_pos_size(&engine->allCameras->camera02, (Vector2){diff.x / 3 * 2, diff.y / 2}, (Vector2){diff.x / 3, diff.y / 2});
 	adjust_camera_pos_size(&engine->allCameras->camera03, (Vector2){0, 0}, (Vector2){diff.x, 0});
 	adjust_camera_pos_size(&engine->allCameras->camera04, (Vector2){0, 0}, (Vector2){0, diff.y});
-	adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){0, diff.y}, (Vector2){diff.x / 2, 0});
+	adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){0, diff.y}, (Vector2){diff.x / 3 * 2, 0});
 
 	// Adjust screen size if too small
 	if (engine->screenSize.x < 920)
@@ -105,6 +116,16 @@ void    adjust_right_panel_vert(Engine *engine, int x)
 	adjust_camera_pos_size(&engine->allCameras->camera01, (Vector2){x, 0}, (Vector2){-x, 0});
 	adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){0, 0}, (Vector2){x, 0});
 	adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){0, 0}, (Vector2){x, 0});
+
+	Rectangle rec00 = engine->allCameras->camera00.rectForCam;
+	if (rec00.width < 200)
+	{
+		DE_INFO("Resize Right 8");
+		adjust_camera_pos_size(&engine->allCameras->camera02, (Vector2){-x, 0}, (Vector2){x, 0});
+		adjust_camera_pos_size(&engine->allCameras->camera01, (Vector2){-x, 0}, (Vector2){x, 0});
+		adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){0, 0}, (Vector2){-x, 0});
+		adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){0, 0}, (Vector2){-x, 0});
+	}
 }
 
 void    adjust_hori_right_panels(Engine *engine, int y)
@@ -117,6 +138,26 @@ void    adjust_hori_center_panels(Engine *engine, int y)
 {
 	adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){0, y}, (Vector2){0, -y});
 	adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){0, 0}, (Vector2){0, y});
+}
+
+void	adjust_vert_hyerarchy_panels(Engine *engine, int x)
+{
+	adjust_camera_pos_size(&engine->allCameras->camera04, (Vector2){0, 0}, (Vector2){x, 0});
+	adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){x, 0}, (Vector2){-x, 0});
+	adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){x, 0}, (Vector2){-x, 0});
+
+	Rectangle rec00 = engine->allCameras->camera00.rectForCam;
+	Rectangle rec04 = engine->allCameras->camera04.rectForCam;
+	// DE_WARNING("rec04.width: %f", rec04.width);
+	if (rec00.width < 200 || rec04.width < 200)
+	{
+		DE_INFO("Resize Right 7");
+		adjust_camera_pos_size(&engine->allCameras->camera04, (Vector2){0, 0}, (Vector2){-x, 0});
+		adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){-x, 0}, (Vector2){x, 0});
+		adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){-x, 0}, (Vector2){x, 0});
+
+		// reset_resize_values(engine);
+	}
 }
 
 bl8		check_max_min_panels(Engine *engine)
@@ -194,6 +235,16 @@ bl8		check_max_min_panels(Engine *engine)
 		reset_resize_values(engine);
 		return (true);
 	}
+
+	// if (rec00->width < 200)
+	// {
+	// 	DE_INFO("Resize Right 7");
+	// 	set_camera_pos_size(&engine->allCameras->camera00, (Vector2){engine->screenSize.x - 200, rec00->y}, (Vector2){200, rec00->height});
+	// 	set_camera_size(&engine->allCameras->camera05, (Vector2){engine->screenSize.x - rec00->width - rec04->width, rec05->height});
+
+	// 	reset_resize_values(engine);
+	// 	return (true);
+	// }
 	return (false);
 }
 
@@ -204,49 +255,64 @@ void    resize_right_panel(Engine *engine)
 		return;
 	}
 
-
+	// Line verticale separation 00/05 et 01/02 panels
 	Rectangle rec01 = engine->allCameras->camera01.rectForCam;
 	Rectangle rec02 = engine->allCameras->camera02.rectForCam;
-	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec01.x, rec01.y}, (Vector2){rec01.x, rec01.y + rec01.height}, line_vert_width)
-			|| CheckCollisionPointLine(GetMousePosition(), (Vector2){rec02.x, rec02.y}, (Vector2){rec02.x, rec02.y + rec02.height}, line_vert_width))
+	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec01.x, rec01.y}, (Vector2){rec01.x, rec01.y + rec01.height}, line_vert_right_width)
+			|| CheckCollisionPointLine(GetMousePosition(), (Vector2){rec02.x, rec02.y}, (Vector2){rec02.x, rec02.y + rec02.height}, line_vert_right_width))
 	{
-		// DE_INFO("Mouse Hit Line");
+		DE_INFO("Mouse Hit Line Right vertical 01");
 		mouse_on_line_vert_ct = true;
-		mouse_on_line_hori_right_panels_ct = false;
 		mouse_on_line_pos = GetMousePosition();
 		SetMouseCursor(MOUSE_CURSOR_RESIZE_EW);
 	}
-	else if (mouse_on_line_vert_ct && !mouse_on_line_hori_right_panels_ct)
+	else if (mouse_on_line_vert_ct)
 	{
 		// DE_INFO("Mouse not on line");
 		reset_resize_values(engine);
 	}
 
-	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec02.x, rec02.y}, (Vector2){rec02.x + rec02.width, rec02.y}, line_hori_width))
+	// Line horizontale separation 01 et 02 panels
+	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec02.x, rec02.y}, (Vector2){rec02.x + rec02.width, rec02.y}, line_hori_right_width))
 	{
-		// DE_INFO("Mouse Hit Horizontal Line");
+		DE_INFO("Mouse Hit Horizontal Line Right 02");
 		mouse_on_line_hori_right_panels_ct = true;
-		mouse_on_line_vert_ct = false;
 		mouse_on_line_pos = GetMousePosition();
 		SetMouseCursor(MOUSE_CURSOR_RESIZE_NS);
 	}
-	else if (mouse_on_line_hori_right_panels_ct && !mouse_on_line_vert_ct)
+	else if (mouse_on_line_hori_right_panels_ct)
 	{
 		// DE_INFO("Mouse not on line");
 		reset_resize_values(engine);
 	}
 
+	// Line horizontale separation 00 et 05 panels
 	Rectangle rec05 = engine->allCameras->camera05.rectForCam;
 	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec05.x, rec05.y},
-		(Vector2){rec05.x + rec05.width, rec05.y}, line_hori_width))
+		(Vector2){rec05.x + rec05.width, rec05.y}, line_hori_center_width))
 	{
-		// DE_INFO("Mouse Hit Horizontal Line");
+		DE_INFO("Mouse Hit Horizontal central Line");
 		mouse_on_line_hori_center_panels_ct = true;
-		mouse_on_line_vert_ct = false;
 		mouse_on_line_pos = GetMousePosition();
 		SetMouseCursor(MOUSE_CURSOR_RESIZE_NS);
 	}
-	else if (mouse_on_line_hori_center_panels_ct && !mouse_on_line_vert_ct)
+	else if (mouse_on_line_hori_center_panels_ct)
+	{
+		// DE_INFO("Mouse not on line");
+		reset_resize_values(engine);
+	}
+
+	// Line Verticale separation 04 et 00/05 panels
+	Rectangle rec04 = engine->allCameras->camera04.rectForCam;
+	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec04.x + rec04.width, rec04.y},
+		(Vector2){rec04.x + rec04.width, rec04.y + rec04.height}, line_vert_hierarchy_width))
+	{
+		DE_INFO("Mouse Hit verticale Line hyerarchy");
+		mouse_on_line_vert_hyerarchy_ct = true;
+		mouse_on_line_pos = GetMousePosition();
+		SetMouseCursor(MOUSE_CURSOR_RESIZE_EW);
+	}
+	else if (mouse_on_line_vert_hyerarchy_ct)
 	{
 		// DE_INFO("Mouse not on line");
 		reset_resize_values(engine);
@@ -256,45 +322,59 @@ void    resize_right_panel(Engine *engine)
 	{
 		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 		{
-			// DE_INFO("Click on line");
+			DE_INFO("Click on line Vertical Right");
 			if (mouse_on_line_pos.x != mouse_on_line_pos_old.x)
 			{
 				// DE_INFO("Mouse move on line");
 				adjust_right_panel_vert(engine, mouse_on_line_pos.x - mouse_on_line_pos_old.x);
 			}
-			line_vert_width = 350;
+			line_vert_right_width = 500;
 		}
 	}
 	else if (mouse_on_line_hori_right_panels_ct)
 	{
 		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 		{
-			// DE_INFO("Click on line");
+			DE_INFO("Click on line Horizontal right");
 			if (mouse_on_line_pos.y != mouse_on_line_pos_old.y)
 			{
 				// DE_INFO("Mouse move on line");
 				adjust_hori_right_panels(engine, mouse_on_line_pos.y - mouse_on_line_pos_old.y);
 			}
-			line_hori_width = 350;
+			line_hori_right_width = 500;
 		}
 	}
 	else if (mouse_on_line_hori_center_panels_ct)
 	{
 		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
 		{
-			// DE_INFO("Click on line");
+			DE_INFO("Click on line horizontal center");
 			if (mouse_on_line_pos.y != mouse_on_line_pos_old.y)
 			{
 				// DE_INFO("Mouse move on line");
 				adjust_hori_center_panels(engine, mouse_on_line_pos.y - mouse_on_line_pos_old.y);
 			}
-			line_hori_width = 350;
+			line_hori_center_width = 500;
+		}
+	}
+	else if (mouse_on_line_vert_hyerarchy_ct)
+	{
+		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+		{
+			DE_INFO("Click on line vertical hyerarchie");
+			if (mouse_on_line_pos.x != mouse_on_line_pos_old.x)
+			{
+				// DE_INFO("Mouse move on line");
+				adjust_vert_hyerarchy_panels(engine, mouse_on_line_pos.x - mouse_on_line_pos_old.x);
+			}
+			line_vert_hierarchy_width = 500;
 		}
 	}
 
 	mouse_on_line_pos_old = mouse_on_line_pos;
 
-	if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+	if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && (mouse_on_line_vert_hyerarchy_ct || mouse_on_line_hori_center_panels_ct
+		|| mouse_on_line_hori_right_panels_ct || mouse_on_line_vert_ct))
 	{
 		reset_resize_values(engine);
 	}
