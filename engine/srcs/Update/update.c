@@ -133,8 +133,7 @@ void    draw_events(Engine *engine)
 	// Draw render textures to the screen for all cameras
 	BeginDrawing();
 		ClearBackground(BLACK);
-		// ImageClearBackground(&engine->allCameras->camera02.image, BLACK);
-		// ImageDrawRectangle(&engine->allCameras->camera02.image, engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y, engine->allCameras->camera02.rectForCam.width, engine->allCameras->camera02.rectForCam.height, BLACK);
+		
 		Rectangle rec00 = engine->allCameras->camera00.rectForCam;
 		Rectangle rec01 = engine->allCameras->camera01.rectForCam;
 		Rectangle rec02 = engine->allCameras->camera02.rectForCam;
@@ -151,10 +150,10 @@ void    draw_events(Engine *engine)
 
 		draw_rectangle_borders(rec00, BLUE, 3);
 		draw_rectangle_borders(rec01, RED, 3);
-		draw_rectangle_borders(rec02, RED, 3);
-		draw_rectangle_borders(rec03, RED, 3);
-		draw_rectangle_borders(rec04, RED, 3);
-		draw_rectangle_borders(rec05, RED, 3);
+		draw_rectangle_borders(rec02, PURPLE, 3);
+		draw_rectangle_borders(rec03, GREEN, 3);
+		draw_rectangle_borders(rec04, ORANGE, 3);
+		draw_rectangle_borders(rec05, DARKPURPLE2, 3);
 
 		// Rectangle test = (Rectangle){100, 100, 200, 200};
 		// draw_rectangle_borders(test, RED, 3);

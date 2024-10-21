@@ -54,7 +54,7 @@ void    close_open_windows(Engine *engine)
         if (engine->new_window_pid[i].engine_running)
         {
             DE_INFO("Sending signal from engine to %d", engine->new_window_pid[i].engine_pid);
-            usleep(200000);  // Attendre 200ms
+            usleep(50000);  // Attendre 50ms
             if (kill(engine->new_window_pid[i].engine_pid, SIGNAL_CLEANUP_OTHERS_WINDOWS) == -1)
             {
                 perror("Erreur lors de l'envoi du signal");
