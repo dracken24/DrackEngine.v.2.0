@@ -18,26 +18,59 @@
 
 void    menu_files_new(Engine *engine)
 {
-    DE_DEBUG("Option selected: %s", "New !");
-    if (engine->new_window_pid[FILES_NEW].engine_pid > 0 || engine->new_window_pid[FILES_OPEN].engine_pid > 0)
+    Vector2 mpos = GetMousePosition();
+    // DE_DEBUG("Win Size x: %f y: %f mouse pos x: %f y: %f", engine->screenSizeWindow.x, engine->screenSizeWindow.y, mpos.x, mpos.y);
+    if (IsKeyPressed(KEY_ESCAPE))
     {
-        return;
+        engine->lastView = engine->currentView;
+        engine->currentView = VIEW_MAIN;
+        SetWindowSize(engine->screenSize.x, engine->screenSize.y);
     }
 
-    fork_for_new_window(&engine->new_window_pid[FILES_NEW], (SubMenus)FILES_NEW, "New Project");
-    // DrawText("New Project !", 20, 20, 20, PINK);
+    // Camera 05 for other windows
+	BeginTextureMode(engine->allCameras->camera07.textForCam);
+		ClearBackground(DARKGRAY1);
+		BeginMode2D(engine->allCameras->camera07.camera2D);
+
+			DrawText("New Project !", 20, 20, 20, PINK);
+
+		EndMode2D();
+	EndTextureMode();
+
+    BeginDrawing();
+        NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        camera_07.rectForCam.height *= -1;
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
+        draw_rectangle_borders(camera_07.rectForCam, RED, BORDER_THICK);
+    EndDrawing();
 }
 
 void    menu_files_open(Engine *engine)
 {
-    DE_DEBUG("Option selected: %s", "Open !");
-    if (engine->new_window_pid[FILES_OPEN].engine_pid > 0 || engine->new_window_pid[FILES_NEW].engine_pid > 0)
+    // DE_DEBUG("Option selected: %s", "Open !");
+    if (IsKeyPressed(KEY_ESCAPE))
     {
-        return;
+        engine->lastView = engine->currentView;
+        engine->currentView = VIEW_MAIN;
+        SetWindowSize(engine->screenSize.x, engine->screenSize.y);
     }
 
-    fork_for_file_open(&engine->new_window_pid[FILES_OPEN], (SubMenus)FILES_OPEN, "Open Project");
-    // DrawText("Open Project !", 20, 20, 20, PINK);
+    // Camera 05 for other windows
+	BeginTextureMode(engine->allCameras->camera07.textForCam);
+		ClearBackground(DARKGRAY1);
+		BeginMode2D(engine->allCameras->camera07.camera2D);
+
+			DrawText("Open Project !", 20, 20, 20, BLUE);
+
+		EndMode2D();
+	EndTextureMode();
+
+    BeginDrawing();
+        NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        camera_07.rectForCam.height *= -1;
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
+        draw_rectangle_borders(camera_07.rectForCam, RED, BORDER_THICK);
+    EndDrawing();
 }
 
 void    menu_files_save(void)

@@ -43,6 +43,7 @@ void    adjust_camera_pos_size(NeedBy3DCam *camera, Vector2 pos, Vector2 diff)
 	{
 		camera->rectForCam.width += diff.x;
 		camera->rectForCam.height += diff.y;
+		UnloadRenderTexture(camera->textForCam);
 		camera->textForCam = LoadRenderTexture(camera->rectForCam.width, camera->rectForCam.height);
 	}
 	camera->rectForCam.x += pos.x;
@@ -55,6 +56,7 @@ void	set_camera_pos_size(NeedBy3DCam *camera, Vector2 pos, Vector2 size)
 	{
 		camera->rectForCam.width = size.x;
 		camera->rectForCam.height = size.y;
+		UnloadRenderTexture(camera->textForCam);
 		camera->textForCam = LoadRenderTexture(camera->rectForCam.width, camera->rectForCam.height);
 	}
 	camera->rectForCam.x = pos.x;
@@ -65,6 +67,7 @@ void	set_camera_size(NeedBy3DCam *camera, Vector2 size)
 {
 	camera->rectForCam.width = size.x;
 	camera->rectForCam.height = size.y;
+	UnloadRenderTexture(camera->textForCam);
 	camera->textForCam = LoadRenderTexture(camera->rectForCam.width, camera->rectForCam.height);
 }
 

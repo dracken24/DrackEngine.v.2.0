@@ -194,12 +194,18 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (files[i] && files[i] == "New")
                         {
-                            menu_files_new(engine);
+                            engine->lastView = engine->currentView;
+                            engine->currentView = VIEW_NEW_PROJECT;
+                            engine->screenSizeWindow = WINDOW_OTHERS;
+                            SetWindowSize(engine->screenSizeWindow.x, engine->screenSizeWindow.y);
                             break;
                         }
                         else if (files[i] && files[i] == "Open")
                         {
-                            menu_files_open(engine);
+                            engine->lastView = engine->currentView;
+                            engine->currentView = VIEW_OPEN_PROJECT;
+                            engine->screenSizeWindow = WINDOW_OTHERS;
+                            SetWindowSize(engine->screenSizeWindow.x, engine->screenSizeWindow.y);
                             break;
                         }
                         else if (files[i] && files[i] == "Save")

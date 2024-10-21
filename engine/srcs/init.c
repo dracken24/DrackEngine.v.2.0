@@ -20,32 +20,25 @@ void	init_windows_pid(Engine *engine);
 void    dr_init(Engine *engine)
 {
     engine->exitCt = false;
+	engine->currentView = VIEW_MAIN;
     engine->screenSize = (Vector2){1500, 750};
+	engine->screenSizeWindow = WINDOW_OTHERS;
 
-    open_window(engine->screenSize, (Vector2){600, 400}, "DrackEngine", true);
+    open_window(engine->screenSize, engine->screenSize, "DrackEngine", true);
 	SetTargetFPS(60);
-
-	engine->engine_pid_ct = 0;
 
     // DE_DEBUG("init %f", 1);
     engine->allCameras = (MultipleCam3D *)de_allocate(sizeof(MultipleCam3D), MEMORY_TAG_ENGINE);
-	// engine->engine_pid = (d_Pid *)de_allocate(sizeof(d_Pid) * SUB_MENU_FILES_LENGTH, MEMORY_TAG_ENTITY);
-	init_windows_pid(engine);
+
     engine->allCameras = ftInitCameras(engine, engine->allCameras);
     engine->introCt = true;
 
 	// Init Buttons 
 	init_buttons_menu_up(engine);
-    // DE_DEBUG("init %f", 2);
-}
 
-void	init_windows_pid(Engine *engine)
-{
-	for (int i = 0; i < SUB_MENU_FILES_LENGTH; i++)
-	{
-		engine->new_window_pid[i].engine_running = false;
-		engine->new_window_pid[i].engine_pid = -24;
-	}
+	engine->ray.ray = (Ray){0};
+	engine->ray.collision = (RayCollision){0};
+    // DE_DEBUG("init %f", 2);
 }
 
 void	init_buttons_menu_up(Engine *engine)
@@ -66,7 +59,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera00.camera3D.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
 	allCameras->camera00.camera3D.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
 	allCameras->camera00.camera3D.fovy = 60.0f;                                // Camera field-of-view Y
-	allCameras->camera00.camera3D.projection = CAMERA_PERSPECTIVE;             // Camera mode type
+	allCameras->camera00.camera3D.projection = CAMERA_THIRD_PERSON;             // Camera mode type
 	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30 -120);
 	allCameras->camera00.rectForCam = (Rectangle){300.0f, 30.0f, allCameras->camera00.textForCam.texture.width,
 		allCameras->camera00.textForCam.texture.height};
@@ -122,6 +115,16 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera05.textForCam = LoadRenderTexture(allCameras->camera00.rectForCam.width, 120);
 	allCameras->camera05.rectForCam = (Rectangle){allCameras->camera04.rectForCam.width, allCameras->camera00.rectForCam.height + allCameras->camera03.rectForCam.height,
 		allCameras->camera05.textForCam.texture.width, allCameras->camera05.textForCam.texture.height};
+
+	// Camera New Window (New Project, Open Project ...)
+	allCameras->camera07.camera2D = (Camera2D){0};
+	allCameras->camera07.camera2D.target = (Vector2){0, 0};
+	allCameras->camera07.camera2D.offset = (Vector2){0.0f, 0.0f};
+	allCameras->camera07.camera2D.rotation = 0.0f;
+	allCameras->camera07.camera2D.zoom = 1.0f;
+	allCameras->camera07.textForCam = LoadRenderTexture(800, 500);
+	allCameras->camera07.rectForCam = (Rectangle){0, 0,
+		allCameras->camera07.textForCam.texture.width, allCameras->camera07.textForCam.texture.height};
 	
 	return (allCameras);
 }

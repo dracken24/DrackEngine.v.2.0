@@ -16,13 +16,15 @@
 # define DARKPURPLE2 CLITERAL(Color){ 46, 23, 126, 255 } 
 # define MYDARKGREEN  CLITERAL(Color){ 0, 148, 54, 255 }
 
-typedef struct Mouse{
+typedef struct Mouse
+{
 	Vector2	pos;
 	float	camZoom;
 	int		clickName;
 }	Mouse;
 
-typedef struct NeedBy2DCam{
+typedef struct NeedBy2DCam
+{
 	RenderTexture 	textForCam2;
 	RenderTexture 	textForCam;
 	Rectangle		rectForCam;
@@ -30,7 +32,8 @@ typedef struct NeedBy2DCam{
 	Image			image;
 }	NeedBy2DCam;
 
-typedef struct MultipleCam2D{
+typedef struct MultipleCam2D
+{
 	NeedBy2DCam	camera00;
 	NeedBy2DCam camera01;
 	NeedBy2DCam camera02;
@@ -43,7 +46,8 @@ typedef struct MultipleCam2D{
 	NeedBy2DCam camera09;
 }	MultipleCam2D;
 
-typedef struct NeedBy3DCam{
+typedef struct NeedBy3DCam
+{
 	RenderTexture 	textForCam2;
 	RenderTexture 	textForCam;
 	Rectangle		rectForCam;
@@ -52,7 +56,8 @@ typedef struct NeedBy3DCam{
 	Image			image;
 }	NeedBy3DCam;
 
-typedef struct MultipleCam3D{
+typedef struct MultipleCam3D
+{
 	NeedBy3DCam	camera00;
 	NeedBy3DCam camera01;
 	NeedBy3DCam camera02;
