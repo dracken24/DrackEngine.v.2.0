@@ -26,6 +26,7 @@
 #define BORDER_COLOR DARKPURPLE2
 #define BORDER_THICK 2
 #define WINDOW_OTHERS (Vector2){800, 500}
+#define CAMERA_UP_BAR 30
 
 #define MAIN_MENU_LENGTH 4
 typedef enum  MainMenus
@@ -137,6 +138,8 @@ typedef struct  Engine
     Cube3D	cube_01;
     Ray3D			ray;
     Mouse			mouse;
+
+    Texture2D testTexture;
 }   Engine;
 
 //******************************************************************************//

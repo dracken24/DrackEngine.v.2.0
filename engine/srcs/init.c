@@ -28,10 +28,11 @@ void    dr_init(Engine *engine)
 	SetTargetFPS(60);
 
     // DE_DEBUG("init %f", 1);
-    engine->allCameras = (MultipleCam3D *)de_allocate(sizeof(MultipleCam3D), MEMORY_TAG_ENGINE);
 
+    engine->allCameras = (MultipleCam3D *)de_allocate(sizeof(MultipleCam3D), MEMORY_TAG_ENGINE);
     engine->allCameras = ftInitCameras(engine, engine->allCameras);
-    engine->introCt = true;
+	
+	engine->introCt = true;
 
 	// Init Buttons 
 	init_buttons_menu_up(engine);
@@ -39,6 +40,10 @@ void    dr_init(Engine *engine)
 	engine->ray.ray = (Ray){0};
 	engine->ray.collision = (RayCollision){0};
     // DE_DEBUG("init %f", 2);
+	
+	Image imgTest = LoadImage("../assets/ichigo.png");
+	engine->testTexture = LoadTextureFromImage(imgTest);
+	UnloadImage(imgTest);
 }
 
 void	init_buttons_menu_up(Engine *engine)
@@ -53,16 +58,31 @@ void	init_buttons_menu_up(Engine *engine)
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 {
-    	// Define the camera to look into our 3d world
-	allCameras->camera00.camera3D = (Camera){ 0 };
-	allCameras->camera00.camera3D.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // Camera position
-	allCameras->camera00.camera3D.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
-	allCameras->camera00.camera3D.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-	allCameras->camera00.camera3D.fovy = 60.0f;                                // Camera field-of-view Y
-	allCameras->camera00.camera3D.projection = CAMERA_THIRD_PERSON;             // Camera mode type
+	allCameras->camera00.camera2D = (Camera2D){0};
+	allCameras->camera00.camera2D.target = (Vector2){0, 0};
+	allCameras->camera00.camera2D.offset = (Vector2){0.0f, 0.0f};
+	allCameras->camera00.camera2D.rotation = 0.0f;
+	allCameras->camera00.camera2D.zoom = 1.0f;
 	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30 -120);
-	allCameras->camera00.rectForCam = (Rectangle){300.0f, 30.0f, allCameras->camera00.textForCam.texture.width,
-		allCameras->camera00.textForCam.texture.height};
+	allCameras->camera00.rectForCam = (Rectangle){
+		300,
+		30,
+		allCameras->camera00.textForCam.texture.width,
+		allCameras->camera00.textForCam.texture.height
+	};
+    	// Define the camera to look into our 3d world
+	// allCameras->camera00.camera3D = (Camera){ 0 };
+	// allCameras->camera00.camera3D.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // Camera position
+	// allCameras->camera00.camera3D.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
+	// allCameras->camera00.camera3D.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
+	// allCameras->camera00.camera3D.fovy = 60.0f;                                // Camera field-of-view Y
+	// allCameras->camera00.camera3D.projection = CAMERA_THIRD_PERSON;             // Camera mode type
+	// allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30 -120);
+	// allCameras->camera00.rectForCam = (Rectangle){
+	// 	0.0f,
+	// 	0.0f,
+	// 	allCameras->camera00.textForCam.texture.width,
+	// 	allCameras->camera00.textForCam.texture.height};
 
 	// Camera panel side up
 	allCameras->camera01.camera2D = (Camera2D){0};
@@ -70,9 +90,13 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera01.camera2D.offset = (Vector2){0.0f, 0.0f};
 	allCameras->camera01.camera2D.rotation = 0.0f;
 	allCameras->camera01.camera2D.zoom = 1.0f;
-	allCameras->camera01.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3);
-	allCameras->camera01.rectForCam = (Rectangle){engine->screenSize.x - 300.0f, 30, allCameras->camera01.textForCam.texture.width,
-		allCameras->camera01.textForCam.texture.height};
+	allCameras->camera01.textForCam = LoadRenderTexture(300, engine->screenSize.y / 2);
+	allCameras->camera01.rectForCam = (Rectangle){
+		engine->screenSize.x - 300.0f,
+		30,
+		allCameras->camera01.textForCam.texture.width,
+		allCameras->camera01.textForCam.texture.height
+	};
 
 	// Camera panel side down
 	allCameras->camera02.camera2D = (Camera2D){0};
@@ -81,9 +105,13 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera02.camera2D.rotation = 0.0f;
 	allCameras->camera02.camera2D.zoom = 1.0f;
 	// allCameras->camera02.image = LoadImage("../assets/buttons/colorSideUpSelected.png");
-	allCameras->camera02.textForCam = LoadRenderTexture(300, engine->screenSize.y / 3 * 2 - 30);
-	allCameras->camera02.rectForCam = (Rectangle){engine->screenSize.x - 300.0f, engine->screenSize.y / 3 + 30, allCameras->camera02.textForCam.texture.width,
-		allCameras->camera02.textForCam.texture.height};
+	allCameras->camera02.textForCam = LoadRenderTexture(300, engine->screenSize.y / 2 - 30);
+	allCameras->camera02.rectForCam = (Rectangle){
+		engine->screenSize.x - 300.0f,
+		engine->screenSize.y / 2 + 30,
+		allCameras->camera02.textForCam.texture.width,
+		allCameras->camera02.textForCam.texture.height
+	};
 
 	// Camera panel up
 	allCameras->camera03.camera2D = (Camera2D){0};
@@ -92,8 +120,12 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera03.camera2D.rotation = 0.0f;
 	allCameras->camera03.camera2D.zoom = 1.0f;
 	allCameras->camera03.textForCam = LoadRenderTexture(engine->screenSize.x, 30);
-	allCameras->camera03.rectForCam = (Rectangle){0.0f, 0.0f, allCameras->camera03.textForCam.texture.width,
-		allCameras->camera03.textForCam.texture.height};
+	allCameras->camera03.rectForCam = (Rectangle){
+		0.0f,
+		0.0f,
+		allCameras->camera03.textForCam.texture.width,
+		allCameras->camera03.textForCam.texture.height
+	};
 
 	// Camera Hyerarchy Left
 	allCameras->camera04.camera2D = (Camera2D){0};
@@ -102,8 +134,12 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera04.camera2D.rotation = 0.0f;
 	allCameras->camera04.camera2D.zoom = 1.0f;
 	allCameras->camera04.textForCam = LoadRenderTexture(300, engine->screenSize.y - 30);
-	allCameras->camera04.rectForCam = (Rectangle){0.0f, 30, allCameras->camera04.textForCam.texture.width,
-		allCameras->camera04.textForCam.texture.height};
+	allCameras->camera04.rectForCam = (Rectangle){
+		0.0f,
+		30.0f,
+		allCameras->camera04.textForCam.texture.width,
+		allCameras->camera04.textForCam.texture.height
+	};
 
 	// Console log, down center
 	// Camera Hyerarchy Left
@@ -112,9 +148,14 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera05.camera2D.offset = (Vector2){0.0f, 0.0f};
 	allCameras->camera05.camera2D.rotation = 0.0f;
 	allCameras->camera05.camera2D.zoom = 1.0f;
+	// allCameras->camera02.image = LoadImage("../assets/test.png");
 	allCameras->camera05.textForCam = LoadRenderTexture(allCameras->camera00.rectForCam.width, 120);
-	allCameras->camera05.rectForCam = (Rectangle){allCameras->camera04.rectForCam.width, allCameras->camera00.rectForCam.height + allCameras->camera03.rectForCam.height,
-		allCameras->camera05.textForCam.texture.width, allCameras->camera05.textForCam.texture.height};
+	allCameras->camera05.rectForCam = (Rectangle){
+		engine->allCameras->camera04.rectForCam.width,
+		engine->allCameras->camera00.rectForCam.height + engine->allCameras->camera03.rectForCam.height,
+		allCameras->camera05.textForCam.texture.width,
+		allCameras->camera05.textForCam.texture.height
+	};
 
 	// Camera New Window (New Project, Open Project ...)
 	allCameras->camera07.camera2D = (Camera2D){0};
@@ -123,8 +164,12 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera07.camera2D.rotation = 0.0f;
 	allCameras->camera07.camera2D.zoom = 1.0f;
 	allCameras->camera07.textForCam = LoadRenderTexture(800, 500);
-	allCameras->camera07.rectForCam = (Rectangle){0, 0,
-		allCameras->camera07.textForCam.texture.width, allCameras->camera07.textForCam.texture.height};
+	allCameras->camera07.rectForCam = (Rectangle){
+		0,
+		0,
+		allCameras->camera07.textForCam.texture.width,
+		allCameras->camera07.textForCam.texture.height
+	};
 	
 	return (allCameras);
 }

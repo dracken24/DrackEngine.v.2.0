@@ -30,6 +30,7 @@ typedef struct NeedBy2DCam
 	Rectangle		rectForCam;
 	Camera2D 		camera;
 	Image			image;
+	// Vector2			offset;
 }	NeedBy2DCam;
 
 typedef struct MultipleCam2D
@@ -54,6 +55,7 @@ typedef struct NeedBy3DCam
 	Camera2D 		camera2D;
 	Camera 			camera3D;
 	Image			image;
+	// Vector2			offset;
 }	NeedBy3DCam;
 
 typedef struct MultipleCam3D

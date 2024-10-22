@@ -57,6 +57,23 @@ void    ftControlMainPanel(Engine *engine)
 	
 }
 
+void	use_image(Engine *engine, Rectangle rect, Vector2 offset)
+{
+	if (engine->testTexture.id == 0)
+	{
+		Image testImage = LoadImage("../assets/ichigo.png");
+		engine->testTexture = LoadTextureFromImage(testImage);
+		UnloadImage(testImage);
+	}
+
+	DrawTextureRec(
+		engine->testTexture,
+		(Rectangle){ 0, 0, rect.width, rect.height },
+		(Vector2){ offset.x, offset.y },
+		WHITE
+	);
+}
+
 void    update_main_view(Engine *engine)
 {
 //--------------------------------------------------------------------------------------
@@ -64,17 +81,22 @@ void    update_main_view(Engine *engine)
 //----------------------------------------------------------------------------------
 	// UpdateCamera(&allCameras->camera00.camera3D, CAMERA_FREE);
 	//** Drawning **//
+	Vector2 zero = (Vector2){0, 0};
 
 	// Draw Workspace
 	Rectangle rec00 = engine->allCameras->camera00.rectForCam;
 	BeginTextureMode(engine->allCameras->camera00.textForCam);
 		ClearBackground(LIGHTGRAY);
-		BeginMode3D(engine->allCameras->camera00.camera3D);
 
-			ftControlMainPanel(engine);
-			// DrawText("Workspace !", 20, 20, 20, BLUE);
+		BeginMode2D(engine->allCameras->camera00.camera2D);
+			use_image(engine, rec00, zero);
+		EndMode2D();
+		// BeginMode3D(engine->allCameras->camera00.camera3D);
 
-		EndMode3D();
+		// 	ftControlMainPanel(engine);
+			DrawText("Workspace !", rec00.width / 2 - MeasureText("Workspace !", 20) / 2, rec00.height / 2 - 10, 20, BLUE);
+
+		// EndMode3D();
 
 	EndTextureMode();
 
@@ -82,12 +104,15 @@ void    update_main_view(Engine *engine)
 
 	// Draw Control Panel side up
 	Rectangle rec01 = engine->allCameras->camera01.rectForCam;
+			
 	BeginTextureMode(engine->allCameras->camera01.textForCam);
 		ClearBackground(DARKGRAY);
 		BeginMode2D(engine->allCameras->camera01.camera2D);
 
 			// ftSideUpMenu2D(game);
-			DrawText("Control Panel side up !", rec01.width / 2 - MeasureText("Control Panel side up !", 20) / 2, rec01.height / 2 - 10, 20, BLUE);
+			// Chargez l'image une seule fois au début du programme et stockez-la dans engine
+			use_image(engine, rec01, (Vector2){0, 0});	
+			DrawText("Panel side up !", rec01.width / 2 - MeasureText("Panel side up !", 20) / 2, rec01.height / 2 - 10, 20, BLUE);
 
 		EndMode2D();
 	EndTextureMode();
@@ -101,7 +126,9 @@ void    update_main_view(Engine *engine)
 		BeginMode2D(engine->allCameras->camera02.camera2D);
 
 			// ftSideDownMenu3D(game);
-			DrawText("Control Panel side down !", rec02.width / 2 - MeasureText("Control Panel side down !", 20) / 2, rec02.height / 2 - 10, 20, BLUE);
+			// Chargez l'image une seule fois au début du programme et stockez-la dans engine
+			use_image(engine, rec02, zero);
+			DrawText("Panel side down !", rec02.width / 2 - MeasureText("Panel side down !", 20) / 2, rec02.height / 2 - 10, 20, BLUE);
 		EndMode2D();
 	EndTextureMode();
 
@@ -114,6 +141,8 @@ void    update_main_view(Engine *engine)
 		BeginMode2D(engine->allCameras->camera03.camera2D);
 
 			ftUpMenu2D(engine, &engine->allCameras->camera03.camera2D);
+			// Chargez l'image une seule fois au début du programme et stockez-la dans engine
+			use_image(engine, rec03, zero);
 
 		EndMode2D();
 	EndTextureMode();
@@ -126,8 +155,9 @@ void    update_main_view(Engine *engine)
 		ClearBackground(DARKGRAY3);
 		BeginMode2D(engine->allCameras->camera04.camera2D);
 
+			// Chargez l'image une seule fois au début du programme et stockez-la dans engine
+			use_image(engine, rec04, zero);
 			DrawText("Hyerarchy Left !", rec04.width / 2 - MeasureText("Hyerarchy Left !", 20) / 2, rec04.height / 2 - 10, 20, BLUE);
-
 		EndMode2D();
 	EndTextureMode();
 
@@ -139,8 +169,8 @@ void    update_main_view(Engine *engine)
 		ClearBackground(DARKGRAY1);
 		BeginMode2D(engine->allCameras->camera05.camera2D);
 
+			use_image(engine, rec05, zero);
 			DrawText("Console Log center down !", rec05.width / 2 - MeasureText("Console Log center down !", 20) / 2, rec05.height / 2 - 10, 20, BLUE);
-
 		EndMode2D();
 	EndTextureMode();
 
@@ -150,50 +180,44 @@ void    update_main_view(Engine *engine)
 	BeginDrawing();
 		ClearBackground(BLACK);
 		
-		Rectangle rec_00 = engine->allCameras->camera00.rectForCam;
-		Rectangle rec_01 = engine->allCameras->camera01.rectForCam;
-		Rectangle rec_02 = engine->allCameras->camera02.rectForCam;
-		Rectangle rec_03 = engine->allCameras->camera03.rectForCam;
-		Rectangle rec_04 = engine->allCameras->camera04.rectForCam;
-		Rectangle rec_05 = engine->allCameras->camera05.rectForCam;
+		// use rectForCam for each camera
+		DrawTextureRec(engine->allCameras->camera00.textForCam.texture, 
+					(Rectangle){0, 0, engine->allCameras->camera00.rectForCam.width, -engine->allCameras->camera00.rectForCam.height},
+					(Vector2){engine->allCameras->camera00.rectForCam.x, engine->allCameras->camera00.rectForCam.y}, 
+					WHITE);
+		
+		DrawTextureRec(engine->allCameras->camera01.textForCam.texture, 
+					(Rectangle){0, 0, engine->allCameras->camera01.rectForCam.width, -engine->allCameras->camera01.rectForCam.height},
+					(Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y}, 
+					WHITE);
+		
+		DrawTextureRec(engine->allCameras->camera02.textForCam.texture, 
+					(Rectangle){0, 0, engine->allCameras->camera02.rectForCam.width, -engine->allCameras->camera02.rectForCam.height},
+					(Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y}, 
+					WHITE);
+		
+		DrawTextureRec(engine->allCameras->camera03.textForCam.texture, 
+					(Rectangle){0, 0, engine->allCameras->camera03.rectForCam.width, -engine->allCameras->camera03.rectForCam.height},
+					(Vector2){engine->allCameras->camera03.rectForCam.x, engine->allCameras->camera03.rectForCam.y}, 
+					WHITE);
+		
+		DrawTextureRec(engine->allCameras->camera04.textForCam.texture, 
+					(Rectangle){0, 0, engine->allCameras->camera04.rectForCam.width, -engine->allCameras->camera04.rectForCam.height},
+					(Vector2){engine->allCameras->camera04.rectForCam.x, engine->allCameras->camera04.rectForCam.y}, 
+					WHITE);
+		
+		DrawTextureRec(engine->allCameras->camera05.textForCam.texture, 
+					(Rectangle){0, 0, engine->allCameras->camera05.rectForCam.width, -engine->allCameras->camera05.rectForCam.height},
+					(Vector2){engine->allCameras->camera05.rectForCam.x, engine->allCameras->camera05.rectForCam.y}, 
+					WHITE);
 
-		rec_00.height *= -1;
-		rec_01.height *= -1;
-		rec_02.height *= -1;
-		rec_03.height *= -1;
-		rec_04.height *= -1;
-		rec_05.height *= -1;
-
-		DrawTextureRec(engine->allCameras->camera00.textForCam.texture, rec_00, (Vector2){rec_00.x, rec_00.y}, WHITE);
-		DrawTextureRec(engine->allCameras->camera01.textForCam.texture, rec_01, (Vector2){rec_01.x, rec_01.y}, WHITE);
-		DrawTextureRec(engine->allCameras->camera02.textForCam.texture, rec_02, (Vector2){rec_02.x, rec_02.y}, WHITE);
-		DrawTextureRec(engine->allCameras->camera03.textForCam.texture, rec_03, (Vector2){rec_03.x, rec_03.y}, WHITE);
-		DrawTextureRec(engine->allCameras->camera04.textForCam.texture, rec_04, (Vector2){rec_04.x, rec_04.y}, WHITE);
-		DrawTextureRec(engine->allCameras->camera05.textForCam.texture, rec_05, (Vector2){rec_05.x, rec_05.y}, WHITE);
-
-		rec_00.height *= -1;
-		rec_01.height *= -1;
-		rec_02.height *= -1;
-		rec_03.height *= -1;
-		rec_04.height *= -1;
-		rec_05.height *= -1;
-
-		draw_rectangle_borders(rec_00, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(rec_01, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(rec_02, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(rec_03, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(rec_04, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(rec_05, BORDER_COLOR, BORDER_THICK);
-
-		// draw_rectangle_borders(rec_00, BLUE, 3);
-		// draw_rectangle_borders(rec01, RED, 3);
-		// draw_rectangle_borders(rec02, PURPLE, 3);
-		// draw_rectangle_borders(rec03, GREEN, 3);
-		// draw_rectangle_borders(rec04, ORANGE, 3);
-		// draw_rectangle_borders(rec05, DARKPURPLE2, 3);
-
-		// Rectangle test = (Rectangle){100, 100, 200, 200};
-		// draw_rectangle_borders(test, RED, 3);
+		// Dessinez les bordures si nécessaire
+		draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BLUE, 3);
+		draw_rectangle_borders(engine->allCameras->camera01.rectForCam, RED, 3);
+		draw_rectangle_borders(engine->allCameras->camera02.rectForCam, PURPLE, 3);
+		draw_rectangle_borders(engine->allCameras->camera03.rectForCam, GREEN, 3);
+		draw_rectangle_borders(engine->allCameras->camera04.rectForCam, ORANGE, 3);
+		draw_rectangle_borders(engine->allCameras->camera05.rectForCam, DARKPURPLE2, 3);
 
 		ftDrawDropdownMenu(engine);
 	EndDrawing();
@@ -241,3 +265,5 @@ void    dr_update(Engine *engine)
         }
 	}
 }
+
+
