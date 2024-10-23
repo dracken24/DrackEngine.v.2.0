@@ -34,9 +34,20 @@ void    draw_msg_intro(void)
 
 void    input_events(Engine *engine)
 {
-	if (IsKeyPressed(KEY_ESCAPE))
+	if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
 	{
-		engine->exitCt = true;
+		switch (engine->currentView)
+		{
+		case 0:
+			engine->exitCt = true;
+			break;
+		case 1:
+			quit_menu_window(engine);
+			break;
+		case 2:
+			quit_menu_window(engine);
+			break;
+		}
 	}
 	if (IsKeyPressed(KEY_M))
 	{
@@ -218,7 +229,7 @@ void    update_main_view(Engine *engine)
 	EndDrawing();
 }
 
-ViewState   state_for_window_resize = VIEW_MAIN;
+ViewState   state_for_window_resize = VIEW_ENGINE;
 
 void    dr_update(Engine *engine)
 {
@@ -246,7 +257,7 @@ void    dr_update(Engine *engine)
 	{
 		switch(engine->currentView)
         {
-            case VIEW_MAIN:
+            case VIEW_ENGINE:
 				input_events(engine);
 				window_events(engine);
 				update_main_view(engine);

@@ -16,15 +16,20 @@
 //***                              Files Menu                                ***//
 //******************************************************************************//
 
+void    quit_menu_window(Engine *engine)
+{
+    engine->lastView = engine->currentView;
+    engine->currentView = VIEW_ENGINE;
+    SetWindowSize(engine->screenSize.x, engine->screenSize.y);
+}
+
 void    menu_files_new(Engine *engine)
 {
     Vector2 mpos = GetMousePosition();
     // DE_DEBUG("Win Size x: %f y: %f mouse pos x: %f y: %f", engine->screenSizeWindow.x, engine->screenSizeWindow.y, mpos.x, mpos.y);
-    if (IsKeyPressed(KEY_ESCAPE))
+    if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
     {
-        engine->lastView = engine->currentView;
-        engine->currentView = VIEW_MAIN;
-        SetWindowSize(engine->screenSize.x, engine->screenSize.y);
+        quit_menu_window(engine);
     }
 
     // Camera 05 for other windows
@@ -48,11 +53,9 @@ void    menu_files_new(Engine *engine)
 void    menu_files_open(Engine *engine)
 {
     // DE_DEBUG("Option selected: %s", "Open !");
-    if (IsKeyPressed(KEY_ESCAPE))
+    if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
     {
-        engine->lastView = engine->currentView;
-        engine->currentView = VIEW_MAIN;
-        SetWindowSize(engine->screenSize.x, engine->screenSize.y);
+        quit_menu_window(engine);
     }
 
     // Camera 05 for other windows

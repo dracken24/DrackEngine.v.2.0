@@ -5,3 +5,58 @@ User:
 
 New Project:
 - Sauvegarder le nom
+
+
+
+1. Structure de fichiers :
+Créez une structure de dossiers cohérente pour chaque projet, par exemple :
+
+MonProjet/
+  ├── Assets/
+  │   ├── Models/
+  │   ├── Textures/
+  │   └── Audio/
+  ├── Scenes/
+  ├── Scripts/
+  └── ProjectSettings.json
+
+2. Format de sauvegarde :
+Utilisez un format de fichier standard comme JSON ou YAML pour stocker les données du projet.
+
+Exemple de fichier ProjectSettings.json :
+
+{
+  "nomProjet": "MonSuperJeu",
+  "version": "1.0",
+  "scenes": ["menu.scene", "niveau1.scene"],
+  "parametres": {
+    "resolution": [1920, 1080],
+    "pleinEcran": true
+  }
+}
+
+Gestion des ressources :
+Implémentez un système de gestion des ressources qui garde une trace de tous les fichiers utilisés dans le projet.
+Utilisez des identifiants uniques pour chaque ressource.
+
+Sérialisation :
+Créez des fonctions pour sérialiser et désérialiser les objets du jeu et les scènes.
+Assurez-vous que toutes les données importantes sont sauvegardées.
+
+Versionnage :
+Intégrez un système de contrôle de version simple pour permettre aux utilisateurs de revenir à des versions antérieures du projet.
+
+Sauvegarde automatique :
+Implémentez une fonction de sauvegarde automatique à intervalles réguliers.
+
+Exportation :
+Créez une fonction pour exporter le projet dans un format compressé (par exemple, un fichier .zip) pour faciliter le partage.
+
+Validation :
+Vérifiez l'intégrité des données lors du chargement d'un projet pour éviter les erreurs.
+
+Interface utilisateur :
+Concevez une interface conviviale pour créer, ouvrir et sauvegarder des projets.
+
+Compatibilité :
+Assurez-vous que le format de sauvegarde est compatible entre différentes versions de votre moteur.

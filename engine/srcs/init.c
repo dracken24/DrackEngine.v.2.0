@@ -24,7 +24,7 @@ void			init_workspace(Engine *engine);
 void    dr_init(Engine *engine)
 {
     engine->exitCt = false;
-	engine->currentView = VIEW_MAIN;
+	engine->currentView = VIEW_ENGINE;
     engine->screenSize = (Vector2){1500, 750};
 	engine->screenSizeWindow = WINDOW_OTHERS;
 

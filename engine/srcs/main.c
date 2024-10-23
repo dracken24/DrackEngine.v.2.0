@@ -27,7 +27,7 @@ int main(void)
 {
     Engine engine;
     g_engine = &engine;
-    ViewState currentView = VIEW_MAIN;
+    ViewState currentView = VIEW_ENGINE;
 
     initialize_memory();
     dr_init(&engine);

@@ -99,7 +99,7 @@ static CameraData CAMERA = {        // Global CAMERA state context
 
 typedef enum ViewState
 {
-    VIEW_MAIN,
+    VIEW_ENGINE,
     VIEW_NEW_PROJECT,
     VIEW_OPEN_PROJECT
 }   ViewState;
@@ -192,5 +192,11 @@ void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness);
 //******************************************************************************//
 
 void    ftControlMainPanel(Engine *engine);
+
+//******************************************************************************//
+//***                           menu_functions.c                             ***//
+//******************************************************************************//
+
+void    quit_menu_window(Engine *engine);
 
 #endif
