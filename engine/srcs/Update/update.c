@@ -52,11 +52,6 @@ void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness)
 	DrawLineEx((Vector2){rectangle.x, rectangle.y + rectangle.height}, (Vector2){rectangle.x, rectangle.y}, thickness, color); // Line left
 }
 
-void    ftControlMainPanel(Engine *engine)
-{
-	
-}
-
 void	use_image(Engine *engine, Rectangle rect, Vector2 offset)
 {
 	if (engine->testTexture.id == 0)
@@ -86,17 +81,19 @@ void    update_main_view(Engine *engine)
 	// Draw Workspace
 	Rectangle rec00 = engine->allCameras->camera00.rectForCam;
 	BeginTextureMode(engine->allCameras->camera00.textForCam);
+
 		ClearBackground(LIGHTGRAY);
+		// BeginMode2D(engine->allCameras->camera00.camera2D);
+		// 	use_image(engine, rec00, zero);
+		// EndMode2D();
+		BeginMode3D(engine->allCameras->camera00.camera3D);
 
-		BeginMode2D(engine->allCameras->camera00.camera2D);
-			use_image(engine, rec00, zero);
-		EndMode2D();
-		// BeginMode3D(engine->allCameras->camera00.camera3D);
+			ftControlMainPanel(engine);
+			// DrawText("Workspace !", rec00.width / 2 - MeasureText("Workspace !", 20) / 2, rec00.height / 2 - 10, 20, BLUE);
 
-		// 	ftControlMainPanel(engine);
-			DrawText("Workspace !", rec00.width / 2 - MeasureText("Workspace !", 20) / 2, rec00.height / 2 - 10, 20, BLUE);
-
-		// EndMode3D();
+		EndMode3D();
+			DrawText("Try clicking on the box with your mouse!", 240, 10, 20, DARKGRAY);
+            DrawText("Right click mouse to toggle camera controls", 10, 430, 10, GRAY);
 
 	EndTextureMode();
 

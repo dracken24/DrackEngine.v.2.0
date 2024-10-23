@@ -116,6 +116,15 @@ typedef struct ButtonsMenu
     Button*  stop;
 }   ButtonsMenu;
 
+typedef struct TestWorkspace
+{
+    Vector3 cubePosition;
+    Vector3 cubeSize;
+
+    Ray ray;                    // Picking line ray
+    RayCollision collision;     // Ray collision hit info
+}   TestWorkspace;
+
 typedef struct  Engine
 {
     Vector2             screenSize; // in engine mode
@@ -139,7 +148,9 @@ typedef struct  Engine
     Ray3D			ray;
     Mouse			mouse;
 
+    // Tests
     Texture2D testTexture;
+    TestWorkspace   testWorkspace;
 }   Engine;
 
 //******************************************************************************//
@@ -175,5 +186,11 @@ void    window_events(Engine *engine);
 //******************************************************************************//
 
 void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness);
+
+//******************************************************************************//
+//***                                Workspace.c                             ***//
+//******************************************************************************//
+
+void    ftControlMainPanel(Engine *engine);
 
 #endif

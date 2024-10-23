@@ -1,7 +1,7 @@
 # include "../../includes/engine.h"
 # include "../../includes/struct_globale.h"
 
-bl8		skipTurnResize = false;
+bl8	    skipTurnResize = false;
 bl8     mouse_on_line_vert      			= false;
 bl8     mouse_on_line_vert_ct   			= false;
 bl8     mouse_on_line_vert_hyerarchy      	= false;

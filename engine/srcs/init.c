@@ -17,8 +17,9 @@
 #include <stdio.h>
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras);
-void	init_buttons_menu_up(Engine *engine);
-void	init_windows_pid(Engine *engine);
+void			init_buttons_menu_up(Engine *engine);
+// void			init_windows_pid(Engine *engine);
+void			init_workspace(Engine *engine);
 
 void    dr_init(Engine *engine)
 {
@@ -51,6 +52,16 @@ void    dr_init(Engine *engine)
 	Image imgTest = LoadImage("../assets/ichigo.png");
 	engine->testTexture = LoadTextureFromImage(imgTest);
 	UnloadImage(imgTest);
+
+	init_workspace(engine);
+}
+
+void	init_workspace(Engine *engine)
+{
+	engine->testWorkspace.cubePosition = (Vector3){ 0.0f, 1.0f, 0.0f };
+    engine->testWorkspace.cubeSize = (Vector3){ 2.0f, 2.0f, 2.0f };
+    engine->testWorkspace.ray = (Ray){ 0 };
+    engine->testWorkspace.collision = (RayCollision){ 0 };
 }
 
 void	init_buttons_menu_up(Engine *engine)
@@ -65,31 +76,32 @@ void	init_buttons_menu_up(Engine *engine)
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 {
-	allCameras->camera00.camera2D = (Camera2D){0};
-	allCameras->camera00.camera2D.target = (Vector2){0, 0};
-	allCameras->camera00.camera2D.offset = (Vector2){0.0f, 0.0f};
-	allCameras->camera00.camera2D.rotation = 0.0f;
-	allCameras->camera00.camera2D.zoom = 1.0f;
-	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30 -120);
-	allCameras->camera00.rectForCam = (Rectangle){
-		300,
-		30,
-		allCameras->camera00.textForCam.texture.width,
-		allCameras->camera00.textForCam.texture.height
-	};
-    	// Define the camera to look into our 3d world
-	// allCameras->camera00.camera3D = (Camera){ 0 };
-	// allCameras->camera00.camera3D.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // Camera position
-	// allCameras->camera00.camera3D.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
-	// allCameras->camera00.camera3D.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-	// allCameras->camera00.camera3D.fovy = 60.0f;                                // Camera field-of-view Y
-	// allCameras->camera00.camera3D.projection = CAMERA_THIRD_PERSON;             // Camera mode type
+	// allCameras->camera00.camera2D = (Camera2D){0};
+	// allCameras->camera00.camera2D.target = (Vector2){0, 0};
+	// allCameras->camera00.camera2D.offset = (Vector2){0.0f, 0.0f};
+	// allCameras->camera00.camera2D.rotation = 0.0f;
+	// allCameras->camera00.camera2D.zoom = 1.0f;
 	// allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30 -120);
 	// allCameras->camera00.rectForCam = (Rectangle){
-	// 	0.0f,
-	// 	0.0f,
+	// 	300,
+	// 	30,
 	// 	allCameras->camera00.textForCam.texture.width,
-	// 	allCameras->camera00.textForCam.texture.height};
+	// 	allCameras->camera00.textForCam.texture.height
+	// };
+
+    // Define the camera to look into 3d world
+	allCameras->camera00.camera3D = (Camera){ 0 };
+	allCameras->camera00.camera3D.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // Camera position
+	allCameras->camera00.camera3D.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
+	allCameras->camera00.camera3D.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
+	allCameras->camera00.camera3D.fovy = 60.0f;                                // Camera field-of-view Y
+	allCameras->camera00.camera3D.projection = CAMERA_PERSPECTIVE;             // Camera mode type
+	allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30 -120);
+	allCameras->camera00.rectForCam = (Rectangle){
+		300.0f,
+		30.0f,
+		allCameras->camera00.textForCam.texture.width,
+		allCameras->camera00.textForCam.texture.height};
 
 	// Camera panel side up
 	allCameras->camera01.camera2D = (Camera2D){0};
