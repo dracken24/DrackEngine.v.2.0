@@ -45,6 +45,13 @@ void	reset_camera_options(Camera2D camera)
 	camera.zoom = 1.0f;
 }
 
+void	reload_texture(NeedBy3DCam *cam)
+{
+	UnloadRenderTexture(cam->textForCam);
+	cam->textForCam = LoadRenderTexture(cam->rectForCam.width, cam->rectForCam.height);
+}
+
+// Add position and size to camera texure and reload texture if size changed
 void    adjust_camera_pos_size(NeedBy3DCam *camera, Vector2 pos, Vector2 diff)
 {
 	camera->rectForCam.x += pos.x;
@@ -53,13 +60,13 @@ void    adjust_camera_pos_size(NeedBy3DCam *camera, Vector2 pos, Vector2 diff)
 	{
 		camera->rectForCam.width += diff.x;
 		camera->rectForCam.height += diff.y;
-		UnloadRenderTexture(camera->textForCam);
-		camera->textForCam = LoadRenderTexture(camera->rectForCam.width, camera->rectForCam.height);
+		reload_texture(camera);
 
 		reset_camera_options(camera->camera2D);
 	}
 }
 
+// Set position and size to camera texure and reload texture if size changed
 void	set_camera_pos_size(NeedBy3DCam *camera, Vector2 pos, Vector2 size)
 {
 	camera->rectForCam.x = pos.x;
@@ -68,50 +75,59 @@ void	set_camera_pos_size(NeedBy3DCam *camera, Vector2 pos, Vector2 size)
 	{
 		camera->rectForCam.width = size.x;
 		camera->rectForCam.height = size.y;
-		UnloadRenderTexture(camera->textForCam);
-		camera->textForCam = LoadRenderTexture(camera->rectForCam.width, camera->rectForCam.height);
+		reload_texture(camera);
 
 		reset_camera_options(camera->camera2D);
 	}
 }
 
+// Set size to camera texure and reload texture
 void	set_camera_size(NeedBy3DCam *camera, Vector2 size)
 {
 	camera->rectForCam.width = size.x;
 	camera->rectForCam.height = size.y;
-	UnloadRenderTexture(camera->textForCam);
-	camera->textForCam = LoadRenderTexture(camera->rectForCam.width, camera->rectForCam.height);
+	reload_texture(camera);
 
 	reset_camera_options(camera->camera2D);
 }
-
+ 
+ // Adjust size to camera texure and reload texture
 void	adjust_camera_size(NeedBy3DCam *camera, Vector2 size)
 {
 	camera->rectForCam.width += size.x;
 	camera->rectForCam.height += size.y;
-	UnloadRenderTexture(camera->textForCam);
-	camera->textForCam = LoadRenderTexture(camera->rectForCam.width, camera->rectForCam.height);
+	reload_texture(camera);
 
 	reset_camera_options(camera->camera2D);
 }
 
+// Set position to camera texure
 void	set_camera_pos(NeedBy3DCam *camera, Vector2 pos)
 {
 	camera->rectForCam.x = pos.x;
 	camera->rectForCam.y = pos.y;
 }
 
+// Add position to camera texure
 void	adjust_camera_pos(NeedBy3DCam *camera, Vector2 pos)
 {
 	camera->rectForCam.x += pos.x;
 	camera->rectForCam.y += pos.y;
 }
 
-// Resize screen
-void    adjust_menu_camera(Engine *engine)
+// Resize screen function
+void    resize_screen(Engine *engine)
 {
-	// DE_DEBUG("Adjust Menu Camera");
+	DE_DEBUG("Adjust Menu Camera");
+	
 	Vector2 diff = (Vector2){engine->screenSize.x - engine->lastScreenSize.x, engine->screenSize.y - engine->lastScreenSize.y};
+
+	Rectangle *rec00 = &engine->allCameras->camera00.rectForCam;
+	Rectangle *rec01 = &engine->allCameras->camera01.rectForCam;
+	Rectangle *rec02 = &engine->allCameras->camera02.rectForCam;
+	Rectangle *rec03 = &engine->allCameras->camera03.rectForCam;
+	Rectangle *rec04 = &engine->allCameras->camera04.rectForCam;
+	Rectangle *rec05 = &engine->allCameras->camera05.rectForCam;
 
 	adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){0, 0}, (Vector2){diff.x / 3 * 2, diff.y});
 	adjust_camera_pos_size(&engine->allCameras->camera01, (Vector2){diff.x / 3 * 2, 0}, (Vector2){diff.x / 3, diff.y / 2});
@@ -127,7 +143,7 @@ void    adjust_menu_camera(Engine *engine)
 		engine->lastScreenSize = engine->screenSize;
 		engine->screenSize.x = 920;
 		skipTurnResize = true;
-		adjust_menu_camera(engine);
+		resize_screen(engine);
 	}
 	if (engine->screenSize.y < 600)
 	{
@@ -135,8 +151,61 @@ void    adjust_menu_camera(Engine *engine)
 		engine->lastScreenSize = engine->screenSize;
 		engine->screenSize.y = 600;
 		skipTurnResize = true;
-		adjust_menu_camera(engine);
+		resize_screen(engine);
 	}
+
+	if (rec00->width < 200)
+	{
+		DE_WARNING("RESIZE min");
+		rec00->width = 200;
+		rec05->width = 200;
+		rec04->width = engine->screenSize.x - rec00->width - rec01->width;
+
+		rec00->x = rec04->width;
+		rec05->x = rec04->width;
+
+		reload_texture(&engine->allCameras->camera00);
+		reload_texture(&engine->allCameras->camera04);
+		reload_texture(&engine->allCameras->camera05);
+		// Set pos et reload imgs
+	}
+	if (rec04->width > engine->screenSize.x - 600)
+	{
+		DE_WARNING("RESIZE MAX 1");
+		
+		rec00->width = 300;
+		rec05->width = 300;
+		rec04->width = engine->screenSize.x - 600;
+
+		rec00->x = rec04->width;
+		rec05->x = rec04->width;
+
+		reload_texture(&engine->allCameras->camera00);
+		reload_texture(&engine->allCameras->camera04);
+		reload_texture(&engine->allCameras->camera05);
+	}
+	else if (rec01->width > engine->screenSize.x - 600)
+	{
+		DE_WARNING("RESIZE MAX 2");
+		
+		rec01->width = engine->screenSize.x - 600;
+		rec02->width = engine->screenSize.x - 600;
+		rec00->width = 300;
+		rec04->width = 300;
+		rec05->width = 300;
+
+		rec01->x = 600;
+		rec02->x = 600;
+		rec00->x = rec04->width;
+		rec05->x = rec04->width;
+
+		reload_texture(&engine->allCameras->camera00);
+		reload_texture(&engine->allCameras->camera01);
+		reload_texture(&engine->allCameras->camera02);
+		reload_texture(&engine->allCameras->camera04);
+		reload_texture(&engine->allCameras->camera05);
+	}
+	// DE_DEBUG("engine screen size x: %f y: %f", engine->screenSize.x, engine->screenSize.y);
 
 	// Adjust buttons menus
 	button_set_position(engine->buttonsMenuUp.play, (Vector2){engine->screenSize.x /2 - 15, 2});
@@ -145,7 +214,7 @@ void    adjust_menu_camera(Engine *engine)
 
 void    adjust_right_panel_vert(Engine *engine, int x)
 {
-	DE_DEBUG("Adjust Right Panel Vert");
+	// DE_DEBUG("Adjust Right Panel Vert");
 	adjust_camera_pos(&engine->allCameras->camera02, (Vector2){x, 0});
 	adjust_camera_pos(&engine->allCameras->camera01, (Vector2){x, 0});
 	adjust_camera_size(&engine->allCameras->camera02, (Vector2){-x, 0});
@@ -155,8 +224,8 @@ void    adjust_right_panel_vert(Engine *engine, int x)
 
 	Rectangle rec00 = engine->allCameras->camera00.rectForCam;
 	if (rec00.width < 200)
-	{
-		DE_INFO("Resize Right 8");
+	{ 
+		// DE_INFO("Resize Right 8");
 		adjust_camera_pos_size(&engine->allCameras->camera02, (Vector2){-x, 0}, (Vector2){x, 0});
 		adjust_camera_pos_size(&engine->allCameras->camera01, (Vector2){-x, 0}, (Vector2){x, 0});
 		adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){0, 0}, (Vector2){-x, 0});
@@ -189,10 +258,10 @@ void	adjust_vert_hyerarchy_panels(Engine *engine, int x)
 
 	Rectangle rec00 = engine->allCameras->camera00.rectForCam;
 	Rectangle rec04 = engine->allCameras->camera04.rectForCam;
-	DE_WARNING("rec04.width: %f", rec04.width);
+	// DE_WARNING("rec04.width: %f", rec04.width);
 	if (rec00.width < 200 || rec04.width < 200)
 	{
-		DE_INFO("Resize Right 7");
+		// DE_INFO("Resize Right 7");
 		adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){-x, 0}, (Vector2){x, 0});
 		adjust_camera_size(&engine->allCameras->camera04, (Vector2){-x, 0});
 		adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){-x, 0}, (Vector2){x, 0});
@@ -228,7 +297,7 @@ bl8		check_max_min_panels(Engine *engine)
 	}
 	else if (rec01->width < 300)
 	{
-		DE_INFO("Resize Right 2");
+		// DE_INFO("Resize Right 2");
 		set_camera_pos_size(&engine->allCameras->camera01, (Vector2){engine->screenSize.x - 300, rec01->y}, (Vector2){300, rec01->height});
 		set_camera_pos_size(&engine->allCameras->camera02, (Vector2){engine->screenSize.x - 300, rec02->y}, (Vector2){300, rec02->height});
 		set_camera_size(&engine->allCameras->camera00, (Vector2){engine->screenSize.x - rec01->width -
@@ -241,7 +310,7 @@ bl8		check_max_min_panels(Engine *engine)
 
 	if (rec02->height > engine->screenSize.y / 4 * 3 - CAMERA_UP_BAR)
 	{
-		DE_INFO("Resize Right 3");
+		// DE_INFO("Resize Right 3");
 		set_camera_size(&engine->allCameras->camera01, (Vector2){rec01->width, engine->screenSize.y / 4});
 		set_camera_pos_size(&engine->allCameras->camera02, (Vector2){rec02->x, engine->screenSize.y / 4 + CAMERA_UP_BAR},
 			(Vector2){rec02->width, engine->screenSize.y / 4 * 3 - CAMERA_UP_BAR});
@@ -250,7 +319,7 @@ bl8		check_max_min_panels(Engine *engine)
 	}
 	else if (rec02->height < 200)
 	{
-		DE_INFO("Resize Right 4");
+		// DE_INFO("Resize Right 4");
 		set_camera_size(&engine->allCameras->camera01, (Vector2){rec01->width, engine->screenSize.y - 200 - CAMERA_UP_BAR});
 		set_camera_pos_size(&engine->allCameras->camera02, (Vector2){rec02->x, rec01->height + rec03->height}, (Vector2){rec02->width, 200});
 
@@ -260,7 +329,7 @@ bl8		check_max_min_panels(Engine *engine)
 
 	if (rec05->height > engine->screenSize.y / 4 * 3 - CAMERA_UP_BAR)
 	{
-		DE_INFO("Resize Right 5");
+		// DE_INFO("Resize Right 5");
 		set_camera_size(&engine->allCameras->camera00, (Vector2){rec00->width, engine->screenSize.y / 4});
 		set_camera_pos_size(&engine->allCameras->camera05, (Vector2){rec05->x, engine->screenSize.y / 4 + CAMERA_UP_BAR},
 			(Vector2){rec05->width, engine->screenSize.y / 4 * 3 - CAMERA_UP_BAR});
@@ -270,7 +339,7 @@ bl8		check_max_min_panels(Engine *engine)
 	}
 	else if (rec05->height < 70)
 	{
-		DE_INFO("Resize Right 6");
+		// DE_INFO("Resize Right 6");
 		set_camera_size(&engine->allCameras->camera00, (Vector2){rec00->width, engine->screenSize.y - 70 - CAMERA_UP_BAR});
 		set_camera_pos_size(&engine->allCameras->camera05, (Vector2){rec05->x, rec00->height + rec03->height}, (Vector2){rec05->width, 70});
 
@@ -411,7 +480,7 @@ void    window_events(Engine *engine)
 		engine->screenSize.x = GetScreenWidth();
 		engine->screenSize.y = GetScreenHeight();
 
-		adjust_menu_camera(engine);
+		resize_screen(engine);
 		// DE_INFO("Window resized in engine");
 	}
 

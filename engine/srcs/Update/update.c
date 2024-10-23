@@ -110,8 +110,7 @@ void    update_main_view(Engine *engine)
 		BeginMode2D(engine->allCameras->camera01.camera2D);
 
 			// ftSideUpMenu2D(game);
-			// Chargez l'image une seule fois au début du programme et stockez-la dans engine
-			use_image(engine, rec01, (Vector2){0, 0});	
+			use_image(engine, rec01, (Vector2){0, 0});
 			DrawText("Panel side up !", rec01.width / 2 - MeasureText("Panel side up !", 20) / 2, rec01.height / 2 - 10, 20, BLUE);
 
 		EndMode2D();
@@ -126,9 +125,9 @@ void    update_main_view(Engine *engine)
 		BeginMode2D(engine->allCameras->camera02.camera2D);
 
 			// ftSideDownMenu3D(game);
-			// Chargez l'image une seule fois au début du programme et stockez-la dans engine
 			use_image(engine, rec02, zero);
 			DrawText("Panel side down !", rec02.width / 2 - MeasureText("Panel side down !", 20) / 2, rec02.height / 2 - 10, 20, BLUE);
+
 		EndMode2D();
 	EndTextureMode();
 
@@ -141,8 +140,7 @@ void    update_main_view(Engine *engine)
 		BeginMode2D(engine->allCameras->camera03.camera2D);
 
 			ftUpMenu2D(engine, &engine->allCameras->camera03.camera2D);
-			// Chargez l'image une seule fois au début du programme et stockez-la dans engine
-			use_image(engine, rec03, zero);
+			// use_image(engine, rec03, zero);
 
 		EndMode2D();
 	EndTextureMode();
@@ -155,9 +153,9 @@ void    update_main_view(Engine *engine)
 		ClearBackground(DARKGRAY3);
 		BeginMode2D(engine->allCameras->camera04.camera2D);
 
-			// Chargez l'image une seule fois au début du programme et stockez-la dans engine
 			use_image(engine, rec04, zero);
 			DrawText("Hyerarchy Left !", rec04.width / 2 - MeasureText("Hyerarchy Left !", 20) / 2, rec04.height / 2 - 10, 20, BLUE);
+
 		EndMode2D();
 	EndTextureMode();
 
@@ -211,13 +209,13 @@ void    update_main_view(Engine *engine)
 					(Vector2){engine->allCameras->camera05.rectForCam.x, engine->allCameras->camera05.rectForCam.y}, 
 					WHITE);
 
-		// Dessinez les bordures si nécessaire
-		draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BLUE, 3);
-		draw_rectangle_borders(engine->allCameras->camera01.rectForCam, RED, 3);
-		draw_rectangle_borders(engine->allCameras->camera02.rectForCam, PURPLE, 3);
-		draw_rectangle_borders(engine->allCameras->camera03.rectForCam, GREEN, 3);
-		draw_rectangle_borders(engine->allCameras->camera04.rectForCam, ORANGE, 3);
-		draw_rectangle_borders(engine->allCameras->camera05.rectForCam, DARKPURPLE2, 3);
+		// Draw borders
+		draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BLUE, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera01.rectForCam, RED, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera02.rectForCam, PURPLE, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera03.rectForCam, GREEN, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera04.rectForCam, ORANGE, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera05.rectForCam, DARKPURPLE2, BORDER_THICK);
 
 		ftDrawDropdownMenu(engine);
 	EndDrawing();

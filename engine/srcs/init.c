@@ -12,6 +12,9 @@
 
 # include "../includes/engine.h"
 # include "memory/dmemory.h"
+#include "../../library/extern/raylib/src/rlgl.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras);
 void	init_buttons_menu_up(Engine *engine);
@@ -24,6 +27,10 @@ void    dr_init(Engine *engine)
     engine->screenSize = (Vector2){1500, 750};
 	engine->screenSizeWindow = WINDOW_OTHERS;
 
+#ifdef DE_PLATFORM_LINUX
+	setenv("__NV_PRIME_RENDER_OFFLOAD", "1", 1);
+    setenv("__GLX_VENDOR_LIBRARY_NAME", "nvidia", 1);
+#endif
     open_window(engine->screenSize, engine->screenSize, "DrackEngine", true);
 	SetTargetFPS(60);
 
