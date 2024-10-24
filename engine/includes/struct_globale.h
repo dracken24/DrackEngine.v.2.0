@@ -53,7 +53,7 @@ typedef struct NeedBy3DCam
 	RenderTexture 	textForCam;
 	Rectangle		rectForCam;
 	Camera2D 		camera2D;
-	Camera 			camera3D;
+	Camera3D 		camera3D;
 	Image			image;
 	// Vector2			offset;
 }	NeedBy3DCam;

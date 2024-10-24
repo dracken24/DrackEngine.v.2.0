@@ -67,6 +67,17 @@ void	ftDrawMenuUp(Engine *engine)
 	    draw_play_stop(engine);
 }
 
+void    change_view(Engine *engine, ViewState state, bl8 resize_window)
+{
+    engine->lastView = engine->currentView;
+    engine->currentView = state;
+    if (resize_window)
+    {
+        engine->screenSizeWindow = WINDOW_OTHERS;
+        SetWindowSize(engine->screenSizeWindow.x, engine->screenSizeWindow.y);
+    }
+}
+
 void ftDrawDropdownMenu(Engine *engine)
 {
 	(void)engine;
@@ -114,7 +125,7 @@ void ftDrawDropdownMenu(Engine *engine)
                 isDropdownOpen = true;
                 
                 // Ajuster la largeur du menu déroulant
-                const char *options[] = {"Documentation", "Option 2", "Option 3"};
+                const char *options[] = {"Documentation"};
                 int numOptions = sizeof(options) / sizeof(options[0]);
                 int maxWidth = tabWidth;
                 for (int j = 0; j < numOptions; j++)
@@ -194,33 +205,27 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (files[i] && files[i] == "New")
                         {
-                            engine->lastView = engine->currentView;
-                            engine->currentView = VIEW_NEW_PROJECT;
-                            engine->screenSizeWindow = WINDOW_OTHERS;
-                            SetWindowSize(engine->screenSizeWindow.x, engine->screenSizeWindow.y);
+                            change_view(engine, VIEW_FILES_NEW_PROJECT, true);
                             break;
                         }
                         else if (files[i] && files[i] == "Open")
                         {
-                            engine->lastView = engine->currentView;
-                            engine->currentView = VIEW_OPEN_PROJECT;
-                            engine->screenSizeWindow = WINDOW_OTHERS;
-                            SetWindowSize(engine->screenSizeWindow.x, engine->screenSizeWindow.y);
+                            change_view(engine, VIEW_FILES_OPEN_PROJECT, true);
                             break;
                         }
                         else if (files[i] && files[i] == "Save")
                         {
-                            menu_files_save();
+                            change_view(engine, VIEW_FILES_SAVE, true);
                             break;
                         }
                         else if (files[i] && files[i] == "Save as")
                         {
-                            menu_files_save_as();
+                            change_view(engine, VIEW_FILES_SAVE_AS, true);
                             break;
                         }
                         else if (files[i] && files[i] == "Export")
                         {
-                            menu_files_export();
+                            change_view(engine, VIEW_FILES_EXPORT, true);
                             break;
                         }
                         break;
@@ -228,27 +233,27 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (edit[i] && edit[i] == "Undo")
                         {
-                            menu_edit_undo();
+                            change_view(engine, VIEW_EDIT_UNDO, false);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Redo")
                         {
-                            menu_edit_redo();
+                            change_view(engine, VIEW_EDIT_REDO, false);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Cut")
                         {
-                            menu_edit_cut();
+                            change_view(engine, VIEW_EDIT_CUT, false);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Copy")
                         {
-                            menu_edit_copy();
+                            change_view(engine, VIEW_EDIT_COPY, false);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Paste")
                         {
-                            menu_edit_paste();
+                            change_view(engine, VIEW_EDIT_PASTE, false);
                             break;
                         }
                         break;
@@ -256,17 +261,17 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (settings[i] && settings[i] == "Language")
                         {
-                            menu_settings_language();
+                            change_view(engine, VIEW_SETTINGS_LANGUAGE, true);
                             break;
                         }
                         else if (settings[i] && settings[i] == "Theme")
                         {
-                            menu_settings_theme();
+                            change_view(engine, VIEW_SETTINGS_THEME, true);
                             break;
                         }
                         else if (settings[i] && settings[i] == "Options")
                         {
-                            menu_settings_options();
+                            change_view(engine, VIEW_SETTINGS_OPTIONS, true);
                             break;
                         }
                         break;
@@ -274,17 +279,17 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (help[i] && help[i] == "About")
                         {
-                            menu_help_about();
+                            change_view(engine, VIEW_HELP_ABOUT, true);
                             break;
                         }
                         else if (help[i] && help[i] == "Documentation")
                         {
-                            menu_help_documentation();
+                            change_view(engine, VIEW_HELP_DOCUMENTATION, true);
                             break;
                         }
                         else if (help[i] && help[i] == "Support")
                         {
-                            menu_help_support();
+                            change_view(engine, VIEW_HELP_SUPPORT, true);
                             break;
                         }
                         break;

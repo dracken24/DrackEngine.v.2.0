@@ -32,22 +32,22 @@ struct Engine;
 
 void    menu_files_new(struct Engine *engine);
 void    menu_files_open(struct Engine *engine);
-void    menu_files_save(void);
-void    menu_files_save_as(void);
-void    menu_files_export(void);
+void    menu_files_save(struct Engine *engine);
+void    menu_files_save_as(struct Engine *engine);
+void    menu_files_export(struct Engine *engine);
 
-void    menu_edit_undo(void);
-void    menu_edit_redo(void);
-void    menu_edit_cut(void);
-void    menu_edit_copy(void);
-void    menu_edit_paste(void);
+void    menu_edit_undo(Engine *engine);
+void    menu_edit_redo(Engine *engine);
+void    menu_edit_cut(Engine *engine);
+void    menu_edit_copy(Engine *engine);
+void    menu_edit_paste(Engine *engine);
 
-void    menu_settings_language(void);
-void    menu_settings_theme(void);
-void    menu_settings_options(void);
+void    menu_settings_language(Engine *engine);
+void    menu_settings_theme(Engine *engine);
+void    menu_settings_options(Engine *engine);
 
-void    menu_help_about(void);
-void    menu_help_documentation(void);
-void    menu_help_support(void);
+void    menu_help_about(Engine *engine);
+void    menu_help_documentation(Engine *engine);
+void    menu_help_support(Engine *engine);
 
 #endif

@@ -41,10 +41,7 @@ void    input_events(Engine *engine)
 		case 0:
 			engine->exitCt = true;
 			break;
-		case 1:
-			quit_menu_window(engine);
-			break;
-		case 2:
+		default:
 			quit_menu_window(engine);
 			break;
 		}
@@ -218,12 +215,12 @@ void    update_main_view(Engine *engine)
 					WHITE);
 
 		// Draw borders
-		draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BLUE, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera01.rectForCam, RED, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera02.rectForCam, PURPLE, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera03.rectForCam, GREEN, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera04.rectForCam, ORANGE, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera05.rectForCam, DARKPURPLE2, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera01.rectForCam, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera02.rectForCam, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera03.rectForCam, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera04.rectForCam, BORDER_COLOR, BORDER_THICK);
+		draw_rectangle_borders(engine->allCameras->camera05.rectForCam, BORDER_COLOR, BORDER_THICK);
 
 		ftDrawDropdownMenu(engine);
 	EndDrawing();
@@ -262,11 +259,54 @@ void    dr_update(Engine *engine)
 				window_events(engine);
 				update_main_view(engine);
                 break;
-            case VIEW_NEW_PROJECT:
+            case VIEW_FILES_NEW_PROJECT:
                 menu_files_new(engine);
                 break;
-            case VIEW_OPEN_PROJECT:
+            case VIEW_FILES_OPEN_PROJECT:
                 menu_files_open(engine);
+                break;
+			
+			case VIEW_FILES_SAVE:
+                menu_files_save(engine);
+                break;
+			case VIEW_FILES_SAVE_AS:
+                menu_files_save_as(engine);
+                break;
+			case VIEW_FILES_EXPORT:
+                menu_files_export(engine);
+                break;
+			case VIEW_EDIT_UNDO:
+            	menu_edit_undo(engine);
+                break;
+			case VIEW_EDIT_REDO:
+            	menu_edit_redo(engine);
+                break;
+			case VIEW_EDIT_CUT:
+            	menu_edit_cut(engine);
+                break;
+			case VIEW_EDIT_COPY:
+            	menu_edit_copy(engine);
+                break;
+			case VIEW_EDIT_PASTE:
+            	menu_edit_paste(engine);
+                break;
+			case VIEW_SETTINGS_LANGUAGE:
+                menu_settings_language(engine);
+                break;
+			case VIEW_SETTINGS_THEME:
+                menu_settings_theme(engine);
+                break;
+			case VIEW_SETTINGS_OPTIONS:
+                menu_settings_options(engine);
+                break;
+			case VIEW_HELP_ABOUT:
+                menu_help_about(engine);
+                break;
+			case VIEW_HELP_SUPPORT:
+				menu_help_support(engine);
+                break;
+			case VIEW_HELP_DOCUMENTATION:
+                menu_help_documentation(engine);
                 break;
         }
 	}
