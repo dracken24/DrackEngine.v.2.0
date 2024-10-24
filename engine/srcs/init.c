@@ -97,7 +97,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 
     // Define the camera to look into 3d world
 	allCameras->camera00.camera3D = (Camera){ 0 };
-	allCameras->camera00.camera3D.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // Camera position
+	allCameras->camera00.camera3D.position = (Vector3){ 10.0f, 10.0f, -10.0f }; // Camera position
 	allCameras->camera00.camera3D.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
 	allCameras->camera00.camera3D.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
 	allCameras->camera00.camera3D.fovy = 60.0f;                                // Camera field-of-view Y

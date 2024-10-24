@@ -77,6 +77,20 @@ void	use_image(Engine *engine, Rectangle rect, Vector2 offset)
 	);
 }
 
+void draw_gizmo_2D(Vector2 position, float scale, Matrix cameraMatrix)
+{
+	Vector3 right = { cameraMatrix.m0, cameraMatrix.m4, cameraMatrix.m8 };
+	Vector3 forward = { cameraMatrix.m2, cameraMatrix.m6, cameraMatrix.m10 };
+    Vector3 up = { cameraMatrix.m1, cameraMatrix.m5, cameraMatrix.m9 };
+	int thick = 3;
+    // Dessiner l'axe X en rouge
+    DrawLineEx(position, (Vector2){ position.x - right.x * scale, position.y + right.y * scale }, thick, RED);
+    // Dessiner l'axe Y en vert
+    DrawLineEx(position, (Vector2){ position.x + up.x * scale, position.y + up.y * scale }, thick, GREEN);
+    // Dessiner l'axe Z en bleu (simulé en 2D)
+    DrawLineEx(position, (Vector2){ position.x + (right.x + forward.x) * scale, position.y + (right.y + forward.y) * scale }, thick, BLUE);
+}
+
 void    update_main_view(Engine *engine)
 {
 //--------------------------------------------------------------------------------------
@@ -100,8 +114,18 @@ void    update_main_view(Engine *engine)
 			// DrawText("Workspace !", rec00.width / 2 - MeasureText("Workspace !", 20) / 2, rec00.height / 2 - 10, 20, BLUE);
 
 		EndMode3D();
+
+			Matrix cameraMatrix = GetCameraMatrix(engine->allCameras->camera00.camera3D);
+        	draw_gizmo_2D((Vector2){ 500, 500  }, 50, cameraMatrix);
+		BeginMode2D(engine->allCameras->camera00.camera2D);
+
+
 			DrawText("Try clicking on the box with your mouse!", 240, 10, 20, DARKGRAY);
             DrawText("Right click mouse to toggle camera controls", 10, 430, 10, GRAY);
+
+        EndMode2D();
+
+			
 
 	EndTextureMode();
 
@@ -174,6 +198,7 @@ void    update_main_view(Engine *engine)
 
 			// use_image(engine, rec05, zero);
 			DrawText("Console Log center down !", rec05.width / 2 - MeasureText("Console Log center down !", 20) / 2, rec05.height / 2 - 10, 20, BLUE);
+
 		EndMode2D();
 	EndTextureMode();
 
