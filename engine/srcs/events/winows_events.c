@@ -1,3 +1,15 @@
+/*****************************************************************************/
+/*\|/~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~\|/*/
+/* |             ---------------------------------------------             | */
+/* |             *--*  PROJET: DrackEngine PAR: Dracken24 *--*             | */
+/* |             ---------------------------------------------             | */
+/* |             *--*  DATE:		 02-10-2024           *--*             | */
+/* |             ---------------------------------------------             | */
+/* |             *--*  FILE: 	  windows_events.c        *--*             | */
+/* |             ---------------------------------------------             | */
+/*/|\~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~/|\*/
+/*****************************************************************************/
+
 # include "../../includes/engine.h"
 # include "../../includes/struct_globale.h"
 
@@ -10,6 +22,7 @@ bl8     mouse_on_line_hori_right_panels 	= false;
 bl8     mouse_on_line_hori_right_panels_ct  = false;
 bl8     mouse_on_line_hori_center_panels	= false;
 bl8     mouse_on_line_hori_center_panels_ct = false;
+bl8	mouse_clicked							= false;
 Vector2 mouse_on_line_pos     				= (Vector2){0, 0};
 Vector2 mouse_on_line_pos_old 				= (Vector2){0, 0};
 int     line_hori_right_width         		= 4;
@@ -34,6 +47,7 @@ void    reset_resize_values(Engine *engine)
 	line_hori_center_width         			= 4;
 	line_vert_hierarchy_width       		= 4;
 	SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+	mouse_clicked = false;
 	DE_DEBUG("RESET");
 }
 
@@ -308,20 +322,20 @@ bl8		check_max_min_panels(Engine *engine)
 		return (true);
 	}
 
-	if (rec02->height > engine->screenSize.y / 4 * 3 - CAMERA_UP_BAR)
+	if (rec02->height > engine->screenSize.y - 100 - CAMERA_UP_BAR)
 	{
 		// DE_INFO("Resize Right 3");
-		set_camera_size(&engine->allCameras->camera01, (Vector2){rec01->width, engine->screenSize.y / 4});
-		set_camera_pos_size(&engine->allCameras->camera02, (Vector2){rec02->x, engine->screenSize.y / 4 + CAMERA_UP_BAR},
-			(Vector2){rec02->width, engine->screenSize.y / 4 * 3 - CAMERA_UP_BAR});
+		set_camera_size(&engine->allCameras->camera01, (Vector2){rec01->width, 100});
+		set_camera_pos_size(&engine->allCameras->camera02, (Vector2){rec02->x, 100 + CAMERA_UP_BAR},
+			(Vector2){rec02->width, engine->screenSize.y - 100 - CAMERA_UP_BAR});
 		reset_resize_values(engine);
 		return (true);
 	}
-	else if (rec02->height < 200)
+	else if (rec02->height < 100)
 	{
 		// DE_INFO("Resize Right 4");
-		set_camera_size(&engine->allCameras->camera01, (Vector2){rec01->width, engine->screenSize.y - 200 - CAMERA_UP_BAR});
-		set_camera_pos_size(&engine->allCameras->camera02, (Vector2){rec02->x, rec01->height + rec03->height}, (Vector2){rec02->width, 200});
+		set_camera_size(&engine->allCameras->camera01, (Vector2){rec01->width, engine->screenSize.y - 100 - CAMERA_UP_BAR});
+		set_camera_pos_size(&engine->allCameras->camera02, (Vector2){rec02->x, rec01->height + rec03->height}, (Vector2){rec02->width, 100});
 
 		reset_resize_values(engine);
 		return (true);
@@ -410,9 +424,9 @@ void    resize_right_panel(Engine *engine)
 		reset_resize_values(engine);
 	}
 
-	if (mouse_on_line_vert_ct)
+	if (mouse_clicked == true)
 	{
-		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+		if (mouse_on_line_vert_ct)
 		{
 			// DE_INFO("Click on line Vertical Right");
 			line_vert_right_width = 500;
@@ -422,12 +436,8 @@ void    resize_right_panel(Engine *engine)
 				adjust_right_panel_vert(engine, mouse_on_line_pos.x - mouse_on_line_pos_old.x);
 			}
 		}
-	}
-	else if (mouse_on_line_hori_right_panels_ct)
-	{
-		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+		else if (mouse_on_line_hori_right_panels_ct)
 		{
-			// DE_INFO("Click on line Horizontal right");
 			line_hori_right_width = 500;
 			if (mouse_on_line_pos.y != mouse_on_line_pos_old.y)
 			{
@@ -435,10 +445,7 @@ void    resize_right_panel(Engine *engine)
 				adjust_hori_right_panels(engine, mouse_on_line_pos.y - mouse_on_line_pos_old.y);
 			}
 		}
-	}
-	else if (mouse_on_line_hori_center_panels_ct)
-	{
-		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+		else if (mouse_on_line_hori_center_panels_ct)
 		{
 			// DE_INFO("Click on line horizontal center");
 			line_hori_center_width = 500;
@@ -448,10 +455,7 @@ void    resize_right_panel(Engine *engine)
 				adjust_hori_center_panels(engine, mouse_on_line_pos.y - mouse_on_line_pos_old.y);
 			}
 		}
-	}
-	else if (mouse_on_line_vert_hyerarchy_ct)
-	{
-		if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+		else if (mouse_on_line_vert_hyerarchy_ct)
 		{
 			// DE_INFO("Click on line vertical hyerarchie");
 			line_vert_hierarchy_width = 500;
@@ -465,7 +469,16 @@ void    resize_right_panel(Engine *engine)
 
 	mouse_on_line_pos_old = mouse_on_line_pos;
 
-	if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && (mouse_on_line_vert_hyerarchy_ct || mouse_on_line_hori_center_panels_ct
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && (mouse_on_line_vert_hyerarchy_ct || mouse_on_line_hori_center_panels_ct
+		|| mouse_on_line_hori_right_panels_ct || mouse_on_line_vert_ct))
+	{
+		mouse_clicked = true;
+	}
+	// if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+	// {
+	// 	reset_resize_values(engine);
+	// }
+	else if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && (mouse_on_line_vert_hyerarchy_ct || mouse_on_line_hori_center_panels_ct
 		|| mouse_on_line_hori_right_panels_ct || mouse_on_line_vert_ct))
 	{
 		reset_resize_values(engine);

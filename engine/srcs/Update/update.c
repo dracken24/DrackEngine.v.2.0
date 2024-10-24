@@ -36,7 +36,7 @@ void    input_events(Engine *engine)
 {
 	if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
 	{
-		switch (engine->currentView)
+		switch (engine->currentStateView)
 		{
 		case 0:
 			engine->exitCt = true;
@@ -115,7 +115,7 @@ void    update_main_view(Engine *engine)
 		BeginMode2D(engine->allCameras->camera01.camera2D);
 
 			// ftSideUpMenu2D(game);
-			use_image(engine, rec01, (Vector2){0, 0});
+			// use_image(engine, rec01, (Vector2){0, 0});
 			DrawText("Panel side up !", rec01.width / 2 - MeasureText("Panel side up !", 20) / 2, rec01.height / 2 - 10, 20, BLUE);
 
 		EndMode2D();
@@ -130,7 +130,7 @@ void    update_main_view(Engine *engine)
 		BeginMode2D(engine->allCameras->camera02.camera2D);
 
 			// ftSideDownMenu3D(game);
-			use_image(engine, rec02, zero);
+			// use_image(engine, rec02, zero);
 			DrawText("Panel side down !", rec02.width / 2 - MeasureText("Panel side down !", 20) / 2, rec02.height / 2 - 10, 20, BLUE);
 
 		EndMode2D();
@@ -158,7 +158,7 @@ void    update_main_view(Engine *engine)
 		ClearBackground(DARKGRAY3);
 		BeginMode2D(engine->allCameras->camera04.camera2D);
 
-			use_image(engine, rec04, zero);
+			// use_image(engine, rec04, zero);
 			DrawText("Hyerarchy Left !", rec04.width / 2 - MeasureText("Hyerarchy Left !", 20) / 2, rec04.height / 2 - 10, 20, BLUE);
 
 		EndMode2D();
@@ -172,7 +172,7 @@ void    update_main_view(Engine *engine)
 		ClearBackground(DARKGRAY1);
 		BeginMode2D(engine->allCameras->camera05.camera2D);
 
-			use_image(engine, rec05, zero);
+			// use_image(engine, rec05, zero);
 			DrawText("Console Log center down !", rec05.width / 2 - MeasureText("Console Log center down !", 20) / 2, rec05.height / 2 - 10, 20, BLUE);
 		EndMode2D();
 	EndTextureMode();
@@ -226,7 +226,7 @@ void    update_main_view(Engine *engine)
 	EndDrawing();
 }
 
-ViewState   state_for_window_resize = VIEW_ENGINE;
+ViewState   state_for_window_resize = STATE_VIEW_ENGINE;
 
 void    dr_update(Engine *engine)
 {
@@ -252,60 +252,59 @@ void    dr_update(Engine *engine)
 	}
 	else
 	{
-		switch(engine->currentView)
+		switch(engine->currentStateView)
         {
-            case VIEW_ENGINE:
+            case STATE_VIEW_ENGINE:
 				input_events(engine);
 				window_events(engine);
 				update_main_view(engine);
                 break;
-            case VIEW_FILES_NEW_PROJECT:
+            case STATE_VIEW_FILES_NEW_PROJECT:
                 menu_files_new(engine);
                 break;
-            case VIEW_FILES_OPEN_PROJECT:
+            case STATE_VIEW_FILES_OPEN_PROJECT:
                 menu_files_open(engine);
                 break;
-			
-			case VIEW_FILES_SAVE:
+			case STATE_VIEW_FILES_SAVE:
                 menu_files_save(engine);
                 break;
-			case VIEW_FILES_SAVE_AS:
+			case STATE_VIEW_FILES_SAVE_AS:
                 menu_files_save_as(engine);
                 break;
-			case VIEW_FILES_EXPORT:
+			case STATE_VIEW_FILES_EXPORT:
                 menu_files_export(engine);
                 break;
-			case VIEW_EDIT_UNDO:
+			case STATE_VIEW_EDIT_UNDO:
             	menu_edit_undo(engine);
                 break;
-			case VIEW_EDIT_REDO:
+			case STATE_VIEW_EDIT_REDO:
             	menu_edit_redo(engine);
                 break;
-			case VIEW_EDIT_CUT:
+			case STATE_VIEW_EDIT_CUT:
             	menu_edit_cut(engine);
                 break;
-			case VIEW_EDIT_COPY:
+			case STATE_VIEW_EDIT_COPY:
             	menu_edit_copy(engine);
                 break;
-			case VIEW_EDIT_PASTE:
+			case STATE_VIEW_EDIT_PASTE:
             	menu_edit_paste(engine);
                 break;
-			case VIEW_SETTINGS_LANGUAGE:
+			case STATE_VIEW_SETTINGS_LANGUAGE:
                 menu_settings_language(engine);
                 break;
-			case VIEW_SETTINGS_THEME:
+			case STATE_VIEW_SETTINGS_THEME:
                 menu_settings_theme(engine);
                 break;
-			case VIEW_SETTINGS_OPTIONS:
+			case STATE_VIEW_SETTINGS_OPTIONS:
                 menu_settings_options(engine);
                 break;
-			case VIEW_HELP_ABOUT:
+			case STATE_VIEW_HELP_ABOUT:
                 menu_help_about(engine);
                 break;
-			case VIEW_HELP_SUPPORT:
+			case STATE_VIEW_HELP_SUPPORT:
 				menu_help_support(engine);
                 break;
-			case VIEW_HELP_DOCUMENTATION:
+			case STATE_VIEW_HELP_DOCUMENTATION:
                 menu_help_documentation(engine);
                 break;
         }

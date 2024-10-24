@@ -21,10 +21,7 @@
 #include <string.h>
 #include <stdio.h>
 
-
 struct Engine;
-
-
 
 //******************************************************************************//
 //***                             menu_functions.c                           ***//

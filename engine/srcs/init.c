@@ -18,13 +18,13 @@
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras);
 void			init_buttons_menu_up(Engine *engine);
-// void			init_windows_pid(Engine *engine);
+void			init_fonts(Engine *engine);
 void			init_workspace(Engine *engine);
 
 void    dr_init(Engine *engine)
 {
     engine->exitCt = false;
-	engine->currentView = VIEW_ENGINE;
+	engine->currentStateView = STATE_VIEW_ENGINE;
     engine->screenSize = (Vector2){1500, 750};
 	engine->screenSizeWindow = WINDOW_OTHERS;
 
@@ -54,6 +54,12 @@ void    dr_init(Engine *engine)
 	UnloadImage(imgTest);
 
 	init_workspace(engine);
+	init_fonts(engine);
+}
+
+void	init_fonts(Engine *engine)
+{
+	engine->fonts.defaultFont = LoadFontEx("../assets/fonts/HighlandGothicFLF.ttf", 20, 0, 0);
 }
 
 void	init_workspace(Engine *engine)

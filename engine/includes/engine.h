@@ -23,6 +23,8 @@
 
 # include <signal.h>
 
+
+// Windows define
 #define BORDER_COLOR DARKPURPLE2
 #define BORDER_THICK 2
 #define WINDOW_OTHERS (Vector2){800, 500}
@@ -60,6 +62,12 @@ typedef enum  SubMenus
     HELP_SUPPORT,
     HELP_DOCUMENTATION,
 }   SubMenus;
+
+typedef struct DE_Font
+{
+    Font    defaultFont;
+}   DE_Font;
+
 
 typedef struct Cube3D
 {
@@ -99,26 +107,26 @@ static CameraData CAMERA = {        // Global CAMERA state context
 
 typedef enum ViewState
 {
-    VIEW_ENGINE,
-    VIEW_FILES_NEW_PROJECT,
-    VIEW_FILES_OPEN_PROJECT,
-    VIEW_FILES_SAVE,
-    VIEW_FILES_SAVE_AS,
-    VIEW_FILES_EXPORT,
+    STATE_VIEW_ENGINE,
+    STATE_VIEW_FILES_NEW_PROJECT,
+    STATE_VIEW_FILES_OPEN_PROJECT,
+    STATE_VIEW_FILES_SAVE,
+    STATE_VIEW_FILES_SAVE_AS,
+    STATE_VIEW_FILES_EXPORT,
 
-    VIEW_EDIT_UNDO,
-    VIEW_EDIT_REDO,
-    VIEW_EDIT_CUT,
-    VIEW_EDIT_COPY,
-    VIEW_EDIT_PASTE,
+    STATE_VIEW_EDIT_UNDO,
+    STATE_VIEW_EDIT_REDO,
+    STATE_VIEW_EDIT_CUT,
+    STATE_VIEW_EDIT_COPY,
+    STATE_VIEW_EDIT_PASTE,
 
-    VIEW_SETTINGS_LANGUAGE,
-    VIEW_SETTINGS_THEME,
-    VIEW_SETTINGS_OPTIONS,
+    STATE_VIEW_SETTINGS_LANGUAGE,
+    STATE_VIEW_SETTINGS_THEME,
+    STATE_VIEW_SETTINGS_OPTIONS,
 
-    VIEW_HELP_ABOUT,
-    VIEW_HELP_SUPPORT,
-    VIEW_HELP_DOCUMENTATION,
+    STATE_VIEW_HELP_ABOUT,
+    STATE_VIEW_HELP_SUPPORT,
+    STATE_VIEW_HELP_DOCUMENTATION,
 }   ViewState;
 
 typedef struct Ray3D
@@ -149,25 +157,28 @@ typedef struct  Engine
     Vector2             screenSizeWindow; // in window mode
     // WindowsSizeType     savedScreenSizeWindow;
 
-    MultipleCam3D	*allCameras;
+    MultipleCam3D	        *allCameras;
 
     // Buttons Menu Up Bar
-    ButtonsMenu buttonsMenuUp;
+    ButtonsMenu             buttonsMenuUp;
 
     // Window state
-    ViewState currentView;
-    ViewState lastView;
+    ViewState               currentStateView;
+    ViewState               lastStateView;
 
-    volatile sig_atomic_t exitCt;
-    bl8    introCt;
+    volatile sig_atomic_t   exitCt;
+    bl8                     introCt;
 
-    Cube3D	cube_01;
-    Ray3D			ray;
-    Mouse			mouse;
+    Cube3D	                cube_01;
+    Ray3D			        ray;
+    Mouse			        mouse;
 
     // Tests
-    Texture2D testTexture;
-    TestWorkspace   testWorkspace;
+    Texture2D               testTexture;
+    TestWorkspace           testWorkspace;
+
+    // For Text
+    DE_Font                 fonts;
 }   Engine;
 
 //******************************************************************************//

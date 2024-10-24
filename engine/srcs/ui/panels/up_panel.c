@@ -69,8 +69,8 @@ void	ftDrawMenuUp(Engine *engine)
 
 void    change_view(Engine *engine, ViewState state, bl8 resize_window)
 {
-    engine->lastView = engine->currentView;
-    engine->currentView = state;
+    engine->lastStateView = engine->currentStateView;
+    engine->currentStateView = state;
     if (resize_window)
     {
         engine->screenSizeWindow = WINDOW_OTHERS;
@@ -89,17 +89,20 @@ void ftDrawDropdownMenu(Engine *engine)
     // const char *tabs[] = {"Files", "Edit", "Settings", "Help"};
     const char *tabs[] = {"Files", "Edit", "Settings", "Help"};
     int numTabs = sizeof(tabs) / sizeof(tabs[0]);
-    int tabHeight = 30;
+    int tabHeight = CAMERA_UP_BAR;
     int startX = 5;
     int startY = 0;
-    int fontSize = 20;
+    int spacing = 1;
+    int fontsize = 18;
     int padding = 10;
+
+    Font    font = engine->fonts.defaultFont;
 
     bool clickedOutside = true;
 
     for (int i = 0; i < numTabs; i++)
     {
-        int tabWidth = MeasureText(tabs[i], fontSize) + 2 * padding;
+        int tabWidth = MeasureText(tabs[i], fontsize) + 2 * padding;
         Rectangle tabRect = {startX, startY, tabWidth, tabHeight};
         
         Vector2 mousePos = GetMousePosition();
@@ -109,7 +112,7 @@ void ftDrawDropdownMenu(Engine *engine)
         
         DrawRectangleRec(tabRect, tabColor);
         DrawRectangleLinesEx(tabRect, 1, BLACK);
-        DrawText(tabs[i], tabRect.x + padding, tabRect.y + 5, fontSize, BLACK);
+        DrawTextEx(font, tabs[i], (Vector2){tabRect.x + padding, tabRect.y + 5}, font.baseSize, spacing, BLACK);
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && isMouseOver)
         {
@@ -130,12 +133,12 @@ void ftDrawDropdownMenu(Engine *engine)
                 int maxWidth = tabWidth;
                 for (int j = 0; j < numOptions; j++)
                 {
-                    int optionWidth = MeasureText(options[j], fontSize) + 4 * padding;
+                    int optionWidth = MeasureText(options[j], font.baseSize) + 4 * padding;
                     if (optionWidth > maxWidth)
                         maxWidth = optionWidth;
                 }
                 
-                dropdownRect = (Rectangle){tabRect.x, tabRect.y + tabRect.height, maxWidth, numOptions * 30};
+                dropdownRect = (Rectangle){tabRect.x, tabRect.y + tabRect.height, maxWidth, numOptions * 24};
             }
         }
 
@@ -149,7 +152,7 @@ void ftDrawDropdownMenu(Engine *engine)
         DrawRectangleLinesEx(dropdownRect, 1, BLACK);
 
         // TODO: Add options from enum
-        const char *files[] = {"New", "Open", "Save", "Save as", "Export"};
+        const char *files[] = {"New", "Open", "Save", "Save as", "Export", "Exit"};
         const char *edit[] = {"Undo", "Redo", "Cut", "Copy", "Paste"};
         const char *settings[] = {"Language", "Theme", "Options"};
         const char *help[] = {"About", "Documentation", "Support"};
@@ -175,7 +178,7 @@ void ftDrawDropdownMenu(Engine *engine)
         
         for (int i = 0; i < numOptions; i++)
         {
-            Rectangle optionRect = {dropdownRect.x, dropdownRect.y + i * 30, dropdownRect.width, 30};
+            Rectangle optionRect = {dropdownRect.x, dropdownRect.y + i * 24, dropdownRect.width, 24};
             Vector2 mousePos = GetMousePosition();
             bool isMouseOverOption = CheckCollisionPointRec(mousePos, optionRect);
             
@@ -183,16 +186,16 @@ void ftDrawDropdownMenu(Engine *engine)
             switch (selectedTab)
             {
                 case 0:
-                    DrawText(files[i], optionRect.x + padding, optionRect.y + 5, fontSize, BLACK);
+                    DrawTextEx(font, files[i], (Vector2){optionRect.x + padding, optionRect.y + 2}, font.baseSize, spacing, BLACK);
                     break;
                 case 1:
-                    DrawText(edit[i], optionRect.x + padding, optionRect.y + 5, fontSize, BLACK);
+                    DrawTextEx(font, edit[i], (Vector2){optionRect.x + padding, optionRect.y + 2}, font.baseSize, spacing, BLACK);
                     break;
                 case 2:
-                    DrawText(settings[i], optionRect.x + padding, optionRect.y + 3, fontSize, BLACK);
+                    DrawTextEx(font, settings[i], (Vector2){optionRect.x + padding, optionRect.y + 2}, font.baseSize, spacing, BLACK);
                     break;
                 case 3:
-                    DrawText(help[i], optionRect.x + padding, optionRect.y + 3, fontSize, BLACK);
+                    DrawTextEx(font, help[i], (Vector2){optionRect.x + padding, optionRect.y + 2}, font.baseSize, spacing, BLACK);
                     break;
                 default:
                     break;
@@ -205,27 +208,32 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (files[i] && files[i] == "New")
                         {
-                            change_view(engine, VIEW_FILES_NEW_PROJECT, true);
+                            change_view(engine, STATE_VIEW_FILES_NEW_PROJECT, true);
                             break;
                         }
                         else if (files[i] && files[i] == "Open")
                         {
-                            change_view(engine, VIEW_FILES_OPEN_PROJECT, true);
+                            change_view(engine, STATE_VIEW_FILES_OPEN_PROJECT, true);
                             break;
                         }
                         else if (files[i] && files[i] == "Save")
                         {
-                            change_view(engine, VIEW_FILES_SAVE, true);
+                            change_view(engine, STATE_VIEW_FILES_SAVE, true);
                             break;
                         }
                         else if (files[i] && files[i] == "Save as")
                         {
-                            change_view(engine, VIEW_FILES_SAVE_AS, true);
+                            change_view(engine, STATE_VIEW_FILES_SAVE_AS, true);
                             break;
                         }
                         else if (files[i] && files[i] == "Export")
                         {
-                            change_view(engine, VIEW_FILES_EXPORT, true);
+                            change_view(engine, STATE_VIEW_FILES_EXPORT, true);
+                            break;
+                        }
+                        else if (files[i] && files[i] == "Exit")
+                        {
+                            engine->exitCt = true;
                             break;
                         }
                         break;
@@ -233,27 +241,27 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (edit[i] && edit[i] == "Undo")
                         {
-                            change_view(engine, VIEW_EDIT_UNDO, false);
+                            change_view(engine, STATE_VIEW_EDIT_UNDO, false);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Redo")
                         {
-                            change_view(engine, VIEW_EDIT_REDO, false);
+                            change_view(engine, STATE_VIEW_EDIT_REDO, false);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Cut")
                         {
-                            change_view(engine, VIEW_EDIT_CUT, false);
+                            change_view(engine, STATE_VIEW_EDIT_CUT, false);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Copy")
                         {
-                            change_view(engine, VIEW_EDIT_COPY, false);
+                            change_view(engine, STATE_VIEW_EDIT_COPY, false);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Paste")
                         {
-                            change_view(engine, VIEW_EDIT_PASTE, false);
+                            change_view(engine, STATE_VIEW_EDIT_PASTE, false);
                             break;
                         }
                         break;
@@ -261,17 +269,17 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (settings[i] && settings[i] == "Language")
                         {
-                            change_view(engine, VIEW_SETTINGS_LANGUAGE, true);
+                            change_view(engine, STATE_VIEW_SETTINGS_LANGUAGE, true);
                             break;
                         }
                         else if (settings[i] && settings[i] == "Theme")
                         {
-                            change_view(engine, VIEW_SETTINGS_THEME, true);
+                            change_view(engine, STATE_VIEW_SETTINGS_THEME, true);
                             break;
                         }
                         else if (settings[i] && settings[i] == "Options")
                         {
-                            change_view(engine, VIEW_SETTINGS_OPTIONS, true);
+                            change_view(engine, STATE_VIEW_SETTINGS_OPTIONS, true);
                             break;
                         }
                         break;
@@ -279,17 +287,17 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (help[i] && help[i] == "About")
                         {
-                            change_view(engine, VIEW_HELP_ABOUT, true);
+                            change_view(engine, STATE_VIEW_HELP_ABOUT, true);
                             break;
                         }
                         else if (help[i] && help[i] == "Documentation")
                         {
-                            change_view(engine, VIEW_HELP_DOCUMENTATION, true);
+                            change_view(engine, STATE_VIEW_HELP_DOCUMENTATION, true);
                             break;
                         }
                         else if (help[i] && help[i] == "Support")
                         {
-                            change_view(engine, VIEW_HELP_SUPPORT, true);
+                            change_view(engine, STATE_VIEW_HELP_SUPPORT, true);
                             break;
                         }
                         break;

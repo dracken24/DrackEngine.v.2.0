@@ -1,6 +1,27 @@
 # include "../../includes/engine.h"
 # include "../../includes/struct_globale.h"
 
+// ----------------------------------------
+// NOTE: Imitation de fonction template
+#define SWAP_FUNCTION(T, N) \
+    void swap_##T(T *a, N *b)\
+	{ \
+        T temp = *a; \
+        *a = *b; \
+        *b = temp; \
+    }
+
+SWAP_FUNCTION(int, int)
+SWAP_FUNCTION(float, float)
+SWAP_FUNCTION(Vector3, Vector3)
+
+// int a = 1, b = 6;
+// DE_WARNING("Avant a: %d b: %d", a, b);
+// swap_int(&a, &b);
+// DE_WARNING("Apres a: %d b: %d", a, b);
+
+// ----------------------------------------
+
 void    ftControlMainPanel(Engine *engine)
 {
 	Camera3D *camera = &engine->allCameras->camera00.camera3D;
@@ -56,4 +77,10 @@ void    ftControlMainPanel(Engine *engine)
 
 	DrawText("Right click mouse to toggle camera controls", 10, 430, 10, GRAY);
 	DrawFPS(10, 10);
+
+	// Rotate around center point
+	if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+	{
+		UpdateCamera(camera, CAMERA_FIRST_PERSON);
+	}
 }

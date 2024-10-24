@@ -27,7 +27,7 @@ int main(void)
 {
     Engine engine;
     g_engine = &engine;
-    ViewState currentView = VIEW_ENGINE;
+    ViewState currentView = STATE_VIEW_ENGINE;
 
     initialize_memory();
     dr_init(&engine);
@@ -41,6 +41,7 @@ int main(void)
 
     dr_exit(&engine);
     shutdown_memory();
+    print_memory_usage("EXIT");
 
     return 0;
 }
