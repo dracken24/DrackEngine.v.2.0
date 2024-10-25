@@ -2,6 +2,11 @@
 
 Rebuild of DrackEngine with a new architecture and new features
 
+*** Project under construction ***
+
+Preview:
+![1](https://github.com/dracken24/DrackEngine.v.2.0/assets/github_view_01.png)
+
 Powerd by raylib:
 https://www.raylib.com/
 
