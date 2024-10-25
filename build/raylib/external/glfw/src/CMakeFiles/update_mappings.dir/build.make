@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dracken24/Documents/Engine-2D/library/extern/raylib
+CMAKE_SOURCE_DIR = /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dracken24/Documents/Engine-2D/build
+CMAKE_BINARY_DIR = /home/dracken24/prog/DrackEngine.v.2.0/build
 
 # Utility rule file for update_mappings.
 
@@ -67,8 +67,8 @@ include raylib/external/glfw/src/CMakeFiles/update_mappings.dir/compiler_depend.
 include raylib/external/glfw/src/CMakeFiles/update_mappings.dir/progress.make
 
 raylib/external/glfw/src/CMakeFiles/update_mappings:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Updating gamepad mappings from upstream repository"
-	cd /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src && /usr/bin/cmake -P /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/CMake/GenerateMappings.cmake mappings.h.in mappings.h
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Updating gamepad mappings from upstream repository"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src && /usr/bin/cmake -P /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/CMake/GenerateMappings.cmake mappings.h.in mappings.h
 
 update_mappings: raylib/external/glfw/src/CMakeFiles/update_mappings
 update_mappings: raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build.make
@@ -79,10 +79,10 @@ raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build: update_mappings
 .PHONY : raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
 
 raylib/external/glfw/src/CMakeFiles/update_mappings.dir/clean:
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && $(CMAKE_COMMAND) -P CMakeFiles/update_mappings.dir/cmake_clean.cmake
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && $(CMAKE_COMMAND) -P CMakeFiles/update_mappings.dir/cmake_clean.cmake
 .PHONY : raylib/external/glfw/src/CMakeFiles/update_mappings.dir/clean
 
 raylib/external/glfw/src/CMakeFiles/update_mappings.dir/depend:
-	cd /home/dracken24/Documents/Engine-2D/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/Documents/Engine-2D/library/extern/raylib /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src /home/dracken24/Documents/Engine-2D/build /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src /home/dracken24/prog/DrackEngine.v.2.0/build /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : raylib/external/glfw/src/CMakeFiles/update_mappings.dir/depend
 

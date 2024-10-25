@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dracken24/Documents/Engine-2D/library/extern/raylib
+CMAKE_SOURCE_DIR = /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dracken24/Documents/Engine-2D/build
+CMAKE_BINARY_DIR = /home/dracken24/prog/DrackEngine.v.2.0/build
 
 # Include any dependencies generated for this target.
 include examples/CMakeFiles/textures_sprite_explosion.dir/depend.make
@@ -70,18 +70,18 @@ include examples/CMakeFiles/textures_sprite_explosion.dir/progress.make
 include examples/CMakeFiles/textures_sprite_explosion.dir/flags.make
 
 examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o: examples/CMakeFiles/textures_sprite_explosion.dir/flags.make
-examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/textures/textures_sprite_explosion.c
+examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/textures/textures_sprite_explosion.c
 examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o: examples/CMakeFiles/textures_sprite_explosion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o -MF CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o.d -o CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/textures/textures_sprite_explosion.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o -MF CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o.d -o CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/textures/textures_sprite_explosion.c
 
 examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/textures/textures_sprite_explosion.c > CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/textures/textures_sprite_explosion.c > CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.i
 
 examples/CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/textures/textures_sprite_explosion.c -o CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/textures/textures_sprite_explosion.c -o CMakeFiles/textures_sprite_explosion.dir/textures/textures_sprite_explosion.c.s
 
 # Object files for target textures_sprite_explosion
 textures_sprite_explosion_OBJECTS = \
@@ -99,18 +99,18 @@ examples/textures_sprite_explosion: /usr/lib/x86_64-linux-gnu/libGLU.so
 examples/textures_sprite_explosion: /usr/lib/x86_64-linux-gnu/librt.a
 examples/textures_sprite_explosion: /usr/lib/x86_64-linux-gnu/libm.so
 examples/textures_sprite_explosion: examples/CMakeFiles/textures_sprite_explosion.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable textures_sprite_explosion"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/textures_sprite_explosion.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable textures_sprite_explosion"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/textures_sprite_explosion.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 examples/CMakeFiles/textures_sprite_explosion.dir/build: examples/textures_sprite_explosion
 .PHONY : examples/CMakeFiles/textures_sprite_explosion.dir/build
 
 examples/CMakeFiles/textures_sprite_explosion.dir/clean:
-	cd /home/dracken24/Documents/Engine-2D/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/textures_sprite_explosion.dir/cmake_clean.cmake
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/textures_sprite_explosion.dir/cmake_clean.cmake
 .PHONY : examples/CMakeFiles/textures_sprite_explosion.dir/clean
 
 examples/CMakeFiles/textures_sprite_explosion.dir/depend:
-	cd /home/dracken24/Documents/Engine-2D/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/Documents/Engine-2D/library/extern/raylib /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples /home/dracken24/Documents/Engine-2D/build /home/dracken24/Documents/Engine-2D/build/examples /home/dracken24/Documents/Engine-2D/build/examples/CMakeFiles/textures_sprite_explosion.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples /home/dracken24/prog/DrackEngine.v.2.0/build /home/dracken24/prog/DrackEngine.v.2.0/build/examples /home/dracken24/prog/DrackEngine.v.2.0/build/examples/CMakeFiles/textures_sprite_explosion.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : examples/CMakeFiles/textures_sprite_explosion.dir/depend
 

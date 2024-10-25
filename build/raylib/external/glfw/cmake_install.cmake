@@ -1,4 +1,4 @@
-# Install script for directory: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw
+# Install script for directory: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,6 +44,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src/cmake_install.cmake")
+  include("/home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src/cmake_install.cmake")
 endif()
 

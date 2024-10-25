@@ -1,4 +1,4 @@
-# Install script for directory: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src
+# Install script for directory: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,32 +43,32 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/dracken24/Documents/Engine-2D/build/raylib/libraylib.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/dracken24/prog/DrackEngine.v.2.0/build/raylib/libraylib.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
-    "/home/dracken24/Documents/Engine-2D/library/extern/raylib/src/raylib.h"
-    "/home/dracken24/Documents/Engine-2D/library/extern/raylib/src/rlgl.h"
-    "/home/dracken24/Documents/Engine-2D/library/extern/raylib/src/raymath.h"
+    "/home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/raylib.h"
+    "/home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/rlgl.h"
+    "/home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/raymath.h"
     )
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/dracken24/Documents/Engine-2D/build/raylib/raylib.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/dracken24/prog/DrackEngine.v.2.0/build/raylib/raylib.pc")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/raylib" TYPE FILE FILES "/home/dracken24/Documents/Engine-2D/build/raylib/raylib-config-version.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/raylib" TYPE FILE FILES "/home/dracken24/prog/DrackEngine.v.2.0/build/raylib/raylib-config-version.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/raylib" TYPE FILE FILES "/home/dracken24/Documents/Engine-2D/library/extern/raylib/src/../cmake/raylib-config.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/raylib" TYPE FILE FILES "/home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/../cmake/raylib-config.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/cmake_install.cmake")
+  include("/home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/cmake_install.cmake")
 
 endif()
 

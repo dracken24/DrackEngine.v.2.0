@@ -57,6 +57,12 @@ void    dr_init(Engine *engine)
 	init_fonts(engine);
 }
 
+void	init_gizmo(Engine *engine)
+{
+	engine->testWorkspace.gizmo = rgizmo_create();;
+	engine->testWorkspace.model = LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0));
+}
+
 void	init_fonts(Engine *engine)
 {
 	engine->fonts.defaultFont = LoadFontEx("../assets/fonts/HighlandGothicFLF.ttf", 20, 0, 0);
@@ -64,10 +70,7 @@ void	init_fonts(Engine *engine)
 
 void	init_workspace(Engine *engine)
 {
-	engine->testWorkspace.cubePosition = (Vector3){ 0.0f, 1.0f, 0.0f };
-    engine->testWorkspace.cubeSize = (Vector3){ 2.0f, 2.0f, 2.0f };
-    engine->testWorkspace.ray = (Ray){ 0 };
-    engine->testWorkspace.collision = (RayCollision){ 0 };
+	init_gizmo(engine);
 }
 
 void	init_buttons_menu_up(Engine *engine)

@@ -1,4 +1,4 @@
-# Install script for directory: /home/dracken24/Documents/Engine-2D/library/extern/raylib
+# Install script for directory: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,8 +44,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/dracken24/Documents/Engine-2D/build/raylib/cmake_install.cmake")
-  include("/home/dracken24/Documents/Engine-2D/build/examples/cmake_install.cmake")
+  include("/home/dracken24/prog/DrackEngine.v.2.0/build/raylib/cmake_install.cmake")
+  include("/home/dracken24/prog/DrackEngine.v.2.0/build/examples/cmake_install.cmake")
 
 endif()
 
@@ -57,5 +57,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dracken24/Documents/Engine-2D/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/dracken24/prog/DrackEngine.v.2.0/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

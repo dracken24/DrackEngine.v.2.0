@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dracken24/Documents/Engine-2D/library/extern/raylib
+CMAKE_SOURCE_DIR = /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dracken24/Documents/Engine-2D/build
+CMAKE_BINARY_DIR = /home/dracken24/prog/DrackEngine.v.2.0/build
 
 # Include any dependencies generated for this target.
 include examples/CMakeFiles/audio_sound_multi.dir/depend.make
@@ -70,18 +70,18 @@ include examples/CMakeFiles/audio_sound_multi.dir/progress.make
 include examples/CMakeFiles/audio_sound_multi.dir/flags.make
 
 examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o: examples/CMakeFiles/audio_sound_multi.dir/flags.make
-examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/audio/audio_sound_multi.c
+examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/audio/audio_sound_multi.c
 examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o: examples/CMakeFiles/audio_sound_multi.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o -MF CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o.d -o CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/audio/audio_sound_multi.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o -MF CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o.d -o CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/audio/audio_sound_multi.c
 
 examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/audio/audio_sound_multi.c > CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/audio/audio_sound_multi.c > CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.i
 
 examples/CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/audio/audio_sound_multi.c -o CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/audio/audio_sound_multi.c -o CMakeFiles/audio_sound_multi.dir/audio/audio_sound_multi.c.s
 
 # Object files for target audio_sound_multi
 audio_sound_multi_OBJECTS = \
@@ -99,18 +99,18 @@ examples/audio_sound_multi: /usr/lib/x86_64-linux-gnu/libGLU.so
 examples/audio_sound_multi: /usr/lib/x86_64-linux-gnu/librt.a
 examples/audio_sound_multi: /usr/lib/x86_64-linux-gnu/libm.so
 examples/audio_sound_multi: examples/CMakeFiles/audio_sound_multi.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable audio_sound_multi"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/audio_sound_multi.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable audio_sound_multi"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/audio_sound_multi.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 examples/CMakeFiles/audio_sound_multi.dir/build: examples/audio_sound_multi
 .PHONY : examples/CMakeFiles/audio_sound_multi.dir/build
 
 examples/CMakeFiles/audio_sound_multi.dir/clean:
-	cd /home/dracken24/Documents/Engine-2D/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/audio_sound_multi.dir/cmake_clean.cmake
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/audio_sound_multi.dir/cmake_clean.cmake
 .PHONY : examples/CMakeFiles/audio_sound_multi.dir/clean
 
 examples/CMakeFiles/audio_sound_multi.dir/depend:
-	cd /home/dracken24/Documents/Engine-2D/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/Documents/Engine-2D/library/extern/raylib /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples /home/dracken24/Documents/Engine-2D/build /home/dracken24/Documents/Engine-2D/build/examples /home/dracken24/Documents/Engine-2D/build/examples/CMakeFiles/audio_sound_multi.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples /home/dracken24/prog/DrackEngine.v.2.0/build /home/dracken24/prog/DrackEngine.v.2.0/build/examples /home/dracken24/prog/DrackEngine.v.2.0/build/examples/CMakeFiles/audio_sound_multi.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : examples/CMakeFiles/audio_sound_multi.dir/depend
 

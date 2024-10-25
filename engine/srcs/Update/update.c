@@ -77,18 +77,35 @@ void	use_image(Engine *engine, Rectangle rect, Vector2 offset)
 	);
 }
 
-void draw_gizmo_2D(Vector2 position, float scale, Matrix cameraMatrix)
+
+#define CAMERA_ROT_SPEED 0.003f
+#define CAMERA_MOVE_SPEED 0.01f
+#define CAMERA_ZOOM_SPEED 1.0f
+
+static void update_camera(Camera3D *camera)
 {
-	Vector3 right = { cameraMatrix.m0, cameraMatrix.m4, cameraMatrix.m8 };
-	Vector3 forward = { cameraMatrix.m2, cameraMatrix.m6, cameraMatrix.m10 };
-    Vector3 up = { cameraMatrix.m1, cameraMatrix.m5, cameraMatrix.m9 };
-	int thick = 3;
-    // Dessiner l'axe X en rouge
-    DrawLineEx(position, (Vector2){ position.x - right.x * scale, position.y + right.y * scale }, thick, RED);
-    // Dessiner l'axe Y en vert
-    DrawLineEx(position, (Vector2){ position.x + up.x * scale, position.y + up.y * scale }, thick, GREEN);
-    // Dessiner l'axe Z en bleu (simulé en 2D)
-    DrawLineEx(position, (Vector2){ position.x + (right.x + forward.x) * scale, position.y + (right.y + forward.y) * scale }, thick, BLUE);
+    bool is_mmb_down = IsMouseButtonDown(2);
+    bool is_shift_down = IsKeyDown(KEY_LEFT_SHIFT);
+    Vector2 mouse_delta = GetMouseDelta();
+
+    if (is_mmb_down && is_shift_down)
+	{
+        CameraMoveRight(camera, -CAMERA_MOVE_SPEED * mouse_delta.x, true);
+
+        Vector3 right = GetCameraRight(camera);
+        Vector3 up = Vector3CrossProduct(Vector3Subtract(camera->position, camera->target), right);
+
+        up = Vector3Scale(Vector3Normalize(up), CAMERA_MOVE_SPEED * mouse_delta.y);
+        camera->position = Vector3Add(camera->position, up);
+        camera->target = Vector3Add(camera->target, up);
+    }
+	else if (is_mmb_down)
+	{
+        CameraYaw(camera, -CAMERA_ROT_SPEED * mouse_delta.x, true);
+        CameraPitch(camera, CAMERA_ROT_SPEED * mouse_delta.y, true, true, false);
+    }
+
+    CameraMoveToTarget(camera, -GetMouseWheelMove() * CAMERA_ZOOM_SPEED);
 }
 
 void    update_main_view(Engine *engine)
@@ -101,33 +118,12 @@ void    update_main_view(Engine *engine)
 	Vector2 zero = (Vector2){0, 0};
 
 	// Draw Workspace
-	Rectangle rec00 = engine->allCameras->camera00.rectForCam;
-	BeginTextureMode(engine->allCameras->camera00.textForCam);
+	Camera3D *camera = &engine->allCameras->camera00.camera3D;
 
-		ClearBackground(LIGHTGRAY);
-		// BeginMode2D(engine->allCameras->camera00.camera2D);
-		// 	use_image(engine, rec00, zero);
-		// EndMode2D();
-		BeginMode3D(engine->allCameras->camera00.camera3D);
-
-			ftControlMainPanel(engine);
-			// DrawText("Workspace !", rec00.width / 2 - MeasureText("Workspace !", 20) / 2, rec00.height / 2 - 10, 20, BLUE);
-
-		EndMode3D();
-
-			Matrix cameraMatrix = GetCameraMatrix(engine->allCameras->camera00.camera3D);
-        	draw_gizmo_2D((Vector2){ 500, 500  }, 50, cameraMatrix);
-		BeginMode2D(engine->allCameras->camera00.camera2D);
-
-
-			DrawText("Try clicking on the box with your mouse!", 240, 10, 20, DARKGRAY);
-            DrawText("Right click mouse to toggle camera controls", 10, 430, 10, GRAY);
-
-        EndMode2D();
-
-			
-
-	EndTextureMode();
+	update_camera(camera);
+	{
+		ftControlMainPanel(engine, camera);
+	}
 
 //--------------------------------------------------------------------------------------//
 
@@ -206,13 +202,13 @@ void    update_main_view(Engine *engine)
 
 	// Draw render textures to the screen for all cameras
 	BeginDrawing();
-		ClearBackground(BLACK);
+		// ClearBackground(BLACK);
 		
 		// use rectForCam for each camera
-		DrawTextureRec(engine->allCameras->camera00.textForCam.texture, 
-					(Rectangle){0, 0, engine->allCameras->camera00.rectForCam.width, -engine->allCameras->camera00.rectForCam.height},
-					(Vector2){engine->allCameras->camera00.rectForCam.x, engine->allCameras->camera00.rectForCam.y}, 
-					WHITE);
+		// DrawTextureRec(engine->allCameras->camera00.textForCam.texture, 
+		// 			(Rectangle){0, 0, engine->allCameras->camera00.rectForCam.width, -engine->allCameras->camera00.rectForCam.height},
+		// 			(Vector2){engine->allCameras->camera00.rectForCam.x, engine->allCameras->camera00.rectForCam.y}, 
+		// 			WHITE);
 		
 		DrawTextureRec(engine->allCameras->camera01.textForCam.texture, 
 					(Rectangle){0, 0, engine->allCameras->camera01.rectForCam.width, -engine->allCameras->camera01.rectForCam.height},
@@ -240,7 +236,7 @@ void    update_main_view(Engine *engine)
 					WHITE);
 
 		// Draw borders
-		draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BORDER_COLOR, BORDER_THICK);
+		// draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BORDER_COLOR, BORDER_THICK);
 		draw_rectangle_borders(engine->allCameras->camera01.rectForCam, BORDER_COLOR, BORDER_THICK);
 		draw_rectangle_borders(engine->allCameras->camera02.rectForCam, BORDER_COLOR, BORDER_THICK);
 		draw_rectangle_borders(engine->allCameras->camera03.rectForCam, BORDER_COLOR, BORDER_THICK);

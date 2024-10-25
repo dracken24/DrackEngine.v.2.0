@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dracken24/Documents/Engine-2D/library/extern/raylib
+CMAKE_SOURCE_DIR = /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dracken24/Documents/Engine-2D/build
+CMAKE_BINARY_DIR = /home/dracken24/prog/DrackEngine.v.2.0/build
 
 # Include any dependencies generated for this target.
 include examples/CMakeFiles/models_geometric_shapes.dir/depend.make
@@ -70,18 +70,18 @@ include examples/CMakeFiles/models_geometric_shapes.dir/progress.make
 include examples/CMakeFiles/models_geometric_shapes.dir/flags.make
 
 examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o: examples/CMakeFiles/models_geometric_shapes.dir/flags.make
-examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/models/models_geometric_shapes.c
+examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/models/models_geometric_shapes.c
 examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o: examples/CMakeFiles/models_geometric_shapes.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o -MF CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o.d -o CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/models/models_geometric_shapes.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o -MF CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o.d -o CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/models/models_geometric_shapes.c
 
 examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/models/models_geometric_shapes.c > CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/models/models_geometric_shapes.c > CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.i
 
 examples/CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/models/models_geometric_shapes.c -o CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/models/models_geometric_shapes.c -o CMakeFiles/models_geometric_shapes.dir/models/models_geometric_shapes.c.s
 
 # Object files for target models_geometric_shapes
 models_geometric_shapes_OBJECTS = \
@@ -99,18 +99,18 @@ examples/models_geometric_shapes: /usr/lib/x86_64-linux-gnu/libGLU.so
 examples/models_geometric_shapes: /usr/lib/x86_64-linux-gnu/librt.a
 examples/models_geometric_shapes: /usr/lib/x86_64-linux-gnu/libm.so
 examples/models_geometric_shapes: examples/CMakeFiles/models_geometric_shapes.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable models_geometric_shapes"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/models_geometric_shapes.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable models_geometric_shapes"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/models_geometric_shapes.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 examples/CMakeFiles/models_geometric_shapes.dir/build: examples/models_geometric_shapes
 .PHONY : examples/CMakeFiles/models_geometric_shapes.dir/build
 
 examples/CMakeFiles/models_geometric_shapes.dir/clean:
-	cd /home/dracken24/Documents/Engine-2D/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/models_geometric_shapes.dir/cmake_clean.cmake
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/models_geometric_shapes.dir/cmake_clean.cmake
 .PHONY : examples/CMakeFiles/models_geometric_shapes.dir/clean
 
 examples/CMakeFiles/models_geometric_shapes.dir/depend:
-	cd /home/dracken24/Documents/Engine-2D/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/Documents/Engine-2D/library/extern/raylib /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples /home/dracken24/Documents/Engine-2D/build /home/dracken24/Documents/Engine-2D/build/examples /home/dracken24/Documents/Engine-2D/build/examples/CMakeFiles/models_geometric_shapes.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples /home/dracken24/prog/DrackEngine.v.2.0/build /home/dracken24/prog/DrackEngine.v.2.0/build/examples /home/dracken24/prog/DrackEngine.v.2.0/build/examples/CMakeFiles/models_geometric_shapes.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : examples/CMakeFiles/models_geometric_shapes.dir/depend
 

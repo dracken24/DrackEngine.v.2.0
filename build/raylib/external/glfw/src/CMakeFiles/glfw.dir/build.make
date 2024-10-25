@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dracken24/Documents/Engine-2D/library/extern/raylib
+CMAKE_SOURCE_DIR = /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dracken24/Documents/Engine-2D/build
+CMAKE_BINARY_DIR = /home/dracken24/prog/DrackEngine.v.2.0/build
 
 # Include any dependencies generated for this target.
 include raylib/external/glfw/src/CMakeFiles/glfw.dir/depend.make
@@ -69,441 +69,441 @@ include raylib/external/glfw/src/CMakeFiles/glfw.dir/progress.make
 # Include the compile flags for this target's objects.
 include raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
 
-raylib/external/glfw/src/wayland-client-protocol.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/wayland.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating wayland-client-protocol.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/wayland.xml wayland-client-protocol.h
+raylib/external/glfw/src/wayland-client-protocol.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/wayland.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating wayland-client-protocol.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/wayland.xml wayland-client-protocol.h
 
-raylib/external/glfw/src/wayland-client-protocol-code.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/wayland.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating wayland-client-protocol-code.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/wayland.xml wayland-client-protocol-code.h
+raylib/external/glfw/src/wayland-client-protocol-code.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/wayland.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating wayland-client-protocol-code.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/wayland.xml wayland-client-protocol-code.h
 
-raylib/external/glfw/src/viewporter-client-protocol.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/viewporter.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating viewporter-client-protocol.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/viewporter.xml viewporter-client-protocol.h
+raylib/external/glfw/src/viewporter-client-protocol.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/viewporter.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating viewporter-client-protocol.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/viewporter.xml viewporter-client-protocol.h
 
-raylib/external/glfw/src/viewporter-client-protocol-code.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/viewporter.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating viewporter-client-protocol-code.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/viewporter.xml viewporter-client-protocol-code.h
+raylib/external/glfw/src/viewporter-client-protocol-code.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/viewporter.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating viewporter-client-protocol-code.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/viewporter.xml viewporter-client-protocol-code.h
 
-raylib/external/glfw/src/xdg-shell-client-protocol.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-shell.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating xdg-shell-client-protocol.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-shell.xml xdg-shell-client-protocol.h
+raylib/external/glfw/src/xdg-shell-client-protocol.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-shell.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating xdg-shell-client-protocol.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-shell.xml xdg-shell-client-protocol.h
 
-raylib/external/glfw/src/xdg-shell-client-protocol-code.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-shell.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating xdg-shell-client-protocol-code.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-shell.xml xdg-shell-client-protocol-code.h
+raylib/external/glfw/src/xdg-shell-client-protocol-code.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-shell.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating xdg-shell-client-protocol-code.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-shell.xml xdg-shell-client-protocol-code.h
 
-raylib/external/glfw/src/idle-inhibit-unstable-v1-client-protocol.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/idle-inhibit-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating idle-inhibit-unstable-v1-client-protocol.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/idle-inhibit-unstable-v1.xml idle-inhibit-unstable-v1-client-protocol.h
+raylib/external/glfw/src/idle-inhibit-unstable-v1-client-protocol.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/idle-inhibit-unstable-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating idle-inhibit-unstable-v1-client-protocol.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/idle-inhibit-unstable-v1.xml idle-inhibit-unstable-v1-client-protocol.h
 
-raylib/external/glfw/src/idle-inhibit-unstable-v1-client-protocol-code.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/idle-inhibit-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating idle-inhibit-unstable-v1-client-protocol-code.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/idle-inhibit-unstable-v1.xml idle-inhibit-unstable-v1-client-protocol-code.h
+raylib/external/glfw/src/idle-inhibit-unstable-v1-client-protocol-code.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/idle-inhibit-unstable-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating idle-inhibit-unstable-v1-client-protocol-code.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/idle-inhibit-unstable-v1.xml idle-inhibit-unstable-v1-client-protocol-code.h
 
-raylib/external/glfw/src/pointer-constraints-unstable-v1-client-protocol.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/pointer-constraints-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Generating pointer-constraints-unstable-v1-client-protocol.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/pointer-constraints-unstable-v1.xml pointer-constraints-unstable-v1-client-protocol.h
+raylib/external/glfw/src/pointer-constraints-unstable-v1-client-protocol.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/pointer-constraints-unstable-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Generating pointer-constraints-unstable-v1-client-protocol.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/pointer-constraints-unstable-v1.xml pointer-constraints-unstable-v1-client-protocol.h
 
-raylib/external/glfw/src/pointer-constraints-unstable-v1-client-protocol-code.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/pointer-constraints-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Generating pointer-constraints-unstable-v1-client-protocol-code.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/pointer-constraints-unstable-v1.xml pointer-constraints-unstable-v1-client-protocol-code.h
+raylib/external/glfw/src/pointer-constraints-unstable-v1-client-protocol-code.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/pointer-constraints-unstable-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Generating pointer-constraints-unstable-v1-client-protocol-code.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/pointer-constraints-unstable-v1.xml pointer-constraints-unstable-v1-client-protocol-code.h
 
-raylib/external/glfw/src/relative-pointer-unstable-v1-client-protocol.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/relative-pointer-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Generating relative-pointer-unstable-v1-client-protocol.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/relative-pointer-unstable-v1.xml relative-pointer-unstable-v1-client-protocol.h
+raylib/external/glfw/src/relative-pointer-unstable-v1-client-protocol.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/relative-pointer-unstable-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Generating relative-pointer-unstable-v1-client-protocol.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/relative-pointer-unstable-v1.xml relative-pointer-unstable-v1-client-protocol.h
 
-raylib/external/glfw/src/relative-pointer-unstable-v1-client-protocol-code.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/relative-pointer-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Generating relative-pointer-unstable-v1-client-protocol-code.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/relative-pointer-unstable-v1.xml relative-pointer-unstable-v1-client-protocol-code.h
+raylib/external/glfw/src/relative-pointer-unstable-v1-client-protocol-code.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/relative-pointer-unstable-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Generating relative-pointer-unstable-v1-client-protocol-code.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/relative-pointer-unstable-v1.xml relative-pointer-unstable-v1-client-protocol-code.h
 
-raylib/external/glfw/src/fractional-scale-v1-client-protocol.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/fractional-scale-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Generating fractional-scale-v1-client-protocol.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/fractional-scale-v1.xml fractional-scale-v1-client-protocol.h
+raylib/external/glfw/src/fractional-scale-v1-client-protocol.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/fractional-scale-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Generating fractional-scale-v1-client-protocol.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/fractional-scale-v1.xml fractional-scale-v1-client-protocol.h
 
-raylib/external/glfw/src/fractional-scale-v1-client-protocol-code.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/fractional-scale-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Generating fractional-scale-v1-client-protocol-code.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/fractional-scale-v1.xml fractional-scale-v1-client-protocol-code.h
+raylib/external/glfw/src/fractional-scale-v1-client-protocol-code.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/fractional-scale-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Generating fractional-scale-v1-client-protocol-code.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/fractional-scale-v1.xml fractional-scale-v1-client-protocol-code.h
 
-raylib/external/glfw/src/xdg-activation-v1-client-protocol.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-activation-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Generating xdg-activation-v1-client-protocol.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-activation-v1.xml xdg-activation-v1-client-protocol.h
+raylib/external/glfw/src/xdg-activation-v1-client-protocol.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-activation-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Generating xdg-activation-v1-client-protocol.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-activation-v1.xml xdg-activation-v1-client-protocol.h
 
-raylib/external/glfw/src/xdg-activation-v1-client-protocol-code.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-activation-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Generating xdg-activation-v1-client-protocol-code.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-activation-v1.xml xdg-activation-v1-client-protocol-code.h
+raylib/external/glfw/src/xdg-activation-v1-client-protocol-code.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-activation-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Generating xdg-activation-v1-client-protocol-code.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-activation-v1.xml xdg-activation-v1-client-protocol-code.h
 
-raylib/external/glfw/src/xdg-decoration-unstable-v1-client-protocol.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-decoration-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Generating xdg-decoration-unstable-v1-client-protocol.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-decoration-unstable-v1.xml xdg-decoration-unstable-v1-client-protocol.h
+raylib/external/glfw/src/xdg-decoration-unstable-v1-client-protocol.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-decoration-unstable-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Generating xdg-decoration-unstable-v1-client-protocol.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner client-header /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-decoration-unstable-v1.xml xdg-decoration-unstable-v1-client-protocol.h
 
-raylib/external/glfw/src/xdg-decoration-unstable-v1-client-protocol-code.h: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-decoration-unstable-v1.xml
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Generating xdg-decoration-unstable-v1-client-protocol-code.h"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/deps/wayland/xdg-decoration-unstable-v1.xml xdg-decoration-unstable-v1-client-protocol-code.h
+raylib/external/glfw/src/xdg-decoration-unstable-v1-client-protocol-code.h: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-decoration-unstable-v1.xml
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Generating xdg-decoration-unstable-v1-client-protocol-code.h"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/wayland-scanner private-code /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/deps/wayland/xdg-decoration-unstable-v1.xml xdg-decoration-unstable-v1-client-protocol-code.h
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/context.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/context.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o -MF CMakeFiles/glfw.dir/context.c.o.d -o CMakeFiles/glfw.dir/context.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/context.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o -MF CMakeFiles/glfw.dir/context.c.o.d -o CMakeFiles/glfw.dir/context.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/context.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/context.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/context.c > CMakeFiles/glfw.dir/context.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/context.c > CMakeFiles/glfw.dir/context.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/context.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/context.c -o CMakeFiles/glfw.dir/context.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/context.c -o CMakeFiles/glfw.dir/context.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/init.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/init.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o -MF CMakeFiles/glfw.dir/init.c.o.d -o CMakeFiles/glfw.dir/init.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o -MF CMakeFiles/glfw.dir/init.c.o.d -o CMakeFiles/glfw.dir/init.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/init.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/init.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/init.c > CMakeFiles/glfw.dir/init.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/init.c > CMakeFiles/glfw.dir/init.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/init.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/init.c -o CMakeFiles/glfw.dir/init.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/init.c -o CMakeFiles/glfw.dir/init.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/input.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/input.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o -MF CMakeFiles/glfw.dir/input.c.o.d -o CMakeFiles/glfw.dir/input.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/input.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.o -MF CMakeFiles/glfw.dir/input.c.o.d -o CMakeFiles/glfw.dir/input.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/input.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/input.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/input.c > CMakeFiles/glfw.dir/input.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/input.c > CMakeFiles/glfw.dir/input.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/input.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/input.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/input.c -o CMakeFiles/glfw.dir/input.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/input.c -o CMakeFiles/glfw.dir/input.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/monitor.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/monitor.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o -MF CMakeFiles/glfw.dir/monitor.c.o.d -o CMakeFiles/glfw.dir/monitor.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/monitor.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o -MF CMakeFiles/glfw.dir/monitor.c.o.d -o CMakeFiles/glfw.dir/monitor.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/monitor.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/monitor.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/monitor.c > CMakeFiles/glfw.dir/monitor.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/monitor.c > CMakeFiles/glfw.dir/monitor.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/monitor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/monitor.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/monitor.c -o CMakeFiles/glfw.dir/monitor.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/monitor.c -o CMakeFiles/glfw.dir/monitor.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/platform.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/platform.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o -MF CMakeFiles/glfw.dir/platform.c.o.d -o CMakeFiles/glfw.dir/platform.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/platform.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.o -MF CMakeFiles/glfw.dir/platform.c.o.d -o CMakeFiles/glfw.dir/platform.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/platform.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/platform.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/platform.c > CMakeFiles/glfw.dir/platform.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/platform.c > CMakeFiles/glfw.dir/platform.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/platform.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/platform.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/platform.c -o CMakeFiles/glfw.dir/platform.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/platform.c -o CMakeFiles/glfw.dir/platform.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/vulkan.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/vulkan.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o -MF CMakeFiles/glfw.dir/vulkan.c.o.d -o CMakeFiles/glfw.dir/vulkan.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/vulkan.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o -MF CMakeFiles/glfw.dir/vulkan.c.o.d -o CMakeFiles/glfw.dir/vulkan.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/vulkan.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/vulkan.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/vulkan.c > CMakeFiles/glfw.dir/vulkan.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/vulkan.c > CMakeFiles/glfw.dir/vulkan.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/vulkan.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/vulkan.c -o CMakeFiles/glfw.dir/vulkan.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/vulkan.c -o CMakeFiles/glfw.dir/vulkan.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/window.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/window.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o -MF CMakeFiles/glfw.dir/window.c.o.d -o CMakeFiles/glfw.dir/window.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/window.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.o -MF CMakeFiles/glfw.dir/window.c.o.d -o CMakeFiles/glfw.dir/window.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/window.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/window.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/window.c > CMakeFiles/glfw.dir/window.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/window.c > CMakeFiles/glfw.dir/window.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/window.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/window.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/window.c -o CMakeFiles/glfw.dir/window.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/window.c -o CMakeFiles/glfw.dir/window.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/egl_context.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/egl_context.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o -MF CMakeFiles/glfw.dir/egl_context.c.o.d -o CMakeFiles/glfw.dir/egl_context.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/egl_context.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o -MF CMakeFiles/glfw.dir/egl_context.c.o.d -o CMakeFiles/glfw.dir/egl_context.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/egl_context.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/egl_context.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/egl_context.c > CMakeFiles/glfw.dir/egl_context.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/egl_context.c > CMakeFiles/glfw.dir/egl_context.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/egl_context.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/egl_context.c -o CMakeFiles/glfw.dir/egl_context.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/egl_context.c -o CMakeFiles/glfw.dir/egl_context.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/osmesa_context.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/osmesa_context.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o -MF CMakeFiles/glfw.dir/osmesa_context.c.o.d -o CMakeFiles/glfw.dir/osmesa_context.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/osmesa_context.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o -MF CMakeFiles/glfw.dir/osmesa_context.c.o.d -o CMakeFiles/glfw.dir/osmesa_context.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/osmesa_context.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/osmesa_context.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/osmesa_context.c > CMakeFiles/glfw.dir/osmesa_context.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/osmesa_context.c > CMakeFiles/glfw.dir/osmesa_context.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/osmesa_context.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/osmesa_context.c -o CMakeFiles/glfw.dir/osmesa_context.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/osmesa_context.c -o CMakeFiles/glfw.dir/osmesa_context.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_init.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_init.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o -MF CMakeFiles/glfw.dir/null_init.c.o.d -o CMakeFiles/glfw.dir/null_init.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o -MF CMakeFiles/glfw.dir/null_init.c.o.d -o CMakeFiles/glfw.dir/null_init.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_init.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/null_init.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_init.c > CMakeFiles/glfw.dir/null_init.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_init.c > CMakeFiles/glfw.dir/null_init.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_init.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/null_init.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_init.c -o CMakeFiles/glfw.dir/null_init.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_init.c -o CMakeFiles/glfw.dir/null_init.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_monitor.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_monitor.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o -MF CMakeFiles/glfw.dir/null_monitor.c.o.d -o CMakeFiles/glfw.dir/null_monitor.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_monitor.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o -MF CMakeFiles/glfw.dir/null_monitor.c.o.d -o CMakeFiles/glfw.dir/null_monitor.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_monitor.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/null_monitor.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_monitor.c > CMakeFiles/glfw.dir/null_monitor.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_monitor.c > CMakeFiles/glfw.dir/null_monitor.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/null_monitor.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_monitor.c -o CMakeFiles/glfw.dir/null_monitor.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_monitor.c -o CMakeFiles/glfw.dir/null_monitor.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_window.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_window.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o -MF CMakeFiles/glfw.dir/null_window.c.o.d -o CMakeFiles/glfw.dir/null_window.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_window.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o -MF CMakeFiles/glfw.dir/null_window.c.o.d -o CMakeFiles/glfw.dir/null_window.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_window.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/null_window.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_window.c > CMakeFiles/glfw.dir/null_window.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_window.c > CMakeFiles/glfw.dir/null_window.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_window.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/null_window.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_window.c -o CMakeFiles/glfw.dir/null_window.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_window.c -o CMakeFiles/glfw.dir/null_window.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_joystick.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_joystick.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o -MF CMakeFiles/glfw.dir/null_joystick.c.o.d -o CMakeFiles/glfw.dir/null_joystick.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_joystick.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o -MF CMakeFiles/glfw.dir/null_joystick.c.o.d -o CMakeFiles/glfw.dir/null_joystick.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_joystick.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/null_joystick.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_joystick.c > CMakeFiles/glfw.dir/null_joystick.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_joystick.c > CMakeFiles/glfw.dir/null_joystick.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/null_joystick.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/null_joystick.c -o CMakeFiles/glfw.dir/null_joystick.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/null_joystick.c -o CMakeFiles/glfw.dir/null_joystick.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_module.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_module.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o -MF CMakeFiles/glfw.dir/posix_module.c.o.d -o CMakeFiles/glfw.dir/posix_module.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_module.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o -MF CMakeFiles/glfw.dir/posix_module.c.o.d -o CMakeFiles/glfw.dir/posix_module.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_module.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/posix_module.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_module.c > CMakeFiles/glfw.dir/posix_module.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_module.c > CMakeFiles/glfw.dir/posix_module.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/posix_module.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_module.c -o CMakeFiles/glfw.dir/posix_module.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_module.c -o CMakeFiles/glfw.dir/posix_module.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_time.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_time.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o -MF CMakeFiles/glfw.dir/posix_time.c.o.d -o CMakeFiles/glfw.dir/posix_time.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_time.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o -MF CMakeFiles/glfw.dir/posix_time.c.o.d -o CMakeFiles/glfw.dir/posix_time.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_time.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/posix_time.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_time.c > CMakeFiles/glfw.dir/posix_time.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_time.c > CMakeFiles/glfw.dir/posix_time.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/posix_time.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_time.c -o CMakeFiles/glfw.dir/posix_time.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_time.c -o CMakeFiles/glfw.dir/posix_time.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_thread.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_thread.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o -MF CMakeFiles/glfw.dir/posix_thread.c.o.d -o CMakeFiles/glfw.dir/posix_thread.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_thread.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o -MF CMakeFiles/glfw.dir/posix_thread.c.o.d -o CMakeFiles/glfw.dir/posix_thread.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_thread.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/posix_thread.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_thread.c > CMakeFiles/glfw.dir/posix_thread.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_thread.c > CMakeFiles/glfw.dir/posix_thread.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/posix_thread.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_thread.c -o CMakeFiles/glfw.dir/posix_thread.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_thread.c -o CMakeFiles/glfw.dir/posix_thread.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_init.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_init.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o -MF CMakeFiles/glfw.dir/x11_init.c.o.d -o CMakeFiles/glfw.dir/x11_init.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o -MF CMakeFiles/glfw.dir/x11_init.c.o.d -o CMakeFiles/glfw.dir/x11_init.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_init.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/x11_init.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_init.c > CMakeFiles/glfw.dir/x11_init.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_init.c > CMakeFiles/glfw.dir/x11_init.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/x11_init.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_init.c -o CMakeFiles/glfw.dir/x11_init.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_init.c -o CMakeFiles/glfw.dir/x11_init.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_monitor.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_monitor.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o -MF CMakeFiles/glfw.dir/x11_monitor.c.o.d -o CMakeFiles/glfw.dir/x11_monitor.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_monitor.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o -MF CMakeFiles/glfw.dir/x11_monitor.c.o.d -o CMakeFiles/glfw.dir/x11_monitor.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_monitor.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/x11_monitor.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_monitor.c > CMakeFiles/glfw.dir/x11_monitor.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_monitor.c > CMakeFiles/glfw.dir/x11_monitor.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/x11_monitor.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_monitor.c -o CMakeFiles/glfw.dir/x11_monitor.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_monitor.c -o CMakeFiles/glfw.dir/x11_monitor.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_window.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_window.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o -MF CMakeFiles/glfw.dir/x11_window.c.o.d -o CMakeFiles/glfw.dir/x11_window.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_window.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o -MF CMakeFiles/glfw.dir/x11_window.c.o.d -o CMakeFiles/glfw.dir/x11_window.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_window.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/x11_window.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_window.c > CMakeFiles/glfw.dir/x11_window.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_window.c > CMakeFiles/glfw.dir/x11_window.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/x11_window.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/x11_window.c -o CMakeFiles/glfw.dir/x11_window.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/x11_window.c -o CMakeFiles/glfw.dir/x11_window.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/xkb_unicode.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/xkb_unicode.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o -MF CMakeFiles/glfw.dir/xkb_unicode.c.o.d -o CMakeFiles/glfw.dir/xkb_unicode.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/xkb_unicode.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o -MF CMakeFiles/glfw.dir/xkb_unicode.c.o.d -o CMakeFiles/glfw.dir/xkb_unicode.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/xkb_unicode.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/xkb_unicode.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/xkb_unicode.c > CMakeFiles/glfw.dir/xkb_unicode.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/xkb_unicode.c > CMakeFiles/glfw.dir/xkb_unicode.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/xkb_unicode.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/xkb_unicode.c -o CMakeFiles/glfw.dir/xkb_unicode.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/xkb_unicode.c -o CMakeFiles/glfw.dir/xkb_unicode.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/glx_context.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/glx_context.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o -MF CMakeFiles/glfw.dir/glx_context.c.o.d -o CMakeFiles/glfw.dir/glx_context.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/glx_context.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o -MF CMakeFiles/glfw.dir/glx_context.c.o.d -o CMakeFiles/glfw.dir/glx_context.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/glx_context.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/glx_context.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/glx_context.c > CMakeFiles/glfw.dir/glx_context.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/glx_context.c > CMakeFiles/glfw.dir/glx_context.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/glx_context.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/glx_context.c -o CMakeFiles/glfw.dir/glx_context.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/glx_context.c -o CMakeFiles/glfw.dir/glx_context.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_init.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_init.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o -MF CMakeFiles/glfw.dir/wl_init.c.o.d -o CMakeFiles/glfw.dir/wl_init.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o -MF CMakeFiles/glfw.dir/wl_init.c.o.d -o CMakeFiles/glfw.dir/wl_init.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_init.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/wl_init.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_init.c > CMakeFiles/glfw.dir/wl_init.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_init.c > CMakeFiles/glfw.dir/wl_init.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/wl_init.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_init.c -o CMakeFiles/glfw.dir/wl_init.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_init.c -o CMakeFiles/glfw.dir/wl_init.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_monitor.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_monitor.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o -MF CMakeFiles/glfw.dir/wl_monitor.c.o.d -o CMakeFiles/glfw.dir/wl_monitor.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_monitor.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o -MF CMakeFiles/glfw.dir/wl_monitor.c.o.d -o CMakeFiles/glfw.dir/wl_monitor.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_monitor.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/wl_monitor.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_monitor.c > CMakeFiles/glfw.dir/wl_monitor.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_monitor.c > CMakeFiles/glfw.dir/wl_monitor.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/wl_monitor.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_monitor.c -o CMakeFiles/glfw.dir/wl_monitor.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_monitor.c -o CMakeFiles/glfw.dir/wl_monitor.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_window.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_window.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o -MF CMakeFiles/glfw.dir/wl_window.c.o.d -o CMakeFiles/glfw.dir/wl_window.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_window.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o -MF CMakeFiles/glfw.dir/wl_window.c.o.d -o CMakeFiles/glfw.dir/wl_window.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_window.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/wl_window.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_window.c > CMakeFiles/glfw.dir/wl_window.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_window.c > CMakeFiles/glfw.dir/wl_window.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/wl_window.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/wl_window.c -o CMakeFiles/glfw.dir/wl_window.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/wl_window.c -o CMakeFiles/glfw.dir/wl_window.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/linux_joystick.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/linux_joystick.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o -MF CMakeFiles/glfw.dir/linux_joystick.c.o.d -o CMakeFiles/glfw.dir/linux_joystick.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/linux_joystick.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o -MF CMakeFiles/glfw.dir/linux_joystick.c.o.d -o CMakeFiles/glfw.dir/linux_joystick.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/linux_joystick.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/linux_joystick.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/linux_joystick.c > CMakeFiles/glfw.dir/linux_joystick.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/linux_joystick.c > CMakeFiles/glfw.dir/linux_joystick.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/linux_joystick.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/linux_joystick.c -o CMakeFiles/glfw.dir/linux_joystick.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/linux_joystick.c -o CMakeFiles/glfw.dir/linux_joystick.c.s
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/flags.make
-raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_poll.c
+raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_poll.c
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o: raylib/external/glfw/src/CMakeFiles/glfw.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o -MF CMakeFiles/glfw.dir/posix_poll.c.o.d -o CMakeFiles/glfw.dir/posix_poll.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_poll.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o -MF CMakeFiles/glfw.dir/posix_poll.c.o.d -o CMakeFiles/glfw.dir/posix_poll.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_poll.c
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/glfw.dir/posix_poll.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_poll.c > CMakeFiles/glfw.dir/posix_poll.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_poll.c > CMakeFiles/glfw.dir/posix_poll.c.i
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/glfw.dir/posix_poll.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src/posix_poll.c -o CMakeFiles/glfw.dir/posix_poll.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src/posix_poll.c -o CMakeFiles/glfw.dir/posix_poll.c.s
 
 glfw: raylib/external/glfw/src/CMakeFiles/glfw.dir/context.c.o
 glfw: raylib/external/glfw/src/CMakeFiles/glfw.dir/init.c.o
@@ -539,7 +539,7 @@ raylib/external/glfw/src/CMakeFiles/glfw.dir/build: glfw
 .PHONY : raylib/external/glfw/src/CMakeFiles/glfw.dir/build
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/clean:
-	cd /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src && $(CMAKE_COMMAND) -P CMakeFiles/glfw.dir/cmake_clean.cmake
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src && $(CMAKE_COMMAND) -P CMakeFiles/glfw.dir/cmake_clean.cmake
 .PHONY : raylib/external/glfw/src/CMakeFiles/glfw.dir/clean
 
 raylib/external/glfw/src/CMakeFiles/glfw.dir/depend: raylib/external/glfw/src/fractional-scale-v1-client-protocol-code.h
@@ -560,6 +560,6 @@ raylib/external/glfw/src/CMakeFiles/glfw.dir/depend: raylib/external/glfw/src/xd
 raylib/external/glfw/src/CMakeFiles/glfw.dir/depend: raylib/external/glfw/src/xdg-decoration-unstable-v1-client-protocol.h
 raylib/external/glfw/src/CMakeFiles/glfw.dir/depend: raylib/external/glfw/src/xdg-shell-client-protocol-code.h
 raylib/external/glfw/src/CMakeFiles/glfw.dir/depend: raylib/external/glfw/src/xdg-shell-client-protocol.h
-	cd /home/dracken24/Documents/Engine-2D/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/Documents/Engine-2D/library/extern/raylib /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src /home/dracken24/Documents/Engine-2D/build /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src /home/dracken24/prog/DrackEngine.v.2.0/build /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : raylib/external/glfw/src/CMakeFiles/glfw.dir/depend
 

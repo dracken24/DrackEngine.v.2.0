@@ -1,0 +1,5 @@
+examples/raygizmo
+compile_flags.txt
+include/*
+!include/raygizmo.h
+lib

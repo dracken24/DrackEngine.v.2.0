@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dracken24/Documents/Engine-2D/library/extern/raylib
+CMAKE_SOURCE_DIR = /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dracken24/Documents/Engine-2D/build
+CMAKE_BINARY_DIR = /home/dracken24/prog/DrackEngine.v.2.0/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/dracken24/Documents/Engine-2D/build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd /home/dracken24/Documents/Engine-2D/build && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -78,7 +78,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd /home/dracken24/Documents/Engine-2D/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/dracken24/Documents/Engine-2D/build/CPackSourceConfig.cmake
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/dracken24/prog/DrackEngine.v.2.0/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -162,14 +162,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/dracken24/Documents/Engine-2D/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dracken24/Documents/Engine-2D/build/CMakeFiles /home/dracken24/Documents/Engine-2D/build/raylib/external/glfw//CMakeFiles/progress.marks
-	cd /home/dracken24/Documents/Engine-2D/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raylib/external/glfw/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dracken24/Documents/Engine-2D/build/CMakeFiles 0
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles /home/dracken24/prog/DrackEngine.v.2.0/build/raylib/external/glfw//CMakeFiles/progress.marks
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raylib/external/glfw/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/dracken24/Documents/Engine-2D/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raylib/external/glfw/clean
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raylib/external/glfw/clean
 .PHONY : clean
 
 # The main clean target
@@ -178,17 +178,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/dracken24/Documents/Engine-2D/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raylib/external/glfw/preinstall
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raylib/external/glfw/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/dracken24/Documents/Engine-2D/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raylib/external/glfw/preinstall
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 raylib/external/glfw/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/dracken24/Documents/Engine-2D/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -217,6 +217,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/dracken24/Documents/Engine-2D/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

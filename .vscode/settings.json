@@ -85,6 +85,7 @@
       "menus.h": "c",
       "struct_globale.h": "c",
       "stdarg.h": "c",
-      "rlgl.h": "c"
+      "rlgl.h": "c",
+      "raygizmo.h": "c"
     },
 }

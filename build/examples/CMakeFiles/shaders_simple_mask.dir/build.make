@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dracken24/Documents/Engine-2D/library/extern/raylib
+CMAKE_SOURCE_DIR = /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dracken24/Documents/Engine-2D/build
+CMAKE_BINARY_DIR = /home/dracken24/prog/DrackEngine.v.2.0/build
 
 # Include any dependencies generated for this target.
 include examples/CMakeFiles/shaders_simple_mask.dir/depend.make
@@ -70,18 +70,18 @@ include examples/CMakeFiles/shaders_simple_mask.dir/progress.make
 include examples/CMakeFiles/shaders_simple_mask.dir/flags.make
 
 examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o: examples/CMakeFiles/shaders_simple_mask.dir/flags.make
-examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o: /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/shaders/shaders_simple_mask.c
+examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/shaders/shaders_simple_mask.c
 examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o: examples/CMakeFiles/shaders_simple_mask.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o -MF CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o.d -o CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o -c /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/shaders/shaders_simple_mask.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o -MF CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o.d -o CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.o -c /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/shaders/shaders_simple_mask.c
 
 examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.i"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/shaders/shaders_simple_mask.c > CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.i
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/shaders/shaders_simple_mask.c > CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.i
 
 examples/CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.s"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples/shaders/shaders_simple_mask.c -o CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.s
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples/shaders/shaders_simple_mask.c -o CMakeFiles/shaders_simple_mask.dir/shaders/shaders_simple_mask.c.s
 
 # Object files for target shaders_simple_mask
 shaders_simple_mask_OBJECTS = \
@@ -99,18 +99,18 @@ examples/shaders_simple_mask: /usr/lib/x86_64-linux-gnu/libGLU.so
 examples/shaders_simple_mask: /usr/lib/x86_64-linux-gnu/librt.a
 examples/shaders_simple_mask: /usr/lib/x86_64-linux-gnu/libm.so
 examples/shaders_simple_mask: examples/CMakeFiles/shaders_simple_mask.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dracken24/Documents/Engine-2D/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable shaders_simple_mask"
-	cd /home/dracken24/Documents/Engine-2D/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/shaders_simple_mask.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/dracken24/prog/DrackEngine.v.2.0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable shaders_simple_mask"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/shaders_simple_mask.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 examples/CMakeFiles/shaders_simple_mask.dir/build: examples/shaders_simple_mask
 .PHONY : examples/CMakeFiles/shaders_simple_mask.dir/build
 
 examples/CMakeFiles/shaders_simple_mask.dir/clean:
-	cd /home/dracken24/Documents/Engine-2D/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/shaders_simple_mask.dir/cmake_clean.cmake
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/shaders_simple_mask.dir/cmake_clean.cmake
 .PHONY : examples/CMakeFiles/shaders_simple_mask.dir/clean
 
 examples/CMakeFiles/shaders_simple_mask.dir/depend:
-	cd /home/dracken24/Documents/Engine-2D/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/Documents/Engine-2D/library/extern/raylib /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples /home/dracken24/Documents/Engine-2D/build /home/dracken24/Documents/Engine-2D/build/examples /home/dracken24/Documents/Engine-2D/build/examples/CMakeFiles/shaders_simple_mask.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/dracken24/prog/DrackEngine.v.2.0/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples /home/dracken24/prog/DrackEngine.v.2.0/build /home/dracken24/prog/DrackEngine.v.2.0/build/examples /home/dracken24/prog/DrackEngine.v.2.0/build/examples/CMakeFiles/shaders_simple_mask.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : examples/CMakeFiles/shaders_simple_mask.dir/depend
 

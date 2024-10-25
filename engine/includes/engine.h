@@ -15,14 +15,18 @@
 
 # include "../../library/extern/raylib/src/raylib.h"
 # include "../../library/extern/raylib/src/raymath.h"
+# include "../../library/extern/raylib/src/rlgl.h"
 # include "../../library/libft/libft.h"
 # include "struct_globale.h"
 # include "../../library/drackengine_lib/drackengine_lib.h"
 # include "../srcs/utility/buttons.h"
+
 // # include "Config/menus.h"
+# include "../../library/extern/raygizmo/include/raygizmo.h"
 
 # include <signal.h>
 
+struct RGizmo;
 
 // Windows define
 #define BORDER_COLOR DARKPURPLE2
@@ -143,11 +147,9 @@ typedef struct ButtonsMenu
 
 typedef struct TestWorkspace
 {
-    Vector3 cubePosition;
-    Vector3 cubeSize;
+    Model model;
+    struct RGizmo gizmo;
 
-    Ray ray;                    // Picking line ray
-    RayCollision collision;     // Ray collision hit info
 }   TestWorkspace;
 
 typedef struct  Engine
@@ -219,7 +221,7 @@ void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness);
 //***                                Workspace.c                             ***//
 //******************************************************************************//
 
-void    ftControlMainPanel(Engine *engine);
+void    ftControlMainPanel(Engine *engine, Camera *camera);
 
 //******************************************************************************//
 //***                           menu_functions.c                             ***//

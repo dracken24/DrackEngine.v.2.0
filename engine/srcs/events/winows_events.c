@@ -136,14 +136,12 @@ void    resize_screen(Engine *engine)
 	
 	Vector2 diff = (Vector2){engine->screenSize.x - engine->lastScreenSize.x, engine->screenSize.y - engine->lastScreenSize.y};
 
-	Rectangle *rec00 = &engine->allCameras->camera00.rectForCam;
 	Rectangle *rec01 = &engine->allCameras->camera01.rectForCam;
 	Rectangle *rec02 = &engine->allCameras->camera02.rectForCam;
 	Rectangle *rec03 = &engine->allCameras->camera03.rectForCam;
 	Rectangle *rec04 = &engine->allCameras->camera04.rectForCam;
 	Rectangle *rec05 = &engine->allCameras->camera05.rectForCam;
 
-	adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){0, 0}, (Vector2){diff.x / 3 * 2, diff.y});
 	adjust_camera_pos_size(&engine->allCameras->camera01, (Vector2){diff.x / 3 * 2, 0}, (Vector2){diff.x / 3, diff.y / 2});
 	adjust_camera_pos_size(&engine->allCameras->camera02, (Vector2){diff.x / 3 * 2, diff.y / 2}, (Vector2){diff.x / 3, diff.y / 2});
 	adjust_camera_pos_size(&engine->allCameras->camera03, (Vector2){0, 0}, (Vector2){diff.x, 0});
@@ -168,33 +166,15 @@ void    resize_screen(Engine *engine)
 		resize_screen(engine);
 	}
 
-	if (rec00->width < 200)
-	{
-		DE_WARNING("RESIZE min");
-		rec00->width = 200;
-		rec05->width = 200;
-		rec04->width = engine->screenSize.x - rec00->width - rec01->width;
-
-		rec00->x = rec04->width;
-		rec05->x = rec04->width;
-
-		reload_texture(&engine->allCameras->camera00);
-		reload_texture(&engine->allCameras->camera04);
-		reload_texture(&engine->allCameras->camera05);
-		// Set pos et reload imgs
-	}
 	if (rec04->width > engine->screenSize.x - 600)
 	{
 		DE_WARNING("RESIZE MAX 1");
 		
-		rec00->width = 300;
 		rec05->width = 300;
 		rec04->width = engine->screenSize.x - 600;
 
-		rec00->x = rec04->width;
 		rec05->x = rec04->width;
 
-		reload_texture(&engine->allCameras->camera00);
 		reload_texture(&engine->allCameras->camera04);
 		reload_texture(&engine->allCameras->camera05);
 	}
@@ -204,16 +184,13 @@ void    resize_screen(Engine *engine)
 		
 		rec01->width = engine->screenSize.x - 600;
 		rec02->width = engine->screenSize.x - 600;
-		rec00->width = 300;
 		rec04->width = 300;
 		rec05->width = 300;
 
 		rec01->x = 600;
 		rec02->x = 600;
-		rec00->x = rec04->width;
 		rec05->x = rec04->width;
 
-		reload_texture(&engine->allCameras->camera00);
 		reload_texture(&engine->allCameras->camera01);
 		reload_texture(&engine->allCameras->camera02);
 		reload_texture(&engine->allCameras->camera04);
@@ -228,22 +205,22 @@ void    resize_screen(Engine *engine)
 
 void    adjust_right_panel_vert(Engine *engine, int x)
 {
-	// DE_DEBUG("Adjust Right Panel Vert");
+	DE_DEBUG("Adjust Right Panel Vert");
 	adjust_camera_pos(&engine->allCameras->camera02, (Vector2){x, 0});
 	adjust_camera_pos(&engine->allCameras->camera01, (Vector2){x, 0});
 	adjust_camera_size(&engine->allCameras->camera02, (Vector2){-x, 0});
 	adjust_camera_size(&engine->allCameras->camera01, (Vector2){-x, 0});
-	adjust_camera_size(&engine->allCameras->camera00, (Vector2){x, 0});
 	adjust_camera_size(&engine->allCameras->camera05, (Vector2){x, 0});
 
-	Rectangle rec00 = engine->allCameras->camera00.rectForCam;
-	if (rec00.width < 200)
-	{ 
-		// DE_INFO("Resize Right 8");
-		adjust_camera_pos_size(&engine->allCameras->camera02, (Vector2){-x, 0}, (Vector2){x, 0});
-		adjust_camera_pos_size(&engine->allCameras->camera01, (Vector2){-x, 0}, (Vector2){x, 0});
-		adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){0, 0}, (Vector2){-x, 0});
-		adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){0, 0}, (Vector2){-x, 0});
+	Rectangle rec05 = engine->allCameras->camera05.rectForCam;
+	if (rec05.width < 200)
+	{
+		DE_INFO("Resize Right 7");
+		adjust_camera_pos(&engine->allCameras->camera02, (Vector2){-x, 0});
+		adjust_camera_pos(&engine->allCameras->camera01, (Vector2){-x, 0});
+		adjust_camera_size(&engine->allCameras->camera02, (Vector2){x, 0});
+		adjust_camera_size(&engine->allCameras->camera01, (Vector2){x, 0});
+		adjust_camera_size(&engine->allCameras->camera05, (Vector2){-x, 0});
 		skipTurnResize = true;
 
 		reset_resize_values(engine);
@@ -259,24 +236,22 @@ void    adjust_hori_right_panels(Engine *engine, int y)
 
 void    adjust_hori_center_panels(Engine *engine, int y)
 {
-	adjust_camera_size(&engine->allCameras->camera00, (Vector2){0, y});
 	adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){0, y}, (Vector2){0, -y});
 }
 
 void	adjust_vert_hyerarchy_panels(Engine *engine, int x)
 {
 	// DE_WARNING("Adjust Vert Hyerarchy Panels");
-	adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){x, 0}, (Vector2){-x, 0});
 	adjust_camera_size(&engine->allCameras->camera04, (Vector2){x, 0});
 	adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){x, 0}, (Vector2){-x, 0});
 
-	Rectangle rec00 = engine->allCameras->camera00.rectForCam;
 	Rectangle rec04 = engine->allCameras->camera04.rectForCam;
+	Rectangle rec02 = engine->allCameras->camera02.rectForCam;
+	Rectangle rec05 = engine->allCameras->camera05.rectForCam;
 	// DE_WARNING("rec04.width: %f", rec04.width);
-	if (rec00.width < 200 || rec04.width < 200)
+	if (rec04.width < 200 || rec05.width < 200)
 	{
 		// DE_INFO("Resize Right 7");
-		adjust_camera_pos_size(&engine->allCameras->camera00, (Vector2){-x, 0}, (Vector2){x, 0});
 		adjust_camera_size(&engine->allCameras->camera04, (Vector2){-x, 0});
 		adjust_camera_pos_size(&engine->allCameras->camera05, (Vector2){-x, 0}, (Vector2){x, 0});
 		skipTurnResize = true;
@@ -287,7 +262,6 @@ void	adjust_vert_hyerarchy_panels(Engine *engine, int x)
 
 bl8		check_max_min_panels(Engine *engine)
 {
-	Rectangle *rec00 = &engine->allCameras->camera00.rectForCam;
 	Rectangle *rec01 = &engine->allCameras->camera01.rectForCam;
 	Rectangle *rec02 = &engine->allCameras->camera02.rectForCam;
 	Rectangle *rec03 = &engine->allCameras->camera03.rectForCam;
@@ -301,8 +275,6 @@ bl8		check_max_min_panels(Engine *engine)
 			(Vector2){engine->screenSize.x - 600, rec01->height});
 		set_camera_pos_size(&engine->allCameras->camera02, (Vector2){600, rec02->y},
 			(Vector2){engine->screenSize.x - 600, rec02->height});
-		set_camera_size(&engine->allCameras->camera00, (Vector2){engine->screenSize.x - rec01->width
-			- rec04->width, engine->screenSize.y - rec05->height - CAMERA_UP_BAR});
 		set_camera_pos_size(&engine->allCameras->camera05, (Vector2){rec05->x, rec05->y},
 			(Vector2){engine->screenSize.x - rec01->width - rec04->width, rec05->height});
 
@@ -314,8 +286,6 @@ bl8		check_max_min_panels(Engine *engine)
 		// DE_INFO("Resize Right 2");
 		set_camera_pos_size(&engine->allCameras->camera01, (Vector2){engine->screenSize.x - 300, rec01->y}, (Vector2){300, rec01->height});
 		set_camera_pos_size(&engine->allCameras->camera02, (Vector2){engine->screenSize.x - 300, rec02->y}, (Vector2){300, rec02->height});
-		set_camera_size(&engine->allCameras->camera00, (Vector2){engine->screenSize.x - rec01->width -
-			rec04->width, engine->screenSize.y - rec05->height - CAMERA_UP_BAR});
 		set_camera_size(&engine->allCameras->camera05, (Vector2){engine->screenSize.x - rec01->width - rec04->width, rec05->height});
 
 		reset_resize_values(engine);
@@ -344,7 +314,6 @@ bl8		check_max_min_panels(Engine *engine)
 	if (rec05->height > engine->screenSize.y / 4 * 3 - CAMERA_UP_BAR)
 	{
 		// DE_INFO("Resize Right 5");
-		set_camera_size(&engine->allCameras->camera00, (Vector2){rec00->width, engine->screenSize.y / 4});
 		set_camera_pos_size(&engine->allCameras->camera05, (Vector2){rec05->x, engine->screenSize.y / 4 + CAMERA_UP_BAR},
 			(Vector2){rec05->width, engine->screenSize.y / 4 * 3 - CAMERA_UP_BAR});
 
@@ -354,8 +323,7 @@ bl8		check_max_min_panels(Engine *engine)
 	else if (rec05->height < 70)
 	{
 		// DE_INFO("Resize Right 6");
-		set_camera_size(&engine->allCameras->camera00, (Vector2){rec00->width, engine->screenSize.y - 70 - CAMERA_UP_BAR});
-		set_camera_pos_size(&engine->allCameras->camera05, (Vector2){rec05->x, rec00->height + rec03->height}, (Vector2){rec05->width, 70});
+		set_camera_pos_size(&engine->allCameras->camera05, (Vector2){rec05->x, engine->screenSize.y - 70}, (Vector2){rec05->width, 70});
 
 		reset_resize_values(engine);
 		return (true);
@@ -474,10 +442,6 @@ void    resize_right_panel(Engine *engine)
 	{
 		mouse_clicked = true;
 	}
-	// if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
-	// {
-	// 	reset_resize_values(engine);
-	// }
 	else if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && (mouse_on_line_vert_hyerarchy_ct || mouse_on_line_hori_center_panels_ct
 		|| mouse_on_line_hori_right_panels_ct || mouse_on_line_vert_ct))
 	{

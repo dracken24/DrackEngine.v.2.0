@@ -28,6 +28,9 @@ void    dr_exit(Engine *engine)
 
     DE_INFO("Waiting for 750ms in engine");
     usleep(350000);  // Attendre 350ms
+
+    rgizmo_unload();
+    UnloadModel(engine->testWorkspace.model);
     
     DE_INFO("Freeing engine in engine");
     free_engine(engine);

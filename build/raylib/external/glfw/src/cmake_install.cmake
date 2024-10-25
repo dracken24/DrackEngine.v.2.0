@@ -1,4 +1,4 @@
-# Install script for directory: /home/dracken24/Documents/Engine-2D/library/extern/raylib/src/external/glfw/src
+# Install script for directory: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/src/external/glfw/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

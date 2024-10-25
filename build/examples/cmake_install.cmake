@@ -1,4 +1,4 @@
-# Install script for directory: /home/dracken24/Documents/Engine-2D/library/extern/raylib/examples
+# Install script for directory: /home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
