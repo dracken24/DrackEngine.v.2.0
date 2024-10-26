@@ -1,4 +1,7 @@
 # RAYGIZMO
+
+By [alexeykarnachev](https://github.com/alexeykarnachev/raygizmo)
+
 `raygizmo` was designed as an auxiliar module for [raylib](https://github.com/raysan5/raylib) to create simple interactive gizmo gadget to perform basic object transformation (rotation and translation).
 
 ![thumbnail](./thumbnail.gif)

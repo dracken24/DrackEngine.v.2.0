@@ -10,6 +10,8 @@ Preview:
 Powerd by raylib:
 https://www.raylib.com/
 
+Thx to [alexeykarnachev](https://github.com/alexeykarnachev/raygizmo) for the gizmo!
+
 Launch on Linux && WSL:
 
 Need those libraries:
