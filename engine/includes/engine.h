@@ -30,7 +30,7 @@ struct RGizmo;
 
 // Windows define
 #define BORDER_COLOR DARKPURPLE2
-#define BORDER_THICK 2
+#define BORDER_THICK 3
 #define WINDOW_OTHERS (Vector2){800, 500}
 #define CAMERA_UP_BAR 30
 
@@ -178,8 +178,6 @@ typedef struct  Engine
 
 	// Window state
 	AllStates       allStates;
-	// ViewState               currentStateView;
-	// ViewState               lastStateView;
 
 	bl8             introCt;
 

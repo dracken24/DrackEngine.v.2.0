@@ -20,6 +20,8 @@
 
 void    check_mouse_state(void);
 
+extern bl8 refresh_frame;
+
 void    draw_msg_intro(void)
 {
 	BeginDrawing();
@@ -54,12 +56,12 @@ void    input_events(Engine *engine)
 	}
 }
 
-void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness)
+void    draw_rectangle_borders(Rectangle rect, Color color, int thickness)
 {
-	DrawLineEx((Vector2){rectangle.x, rectangle.y}, (Vector2){rectangle.x + rectangle.width, rectangle.y}, thickness, color); // Line up
-	DrawLineEx((Vector2){rectangle.x + rectangle.width, rectangle.y + rectangle.height}, (Vector2){rectangle.x, rectangle.y + rectangle.height}, thickness, color); // Line down
-	DrawLineEx((Vector2){rectangle.x + rectangle.width, rectangle.y}, (Vector2){rectangle.x + rectangle.width, rectangle.y + rectangle.height}, thickness, color); // Line right
-	DrawLineEx((Vector2){rectangle.x, rectangle.y + rectangle.height}, (Vector2){rectangle.x, rectangle.y}, thickness, color); // Line left
+	DrawLineEx((Vector2){rect.x - thickness/2, rect.y}, (Vector2){rect.x + rect.width + thickness/2, rect.y}, thickness, color); // Line up
+	DrawLineEx((Vector2){rect.x + rect.width + thickness/2, rect.y + rect.height}, (Vector2){rect.x - thickness/2, rect.y + rect.height}, thickness, color); // Line down
+	DrawLineEx((Vector2){rect.x + rect.width, rect.y - thickness/2}, (Vector2){rect.x + rect.width, rect.y + rect.height + thickness/2}, thickness, color); // Line right
+	DrawLineEx((Vector2){rect.x, rect.y + rect.height + thickness/2}, (Vector2){rect.x, rect.y - thickness/2}, thickness, color); // Line left
 }
 
 void	use_image(Engine *engine, Rectangle rect, Vector2 offset)
@@ -217,8 +219,6 @@ ViewState   state_for_window_resize = STATE_VIEW_ENGINE;
 
 void    dr_update(Engine *engine)
 {
-	
-
 	// put intro screen
 	if (engine->introCt)
 	{
@@ -241,6 +241,12 @@ void    dr_update(Engine *engine)
 	{
 		check_mouse_state();
 		// DE_WARNING("Mouse Current State: %d", engine->allStates.currentStateMouse);
+		if (refresh_frame)
+		{
+			refresh_frame = false;
+			update_main_view(engine);
+		}
+
 		switch(engine->allStates.currentStateView)
         {
             case STATE_VIEW_ENGINE:
@@ -297,6 +303,14 @@ void    dr_update(Engine *engine)
                 menu_help_documentation(engine);
                 break;
         }
+
+		// TODO: Fonctionne mal. A fixer
+		if (IsWindowResized() && engine->allStates.currentStateView != STATE_VIEW_ENGINE)
+		{
+			window_events(engine);
+			update_main_view(engine);
+			// refresh_frame = true;
+		}
 	}
 }
 

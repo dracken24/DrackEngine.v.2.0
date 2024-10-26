@@ -12,6 +12,14 @@
 
 #include "../../../includes/Config/menus.h"
 
+#define CAM07_BORDER_TICK 8
+#define CAM07_BORDER_COLOR DARKGREEN
+#define CAM07_MAIN_TEXT_COLOR DARKBLUE
+#define CAM07_SPACING 1
+#define CAM07_DEFAULT_FONT engine->fonts.defaultFont
+
+bl8 refresh_frame = true;
+
 //******************************************************************************//
 //***                              Files Menu                                ***//
 //******************************************************************************//
@@ -34,116 +42,145 @@ void    keys_events(Engine *engine)
 void    menu_files_new(Engine *engine)
 {
     Vector2 mpos = GetMousePosition();
-    // DE_DEBUG("Win Size x: %f y: %f mouse pos x: %f y: %f", engine->screenSizeWindow.x, engine->screenSizeWindow.y, mpos.x, mpos.y);
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("New Project !", 20, 20, 20, PINK);
+            DrawTextEx(CAM07_DEFAULT_FONT, "New Project !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
 void    menu_files_open(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "Open !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("Open Project !", 20, 20, 20, BORDER_COLOR);
+            DrawTextEx(CAM07_DEFAULT_FONT, "Open Project !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
 void    menu_files_save(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "Save !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("Save !", 20, 20, 20, YELLOW);
+            DrawTextEx(CAM07_DEFAULT_FONT, "Save !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
 void    menu_files_save_as(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "Save as !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("Save as !", 20, 20, 20, BLUE);
+            DrawTextEx(CAM07_DEFAULT_FONT, "Save as !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
 void    menu_files_export(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "Export !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("Export !", 20, 20, 20, BLUE);
+            DrawTextEx(CAM07_DEFAULT_FONT, "Export !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
@@ -187,70 +224,88 @@ void    menu_edit_paste(Engine *engine)
 
 void    menu_settings_language(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "Theme !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("Language !", 20, 20, 20, PINK);
+            DrawTextEx(CAM07_DEFAULT_FONT, "Language !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
 void    menu_settings_theme(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "Theme !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("Theme !", 20, 20, 20, BLUE);
+            DrawTextEx(CAM07_DEFAULT_FONT, "Theme !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
 void    menu_settings_options(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "Options !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("Options !", 20, 20, 20, RED);
+            DrawTextEx(CAM07_DEFAULT_FONT, "Options !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
@@ -260,69 +315,87 @@ void    menu_settings_options(Engine *engine)
 
 void    menu_help_about(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "About !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("About !", 20, 20, 20, GREEN);
+            DrawTextEx(CAM07_DEFAULT_FONT, "About !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
 void    menu_help_documentation(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "Documentation !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("Documentation !", 20, 20, 20, RED);
+            DrawTextEx(CAM07_DEFAULT_FONT, "Documentation !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }
 
 void    menu_help_support(Engine *engine)
 {
-    // DE_DEBUG("Option selected: %s", "Support !");
+    Vector2 mpos = GetMousePosition();
     keys_events(engine);
 
-    // Camera 05 for other windows
 	BeginTextureMode(engine->allCameras->camera07.textForCam);
-		ClearBackground(DARKGRAY1);
+		ClearBackground(GRAY);
 		BeginMode2D(engine->allCameras->camera07.camera2D);
 
-			DrawText("Support !", 20, 20, 20, PURPLE);
+            DrawTextEx(CAM07_DEFAULT_FONT, "Support !", (Vector2){20, 20}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 		EndMode2D();
 	EndTextureMode();
 
     BeginDrawing();
+
         NeedBy3DCam camera_07 = engine->allCameras->camera07;
+        Rectangle rect = camera_07.rectForCam;
+
+        rect.x = engine->screenSize.x / 2 - rect.width /2;
+        rect.y = engine->screenSize.y / 2 - rect.height /2;
+
+        draw_rectangle_borders(rect, CAM07_BORDER_COLOR, CAM07_BORDER_TICK);
         camera_07.rectForCam.height *= -1;
-        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){0, 0}, WHITE);
-        draw_rectangle_borders(camera_07.rectForCam, BORDER_COLOR, BORDER_THICK);
+        DrawTextureRec(camera_07.textForCam.texture, camera_07.rectForCam, (Vector2){rect.x, rect.y}, WHITE);
+
     EndDrawing();
 }

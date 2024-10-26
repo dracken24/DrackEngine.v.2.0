@@ -116,7 +116,6 @@ void    ftControlMainPanel(Engine *engine, Camera *camera)
 			{
 				gizmo->state = RGIZMO_STATE_COLD;	
 			}
-			engine->allCameras->camera00.camera3D.projection = CAMERA_CUSTOM; 
 		}
 	}
 	// DE_DEBUG("gizmo->state: %d", gizmo->state);

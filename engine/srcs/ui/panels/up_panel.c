@@ -16,6 +16,9 @@
 #include "../../memory/dmemory.h"
 
 void	change_state_mouse(MouseState mouse_state);
+void    ftControlMainPanel(Engine *engine, Camera *camera);
+
+extern bl8 refresh_frame;
 
 void    draw_play_stop(Engine *engine)
 {
@@ -69,25 +72,35 @@ void	ftDrawMenuUp(Engine *engine)
 	    draw_play_stop(engine);
 }
 
-void    change_view(Engine *engine, ViewState state, bl8 resize_window)
+void    unselect_tab(int *selectedTab, bl8 *isDropdownOpen)
+{
+    *isDropdownOpen = false;
+    *selectedTab = -1;
+}
+
+void    change_view(Engine *engine, ViewState state, bl8 resize_window, int *selectedTab, bl8 *isDropdownOpen)
 {
     engine->allStates.lastStateView = engine->allStates.currentStateView;
     engine->allStates.currentStateView = state;
 
     change_state_mouse(MOUSE_STATE_ON_OTHER_WINDOW);
+    unselect_tab(selectedTab, isDropdownOpen);
 
-    if (resize_window)
-    {
-        engine->screenSizeWindow = WINDOW_OTHERS;
-        SetWindowSize(engine->screenSizeWindow.x, engine->screenSizeWindow.y);
-    }
+    // DE_WARNING("Resizable 1: %d", IsWindowState(FLAG_WINDOW_RESIZABLE));
+    // if (IsWindowState(FLAG_WINDOW_RESIZABLE))
+    // {
+    //     ClearWindowState(FLAG_WINDOW_RESIZABLE);
+    // }
+    // DE_WARNING("Resizable 2: %d", IsWindowState(FLAG_WINDOW_RESIZABLE));
+
+    refresh_frame = true;
 }
 
 void ftDrawDropdownMenu(Engine *engine)
 {
 	(void)engine;
     static int selectedTab = -1;
-    static bool isDropdownOpen = false;
+    static bl8 isDropdownOpen = false;
     static Rectangle dropdownRect = {0};
 
     // Dessiner les onglets
@@ -213,27 +226,27 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (files[i] && files[i] == "New")
                         {
-                            change_view(engine, STATE_VIEW_FILES_NEW_PROJECT, true);
+                            change_view(engine, STATE_VIEW_FILES_NEW_PROJECT, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (files[i] && files[i] == "Open")
                         {
-                            change_view(engine, STATE_VIEW_FILES_OPEN_PROJECT, true);
+                            change_view(engine, STATE_VIEW_FILES_OPEN_PROJECT, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (files[i] && files[i] == "Save")
                         {
-                            change_view(engine, STATE_VIEW_FILES_SAVE, true);
+                            change_view(engine, STATE_VIEW_FILES_SAVE, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (files[i] && files[i] == "Save as")
                         {
-                            change_view(engine, STATE_VIEW_FILES_SAVE_AS, true);
+                            change_view(engine, STATE_VIEW_FILES_SAVE_AS, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (files[i] && files[i] == "Export")
                         {
-                            change_view(engine, STATE_VIEW_FILES_EXPORT, true);
+                            change_view(engine, STATE_VIEW_FILES_EXPORT, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (files[i] && files[i] == "Exit")
@@ -246,27 +259,27 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (edit[i] && edit[i] == "Undo")
                         {
-                            change_view(engine, STATE_VIEW_EDIT_UNDO, false);
+                            change_view(engine, STATE_VIEW_EDIT_UNDO, false, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Redo")
                         {
-                            change_view(engine, STATE_VIEW_EDIT_REDO, false);
+                            change_view(engine, STATE_VIEW_EDIT_REDO, false, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Cut")
                         {
-                            change_view(engine, STATE_VIEW_EDIT_CUT, false);
+                            change_view(engine, STATE_VIEW_EDIT_CUT, false, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Copy")
                         {
-                            change_view(engine, STATE_VIEW_EDIT_COPY, false);
+                            change_view(engine, STATE_VIEW_EDIT_COPY, false, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (edit[i] && edit[i] == "Paste")
                         {
-                            change_view(engine, STATE_VIEW_EDIT_PASTE, false);
+                            change_view(engine, STATE_VIEW_EDIT_PASTE, false, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         break;
@@ -274,17 +287,17 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (settings[i] && settings[i] == "Language")
                         {
-                            change_view(engine, STATE_VIEW_SETTINGS_LANGUAGE, true);
+                            change_view(engine, STATE_VIEW_SETTINGS_LANGUAGE, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (settings[i] && settings[i] == "Theme")
                         {
-                            change_view(engine, STATE_VIEW_SETTINGS_THEME, true);
+                            change_view(engine, STATE_VIEW_SETTINGS_THEME, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (settings[i] && settings[i] == "Options")
                         {
-                            change_view(engine, STATE_VIEW_SETTINGS_OPTIONS, true);
+                            change_view(engine, STATE_VIEW_SETTINGS_OPTIONS, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         break;
@@ -292,17 +305,17 @@ void ftDrawDropdownMenu(Engine *engine)
                         // DE_DEBUG("Option selected: %d", selectedTab);
                         if (help[i] && help[i] == "About")
                         {
-                            change_view(engine, STATE_VIEW_HELP_ABOUT, true);
+                            change_view(engine, STATE_VIEW_HELP_ABOUT, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (help[i] && help[i] == "Documentation")
                         {
-                            change_view(engine, STATE_VIEW_HELP_DOCUMENTATION, true);
+                            change_view(engine, STATE_VIEW_HELP_DOCUMENTATION, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (help[i] && help[i] == "Support")
                         {
-                            change_view(engine, STATE_VIEW_HELP_SUPPORT, true);
+                            change_view(engine, STATE_VIEW_HELP_SUPPORT, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         break;
@@ -316,8 +329,7 @@ void ftDrawDropdownMenu(Engine *engine)
     // Fermer le menu si on clique en dehors
     if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) && clickedOutside)
     {
-        isDropdownOpen = false;
-        selectedTab = -1;
+        unselect_tab(&selectedTab, &isDropdownOpen);
     }
 }
 
