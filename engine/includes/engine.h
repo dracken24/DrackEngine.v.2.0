@@ -120,7 +120,6 @@ typedef enum ViewState
 	STATE_VIEW_HELP_DOCUMENTATION,
 }   ViewState;
 
-// TODO: Placer pour empecher de cliquer a travers les menus
 typedef enum MouseState
 {
 	MOUSE_STATE_ON_WORKSPACE,			// 0
@@ -136,6 +135,7 @@ typedef enum MouseState
 	MOUSE_STATE_ON_OTHER_WINDOW,		// 10
 }   MouseState;
 
+// TODO: Gerer le mouse state quand dropdown menu is open
 typedef struct AllStates
 {
 	// Window states

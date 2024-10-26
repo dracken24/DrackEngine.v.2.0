@@ -91,10 +91,11 @@ void    update_main_view(Engine *engine)
 	// Draw Workspace
 	Camera3D *camera = &engine->allCameras->camera00.camera3D;
 
-	update_camera(camera);
+	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE)
 	{
-		ftControlMainPanel(engine, camera);
+		update_camera(camera);
 	}
+		ftControlMainPanel(engine, camera);
 
 //--------------------------------------------------------------------------------------//
 

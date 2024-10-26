@@ -29,6 +29,8 @@ void	change_state_mouse(MouseState mouse_state)
 	if (g_engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE && mouse_state != MOUSE_STATE_ON_WORKSPACE)
 	{
 		g_reset_workspace = true;
+		// g_engine->allCameras->camera00.camera3D.projection = CAMERA_CUSTOM;
+		// DE_DEBUG("Exit Workspace");
 	}
 	g_engine->allStates.lastStateMouse = g_engine->allStates.currentStateMouse;
 	g_engine->allStates.currentStateMouse = mouse_state;
@@ -122,5 +124,11 @@ void	check_engine_mouse_state(void)
 	{
 		// DE_INFO("Your on Workspace");
 		change_state_mouse(MOUSE_STATE_ON_WORKSPACE);
+		// Camera *camera = &g_engine->allCameras->camera00.camera3D;
+		// if (camera->projection != CAMERA_PERSPECTIVE)
+		// {
+		// 	camera->projection = CAMERA_PERSPECTIVE;
+		// 	DE_DEBUG("Enter Workspace");
+		// }
 	}
 }
