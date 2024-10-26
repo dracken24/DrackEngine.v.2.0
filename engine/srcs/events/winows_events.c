@@ -11,7 +11,6 @@
 /*****************************************************************************/
 
 # include "../../includes/engine.h"
-# include "../../includes/struct_globale.h"
 
 bl8	    skipTurnResize = false;
 bl8     mouse_on_line_vert      			= false;
@@ -48,7 +47,8 @@ void    reset_resize_values(Engine *engine)
 	line_vert_hierarchy_width       		= 4;
 	SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 	mouse_clicked = false;
-	DE_DEBUG("RESET");
+	engine->allStates.blockMouseStates = false;
+	// DE_DEBUG("RESET");
 }
 
 void	reset_camera_options(Camera2D camera)
@@ -133,6 +133,14 @@ void	adjust_camera_pos(NeedBy3DCam *camera, Vector2 pos)
 void    resize_screen(Engine *engine)
 {
 	DE_DEBUG("Adjust Menu Camera");
+	if (IsWindowMaximized())
+	{
+		// DE_DEBUG("Maximize Window");
+	}
+	else if (IsWindowFocused())
+	{
+		// DE_DEBUG("Minimize Window");
+	}
 	
 	Vector2 diff = (Vector2){engine->screenSize.x - engine->lastScreenSize.x, engine->screenSize.y - engine->lastScreenSize.y};
 
@@ -344,12 +352,12 @@ void    resize_right_panel(Engine *engine)
 		return;
 	}
 
-	// Line verticale separation 00/05 et 01/02 panels
 	Rectangle rec01 = engine->allCameras->camera01.rectForCam;
 	Rectangle rec02 = engine->allCameras->camera02.rectForCam;
 	Rectangle rec04 = engine->allCameras->camera04.rectForCam;
 	Rectangle rec05 = engine->allCameras->camera05.rectForCam;
 
+	// Line verticale separation 00/05 et 01/02 panels
 	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec01.x, rec01.y}, (Vector2){rec01.x, rec01.y + rec01.height}, line_vert_right_width)
 			|| CheckCollisionPointLine(GetMousePosition(), (Vector2){rec02.x, rec02.y}, (Vector2){rec02.x, rec02.y + rec02.height}, line_vert_right_width))
 	{
@@ -398,6 +406,7 @@ void    resize_right_panel(Engine *engine)
 		{
 			// DE_INFO("Click on line Vertical Right");
 			line_vert_right_width = 500;
+			engine->allStates.blockMouseStates = true;
 			if (mouse_on_line_pos.x != mouse_on_line_pos_old.x)
 			{
 				// DE_INFO("Mouse move on line");
@@ -407,6 +416,7 @@ void    resize_right_panel(Engine *engine)
 		else if (mouse_on_line_hori_right_panels_ct)
 		{
 			line_hori_right_width = 500;
+			engine->allStates.blockMouseStates = true;
 			if (mouse_on_line_pos.y != mouse_on_line_pos_old.y)
 			{
 				// DE_INFO("Mouse move on line");
@@ -417,6 +427,7 @@ void    resize_right_panel(Engine *engine)
 		{
 			// DE_INFO("Click on line horizontal center");
 			line_hori_center_width = 500;
+			engine->allStates.blockMouseStates = true;
 			if (mouse_on_line_pos.y != mouse_on_line_pos_old.y)
 			{
 				// DE_INFO("Mouse move on line");
@@ -427,6 +438,7 @@ void    resize_right_panel(Engine *engine)
 		{
 			// DE_INFO("Click on line vertical hyerarchie");
 			line_vert_hierarchy_width = 500;
+			engine->allStates.blockMouseStates = true;
 			if (mouse_on_line_pos.x != mouse_on_line_pos_old.x)
 			{
 				// DE_INFO("Mouse move on line");

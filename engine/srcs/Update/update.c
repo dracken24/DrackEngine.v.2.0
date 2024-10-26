@@ -10,13 +10,15 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-# include "../../includes/engine.h"
-# include "../../includes/struct_globale.h"
-# include "../../includes/Config/menus.h"
+#include "../../includes/engine.h"
+#include "../../includes/struct_globale.h"
+#include "../../includes/Config/menus.h"
 
-# include <fcntl.h>
-# include "../../../library/extern/raylib/src/rlgl.h" 
+#include <fcntl.h>
+#include "../../../library/extern/raylib/src/rlgl.h" 
+#include "workspace.h"
 
+void    check_mouse_state(void);
 
 void    draw_msg_intro(void)
 {
@@ -36,7 +38,7 @@ void    input_events(Engine *engine)
 {
 	if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
 	{
-		switch (engine->currentStateView)
+		switch (engine->allStates.currentStateView)
 		{
 		case STATE_VIEW_ENGINE:
 			engine->exitCt = true;
@@ -75,37 +77,6 @@ void	use_image(Engine *engine, Rectangle rect, Vector2 offset)
 		(Vector2){ offset.x, offset.y },
 		WHITE
 	);
-}
-
-
-#define CAMERA_ROT_SPEED 0.003f
-#define CAMERA_MOVE_SPEED 0.01f
-#define CAMERA_ZOOM_SPEED 1.0f
-
-static void update_camera(Camera3D *camera)
-{
-    bool is_mmb_down = IsMouseButtonDown(2);
-    bool is_shift_down = IsKeyDown(KEY_LEFT_SHIFT);
-    Vector2 mouse_delta = GetMouseDelta();
-
-    if (is_mmb_down && is_shift_down)
-	{
-        CameraMoveRight(camera, -CAMERA_MOVE_SPEED * mouse_delta.x, true);
-
-        Vector3 right = GetCameraRight(camera);
-        Vector3 up = Vector3CrossProduct(Vector3Subtract(camera->position, camera->target), right);
-
-        up = Vector3Scale(Vector3Normalize(up), CAMERA_MOVE_SPEED * mouse_delta.y);
-        camera->position = Vector3Add(camera->position, up);
-        camera->target = Vector3Add(camera->target, up);
-    }
-	else if (is_mmb_down)
-	{
-        CameraYaw(camera, -CAMERA_ROT_SPEED * mouse_delta.x, true);
-        CameraPitch(camera, CAMERA_ROT_SPEED * mouse_delta.y, true, true, false);
-    }
-
-    CameraMoveToTarget(camera, -GetMouseWheelMove() * CAMERA_ZOOM_SPEED);
 }
 
 void    update_main_view(Engine *engine)
@@ -267,7 +238,9 @@ void    dr_update(Engine *engine)
 	}
 	else
 	{
-		switch(engine->currentStateView)
+		check_mouse_state();
+		// DE_WARNING("Mouse Current State: %d", engine->allStates.currentStateMouse);
+		switch(engine->allStates.currentStateView)
         {
             case STATE_VIEW_ENGINE:
 				input_events(engine);

@@ -10,8 +10,8 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-# include "../../includes/engine.h"
-# include "../../includes/struct_globale.h"
+#include "../../includes/engine.h"
+#include "workspace.h"
 
 // ----------------------------------------
 // NOTE: Imitation de fonction template
@@ -34,6 +34,32 @@ SWAP_FUNCTION(Vector3, Vector3)
 
 // ----------------------------------------
 
+void update_camera(Camera3D *camera)
+{
+    bool is_mmb_down = IsMouseButtonDown(2);
+    bool is_shift_down = IsKeyDown(KEY_LEFT_SHIFT);
+    Vector2 mouse_delta = GetMouseDelta();
+
+    if (is_mmb_down && is_shift_down)
+	{
+        CameraMoveRight(camera, -CAMERA_MOVE_SPEED * mouse_delta.x, true);
+
+        Vector3 right = GetCameraRight(camera);
+        Vector3 up = Vector3CrossProduct(Vector3Subtract(camera->position, camera->target), right);
+
+        up = Vector3Scale(Vector3Normalize(up), CAMERA_MOVE_SPEED * mouse_delta.y);
+        camera->position = Vector3Add(camera->position, up);
+        camera->target = Vector3Add(camera->target, up);
+    }
+	else if (is_mmb_down)
+	{
+        CameraYaw(camera, -CAMERA_ROT_SPEED * mouse_delta.x, true);
+        CameraPitch(camera, CAMERA_ROT_SPEED * mouse_delta.y, true, true, false);
+    }
+
+    CameraMoveToTarget(camera, -GetMouseWheelMove() * CAMERA_ZOOM_SPEED);
+}
+
 // Draw a grid centered at (0, 0, 0)
 void	draw_grid(int slices, float spacing, Color color)
 {
@@ -53,6 +79,8 @@ void	draw_grid(int slices, float spacing, Color color)
     rlEnd();
 }
 
+bl8	g_reset_workspace = false;
+
 void    ftControlMainPanel(Engine *engine, Camera *camera)
 {
 	Model *model = &engine->testWorkspace.model;
@@ -60,23 +88,37 @@ void    ftControlMainPanel(Engine *engine, Camera *camera)
 	RGizmo *gizmo = &engine->testWorkspace.gizmo;
 	Vector3 position = { model->transform.m12, model->transform.m13, model->transform.m14};
 
-	if (IsKeyDown(KEY_H))
+	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE || g_reset_workspace)
 	{
-		position = (Vector3){ modelCube->transform.m12, modelCube->transform.m13, modelCube->transform.m14};
-		rgizmo_update(gizmo, *camera, position);
-		modelCube->transform = MatrixMultiply(
-			modelCube->transform, rgizmo_get_tranform(*gizmo, position)
-		);
-	}
-	else
-	{
-		position = (Vector3){ model->transform.m12, model->transform.m13, model->transform.m14};
-		rgizmo_update(gizmo, *camera, position);
-		model->transform = MatrixMultiply(
-			model->transform, rgizmo_get_tranform(*gizmo, position)
-		);
-	}
+		// DE_DEBUG("g_reset_workspace: %d", g_reset_workspace);
+		if (IsKeyDown(KEY_H))
+		{
+			position = (Vector3){ modelCube->transform.m12, modelCube->transform.m13, modelCube->transform.m14};
+			rgizmo_update(gizmo, *camera, position);
+			modelCube->transform = MatrixMultiply(
+				modelCube->transform, rgizmo_get_tranform(*gizmo, position)
+			);
+		}
+		else
+		{
+			position = (Vector3){ model->transform.m12, model->transform.m13, model->transform.m14};
+			rgizmo_update(gizmo, *camera, position);
+			model->transform = MatrixMultiply(
+				model->transform, rgizmo_get_tranform(*gizmo, position)
+			);
+		}
 
+		// Release Gizmo whel leave workspace
+		if (g_reset_workspace)
+		{
+			g_reset_workspace = false;
+			if (gizmo->state > 5)
+			{
+				gizmo->state = RGIZMO_STATE_COLD;	
+			}
+		}
+	}
+	DE_DEBUG("gizmo->state: %d", gizmo->state);
 
 	ClearBackground(DARKGRAY);
 	rlEnableDepthTest();

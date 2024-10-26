@@ -5,7 +5,7 @@
 /* |             ---------------------------------------------             | */
 /* |             *--* DATE:		     06-09-2024           *--*             | */
 /* |             ---------------------------------------------             | */
-/* |             *--* FILE: 	     up_panel.c           *--*            | */
+/* |             *--* FILE: 	     up_panel.c           *--*             | */
 /* |             ---------------------------------------------             | */
 /*/|\~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~/|\*/
 /*****************************************************************************/
@@ -14,6 +14,8 @@
 #include "../../../../library/drackengine_lib/logger.h"
 #include "../../../includes/Config/menus.h"
 #include "../../memory/dmemory.h"
+
+void	change_state_mouse(MouseState mouse_state);
 
 void    draw_play_stop(Engine *engine)
 {
@@ -69,8 +71,11 @@ void	ftDrawMenuUp(Engine *engine)
 
 void    change_view(Engine *engine, ViewState state, bl8 resize_window)
 {
-    engine->lastStateView = engine->currentStateView;
-    engine->currentStateView = state;
+    engine->allStates.lastStateView = engine->allStates.currentStateView;
+    engine->allStates.currentStateView = state;
+
+    change_state_mouse(MOUSE_STATE_ON_OTHER_WINDOW);
+
     if (resize_window)
     {
         engine->screenSizeWindow = WINDOW_OTHERS;

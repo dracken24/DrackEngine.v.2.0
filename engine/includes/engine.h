@@ -37,39 +37,39 @@ struct RGizmo;
 #define MAIN_MENU_LENGTH 4
 typedef enum  MainMenus
 {
-    FILES,
-    EDIT,
-    VIEW,
-    HELP
+	FILES,
+	EDIT,
+	VIEW,
+	HELP
 }   MainMenus;
 
 #define SUB_MENU_FILES_LENGTH 16
 typedef enum  SubMenus
 {
-    FILES_NEW,
-    FILES_OPEN,
-    FILES_SAVE,
-    FILES_SAVE_AS,
-    FILES_EXPORT,
+	FILES_NEW,
+	FILES_OPEN,
+	FILES_SAVE,
+	FILES_SAVE_AS,
+	FILES_EXPORT,
 
-    EDIT_UNDO,
-    EDIT_REDO,
-    EDIT_CUT,
-    EDIT_COPY,
-    EDIT_PASTE,
+	EDIT_UNDO,
+	EDIT_REDO,
+	EDIT_CUT,
+	EDIT_COPY,
+	EDIT_PASTE,
 
-    SETTINGS_LANGUAGE,
-    SETTINGS_THEME,
-    SETTINGS_OPTIONS,
+	SETTINGS_LANGUAGE,
+	SETTINGS_THEME,
+	SETTINGS_OPTIONS,
 
-    HELP_ABOUT,
-    HELP_SUPPORT,
-    HELP_DOCUMENTATION,
+	HELP_ABOUT,
+	HELP_SUPPORT,
+	HELP_DOCUMENTATION,
 }   SubMenus;
 
 typedef struct DE_Font
 {
-    Font    defaultFont;
+	Font    defaultFont;
 }   DE_Font;
 
 typedef struct Cube3D
@@ -82,8 +82,8 @@ typedef struct Cube3D
 
 typedef struct ButtonsMenu
 {
-    Button*  play;
-    Button*  stop;
+	Button*  play;
+	Button*  stop;
 }   ButtonsMenu;
 
 typedef struct Ray3D
@@ -98,40 +98,54 @@ typedef struct Ray3D
 
 typedef enum ViewState
 {
-    STATE_VIEW_ENGINE,
-    STATE_VIEW_FILES_NEW_PROJECT,
-    STATE_VIEW_FILES_OPEN_PROJECT,
-    STATE_VIEW_FILES_SAVE,
-    STATE_VIEW_FILES_SAVE_AS,
-    STATE_VIEW_FILES_EXPORT,
+	STATE_VIEW_ENGINE,
+	STATE_VIEW_FILES_NEW_PROJECT,
+	STATE_VIEW_FILES_OPEN_PROJECT,
+	STATE_VIEW_FILES_SAVE,
+	STATE_VIEW_FILES_SAVE_AS,
+	STATE_VIEW_FILES_EXPORT,
 
-    STATE_VIEW_EDIT_UNDO,
-    STATE_VIEW_EDIT_REDO,
-    STATE_VIEW_EDIT_CUT,
-    STATE_VIEW_EDIT_COPY,
-    STATE_VIEW_EDIT_PASTE,
+	STATE_VIEW_EDIT_UNDO,
+	STATE_VIEW_EDIT_REDO,
+	STATE_VIEW_EDIT_CUT,
+	STATE_VIEW_EDIT_COPY,
+	STATE_VIEW_EDIT_PASTE,
 
-    STATE_VIEW_SETTINGS_LANGUAGE,
-    STATE_VIEW_SETTINGS_THEME,
-    STATE_VIEW_SETTINGS_OPTIONS,
+	STATE_VIEW_SETTINGS_LANGUAGE,
+	STATE_VIEW_SETTINGS_THEME,
+	STATE_VIEW_SETTINGS_OPTIONS,
 
-    STATE_VIEW_HELP_ABOUT,
-    STATE_VIEW_HELP_SUPPORT,
-    STATE_VIEW_HELP_DOCUMENTATION,
+	STATE_VIEW_HELP_ABOUT,
+	STATE_VIEW_HELP_SUPPORT,
+	STATE_VIEW_HELP_DOCUMENTATION,
 }   ViewState;
 
-// TODO: Placer pour empecher de cliquen a travers les menus
+// TODO: Placer pour empecher de cliquer a travers les menus
 typedef enum MouseState
 {
-    MOUSE_STATE_ON_WORKSPACE,
-    MOUSE_STATE_ON_WORK_MENUS,
-    MOUSE_STATE_ON_DROP_DOWN_MENUS,
-    MOUSE_STATE_ON_RESIZE_LINES,
+	MOUSE_STATE_ON_WORKSPACE,			// 0
+	MOUSE_STATE_ON_MENU_01,				// 1
+	MOUSE_STATE_ON_MENU_02,				// 2
+	MOUSE_STATE_ON_MENU_03,				// 3
+	MOUSE_STATE_ON_MENU_04,				// 4
+	MOUSE_STATE_ON_MENU_05,				// 5
+	MOUSE_STATE_ON_RESIZE_LINES_UP, 	// 6
+	MOUSE_STATE_ON_RESIZE_LINES_DOWN,	// 7
+	MOUSE_STATE_ON_RESIZE_LINES_RIGHT,	// 8
+	MOUSE_STATE_ON_RESIZE_LINES_LEFT,	// 9
+	MOUSE_STATE_ON_OTHER_WINDOW,		// 10
 }   MouseState;
 
 typedef struct AllStates
 {
-    // TODO: Mettre states ici
+	// Window states
+	ViewState	currentStateView;
+	ViewState   lastStateView;
+
+	// Mouse states
+	MouseState  currentStateMouse;
+	MouseState  lastStateMouse;
+	bl8			blockMouseStates;
 }   AllStates;
 
 //******************************************************************************//
@@ -140,9 +154,9 @@ typedef struct AllStates
 
 typedef struct TestWorkspace
 {
-    Model model;
-    Model modelCube;
-    struct RGizmo gizmo;
+	Model model;
+	Model modelCube;
+	struct RGizmo gizmo;
 
 }   TestWorkspace;
 
@@ -152,33 +166,36 @@ typedef struct TestWorkspace
 
 typedef struct  Engine
 {
-    Vector2             screenSize; // in engine mode
-    Vector2             lastScreenSize; // in engine mode
-    Vector2             screenSizeWindow; // in window mode
-    // WindowsSizeType     savedScreenSizeWindow;
+	Vector2			screenSize; // in engine mode
+	Vector2			lastScreenSize; // in engine mode
+	Vector2			screenSizeWindow; // in window mode
+	// WindowsSizeType     savedScreenSizeWindow;
 
-    MultipleCam3D	        *allCameras;
+	MultipleCam3D   *allCameras;
 
-    // Buttons Menu Up Bar
-    ButtonsMenu             buttonsMenuUp;
+	// Buttons Menu Up Bar
+	ButtonsMenu     buttonsMenuUp;
 
-    // Window state
-    ViewState               currentStateView;
-    ViewState               lastStateView;
+	// Window state
+	AllStates       allStates;
+	// ViewState               currentStateView;
+	// ViewState               lastStateView;
 
-    volatile sig_atomic_t   exitCt;
-    bl8                     introCt;
+	bl8             introCt;
 
-    Cube3D	                cube_01;
-    Ray3D			        ray;
-    Mouse			        mouse;
+	Cube3D	        cube_01;
+	Ray3D			ray;
+	Mouse			mouse;
 
-    // Tests
-    Texture2D               testTexture;
-    TestWorkspace           testWorkspace;
+	// Tests
+	Texture2D       testTexture;
+	TestWorkspace   testWorkspace;
 
-    // For Text
-    DE_Font                 fonts;
+	// For Text
+	DE_Font         fonts;
+
+	// Exit Engine
+	volatile sig_atomic_t   exitCt;
 }   Engine;
 
 //##############################################################################//

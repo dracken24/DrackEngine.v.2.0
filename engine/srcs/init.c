@@ -24,7 +24,9 @@ void			init_workspace(Engine *engine);
 void    dr_init(Engine *engine)
 {
     engine->exitCt = false;
-	engine->currentStateView = STATE_VIEW_ENGINE;
+	engine->allStates.currentStateView = STATE_VIEW_ENGINE;
+	engine->allStates.currentStateView = MOUSE_STATE_ON_WORKSPACE;
+	engine->allStates.blockMouseStates = false;
     engine->screenSize = (Vector2){1500, 750};
 	engine->screenSizeWindow = WINDOW_OTHERS;
 

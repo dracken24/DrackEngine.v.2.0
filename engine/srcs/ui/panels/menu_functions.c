@@ -18,8 +18,8 @@
 
 void    quit_menu_window(Engine *engine)
 {
-    engine->lastStateView = engine->currentStateView;
-    engine->currentStateView = STATE_VIEW_ENGINE;
+    engine->allStates.lastStateView = engine->allStates.currentStateView;
+    engine->allStates.currentStateView = STATE_VIEW_ENGINE;
     SetWindowSize(engine->screenSize.x, engine->screenSize.y);
 }
 
