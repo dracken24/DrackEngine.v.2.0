@@ -31,6 +31,7 @@ void    dr_exit(Engine *engine)
 
     rgizmo_unload();
     UnloadModel(engine->testWorkspace.model);
+    UnloadModel(engine->testWorkspace.modelCube);
     
     DE_INFO("Freeing engine in engine");
     free_engine(engine);

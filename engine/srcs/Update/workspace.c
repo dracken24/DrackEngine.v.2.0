@@ -1,3 +1,15 @@
+/*******************************************************************************/
+/*\|/-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-\|/*/
+/* |            ------------------------------------------------             | */
+/* |            *--*  PROJET: DrackLauncher PAR: Dracken24  *--*             | */
+/* |            ------------------------------------------------             | */
+/* |            *--*  DATE:	  	    24-10-2024  	     	*--*             | */
+/* |            ------------------------------------------------             | */
+/* |            *--*  FILE:         workspace.c             *--*             | */
+/* |            ------------------------------------------------             | */
+/*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
+/*******************************************************************************/
+
 # include "../../includes/engine.h"
 # include "../../includes/struct_globale.h"
 
@@ -44,13 +56,27 @@ void	draw_grid(int slices, float spacing, Color color)
 void    ftControlMainPanel(Engine *engine, Camera *camera)
 {
 	Model *model = &engine->testWorkspace.model;
+	Model *modelCube = &engine->testWorkspace.modelCube;
 	RGizmo *gizmo = &engine->testWorkspace.gizmo;
 	Vector3 position = { model->transform.m12, model->transform.m13, model->transform.m14};
 
-	rgizmo_update(gizmo, *camera, position);
-	model->transform = MatrixMultiply(
-		model->transform, rgizmo_get_tranform(*gizmo, position)
-	);
+	if (IsKeyDown(KEY_H))
+	{
+		position = (Vector3){ modelCube->transform.m12, modelCube->transform.m13, modelCube->transform.m14};
+		rgizmo_update(gizmo, *camera, position);
+		modelCube->transform = MatrixMultiply(
+			modelCube->transform, rgizmo_get_tranform(*gizmo, position)
+		);
+	}
+	else
+	{
+		position = (Vector3){ model->transform.m12, model->transform.m13, model->transform.m14};
+		rgizmo_update(gizmo, *camera, position);
+		model->transform = MatrixMultiply(
+			model->transform, rgizmo_get_tranform(*gizmo, position)
+		);
+	}
+
 
 	ClearBackground(DARKGRAY);
 	rlEnableDepthTest();
@@ -58,23 +84,24 @@ void    ftControlMainPanel(Engine *engine, Camera *camera)
 	BeginMode3D(*camera);
 	{
 		DrawModel(*model, (Vector3){0.0, 0.0, 0.0}, 1.0, PURPLE);
+		DrawModel(*modelCube, (Vector3){0.0, 0.0, 0.0}, 1.0, PURPLE);
 
 		draw_grid(100.0, 1.0, GRAY);
 
 		DrawLine3D(
 			(Vector3){-50.0f, 0.0f, 0.0f},
 			(Vector3){50.0f, 0.0f, 0.0f},
-			RED
+			(Color){ 230, 41, 55, 124 } // RED
 		);
 		DrawLine3D(
 			(Vector3){0.0f, -50.0f, 0.0f},
 			(Vector3){0.0f, 50.0f, 0.0f},
-			GREEN
+			(Color){ 0, 228, 48, 124 } // GREEN
 		);
 		DrawLine3D(
 			(Vector3){0.0f, 0.0f, -50.0f},
 			(Vector3){0.0f, 0.0f, 50.0f},
-			DARKBLUE
+			(Color){ 0, 82, 172, 124 } // DARKBLUE
 		);
 
 		rgizmo_draw(*gizmo, *camera, position);

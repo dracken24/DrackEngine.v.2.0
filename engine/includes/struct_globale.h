@@ -23,30 +23,6 @@ typedef struct Mouse
 	int		clickName;
 }	Mouse;
 
-typedef struct NeedBy2DCam
-{
-	RenderTexture 	textForCam2;
-	RenderTexture 	textForCam;
-	Rectangle		rectForCam;
-	Camera2D 		camera;
-	Image			image;
-	// Vector2			offset;
-}	NeedBy2DCam;
-
-typedef struct MultipleCam2D
-{
-	NeedBy2DCam	camera00;
-	NeedBy2DCam camera01;
-	NeedBy2DCam camera02;
-	NeedBy2DCam camera03;
-	NeedBy2DCam camera04;
-	NeedBy2DCam camera05;
-	NeedBy2DCam camera06;
-	NeedBy2DCam camera07;
-	NeedBy2DCam camera08;
-	NeedBy2DCam camera09;
-}	MultipleCam2D;
-
 typedef struct NeedBy3DCam
 {
 	RenderTexture 	textForCam2;
@@ -74,19 +50,6 @@ typedef struct MultipleCam3D
 
 typedef struct BUTTONS
 {
-
-    // void		ftInitButton(Vector2 pos, Vector2 size,
-    // 				Color color, Texture2D texture, int nbr);
-
-    // Vector2		ftReturnPosition(void) const;
-    // Vector2		ftReturnSize(void) const;
-    // Color		ftReturnColor(void) const;
-    // Texture2D	ftReturnTexture(void) const;
-    // Rectangle	ftReturnRectangle(void) const;
-    // int			ftReturnNbr(void) const;
-
-    // void		ftUnloadTexture(void);
-
     Rectangle		_rect;
     Texture2D		_texture;
     Color			_color;

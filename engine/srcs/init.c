@@ -61,6 +61,7 @@ void	init_gizmo(Engine *engine)
 {
 	engine->testWorkspace.gizmo = rgizmo_create();;
 	engine->testWorkspace.model = LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0));
+	engine->testWorkspace.modelCube = LoadModelFromMesh(GenMeshCube(1, 1, 1));
 }
 
 void	init_fonts(Engine *engine)

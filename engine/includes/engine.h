@@ -72,7 +72,6 @@ typedef struct DE_Font
     Font    defaultFont;
 }   DE_Font;
 
-
 typedef struct Cube3D
 {
 	Vector3	pos;
@@ -81,33 +80,21 @@ typedef struct Cube3D
 	char*	name;
 } Cube3D;
 
-// Camera global state context data [56 bytes]
-typedef struct CameraData
+typedef struct ButtonsMenu
 {
-    unsigned int mode;              // Current camera mode
-    float targetDistance;           // Camera distance from position to target
-    float playerEyesPosition;       // Player eyes position from ground (in meters)
-    Vector2 angle;                  // Camera angle in plane XZ
-    Vector2 previousMousePosition;  // Previous mouse position
+    Button*  play;
+    Button*  stop;
+}   ButtonsMenu;
 
-    // Camera movement control keys
-    int moveControl[6];             // Move controls (CAMERA_FIRST_PERSON)
-    int smoothZoomControl;          // Smooth zoom control key
-    int altControl;                 // Alternative control key
-    int panControl;                 // Pan view control key
-}	CameraData;
+typedef struct Ray3D
+{
+	Ray 			ray; // Picking line ray
+	RayCollision	collision;
+}	Ray3D;
 
-static CameraData CAMERA = {        // Global CAMERA state context
-    .mode = 0,
-    .targetDistance = 0,
-    .playerEyesPosition = 1.85f,
-    .angle = { 0 },
-    .previousMousePosition = { 0 },
-    .moveControl = { 'W', 'S', 'D', 'A', 'E', 'Q' },
-    .smoothZoomControl = 341,       // raylib: KEY_LEFT_CONTROL
-    .altControl = 342,              // raylib: KEY_LEFT_ALT
-    .panControl = 2                 // raylib: MOUSE_BUTTON_MIDDLE
-};
+//******************************************************************************//
+//***                                 States                                 ***//
+//******************************************************************************//
 
 typedef enum ViewState
 {
@@ -133,24 +120,35 @@ typedef enum ViewState
     STATE_VIEW_HELP_DOCUMENTATION,
 }   ViewState;
 
-typedef struct Ray3D
+// TODO: Placer pour empecher de cliquen a travers les menus
+typedef enum MouseState
 {
-	Ray 			ray; // Picking line ray
-	RayCollision	collision;
-}	Ray3D;
+    MOUSE_STATE_ON_WORKSPACE,
+    MOUSE_STATE_ON_WORK_MENUS,
+    MOUSE_STATE_ON_DROP_DOWN_MENUS,
+    MOUSE_STATE_ON_RESIZE_LINES,
+}   MouseState;
 
-typedef struct ButtonsMenu
+typedef struct AllStates
 {
-    Button*  play;
-    Button*  stop;
-}   ButtonsMenu;
+    // TODO: Mettre states ici
+}   AllStates;
+
+//******************************************************************************//
+//***                                 Tests                                  ***//
+//******************************************************************************//
 
 typedef struct TestWorkspace
 {
     Model model;
+    Model modelCube;
     struct RGizmo gizmo;
 
 }   TestWorkspace;
+
+//******************************************************************************//
+//***                               MAIN STRUCT                              ***//
+//******************************************************************************//
 
 typedef struct  Engine
 {
@@ -183,8 +181,11 @@ typedef struct  Engine
     DE_Font                 fonts;
 }   Engine;
 
+//##############################################################################//
+//###                     ### Functions Definitions ###                      ###//
+//##############################################################################//
 //******************************************************************************//
-//***                               engine.h                                 ***//
+//***                               engine                                   ***//
 //******************************************************************************//
 
 void    dr_init(Engine *engine);
@@ -192,7 +193,7 @@ void    dr_update(Engine *engine);
 void    dr_exit(Engine *engine);
 
 //******************************************************************************//
-//***                              utility.h                                 ***//
+//***                              utility.C                                 ***//
 //******************************************************************************//
 
 void	open_window(Vector2 screenSize, Vector2 minSize, char *title, bool resizable);

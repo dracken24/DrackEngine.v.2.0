@@ -38,7 +38,7 @@ void    input_events(Engine *engine)
 	{
 		switch (engine->currentStateView)
 		{
-		case 0:
+		case STATE_VIEW_ENGINE:
 			engine->exitCt = true;
 			break;
 		default:
@@ -113,7 +113,7 @@ void    update_main_view(Engine *engine)
 //--------------------------------------------------------------------------------------
 // Update
 //----------------------------------------------------------------------------------
-	// UpdateCamera(&allCameras->camera00.camera3D, CAMERA_FREE);
+	
 	//** Drawning **//
 	Vector2 zero = (Vector2){0, 0};
 
@@ -131,7 +131,7 @@ void    update_main_view(Engine *engine)
 	Rectangle rec01 = engine->allCameras->camera01.rectForCam;
 			
 	BeginTextureMode(engine->allCameras->camera01.textForCam);
-		ClearBackground(DARKGRAY);
+		ClearBackground(DARKGRAY2);
 		BeginMode2D(engine->allCameras->camera01.camera2D);
 
 			// ftSideUpMenu2D(game);
@@ -203,12 +203,6 @@ void    update_main_view(Engine *engine)
 	// Draw render textures to the screen for all cameras
 	BeginDrawing();
 		// ClearBackground(BLACK);
-		
-		// use rectForCam for each camera
-		// DrawTextureRec(engine->allCameras->camera00.textForCam.texture, 
-		// 			(Rectangle){0, 0, engine->allCameras->camera00.rectForCam.width, -engine->allCameras->camera00.rectForCam.height},
-		// 			(Vector2){engine->allCameras->camera00.rectForCam.x, engine->allCameras->camera00.rectForCam.y}, 
-		// 			WHITE);
 		
 		DrawTextureRec(engine->allCameras->camera01.textForCam.texture, 
 					(Rectangle){0, 0, engine->allCameras->camera01.rectForCam.width, -engine->allCameras->camera01.rectForCam.height},
