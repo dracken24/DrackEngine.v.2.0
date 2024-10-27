@@ -1,7 +1,7 @@
 #include "darray.h"
 
 #include "../memory/dmemory.h"
-#include "../../../library/drackengine_lib/logger.h"
+#include "../../library/drackengine_lib/logger.h"
 
 void* _darray_create(uint64 length, uint64 stride)
 {

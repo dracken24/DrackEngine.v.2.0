@@ -1,0 +1,34 @@
+{
+    "menus":
+    {
+        "files":
+        {
+            "new": "Nouveau",
+            "open": "Ouvrir",
+            "save": "Enregistrer",
+            "save_as": "Enregistrer sous",
+            "export": "Exporter",
+            "exit": "Quitter"
+        },
+        "edit":
+        {
+            "undo": "Annuler",
+            "redo": "Refaire",
+            "cut": "Couper",
+            "copy": "Copier",
+            "paste": "Coller"
+        },
+        "view":
+        {
+            "language": "Langue",
+            "theme": "Thème",
+            "options": "Options"
+        },
+        "help":
+        {
+            "about": "À propos",
+            "documentation": "Documentation",
+            "support": "Support"
+        }
+    }
+}

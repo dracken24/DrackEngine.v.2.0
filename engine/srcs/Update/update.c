@@ -10,15 +10,16 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-#include "../../includes/engine.h"
-#include "../../includes/struct_globale.h"
-#include "../../includes/Config/menus.h"
+#include "engine.h"
+#include "struct_globale.h"
+#include "Config/menus.h"
 
 #include <fcntl.h>
-#include "../../../library/extern/raylib/src/rlgl.h" 
+#include "rlgl.h" 
 #include "workspace.h"
 
 void    check_mouse_state(void);
+void    resize_screen(Engine *engine);
 
 extern bl8 refresh_frame;
 
@@ -81,104 +82,9 @@ void	use_image(Engine *engine, Rectangle rect, Vector2 offset)
 	);
 }
 
-void    update_main_view(Engine *engine)
+void	draw_cameras_textures(Engine *engine)
 {
-//--------------------------------------------------------------------------------------
-// Update
-//----------------------------------------------------------------------------------
-	
-	//** Drawning **//
-	Vector2 zero = (Vector2){0, 0};
-
-	// Draw Workspace
-	Camera3D *camera = &engine->allCameras->camera00.camera3D;
-
-	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE)
-	{
-		update_camera(camera);
-	}
-		ftControlMainPanel(engine, camera);
-
-//--------------------------------------------------------------------------------------//
-
-	// Draw Control Panel side up
-	Rectangle rec01 = engine->allCameras->camera01.rectForCam;
-			
-	BeginTextureMode(engine->allCameras->camera01.textForCam);
-		ClearBackground(DARKGRAY2);
-		BeginMode2D(engine->allCameras->camera01.camera2D);
-
-			// ftSideUpMenu2D(game);
-			// use_image(engine, rec01, (Vector2){0, 0});
-			DrawText("Panel side up !", rec01.width / 2 - MeasureText("Panel side up !", 20) / 2, rec01.height / 2 - 10, 20, BLUE);
-
-		EndMode2D();
-	EndTextureMode();
-
-//--------------------------------------------------------------------------------------//
-
-	// Draw Control Panel side down
-	Rectangle rec02 = engine->allCameras->camera02.rectForCam;
-	BeginTextureMode(engine->allCameras->camera02.textForCam);
-		ClearBackground(DARKGRAY2);
-		BeginMode2D(engine->allCameras->camera02.camera2D);
-
-			// ftSideDownMenu3D(game);
-			// use_image(engine, rec02, zero);
-			DrawText("Panel side down !", rec02.width / 2 - MeasureText("Panel side down !", 20) / 2, rec02.height / 2 - 10, 20, BLUE);
-
-		EndMode2D();
-	EndTextureMode();
-
-//--------------------------------------------------------------------------------------//
-
-	// Draw Control Panel Up
-	Rectangle rec03 = engine->allCameras->camera03.rectForCam;
-	BeginTextureMode(engine->allCameras->camera03.textForCam);
-		ClearBackground(DARKGRAY1);
-		BeginMode2D(engine->allCameras->camera03.camera2D);
-
-			ftUpMenu2D(engine, &engine->allCameras->camera03.camera2D);
-			// use_image(engine, rec03, zero);
-
-		EndMode2D();
-	EndTextureMode();
-
-//--------------------------------------------------------------------------------------//
-
-	// Draw Hyerarchy Left
-	Rectangle rec04 = engine->allCameras->camera04.rectForCam;
-	BeginTextureMode(engine->allCameras->camera04.textForCam);
-		ClearBackground(DARKGRAY3);
-		BeginMode2D(engine->allCameras->camera04.camera2D);
-
-			// use_image(engine, rec04, zero);
-			DrawText("Hyerarchy Left !", rec04.width / 2 - MeasureText("Hyerarchy Left !", 20) / 2, rec04.height / 2 - 10, 20, BLUE);
-
-		EndMode2D();
-	EndTextureMode();
-
-//--------------------------------------------------------------------------------------//
-
-	// Console Log center down
-	Rectangle rec05 = engine->allCameras->camera05.rectForCam;
-	BeginTextureMode(engine->allCameras->camera05.textForCam);
-		ClearBackground(DARKGRAY1);
-		BeginMode2D(engine->allCameras->camera05.camera2D);
-
-			// use_image(engine, rec05, zero);
-			DrawText("Console Log center down !", rec05.width / 2 - MeasureText("Console Log center down !", 20) / 2, rec05.height / 2 - 10, 20, BLUE);
-
-		EndMode2D();
-	EndTextureMode();
-
-//--------------------------------------------------------------------------------------//
-
-	// Draw render textures to the screen for all cameras
-	BeginDrawing();
-		// ClearBackground(BLACK);
-		
-		DrawTextureRec(engine->allCameras->camera01.textForCam.texture, 
+	DrawTextureRec(engine->allCameras->camera01.textForCam.texture, 
 					(Rectangle){0, 0, engine->allCameras->camera01.rectForCam.width, -engine->allCameras->camera01.rectForCam.height},
 					(Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y}, 
 					WHITE);
@@ -212,6 +118,111 @@ void    update_main_view(Engine *engine)
 		draw_rectangle_borders(engine->allCameras->camera05.rectForCam, BORDER_COLOR, BORDER_THICK);
 
 		ftDrawDropdownMenu(engine);
+}
+
+#define MAIN_BG_COLOR	CLITERAL(Color){ 105, 104, 111, 188 }
+#define MAIN_BG_COLOR2	CLITERAL(Color){ 96, 96, 100, 188 }
+#define MAIN_TEXT_COLOR VERRYDARKGRAY
+
+void	mount_all_cameras_engine(Engine *engine)
+{
+	// Draw Workspace
+	Camera3D *camera = &engine->allCameras->camera00.camera3D;
+
+	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE)
+	{
+		update_camera(camera);
+	}
+		ftControlMainPanel(engine, camera);
+
+//--------------------------------------------------------------------------------------//
+
+	// Draw Control Panel side up
+	Rectangle rec01 = engine->allCameras->camera01.rectForCam;
+			
+	BeginTextureMode(engine->allCameras->camera01.textForCam);
+		ClearBackground(MAIN_BG_COLOR);
+		BeginMode2D(engine->allCameras->camera01.camera2D);
+
+			// ftSideUpMenu2D(game);
+			// use_image(engine, rec01, (Vector2){0, 0});
+			DrawText("Panel side up !", rec01.width / 2 - MeasureText("Panel side up !", 20) / 2, rec01.height / 2 - 10, 20, MAIN_TEXT_COLOR);
+
+		EndMode2D();
+	EndTextureMode();
+
+//--------------------------------------------------------------------------------------//
+
+	// Draw Control Panel side down
+	Rectangle rec02 = engine->allCameras->camera02.rectForCam;
+	BeginTextureMode(engine->allCameras->camera02.textForCam);
+		ClearBackground(MAIN_BG_COLOR2);
+		BeginMode2D(engine->allCameras->camera02.camera2D);
+
+			// ftSideDownMenu3D(game);
+			// use_image(engine, rec02, zero);
+			DrawText("Panel side down !", rec02.width / 2 - MeasureText("Panel side down !", 20) / 2, rec02.height / 2 - 10, 20, MAIN_TEXT_COLOR);
+
+		EndMode2D();
+	EndTextureMode();
+
+//--------------------------------------------------------------------------------------//
+
+	// Draw Control Panel Up
+	Rectangle rec03 = engine->allCameras->camera03.rectForCam;
+	BeginTextureMode(engine->allCameras->camera03.textForCam);
+		ClearBackground(MAIN_BG_COLOR);
+		BeginMode2D(engine->allCameras->camera03.camera2D);
+
+			ftUpMenu2D(engine, &engine->allCameras->camera03.camera2D);
+			// use_image(engine, rec03, zero);
+
+		EndMode2D();
+	EndTextureMode();
+
+//--------------------------------------------------------------------------------------//
+
+	// Draw Hyerarchy Left
+	Rectangle rec04 = engine->allCameras->camera04.rectForCam;
+	BeginTextureMode(engine->allCameras->camera04.textForCam);
+		ClearBackground(MAIN_BG_COLOR2);
+		BeginMode2D(engine->allCameras->camera04.camera2D);
+
+			// use_image(engine, rec04, zero);
+			DrawText("Hyerarchy Left !", rec04.width / 2 - MeasureText("Hyerarchy Left !", 20) / 2, rec04.height / 2 - 10, 20, MAIN_TEXT_COLOR);
+
+		EndMode2D();
+	EndTextureMode();
+
+//--------------------------------------------------------------------------------------//
+
+	// Console Log center down
+	Rectangle rec05 = engine->allCameras->camera05.rectForCam;
+	BeginTextureMode(engine->allCameras->camera05.textForCam);
+		ClearBackground(MAIN_BG_COLOR);
+		BeginMode2D(engine->allCameras->camera05.camera2D);
+
+			// use_image(engine, rec05, zero);
+			DrawText("Console Log center down !", rec05.width / 2 - MeasureText("Console Log center down !", 20) / 2, rec05.height / 2 - 10, 20, MAIN_TEXT_COLOR);
+
+		EndMode2D();
+	EndTextureMode();
+}
+
+void    update_main_view(Engine *engine)
+{
+//--------------------------------------------------------------------------------------
+// Update
+//----------------------------------------------------------------------------------
+	
+	//** Drawning **//
+	mount_all_cameras_engine(engine);
+
+//--------------------------------------------------------------------------------------//
+
+	// Draw render textures to the screen for all cameras
+	BeginDrawing();
+		draw_cameras_textures(engine);
 	EndDrawing();
 }
 
@@ -241,11 +252,21 @@ void    dr_update(Engine *engine)
 	{
 		check_mouse_state();
 		// DE_WARNING("Mouse Current State: %d", engine->allStates.currentStateMouse);
+		// Andle resize in others windows than Build mode
+		if (IsWindowResized() && engine->allStates.currentStateView != STATE_VIEW_ENGINE)
+		{
+			DE_WARNING("Resize window in MOUSE_STATE_ON_OTHER_WINDOW");
+			engine->lastScreenSize = engine->screenSize;
+			engine->screenSize.x = GetScreenWidth();
+			engine->screenSize.y = GetScreenHeight();
+			resize_screen(engine);
+		}
 		if (refresh_frame)
 		{
 			refresh_frame = false;
 			update_main_view(engine);
 		}
+
 
 		switch(engine->allStates.currentStateView)
         {
@@ -303,14 +324,6 @@ void    dr_update(Engine *engine)
                 menu_help_documentation(engine);
                 break;
         }
-
-		// TODO: Fonctionne mal. A fixer
-		if (IsWindowResized() && engine->allStates.currentStateView != STATE_VIEW_ENGINE)
-		{
-			window_events(engine);
-			update_main_view(engine);
-			// refresh_frame = true;
-		}
 	}
 }
 

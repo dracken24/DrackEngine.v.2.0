@@ -5,7 +5,10 @@ NAME = DrackEngine
 CC = gcc
 # CFLAGS = -Wall -Wextra -Werror -I./includes -I../library/extern/raylib/src
 CFLAGS = -I./includes -I../library/extern/raylib/src
-LINKFLAGS = -lGL -lm -lpthread -ldl -lrt -lX11
+CFLAGS += -I./engine/includes -I./engine/srcs/utility
+CFLAGS += -I./library/libft
+CFLAGS += -I./library/drackengine_lib
+LINKFLAGS = -lGL -lm -lpthread -ldl -lrt -lX11 -lcjson
 
 # Dossiers
 SRC_DIR = srcs

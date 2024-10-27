@@ -80,6 +80,7 @@ void	draw_grid(int slices, float spacing, Color color)
 }
 
 bl8	g_reset_workspace = false;
+void    change_language(Engine *engine, const char *language);
 
 void    ftControlMainPanel(Engine *engine, Camera *camera)
 {

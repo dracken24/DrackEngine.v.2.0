@@ -1,0 +1,35 @@
+
+{
+    "menus":
+    {
+        "files":
+        {
+            "new": "New",
+            "open": "Open",
+            "save": "Save",
+            "save_as": "Save as",
+            "export": "Export",
+            "exit": "Exit"
+        },
+        "edit":
+        {
+            "undo": "Undo",
+            "redo": "Redo",
+            "cut": "Cut",
+            "copy": "Copy",
+            "paste": "Paste"
+        },
+        "view":
+        {
+            "language": "Language",
+            "theme": "Theme",
+            "options": "Options"
+        },
+        "help":
+        {
+            "about": "About",
+            "documentation": "Documentation",
+            "support": "Support"
+        }
+    }
+}

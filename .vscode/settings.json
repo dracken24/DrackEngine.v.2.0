@@ -86,6 +86,8 @@
       "struct_globale.h": "c",
       "stdarg.h": "c",
       "rlgl.h": "c",
-      "raygizmo.h": "c"
+      "raygizmo.h": "c",
+      "cjson.h": "c",
+      "raymath.h": "c"
     },
 }

@@ -35,13 +35,14 @@ void	open_window(Vector2 screenSize, Vector2 minSize, char *title, bool resizabl
     
 }
 
-// char* enum_to_string(MainMenus menu)
-// {
-//     switch (menu)
-//     {
-//         case FILES:
-//             return "Files";
-//         case EDIT:
-//             return "Edit";
-//     }
-// }
+Rectangle rectangle_addition(Rectangle rect01, Rectangle rect02)
+{
+	Rectangle rect_return;
+	
+	rect_return.x = rect01.x + rect02.x;
+	rect_return.y = rect01.y + rect02.y;
+	rect_return.width = rect01.width + rect02.width;
+	rect_return.height = rect01.height + rect02.height;
+
+	return rect_return;
+}

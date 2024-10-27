@@ -13,10 +13,10 @@
 #ifndef WORKSPACE_H
 # define WORKSPACE_H
 
-#include "../../../library/extern/raylib/src/raylib.h"
-#include "../../../library/extern/raylib/src/raymath.h"
-#include "../../../library/extern/raylib/src/rlgl.h"
-#include "../../../library/extern/raygizmo/include/raygizmo.h"
+#include "raylib.h"
+#include "raymath.h"
+#include "rlgl.h"
+#include "../../library/extern/raygizmo/include/raygizmo.h"
 
 #define CAMERA_ROT_SPEED 0.003f
 #define CAMERA_MOVE_SPEED 0.01f

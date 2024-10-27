@@ -86,19 +86,11 @@ void    change_view(Engine *engine, ViewState state, bl8 resize_window, int *sel
     change_state_mouse(MOUSE_STATE_ON_OTHER_WINDOW);
     unselect_tab(selectedTab, isDropdownOpen);
 
-    // DE_WARNING("Resizable 1: %d", IsWindowState(FLAG_WINDOW_RESIZABLE));
-    // if (IsWindowState(FLAG_WINDOW_RESIZABLE))
-    // {
-    //     ClearWindowState(FLAG_WINDOW_RESIZABLE);
-    // }
-    // DE_WARNING("Resizable 2: %d", IsWindowState(FLAG_WINDOW_RESIZABLE));
-
     refresh_frame = true;
 }
 
 void ftDrawDropdownMenu(Engine *engine)
 {
-	(void)engine;
     static int selectedTab = -1;
     static bl8 isDropdownOpen = false;
     static Rectangle dropdownRect = {0};
@@ -132,7 +124,7 @@ void ftDrawDropdownMenu(Engine *engine)
         DrawRectangleLinesEx(tabRect, 1, BLACK);
         DrawTextEx(font, tabs[i], (Vector2){tabRect.x + padding, tabRect.y + 5}, font.baseSize, spacing, BLACK);
 
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && isMouseOver)
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && isMouseOver && engine->allStates.currentStateView == STATE_VIEW_ENGINE)
         {
             clickedOutside = false;  // Le clic n'est pas en dehors
             if (selectedTab == i && isDropdownOpen)
@@ -161,6 +153,11 @@ void ftDrawDropdownMenu(Engine *engine)
         }
 
         startX += tabWidth + 1;
+    }
+
+    if (engine->allStates.currentStateView != STATE_VIEW_ENGINE)
+    {
+        return;
     }
 
     // Dessiner le menu déroulant si ouvert

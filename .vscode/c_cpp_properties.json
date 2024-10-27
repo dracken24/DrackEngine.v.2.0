@@ -3,7 +3,14 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/engine/includes",
+                "${workspaceFolder}/engine/srcs",
+                "${workspaceFolder}/engine/srcs/utility",
+                "${workspaceFolder}/library/extern/raylib/src",
+                "${workspaceFolder}/library/libft",
+                "${workspaceFolder}/library/drackengine_lib",
+                "${workspaceFolder}/library/extern/raygizmo/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

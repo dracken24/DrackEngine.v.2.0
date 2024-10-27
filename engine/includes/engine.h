@@ -13,9 +13,9 @@
 #ifndef ENGINE_H
 # define ENGINE_H
 
-# include "../../library/extern/raylib/src/raylib.h"
-# include "../../library/extern/raylib/src/raymath.h"
-# include "../../library/extern/raylib/src/rlgl.h"
+# include "raylib.h"
+# include "raymath.h"
+# include "rlgl.h"
 # include "../../library/libft/libft.h"
 # include "struct_globale.h"
 # include "../../library/drackengine_lib/drackengine_lib.h"
@@ -91,6 +91,12 @@ typedef struct Ray3D
 	Ray 			ray; // Picking line ray
 	RayCollision	collision;
 }	Ray3D;
+
+typedef struct Language
+{
+	char* language;
+	char*** dropdown_menus_03;
+}	Language;
 
 //******************************************************************************//
 //***                                 States                                 ***//
@@ -191,7 +197,7 @@ typedef struct  Engine
 
 	// For Text
 	DE_Font         fonts;
-
+	Language        language;
 	// Exit Engine
 	volatile sig_atomic_t   exitCt;
 }   Engine;
@@ -211,8 +217,8 @@ void    dr_exit(Engine *engine);
 //***                              utility.C                                 ***//
 //******************************************************************************//
 
-void	open_window(Vector2 screenSize, Vector2 minSize, char *title, bool resizable);
-void    print_memory_usage(const char* phase);
+void		open_window(Vector2 screenSize, Vector2 minSize, char *title, bool resizable);
+void		print_memory_usage(const char* phase);
 
 //******************************************************************************//
 //***                              sideUpPanel.h                             ***//
@@ -244,5 +250,5 @@ void    ftControlMainPanel(Engine *engine, Camera *camera);
 //******************************************************************************//
 
 void    quit_menu_window(Engine *engine);
-
+void    change_language(Engine *engine, const char *language);
 #endif

@@ -12,7 +12,7 @@
 
 #include "buttons.h"
 #include "../memory/dmemory.h"
-#include "../../library/drackengine_lib/logger.h"
+#include "../../../library/drackengine_lib/logger.h"
 
 //******************************** Init ********************************//
 
@@ -182,9 +182,9 @@ void        button_set_text_click_color(Button* button, Color text_click_color)
 
 //******************************* Unload *******************************//
 
-// void        button_unload_texture(Button* button)
-// {
-//     UnloadTexture(button->texture);
-// }
+void        button_unload_texture(Button* button)
+{
+    UnloadTexture(button->texture);
+}
 
 

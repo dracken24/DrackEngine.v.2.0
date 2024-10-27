@@ -10,9 +10,12 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-# include "../includes/engine.h"
-# include "memory/dmemory.h"
-#include "../../library/extern/raylib/src/rlgl.h"
+#include "engine.h"
+#include "memory/dmemory.h"
+#include "utility/text_entry.h"
+
+#include "rlgl.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -20,6 +23,7 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras);
 void			init_buttons_menu_up(Engine *engine);
 void			init_fonts(Engine *engine);
 void			init_workspace(Engine *engine);
+void			init_all_other_windows_textBox(void);
 
 void    dr_init(Engine *engine)
 {
@@ -57,6 +61,9 @@ void    dr_init(Engine *engine)
 
 	init_workspace(engine);
 	init_fonts(engine);
+	init_all_other_windows_textBox();
+	// change_language(engine, "en");
+	// DE_DEBUG("In init Language: %s", engine->language.dropdown_menus_03[0][0]);
 }
 
 void	init_gizmo(Engine *engine)
@@ -196,8 +203,8 @@ MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 	allCameras->camera07.camera2D.zoom = 1.0f;
 	allCameras->camera07.textForCam = LoadRenderTexture(800, 500);
 	allCameras->camera07.rectForCam = (Rectangle){
-		0,
-		0,
+		engine->screenSize.x / 2 - allCameras->camera07.textForCam.texture.width /2,
+		engine->screenSize.y / 2 - allCameras->camera07.textForCam.texture.height /2,
 		allCameras->camera07.textForCam.texture.width,
 		allCameras->camera07.textForCam.texture.height
 	};

@@ -468,7 +468,7 @@ void    window_events(Engine *engine)
 		engine->lastScreenSize = engine->screenSize;
 		engine->screenSize.x = GetScreenWidth();
 		engine->screenSize.y = GetScreenHeight();
-
+		
 		resize_screen(engine);
 		// DE_INFO("Window resized in engine");
 	}

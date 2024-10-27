@@ -10,9 +10,10 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-# include "../includes/engine.h"
+# include "engine.h"
 # include "memory/dmemory.h"
 # include "utility/buttons.h"
+#include "utility/text_entry.h"
 
 // # include <signal.h>
 // # include <sys/types.h>
@@ -20,6 +21,7 @@
 # include <unistd.h>
 
 void    free_engine(Engine *engine);
+void	destroy_all_other_windows_textBox(void);
 
 void    dr_exit(Engine *engine)
 {
@@ -32,6 +34,8 @@ void    dr_exit(Engine *engine)
     rgizmo_unload();
     UnloadModel(engine->testWorkspace.model);
     UnloadModel(engine->testWorkspace.modelCube);
+
+    destroy_all_other_windows_textBox();
     
     DE_INFO("Freeing engine in engine");
     free_engine(engine);
@@ -51,5 +55,6 @@ void    free_engine(Engine *engine)
     UnloadFont(engine->fonts.defaultFont);
 
     de_free(engine->allCameras, sizeof(MultipleCam3D), MEMORY_TAG_ENGINE);
+	// de_free(engine->language.dropdown_menus_03, sizeof(char**), MEMORY_TAG_STRING);
 	// de_free(engine->engine_pid, sizeof(d_Pid) * 10, MEMORY_TAG_ENTITY);
 }
