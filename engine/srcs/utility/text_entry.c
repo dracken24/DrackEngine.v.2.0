@@ -25,7 +25,7 @@ TextBox create_textBox(Rectangle rect, int maxLength)
 {
     TextBox textBox;
     textBox.rect = rect;
-    textBox.text = (char*)de_allocate(maxLength + 1, MEMORY_TAG_ENGINE);
+    textBox.text = (char*)de_allocate(maxLength + 1, MEMORY_TAG_TEXTBOX);
     textBox.text[0] = '\0';
     textBox.textSize = 0;
     textBox.maxLength = maxLength;
@@ -62,9 +62,13 @@ void    update_textBox(TextBox *textBox, Rectangle adjust, Font font, sint32 spa
             textBox->isActive = true;
         }
     }
-    else if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    else
     {
-        textBox->isActive = false;
+        SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+        {
+            textBox->isActive = false;
+        }
     }
 
     if (textBox->isActive)
@@ -139,6 +143,7 @@ void    update_textBox(TextBox *textBox, Rectangle adjust, Font font, sint32 spa
             }
             else
             {
+                DE_WARNING("Time: %f", GetFrameTime());
                 deleteTimer += GetFrameTime();
                 if (deleteTimer > KEY_REPEAT_DELAY)
                 {
@@ -281,8 +286,8 @@ void    draw_textBox(TextBox textBox, Font font, Color fontColor, sint32 spacing
 
 void    resize_textBox_len(TextBox *textBox, sint32 newMaxLen)
 {
-    de_free(textBox->text, textBox->maxLength + 1, MEMORY_TAG_ENGINE);
-    textBox->text = (char*)de_allocate(newMaxLen + 1, MEMORY_TAG_ENGINE);
+    de_free(textBox->text, textBox->maxLength + 1, MEMORY_TAG_TEXTBOX);
+    textBox->text = (char*)de_allocate(newMaxLen + 1, MEMORY_TAG_TEXTBOX);
 }
 
 void    resize_texBox_rectangle(TextBox *textBox, Rectangle newSizeRec)
@@ -292,5 +297,5 @@ void    resize_texBox_rectangle(TextBox *textBox, Rectangle newSizeRec)
 
 void    destroy_textBox(TextBox *textBox)
 {
-    de_free(textBox->text, textBox->maxLength + 1, MEMORY_TAG_ENGINE);
+    de_free(textBox->text, textBox->maxLength + 1, MEMORY_TAG_TEXTBOX);
 }

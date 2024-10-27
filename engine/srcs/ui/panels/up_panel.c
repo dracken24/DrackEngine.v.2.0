@@ -86,6 +86,10 @@ void    change_view(Engine *engine, ViewState state, bl8 resize_window, int *sel
     change_state_mouse(MOUSE_STATE_ON_OTHER_WINDOW);
     unselect_tab(selectedTab, isDropdownOpen);
 
+    Rectangle *rec07 = &engine->allCameras->camera07.rectForCam;
+    rec07->x = engine->screenSize.x / 2 - rec07->width / 2;
+    rec07->y = engine->screenSize.y / 2 - rec07->height / 2;
+
     refresh_frame = true;
 }
 
@@ -169,7 +173,7 @@ void ftDrawDropdownMenu(Engine *engine)
         // TODO: Add options from enum
         const char *files[] = {"New", "Open", "Save", "Save as", "Export", "Exit"};
         const char *edit[] = {"Undo", "Redo", "Cut", "Copy", "Paste"};
-        const char *settings[] = {"Language", "Theme", "Options"};
+        const char *settings[] = {"Engine", "Project", "Options"};
         const char *help[] = {"About", "Documentation", "Support"};
 
         int numOptions;
@@ -282,14 +286,14 @@ void ftDrawDropdownMenu(Engine *engine)
                         break;
                     case (enum MainMenus)VIEW:
                         // DE_DEBUG("Option selected: %d", selectedTab);
-                        if (settings[i] && settings[i] == "Language")
+                        if (settings[i] && settings[i] == "Engine")
                         {
-                            change_view(engine, STATE_VIEW_SETTINGS_LANGUAGE, true, &selectedTab, &isDropdownOpen);
+                            change_view(engine, STATE_VIEW_SETTINGS_ENGINE, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
-                        else if (settings[i] && settings[i] == "Theme")
+                        else if (settings[i] && settings[i] == "Project")
                         {
-                            change_view(engine, STATE_VIEW_SETTINGS_THEME, true, &selectedTab, &isDropdownOpen);
+                            change_view(engine, STATE_VIEW_SETTINGS_PROJECT, true, &selectedTab, &isDropdownOpen);
                             break;
                         }
                         else if (settings[i] && settings[i] == "Options")

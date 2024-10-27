@@ -61,7 +61,7 @@ void    dr_init(Engine *engine)
 
 	init_workspace(engine);
 	init_fonts(engine);
-	init_all_other_windows_textBox();
+	// init_all_other_windows_textBox();
 	// change_language(engine, "en");
 	// DE_DEBUG("In init Language: %s", engine->language.dropdown_menus_03[0][0]);
 }

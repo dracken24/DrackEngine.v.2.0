@@ -21,7 +21,7 @@
 # include <unistd.h>
 
 void    free_engine(Engine *engine);
-void	destroy_all_other_windows_textBox(void);
+// void	destroy_all_other_windows_textBox(void);
 
 void    dr_exit(Engine *engine)
 {
@@ -35,7 +35,7 @@ void    dr_exit(Engine *engine)
     UnloadModel(engine->testWorkspace.model);
     UnloadModel(engine->testWorkspace.modelCube);
 
-    destroy_all_other_windows_textBox();
+    // destroy_all_other_windows_textBox();
     
     DE_INFO("Freeing engine in engine");
     free_engine(engine);

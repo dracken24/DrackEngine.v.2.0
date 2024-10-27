@@ -13,6 +13,7 @@
 #include "engine.h"
 #include "struct_globale.h"
 #include "Config/menus.h"
+#include "../srcs/ui/panels/window07/window07.h"
 
 #include <fcntl.h>
 #include "rlgl.h" 
@@ -20,8 +21,6 @@
 
 void    check_mouse_state(void);
 void    resize_screen(Engine *engine);
-
-extern bl8 refresh_frame;
 
 void    draw_msg_intro(void)
 {
@@ -50,10 +49,6 @@ void    input_events(Engine *engine)
 			quit_menu_window(engine);
 			break;
 		}
-	}
-	if (IsKeyPressed(KEY_M))
-	{
-		print_memory_usage("Update");
 	}
 }
 
@@ -260,6 +255,10 @@ void    dr_update(Engine *engine)
 			engine->screenSize.x = GetScreenWidth();
 			engine->screenSize.y = GetScreenHeight();
 			resize_screen(engine);
+
+			Rectangle *rec07 = &engine->allCameras->camera07.rectForCam;
+			rec07->x = engine->screenSize.x / 2 - rec07->width / 2;
+			rec07->y = engine->screenSize.y / 2 - rec07->height / 2;
 		}
 		if (refresh_frame)
 		{
@@ -305,11 +304,11 @@ void    dr_update(Engine *engine)
 			case STATE_VIEW_EDIT_PASTE:
             	menu_edit_paste(engine);
                 break;
-			case STATE_VIEW_SETTINGS_LANGUAGE:
-                menu_settings_language(engine);
+			case STATE_VIEW_SETTINGS_ENGINE:
+                menu_settings_engine(engine);
                 break;
-			case STATE_VIEW_SETTINGS_THEME:
-                menu_settings_theme(engine);
+			case STATE_VIEW_SETTINGS_PROJECT:
+                menu_settings_project(engine);
                 break;
 			case STATE_VIEW_SETTINGS_OPTIONS:
                 menu_settings_options(engine);

@@ -1,21 +1,12 @@
 #ifndef TEXT_ENTRY_H
 # define TEXT_ENTRY_H
 
-# include "raylib.h"
 # include "engine_defines.h"
+# include "struct_globale.h"
+
+# include "raylib.h"
 
 #include <stdint.h>
-
-typedef struct	TextBox
-{
-	Rectangle rect;
-	char *text;
-	int textSize;
-	int maxLength;
-	int cursorPosition;
-	int textOffset;
-	bool isActive;
-} TextBox;
 
 TextBox	create_textBox(Rectangle rect, int maxLength);
 void    destroy_textBox(TextBox *textBox);

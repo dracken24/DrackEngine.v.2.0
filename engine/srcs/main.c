@@ -37,6 +37,10 @@ int main(void)
     while (!engine.exitCt)
     {
         dr_update(&engine);
+        if (IsKeyPressed(KEY_M))
+        {
+            print_memory_usage("Update");
+        }
     }
 
     dr_exit(&engine);

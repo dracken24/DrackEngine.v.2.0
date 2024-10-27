@@ -39,8 +39,8 @@ void    menu_edit_cut(Engine *engine);
 void    menu_edit_copy(Engine *engine);
 void    menu_edit_paste(Engine *engine);
 
-void    menu_settings_language(Engine *engine);
-void    menu_settings_theme(Engine *engine);
+void    menu_settings_engine(Engine *engine);
+void    menu_settings_project(Engine *engine);
 void    menu_settings_options(Engine *engine);
 
 void    menu_help_about(Engine *engine);

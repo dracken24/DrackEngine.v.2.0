@@ -26,6 +26,10 @@ typedef struct Mouse
 	int		clickName;
 }	Mouse;
 
+//******************************************************************************//
+//***                                Cameras                                 ***//
+//******************************************************************************//
+
 typedef struct NeedBy3DCam
 {
 	RenderTexture 	textForCam2;
@@ -51,6 +55,10 @@ typedef struct MultipleCam3D
 	NeedBy3DCam camera09;
 }	MultipleCam3D;
 
+//******************************************************************************//
+//***                                Buttons                                 ***//
+//******************************************************************************//
+
 typedef struct BUTTONS
 {
     Rectangle		_rect;
@@ -60,57 +68,72 @@ typedef struct BUTTONS
     int				_nbr;
 }   BUTTONS;
 
-typedef struct MenuUp
+
+//******************************************************************************//
+//***                              Text Gestion                              ***//
+//******************************************************************************//
+
+// Struct for text_entry.c
+typedef struct	TextBox
 {
-	BUTTONS		buttonControlClose;
-	BUTTONS		buttonControlOpen;
-	BUTTONS		buttonColorClose;
-	BUTTONS		buttonColorOpen;
-	BUTTONS		buttonListClose;
-	BUTTONS		buttonListOpen;
+	Rectangle rect;
+	char *text;
+	int textSize;
+	int maxLength;
+	int cursorPosition;
+	int textOffset;
+	bool isActive;
+} TextBox;
 
-	BUTTONS		play;
-	BUTTONS		stop;
-}	MenuUp;
-
-typedef struct MenuSideDown
+// struct for New Projec Window camera07
+typedef struct FilesNew
 {
-	BUTTONS		buttonMiddleClose;
-	BUTTONS		buttonMiddleOpen;
-	BUTTONS		buttonRightClose;
-	BUTTONS		buttonRightOpen;
-	BUTTONS		buttonLeftClose;
-	BUTTONS		buttonLeftOpen;
-}	MenuSideDown;
+	TextBox	projectNameEntry;
+}	FilesNew;
 
-typedef struct TrioBox
+typedef struct FilesOpen
 {
-	Vector2		posTextBox;
+	TextBox	projectNameEntry;
+}	FilesOpen;
 
-	Rectangle	writeBox;
-	Rectangle	hitBox;
-}	TrioBox;
-
-typedef struct TextBoxSideUp
+typedef struct FilesSave
 {
-	TrioBox		RightBox0;
-	TrioBox		LeftBox0;
-	TrioBox		RightBox1;
-	TrioBox		LeftBox1;
+	TextBox	testEntry;
+}	FilesSave;
 
-}	TextBoxSideUp;
+typedef struct FilesSaveAs
+{
+	TextBox	testEntry;
+}	FilesSaveAs;
 
-// typedef struct Ray3D
-// {
-// 	Ray 			ray = {0}; // Picking line ray
-// 	RayCollision	collision = {0};
-// }	Ray3D;
+typedef struct FilesExport
+{
+	TextBox	testEntry;
+}	FilesExport;
 
-// typedef struct RayForMove
-// {
-// 	Ray 			ray = {0}; // Picking line ray
-// 	Ray				lastRay;
-// 	RayCollision	collision = {0};
-// }	RayForMove;
+typedef struct SettingsEngine
+{
+	TextBox	testEntry;
+}	SettingsEngine;
+
+typedef struct SettingsProject
+{
+	TextBox	testEntry;
+}	SettingsProject;
+
+typedef struct SettingsOptions
+{
+	TextBox	testEntry;
+}	SettingsOptions;
+
+typedef struct HelpSupport
+{
+	TextBox	testEntry;
+}	HelpSupport;
+
+typedef struct HelpDoc
+{
+	TextBox	testEntry;
+}	HelpDoc;
 
 #endif
