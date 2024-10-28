@@ -59,19 +59,6 @@ typedef struct MultipleCam3D
 	NeedBy3DCam camera09;
 }	MultipleCam3D;
 
-//******************************************************************************//
-//***                                Buttons                                 ***//
-//******************************************************************************//
-
-typedef struct BUTTONS
-{
-    Rectangle		_rect;
-    Texture2D		_texture;
-    Color			_color;
-
-    int				_nbr;
-}   BUTTONS;
-
 
 //******************************************************************************//
 //***                              Text Gestion                              ***//
@@ -87,12 +74,22 @@ typedef struct	TextBox
 	int cursorPosition;
 	int textOffset;
 	bool isActive;
+
+	float backspaceTimer;
+	float deleteTimer;
+	float leftArrowTimer;
+	float rightArrowTimer;
+	bool isBackspaceHeld;
+	bool isDeleteHeld;
+	bool isLeftArrowHeld;
+	bool isRightArrowHeld;
 } TextBox;
 
 // struct for New Projec Window camera07
 typedef struct FilesNew
 {
 	TextBox	projectNameEntry;
+	TextBox	versionEntry;
 
 	Button	confirmButton;
 }	FilesNew;

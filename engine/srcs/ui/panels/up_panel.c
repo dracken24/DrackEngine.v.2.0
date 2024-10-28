@@ -22,49 +22,8 @@ extern bl8 refresh_frame;
 
 void    draw_play_stop(Engine *engine)
 {
-    Vector2 mousePos = GetMousePosition();
-    
-    // Bouton Play
-    Rectangle playRect = (Rectangle)
-    {
-        button_get_position(&engine->buttonsMenuUp.play).x,
-        button_get_position(&engine->buttonsMenuUp.play).y,
-        engine->buttonsMenuUp.play.texture.width * engine->buttonsMenuUp.play.scale,
-        engine->buttonsMenuUp.play.texture.height * engine->buttonsMenuUp.play.scale
-    };
-    
-    // Bouton Stop
-    Rectangle stopRect = (Rectangle)
-    {
-        button_get_position(&engine->buttonsMenuUp.stop).x,
-        button_get_position(&engine->buttonsMenuUp.stop).y,
-        engine->buttonsMenuUp.stop.texture.width * engine->buttonsMenuUp.stop.scale,
-        engine->buttonsMenuUp.stop.texture.height * engine->buttonsMenuUp.stop.scale
-    };
-
-    // Vérifier si la souris est sur le bouton Play
-    if (CheckCollisionPointRec(mousePos, playRect))
-    {
-        DrawTextureEx(engine->buttonsMenuUp.play.texture_hover,
-            button_get_position(&engine->buttonsMenuUp.play), 0, engine->buttonsMenuUp.play.scale, WHITE);
-    }
-    else
-    {
-        DrawTextureEx(engine->buttonsMenuUp.play.texture,
-            button_get_position(&engine->buttonsMenuUp.play), 0, engine->buttonsMenuUp.play.scale, WHITE);
-    }
-
-    // Vérifier si la souris est sur le bouton Stop
-    if (CheckCollisionPointRec(mousePos, stopRect))
-    {
-        DrawTextureEx(engine->buttonsMenuUp.stop.texture_hover,
-            button_get_position(&engine->buttonsMenuUp.stop), 0, engine->buttonsMenuUp.stop.scale, WHITE);
-    }
-    else
-    {
-        DrawTextureEx(engine->buttonsMenuUp.stop.texture,
-            button_get_position(&engine->buttonsMenuUp.stop), 0, engine->buttonsMenuUp.stop.scale, WHITE);
-    }
+    draw_button(&engine->buttonsMenuUp.play, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0});
+    draw_button(&engine->buttonsMenuUp.stop, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0});
 }
 
 void	ftDrawMenuUp(Engine *engine)

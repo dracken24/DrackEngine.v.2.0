@@ -39,6 +39,8 @@ Button		button_init(Vector2 pos, Vector2 size, Color bg_color,
     button.texture = (Texture2D){0};
     button.texture_hover = (Texture2D){0};
     button.texture_click = (Texture2D){0};
+    button.onClickCallback = NULL;
+    button.userData = NULL;
     
     if (text != NULL)
     {
@@ -62,25 +64,24 @@ void    button_unload(Button* button)
     if (button->isAllocate == true)
     {
         // DE_WARNING("Free In Button");
-        // DE_WARNING("Button text: %s", button->text);
         de_free(button->text, sizeof(char) * (ft_strlen(button->text) + 1), MEMORY_TAG_BUTTONS);
     }
 }
 
-void    draw_button(Button const button, intptr_t fontSize, sint32 spacing,
+void    draw_button(Button* button, intptr_t fontSize, sint32 spacing,
             sint32 borderThick, Color borderColor, Vector2 cameraOrigin)
 {
     Vector2 mousePos = GetMousePosition();
-    Vector2 textPos = {button.rect.x + button.rect.width / 2 , button.rect.y + button.rect.height / 2};
+    Vector2 textPos = {button->rect.x + button->rect.width / 2 , button->rect.y + button->rect.height / 2};
 
-    if (button.isAllocate)
+    if (button->isAllocate)
     {
-        Vector2 textVec = MeasureTextEx(button.font, button.text, fontSize ? fontSize : button.font.baseSize, spacing);
+        Vector2 textVec = MeasureTextEx(button->font, button->text, fontSize ? fontSize : button->font.baseSize, spacing);
         textPos.x -= textVec.x / 2;
         textPos.y -= textVec.y / 2;
     }
 
-    Rectangle hitBox = button.rect;
+    Rectangle hitBox = button->rect;
     hitBox.x += cameraOrigin.x;
     hitBox.y += cameraOrigin.y;
 
@@ -88,61 +89,72 @@ void    draw_button(Button const button, intptr_t fontSize, sint32 spacing,
     {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
-            if (button.texture_click.id > 0)
+            if (button->texture_click.id > 0)
             {
-                DE_WARNING("Not Good");
-                DrawTextureEx(button.texture_click, (Vector2){button.rect.x, button.rect.y},
-                    0, button.scale, WHITE);
+                // DE_WARNING("texture click");
+                DrawTextureEx(button->texture_click, (Vector2){button->rect.x, button->rect.y},
+                    0, button->scale, WHITE);
             }
             else
             {
-                DrawRectangleRec(button.rect, button.bg_click_color);
-                if (button.isAllocate)
+                DrawRectangleRec(button->rect, button->bg_click_color);
+                if (button->isAllocate)
                 {
-                    DrawTextEx(button.font, button.text, textPos,
-                        fontSize ? fontSize : button.font.baseSize, spacing, button.text_color);
+                    DrawTextEx(button->font, button->text, textPos,
+                        fontSize ? fontSize : button->font.baseSize, spacing, button->text_color);
                 }
             }
 
-            draw_rectangle_borders(button.rect, borderColor, borderThick);
+            // Launck function if fn is defined
+            if (button->onClickCallback && button->isClicked == false)
+            {
+                button->onClickCallback(button->userData);
+                button->isClicked = true;
+            }
+
+            draw_rectangle_borders(button->rect, borderColor, borderThick);
             return;
         }
-
-        if (button.texture_hover.id > 0)
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
         {
-            //  DE_WARNING("Not Good");
-            DrawTextureEx(button.texture_hover, (Vector2){button.rect.x, button.rect.y},
-                0, button.scale, WHITE);
+            button->isClicked = false;
+        }
+
+        if (button->texture_hover.id > 0)
+        {
+            // DE_WARNING("texture hoover click");
+            DrawTextureEx(button->texture_hover, (Vector2){button->rect.x, button->rect.y},
+                0, button->scale, WHITE);
         }
         else
         {
-            DrawRectangleRec(button.rect, button.bg_hover_color);
-            if (button.isAllocate)
+            DrawRectangleRec(button->rect, button->bg_hover_color);
+            if (button->isAllocate)
             {
-                DrawTextEx(button.font, button.text, textPos,
-                    fontSize ? fontSize : button.font.baseSize, spacing, button.text_color);
+                DrawTextEx(button->font, button->text, textPos,
+                    fontSize ? fontSize : button->font.baseSize, spacing, button->text_color);
             }
         }
     }
     else
     {
-        if (button.texture.id > 0)
+        if (button->texture.id > 0)
         {
-            //  DE_WARNING("Not Good");
-            DrawTextureEx(button.texture, (Vector2){button.rect.x, button.rect.y},
-                    0, button.scale, WHITE);
+            // DE_WARNING("texture");
+            DrawTextureEx(button->texture, (Vector2){button->rect.x, button->rect.y},
+                    0, button->scale, WHITE);
         }
         else
         {
-            DrawRectangleRec(button.rect, button.bg_color);
-            if (button.isAllocate)
+            DrawRectangleRec(button->rect, button->bg_color);
+            if (button->isAllocate)
             {
-                DrawTextEx(button.font, button.text, textPos,
-                        fontSize ? fontSize : button.font.baseSize, spacing, button.text_color);
+                DrawTextEx(button->font, button->text, textPos,
+                        fontSize ? fontSize : button->font.baseSize, spacing, button->text_color);
             }
         }
     }
-    draw_rectangle_borders(button.rect, borderColor, borderThick);
+    draw_rectangle_borders(button->rect, borderColor, borderThick);
 }
 
 //******************************************************************************//
@@ -280,6 +292,11 @@ void        button_set_text_click_color(Button* button, Color text_click_color)
     button->text_click_color = text_click_color;
 }
 
+void    button_set_function(Button* button, void (*callback)(void *), void *userData)
+{
+    button->onClickCallback = callback;
+    button->userData = userData;
+}
 //******************************* Unload *******************************//
 
 void        button_unload_texture(Button* button)

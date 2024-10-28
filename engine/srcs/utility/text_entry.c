@@ -32,19 +32,20 @@ TextBox create_textBox(Rectangle rect, int maxLength)
     textBox.isActive = false;
     textBox.cursorPosition = 0;
     textBox.textOffset = 0;
+
+    textBox.backspaceTimer = 0.0f;
+    textBox.deleteTimer = 0.0f;
+    textBox.leftArrowTimer = 0.0f;
+    textBox.rightArrowTimer = 0.0f;
+    textBox.isBackspaceHeld = false;
+    textBox.isDeleteHeld = false;
+    textBox.isLeftArrowHeld = false;
+    textBox.isRightArrowHeld = false;
     return textBox;
 }
 
 void    update_textBox(TextBox *textBox, Rectangle adjust, Font font, sint32 spacing, intptr_t fontSize)
 {
-    static float backspaceTimer = 0.0f;
-    static float deleteTimer = 0.0f;
-    static float leftArrowTimer = 0.0f;
-    static float rightArrowTimer = 0.0f;
-    static bool isBackspaceHeld = false;
-    static bool isDeleteHeld = false;
-    static bool isLeftArrowHeld = false;
-    static bool isRightArrowHeld = false;
 
     Vector2 mousePoint = GetMousePosition();
     Rectangle adjustedRect = {
@@ -91,7 +92,7 @@ void    update_textBox(TextBox *textBox, Rectangle adjust, Font font, sint32 spa
         // Backspace key handling
         if (IsKeyDown(KEY_BACKSPACE))
         {
-            if (!isBackspaceHeld)
+            if (!textBox->isBackspaceHeld)
             {
                 if (textBox->cursorPosition > 0)
                 {
@@ -101,35 +102,35 @@ void    update_textBox(TextBox *textBox, Rectangle adjust, Font font, sint32 spa
                     textBox->cursorPosition--;
                     textBox->text[textBox->textSize] = '\0';
                 }
-                isBackspaceHeld = true;
-                backspaceTimer = 0.0f;
+                textBox->isBackspaceHeld = true;
+                textBox->backspaceTimer = 0.0f;
             }
             else
             {
-                backspaceTimer += GetFrameTime();
-                if (backspaceTimer > KEY_REPEAT_DELAY)
+                textBox->backspaceTimer += GetFrameTime();
+                if (textBox->backspaceTimer > KEY_REPEAT_DELAY)
                 {
-                    if (textBox->cursorPosition > 0 && backspaceTimer - KEY_REPEAT_DELAY > KEY_REPEAT_RATE)
+                    if (textBox->cursorPosition > 0 && textBox->backspaceTimer - KEY_REPEAT_DELAY > KEY_REPEAT_RATE)
                     {
                         // delete the character before the cursor
                         memmove(&textBox->text[textBox->cursorPosition - 1], &textBox->text[textBox->cursorPosition], textBox->textSize - textBox->cursorPosition + 1);
                         textBox->textSize--;
                         textBox->cursorPosition--;
                         textBox->text[textBox->textSize] = '\0';
-                        backspaceTimer = KEY_REPEAT_DELAY;
+                        textBox->backspaceTimer = KEY_REPEAT_DELAY;
                     }
                 }
             }
         }
         else
         {
-            isBackspaceHeld = false;
+            textBox->isBackspaceHeld = false;
         }
 
         // Delete key handling
         if (IsKeyDown(KEY_DELETE))
         {
-            if (!isDeleteHeld)
+            if (!textBox->isDeleteHeld)
             {
                 if (textBox->cursorPosition < textBox->textSize)
                 {
@@ -138,89 +139,89 @@ void    update_textBox(TextBox *textBox, Rectangle adjust, Font font, sint32 spa
                     textBox->textSize--;
                     textBox->text[textBox->textSize] = '\0';
                 }
-                isDeleteHeld = true;
-                deleteTimer = 0.0f;
+                textBox->isDeleteHeld = true;
+                textBox->deleteTimer = 0.0f;
             }
             else
             {
                 DE_WARNING("Time: %f", GetFrameTime());
-                deleteTimer += GetFrameTime();
-                if (deleteTimer > KEY_REPEAT_DELAY)
+                textBox->deleteTimer += GetFrameTime();
+                if (textBox->deleteTimer > KEY_REPEAT_DELAY)
                 {
-                    if (textBox->cursorPosition < textBox->textSize && deleteTimer - KEY_REPEAT_DELAY > KEY_REPEAT_RATE)
+                    if (textBox->cursorPosition < textBox->textSize && textBox->deleteTimer - KEY_REPEAT_DELAY > KEY_REPEAT_RATE)
                     {
                         // delete the character after the cursor
                         memmove(&textBox->text[textBox->cursorPosition], &textBox->text[textBox->cursorPosition + 1], textBox->textSize - textBox->cursorPosition);
                         textBox->textSize--;
                         textBox->text[textBox->textSize] = '\0';
-                        deleteTimer = KEY_REPEAT_DELAY;
+                        textBox->deleteTimer = KEY_REPEAT_DELAY;
                     }
                 }
             }
         }
         else
         {
-            isDeleteHeld = false;
+            textBox->isDeleteHeld = false;
         }
 
         // Left arrow key handling
         if (IsKeyDown(KEY_LEFT))
         {
-            if (!isLeftArrowHeld)
+            if (!textBox->isLeftArrowHeld)
             {
                 if (textBox->cursorPosition > 0)
                 {
                     textBox->cursorPosition--;
                 }
-                isLeftArrowHeld = true;
-                leftArrowTimer = 0.0f;
+                textBox->isLeftArrowHeld = true;
+                textBox->leftArrowTimer = 0.0f;
             }
             else
             {
-                leftArrowTimer += GetFrameTime();
-                if (leftArrowTimer > KEY_REPEAT_DELAY)
+                textBox->leftArrowTimer += GetFrameTime();
+                if (textBox->leftArrowTimer > KEY_REPEAT_DELAY)
                 {
-                    if (textBox->cursorPosition > 0 && leftArrowTimer - KEY_REPEAT_DELAY > KEY_REPEAT_RATE)
+                    if (textBox->cursorPosition > 0 && textBox->leftArrowTimer - KEY_REPEAT_DELAY > KEY_REPEAT_RATE)
                     {
                         textBox->cursorPosition--;
-                        leftArrowTimer = KEY_REPEAT_DELAY;
+                        textBox->leftArrowTimer = KEY_REPEAT_DELAY;
                     }
                 }
             }
         }
         else
         {
-            isLeftArrowHeld = false;
+            textBox->isLeftArrowHeld = false;
         }
 
         // Right arrow key handling
         if (IsKeyDown(KEY_RIGHT))
         {
-            if (!isRightArrowHeld)
+            if (!textBox->isRightArrowHeld)
             {
                 if (textBox->cursorPosition < textBox->textSize)
                 {
                     textBox->cursorPosition++;
                 }
-                isRightArrowHeld = true;
-                rightArrowTimer = 0.0f;
+                textBox->isRightArrowHeld = true;
+                textBox->rightArrowTimer = 0.0f;
             }
             else
             {
-                rightArrowTimer += GetFrameTime();
-                if (rightArrowTimer > KEY_REPEAT_DELAY)
+                textBox->rightArrowTimer += GetFrameTime();
+                if (textBox->rightArrowTimer > KEY_REPEAT_DELAY)
                 {
-                    if (textBox->cursorPosition < textBox->textSize && rightArrowTimer - KEY_REPEAT_DELAY > KEY_REPEAT_RATE)
+                    if (textBox->cursorPosition < textBox->textSize && textBox->rightArrowTimer - KEY_REPEAT_DELAY > KEY_REPEAT_RATE)
                     {
                         textBox->cursorPosition++;
-                        rightArrowTimer = KEY_REPEAT_DELAY;
+                        textBox->rightArrowTimer = KEY_REPEAT_DELAY;
                     }
                 }
             }
         }
         else
         {
-            isRightArrowHeld = false;
+            textBox->isRightArrowHeld = false;
         }
 
         // Adjust the text offset
