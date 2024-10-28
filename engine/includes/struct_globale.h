@@ -90,8 +90,10 @@ typedef struct FilesNew
 {
 	TextBox	projectNameEntry;
 	TextBox	versionEntry;
+	TextBox	pathEntry;
 
 	Button	confirmButton;
+	Button	changePathButton;
 }	FilesNew;
 
 typedef struct FilesOpen

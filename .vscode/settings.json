@@ -89,6 +89,9 @@
       "raygizmo.h": "c",
       "cjson.h": "c",
       "raymath.h": "c",
-      "fcntl.h": "c"
+      "fcntl.h": "c",
+      "tinyfiledialogs.h": "c",
+      "window07.h": "c",
+      "file_dialog.h": "c"
     },
 }
