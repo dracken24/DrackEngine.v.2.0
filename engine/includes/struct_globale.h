@@ -1,7 +1,10 @@
 #ifndef STRUCT_GLOBLE_H
 # define STRUCT_GLOBLE_H
 
+# include "../srcs/utility/buttons.h"
+
 # include "raylib.h"
+
 # include <math.h>
 
 # define G 800
@@ -22,6 +25,7 @@
 typedef struct Mouse
 {
 	Vector2	pos;
+	Vector2	lastPos;
 	float	camZoom;
 	int		clickName;
 }	Mouse;
@@ -89,6 +93,8 @@ typedef struct	TextBox
 typedef struct FilesNew
 {
 	TextBox	projectNameEntry;
+
+	Button	confirmButton;
 }	FilesNew;
 
 typedef struct FilesOpen

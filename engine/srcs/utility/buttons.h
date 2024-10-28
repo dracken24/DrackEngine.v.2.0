@@ -31,14 +31,18 @@ typedef struct Button
 	Color			text_color;
 	Color			text_hover_color;
 	Color			text_click_color;
-	
+
+	bl8				isClicked;
+	bl8				isAllocate;
 	fl32			scale;
 	int				nbr;
 }	Button;
 
-Button*		button_init(Vector2 pos, Vector2 size,
-				Color bg_color, Color text_color, char* texturePath, fl32 scale, int nbr);
+Button		button_init(Vector2 pos, Vector2 size, Color bg_color,
+				Color text_color, char* texturePath, char* text, fl32 scale, int nbr);
 void		button_unload(Button* button);
+void		draw_button(Button const button, intptr_t fontSize, sint32 spacing,
+				sint32 borderThick, Color borderColor, Vector2 cameraOrigin);
 
 Vector2		button_get_position(Button* button);
 Vector2		button_get_size(Button* button);

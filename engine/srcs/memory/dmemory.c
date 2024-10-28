@@ -35,6 +35,7 @@ static const char* memory_tag_strings[MEMORY_TAG_MAX_TAGS] = {
     "ARRAY      ",
     "DARRAY     ",
     "TEXTBOX    ",
+    "BUTTONS    ",
     "DICT       ",
     "RING_QUEUE ",
     "BST        ",

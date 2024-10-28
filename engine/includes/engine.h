@@ -29,12 +29,12 @@
 struct RGizmo;
 
 // Windows define
-#define BORDER_COLOR DARKPURPLE2
-#define BORDER_THICK 3
-#define WINDOW_OTHERS (Vector2){800, 500}
-#define CAMERA_UP_BAR 30
+# define BORDER_COLOR DARKPURPLE2
+# define BORDER_THICK 3
+# define WINDOW_OTHERS (Vector2){800, 500}
+# define CAMERA_UP_BAR 30
 
-#define MAIN_MENU_LENGTH 4
+# define MAIN_MENU_LENGTH 4
 typedef enum  MainMenus
 {
 	FILES,
@@ -82,8 +82,8 @@ typedef struct Cube3D
 
 typedef struct ButtonsMenu
 {
-	Button*  play;
-	Button*  stop;
+	Button  play;
+	Button  stop;
 }   ButtonsMenu;
 
 typedef struct Ray3D
@@ -219,6 +219,7 @@ void    dr_exit(Engine *engine);
 
 void		open_window(Vector2 screenSize, Vector2 minSize, char *title, bool resizable);
 void		print_memory_usage(const char* phase);
+Rectangle	rectangle_addition(Rectangle rect01, Rectangle rect02);
 
 //******************************************************************************//
 //***                              sideUpPanel.h                             ***//
@@ -251,4 +252,5 @@ void    ftControlMainPanel(Engine *engine, Camera *camera);
 
 void    quit_menu_window(Engine *engine);
 void    change_language(Engine *engine, const char *language);
+
 #endif

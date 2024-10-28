@@ -245,6 +245,7 @@ void    dr_update(Engine *engine)
 	}
 	else
 	{
+		engine->mouse.pos = GetMousePosition();
 		check_mouse_state();
 		// DE_WARNING("Mouse Current State: %d", engine->allStates.currentStateMouse);
 		// Andle resize in others windows than Build mode
@@ -323,6 +324,8 @@ void    dr_update(Engine *engine)
                 menu_help_documentation(engine);
                 break;
         }
+
+		engine->mouse.lastPos = engine->mouse.pos;
 	}
 }
 
