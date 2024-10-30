@@ -13,6 +13,7 @@
 #include "window07.h"
 #include "file_dialog.h"
 #include "../../../memory/dmemory.h"
+#include "../../../errors_manager/popUp/error_to_popUp.h"
 
 void creerStructureProjet(const char *cheminBase, const char *jsonString, BuildProject project);
 
@@ -55,6 +56,29 @@ void	build_new_project(BuildProject project)
 
 // Fn pointer button change path
 static FileDialog g_fileDialog;
+static bl8	delayCt = false;
+static bl8	popUpInUse = false;
+
+void	update_popUp(void)
+{
+	if (delayCt == true)
+	{
+		popUpInUse = true;
+		delayCt = false;
+	}
+	else if (popUpInUse == true)
+	{
+		draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Project Name ***");
+		Rectangle cam07Rect = get_camera07_rect();
+		Rectangle collisionRec = g_engine->errorManager.errorToPopUp.rect;
+		collisionRec.x += cam07Rect.x;
+		collisionRec.y += cam07Rect.y;
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !CheckCollisionPointRec(GetMousePosition(), collisionRec))
+		{
+			popUpInUse = false;
+		}
+	}
+}
 
 // Fn pointer button create project
 void	create_new_project(void *userData)
@@ -65,6 +89,9 @@ void	create_new_project(void *userData)
 	if (!projectVars->projectNameEntry.text || ft_strlen(projectVars->projectNameEntry.text) <= 0)
 	{
 		DE_WARNING("*** Need A Project Name ***", projectVars->projectNameEntry.text);
+		init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
+		delayCt = true;
+
 		return;
 	}
 	DE_WARNING("B");
@@ -85,11 +112,7 @@ void	create_new_project(void *userData)
 	project.fileNew = *projectVars;
 	build_new_project(project);
 
-	// Free
-	// change_view(g_engine, STATE_VIEW_ENGINE, true, NULL, NULL);
 	g_engine->inputEventCt = true;
-	// new_project_clean();
-	// new_project_destroy();
 }
 
 void	update_new_project(void)
@@ -99,6 +122,7 @@ void	update_new_project(void)
     {
 		Vector2 camPos = (Vector2){g_engine->allCameras->camera07.rectForCam.x, g_engine->allCameras->camera07.rectForCam.y};
         draw_file_dialog(&g_fileDialog, camPos);
+
         
         if (file_dialog_should_close(&g_fileDialog))
         {
@@ -112,6 +136,13 @@ void	update_new_project(void)
             }
             g_fileDialog.isOpen = false;
         }
+		if (IsKeyPressed(KEY_ESCAPE) || file_dialog_should_close(&g_fileDialog))
+		{
+			// DE_DEBUG("Debug 3");
+			g_fileDialog.shouldClose = true;
+			g_engine->allStates.lastStateView = g_engine->allStates.currentStateView;
+    		g_engine->allStates.currentStateView = STATE_VIEW_FILES_NEW_PROJECT;
+		}
         return; // Stop the rest of the update when the dialog is open
     }
 }
@@ -122,11 +153,11 @@ void change_path(void *userData)
     TextBox* pathEntry = (TextBox*)userData;
     init_file_dialog(&g_fileDialog, pathEntry->text, g_engine->allCameras->camera07.rectForCam);
 	g_fileDialog.isOpen = true;
+	change_view(g_engine, STATE_VIEW_SUB_WINDOW, true, NULL, NULL);
 }
 
 
 // --------------------------------------------------------------------------------
-// comment
 
 void    new_project_init(void)
 {
@@ -141,9 +172,8 @@ void    new_project_init(void)
 	rect.width *= 2;
 	g_files_new.pathEntry = create_textBox(rect, 512);
 
-
-	char* default_path = GetWorkingDirectory();
-	default_path = GetDirectoryPath(default_path);
+	char* default_path = (char *)GetWorkingDirectory();
+	default_path = (char *)GetDirectoryPath(default_path);
 	default_path = strcat(default_path, "/projects");
 
 	ft_strlcpy(g_files_new.pathEntry.text, default_path, g_files_new.pathEntry.maxLength);
@@ -230,6 +260,7 @@ void    new_project_update(void)
 			draw_button(&g_files_new.confirmButton, (intptr_t)NULL, 1, 2, CAM07_BORDER_COLOR, (Vector2){rect07.x, rect07.y});
 
 			update_new_project();
+			update_popUp();
 
 		EndMode2D();
 	EndTextureMode();
