@@ -24,9 +24,10 @@ typedef struct  FileDialog
     Vector2 position;
     Vector2 size;
     bl8 shouldClose;
+    int scrollOffset;
 } FileDialog;
 
-void init_file_dialog(FileDialog* dialog, const char* initialPath);
+void init_file_dialog(FileDialog* dialog, const char* initialPath, Rectangle camRect);
 void draw_file_dialog(FileDialog* dialog, Vector2 camPos);
 bl8 file_dialog_should_close(FileDialog* dialog);
 

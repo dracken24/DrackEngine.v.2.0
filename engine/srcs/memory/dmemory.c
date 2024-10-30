@@ -64,6 +64,7 @@ void shutdown_memory()
 
 void* de_allocate(uint64 size, memory_tag tag)
 {
+    // DE_WARNING("de_allocate");
     if (tag == MEMORY_TAG_UNKNOWN)
     {
         DE_WARNING("de_allocate called using MEMORY_TAG_UNKNOWN. Re-class this allocation.");
@@ -80,6 +81,7 @@ void* de_allocate(uint64 size, memory_tag tag)
 
 void de_free(void* block, uint64 size, memory_tag tag)
 {
+    // DE_WARNING("de_free");
     if (tag == MEMORY_TAG_UNKNOWN)
     {
         DE_WARNING("de_free called using MEMORY_TAG_UNKNOWN. Re-class this allocation.");

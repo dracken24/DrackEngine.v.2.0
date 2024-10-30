@@ -24,6 +24,7 @@ Button		button_init(Vector2 pos, Vector2 size, Color bg_color,
 				Color text_color, char* texturePath, char* text, fl32 scale, int nbr)
 {
     Button button;
+    // DE_WARNING("Inint button txt len: %d", ft_strlen(text));
 
     button.rect.x = pos.x;
     button.rect.y = pos.y;
@@ -36,7 +37,7 @@ Button		button_init(Vector2 pos, Vector2 size, Color bg_color,
     button.scale = scale;
     button.isClicked = false;
     button.isAllocate = false;
-    button.texture = (Texture2D){0};
+    button.texture.id = 0;
     button.texture_hover = (Texture2D){0};
     button.texture_click = (Texture2D){0};
     button.onClickCallback = NULL;

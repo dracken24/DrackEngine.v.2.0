@@ -25,7 +25,7 @@
 
 extern Engine *g_engine;
 
-void init_file_dialog(FileDialog* dialog, const char* initialPath)
+void init_file_dialog(FileDialog* dialog, const char* initialPath, Rectangle camRect)
 {
     dialog->isOpen = true;
     dialog->shouldClose = false;
@@ -48,9 +48,10 @@ void init_file_dialog(FileDialog* dialog, const char* initialPath)
     
     DE_DEBUG("File dialog initialized with path: %s", dialog->currentPath);
     
-    dialog->position = (Vector2){100, 10};
+    dialog->position = (Vector2){camRect.width / 2 - 250, camRect.height / 2 - 200};
     dialog->size = (Vector2){500, 400};
     dialog->selectedPath[0] = '\0';
+    dialog->scrollOffset = 0;
 }
 
 static bool custom_button(Rectangle bounds, char* text, Vector2 camPos)
@@ -67,13 +68,10 @@ static bool custom_button(Rectangle bounds, char* text, Vector2 camPos)
     btn.font = g_engine->fonts.defaultFont;
     btn.scale = 1.0f;
 
-    size_t textLen = strlen(text) + 1;
-    btn.text = (char*)de_allocate(textLen, MEMORY_TAG_BUTTONS);
-    strncpy(btn.text, text, textLen);
-    btn.isAllocate = true;
-    
     // Draw the button
     draw_button(&btn, 20, 1, 2, DARKGRAY, camPos);
+    DrawTextEx(btn.font, text, (Vector2){bounds.x + bounds.width / 2 - MeasureText(text, btn.font.baseSize / 2),
+        bounds.y}, btn.font.baseSize, 1, btn.text_color);
     
     // Check if the button is clicked
     Vector2 mousePos = GetMousePosition();
@@ -94,29 +92,89 @@ static bool custom_button(Rectangle bounds, char* text, Vector2 camPos)
     return clicked;
 }
 
-static void list_directory(FileDialog* dialog, Vector2 camPos)
+static Rectangle list_directory(FileDialog* dialog, Vector2 camPos)
 {
+    Rectangle viewArea = {
+        dialog->position.x + 10,
+        dialog->position.y + 60,
+        dialog->size.x - 30,
+        dialog->size.y - 130
+    };
+
     // DE_DEBUG("Trying to open directory: %s", dialog->currentPath);
     DIR* dir = opendir(dialog->currentPath);
     if (!dir)
     {
-        DE_ERROR("Cannot open directory: %s (errno: %d)", dialog->currentPath, errno);
-        return;
+        dir = opendir(getcwd(NULL, 0));
+        if (!dir)
+        {
+            DE_ERROR("Cannot open directory: %s (errno: %d)", dialog->currentPath, errno);
+            return viewArea;
+        }
+        strncpy(dialog->currentPath, getcwd(NULL, 0), sizeof(dialog->currentPath) - 1);
+        dialog->currentPath[sizeof(dialog->currentPath) - 1] = '\0';
     }
-
+    
     // Button to go up one level
     if (custom_button((Rectangle){dialog->position.x + 10, dialog->position.y + 30, 50, 20}, "..", camPos))
     {
         DE_DEBUG("Trying to go up from: %s", dialog->currentPath);
         char* lastSlash = strrchr(dialog->currentPath, '/');
-        if (lastSlash && lastSlash != dialog->currentPath) {
+        if (lastSlash && lastSlash != dialog->currentPath)
+        {
             *lastSlash = '\0';
             DE_DEBUG("New path after going up: %s", dialog->currentPath);
         }
     }
 
-    float yPos = dialog->position.y + 60;
+    float contentHeight = 0;
     struct dirent* entry;
+    while ((entry = readdir(dir)) != NULL)
+    {
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+        {
+            continue;
+        }
+        contentHeight += 25;
+    }
+    closedir(dir);
+
+    dir = opendir(dialog->currentPath);
+    if (!dir)
+    {
+        return viewArea;
+    }
+
+    Rectangle collRec = viewArea;
+    collRec.x += camPos.x;
+    collRec.y += camPos.y;
+    if (CheckCollisionPointRec(GetMousePosition(), collRec))
+    {
+        dialog->scrollOffset -= GetMouseWheelMove() * 30;
+        
+        float maxScroll = contentHeight - viewArea.height + 5;
+        dialog->scrollOffset = Clamp(dialog->scrollOffset, 0, maxScroll > 0 ? maxScroll : 0);
+    }
+
+    Rectangle slideBox = (Rectangle){viewArea.x + viewArea.width + 3, viewArea.y, 10, viewArea.height};
+    if (contentHeight > viewArea.height)
+    {
+        float scrollBarHeight = (viewArea.height / contentHeight) * viewArea.height;
+        float scrollBarY = viewArea.y + (dialog->scrollOffset / contentHeight) * viewArea.height;
+        
+        DrawRectangleRec(slideBox, PURPLE);
+        DrawRectangle(viewArea.x + viewArea.width + 3, scrollBarY,
+            10, scrollBarHeight, DARKPURPLE);
+    }
+    else
+    {
+        DrawRectangleRec(slideBox, DARKPURPLE);
+    }
+    DrawRectangleLinesEx(slideBox, 2, DARKPURPLE);
+
+    BeginScissorMode(viewArea.x, viewArea.y, viewArea.width, viewArea.height);
+    
+    float yPos = viewArea.y - dialog->scrollOffset;
     while ((entry = readdir(dir)) != NULL)
     {
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
@@ -157,7 +215,7 @@ static void list_directory(FileDialog* dialog, Vector2 camPos)
         char label[256];
         snprintf(label, sizeof(label), "%s%s", isDir ? "[D] " : "[F] ", displayName);
         
-        if (custom_button((Rectangle){dialog->position.x + 10, yPos, dialog->size.x - 20, 20}, label, camPos))
+        if (custom_button((Rectangle){viewArea.x + 10, yPos + 5, viewArea.width - 20, 20}, label, camPos))
         {
             if (isDir)
             {
@@ -169,7 +227,10 @@ static void list_directory(FileDialog* dialog, Vector2 camPos)
         }
         yPos += 25;
     }
+    EndScissorMode();
     closedir(dir);
+
+    return viewArea;
 }
 
 void draw_file_dialog(FileDialog* dialog, Vector2 camPos)
@@ -179,25 +240,33 @@ void draw_file_dialog(FileDialog* dialog, Vector2 camPos)
         return;
     }
 
+    Font font = g_engine->fonts.defaultFont;
+
     // Draw the main window
     DrawRectangle(dialog->position.x, dialog->position.y, 
         dialog->size.x, dialog->size.y, Fade(RAYWHITE, 0.9f));
     DrawRectangleLinesEx((Rectangle){dialog->position.x, dialog->position.y, 
-        dialog->size.x, dialog->size.y}, 1, DARKGRAY);
+        dialog->size.x, dialog->size.y}, 4, DARKGRAY);
 
     // Title
-    DrawTextEx(g_engine->fonts.defaultFont, "Select Folder", 
-        (Vector2){dialog->position.x + 10, dialog->position.y + 10}, 20, 1, BLACK);
-
+    DrawTextEx(font, "Select Folder",  (Vector2){dialog->position.x + dialog->size.x / 2 -
+        MeasureText("Select Folder", g_engine->fonts.defaultFont.baseSize - 2) / 2,
+            dialog->position.y + 10}, 20, 1, BLACK);
+    
     // Current Path
-    DrawTextEx(g_engine->fonts.defaultFont, dialog->currentPath,
-        (Vector2){dialog->position.x + 10, dialog->position.y + dialog->size.y - 60}, 12, 1, DARKGRAY);
-
+    DrawTextEx(font, "Path: ", (Vector2){dialog->position.x + 10,
+        dialog->position.y + dialog->size.y - 60}, 14, 1, ORANGE);
+    DrawTextEx(font, dialog->currentPath, (Vector2){dialog->position.x + 10 +
+        MeasureTextEx(font, "Path: ", 14, 1).x, dialog->position.y +
+            dialog->size.y - 60}, 14, 1, DARKGRAY);
+    
     // List of files and directories
     BeginScissorMode(dialog->position.x, dialog->position.y + 50, 
         dialog->size.x, dialog->size.y - 100);
     EndScissorMode();
-    list_directory(dialog, camPos);
+    Rectangle scrollRec = list_directory(dialog, camPos);
+    DrawRectangleLinesEx((Rectangle){scrollRec.x, scrollRec.y,
+        scrollRec.width, scrollRec.height}, 2, DARKPURPLE2);
 
     // Control buttons
     if (custom_button((Rectangle){dialog->position.x + dialog->size.x - 160, 

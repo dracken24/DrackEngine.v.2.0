@@ -1,0 +1,61 @@
+{
+    "nomProjet": "MonProjet",
+    "structure":
+    {
+      "type": "dossier",
+      "nom": "MonProjet",
+      "contenu":
+      [
+        {
+          "type": "dossier",
+          "nom": "Client",
+          "contenu":
+          [
+            {
+              "type": "dossier",
+              "nom": "Assets",
+              "contenu":
+              [
+                {
+                  "type": "dossier",
+                  "nom": "Models",
+                  "contenu": []
+                },
+                {
+                  "type": "dossier",
+                  "nom": "Textures",
+                  "contenu": []
+                },
+                {
+                  "type": "dossier",
+                  "nom": "Audio",
+                  "contenu": []
+                }
+              ]
+            },
+            {
+              "type": "dossier",
+              "nom": "Scenes",
+              "contenu": []
+            },
+            {
+              "type": "dossier",
+              "nom": "Scripts",
+              "contenu": []
+            }
+          ]
+        },
+        {
+          "type": "dossier",
+          "nom": "Engine System",
+          "contenu":
+          [
+            {
+              "type": "fichier",
+              "nom": "ProjectSettings.json"
+            }
+          ]
+        }
+      ]
+    }
+  }

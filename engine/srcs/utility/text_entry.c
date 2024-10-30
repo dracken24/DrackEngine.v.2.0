@@ -144,7 +144,7 @@ void    update_textBox(TextBox *textBox, Rectangle adjust, Font font, sint32 spa
             }
             else
             {
-                DE_WARNING("Time: %f", GetFrameTime());
+                // DE_WARNING("Time: %f", GetFrameTime());
                 textBox->deleteTimer += GetFrameTime();
                 if (textBox->deleteTimer > KEY_REPEAT_DELAY)
                 {

@@ -53,7 +53,7 @@ void change_path(void *userData)
 {
 	DE_DEBUG("Button change_path Clicked: %s", userData);
     TextBox* pathEntry = (TextBox*)userData;
-    init_file_dialog(&g_fileDialog, pathEntry->text);
+    init_file_dialog(&g_fileDialog, pathEntry->text, g_engine->allCameras->camera07.rectForCam);
 	g_fileDialog.isOpen = true;
 }
 

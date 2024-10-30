@@ -267,7 +267,6 @@ void    dr_update(Engine *engine)
 			update_main_view(engine);
 		}
 
-
 		switch(engine->allStates.currentStateView)
         {
             case STATE_VIEW_ENGINE:
