@@ -126,6 +126,7 @@ void change_path(void *userData)
 
 
 // --------------------------------------------------------------------------------
+// comment
 
 void    new_project_init(void)
 {
