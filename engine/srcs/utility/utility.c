@@ -11,9 +11,12 @@
 /*******************************************************************************/
 
 #include "../memory/dmemory.h"
+#include "engine.h"
 #include "../../library/drackengine_lib/logger.h"
 
 #include <raylib.h>
+
+extern Engine *g_engine;
 
 void    print_memory_usage(const char* phase)
 {
@@ -45,4 +48,9 @@ Rectangle rectangle_addition(Rectangle rect01, Rectangle rect02)
 	rect_return.height = rect01.height + rect02.height;
 
 	return rect_return;
+}
+
+Rectangle	get_camera07_rect(void)
+{
+	return g_engine->allCameras->camera07.rectForCam;
 }

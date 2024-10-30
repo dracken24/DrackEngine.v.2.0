@@ -13,6 +13,7 @@
 #include "window07.h"
 #include "file_dialog.h"
 #include "../../../memory/dmemory.h"
+#include "../../../errors_manager/popUp/error_to_popUp.h"
 
 void creerStructureProjet(const char *cheminBase, const char *jsonString, BuildProject project);
 
@@ -55,6 +56,29 @@ void	build_new_project(BuildProject project)
 
 // Fn pointer button change path
 static FileDialog g_fileDialog;
+static bl8	delayCt = false;
+static bl8	popUpInUse = false;
+
+void	update_popUp(void)
+{
+	if (delayCt == true)
+	{
+		popUpInUse = true;
+		delayCt = false;
+	}
+	else if (popUpInUse == true)
+	{
+		draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Project Name ***");
+		Rectangle cam07Rect = get_camera07_rect();
+		Rectangle collisionRec = g_engine->errorManager.errorToPopUp.rect;
+		collisionRec.x += cam07Rect.x;
+		collisionRec.y += cam07Rect.y;
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !CheckCollisionPointRec(GetMousePosition(), collisionRec))
+		{
+			popUpInUse = false;
+		}
+	}
+}
 
 // Fn pointer button create project
 void	create_new_project(void *userData)
@@ -65,6 +89,9 @@ void	create_new_project(void *userData)
 	if (!projectVars->projectNameEntry.text || ft_strlen(projectVars->projectNameEntry.text) <= 0)
 	{
 		DE_WARNING("*** Need A Project Name ***", projectVars->projectNameEntry.text);
+		init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
+		delayCt = true;
+
 		return;
 	}
 	DE_WARNING("B");
@@ -233,6 +260,7 @@ void    new_project_update(void)
 			draw_button(&g_files_new.confirmButton, (intptr_t)NULL, 1, 2, CAM07_BORDER_COLOR, (Vector2){rect07.x, rect07.y});
 
 			update_new_project();
+			update_popUp();
 
 		EndMode2D();
 	EndTextureMode();

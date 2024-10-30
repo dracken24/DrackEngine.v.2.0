@@ -20,6 +20,7 @@
 # include "struct_globale.h"
 # include "../../library/drackengine_lib/drackengine_lib.h"
 # include "../srcs/utility/buttons.h"
+// #include "../srcs/errors_manager/popUp/error_to_popUp.h"
 
 // # include "Config/menus.h"
 # include "../../library/extern/raygizmo/include/raygizmo.h"
@@ -33,6 +34,11 @@ struct RGizmo;
 # define BORDER_THICK 3
 # define WINDOW_OTHERS (Vector2){800, 500}
 # define CAMERA_UP_BAR 30
+
+# define VEC2_Zero (Vector2){0, 0}
+# define REC_ZERO (Rectangle){0, 0, 0, 0}
+# define REC_ERR_TO_POPUP_DEFAULT (Rectangle){GetScreenWidth() / 2 - 200, GetScreenHeight() / 2 - 150, 400, 300}
+# define REC_ERR_TO_POPUP_DEFAULT_CAM07 (Rectangle){get_camera07_rect().width / 2 - 200, get_camera07_rect().height / 2 - 150, 400, 300}
 
 # define MAIN_MENU_LENGTH 4
 typedef enum  MainMenus
@@ -97,6 +103,21 @@ typedef struct Language
 	char* language;
 	char*** dropdown_menus_03;
 }	Language;
+
+typedef struct ErrorToPopUp
+{
+    logLevel    level;
+    Rectangle   rect;
+    Rectangle   cam07;
+
+    Color   bgColor;
+} ErrorToPopUp;
+
+typedef struct ErrorManager
+{
+	ErrorToPopUp errorToPopUp;
+} ErrorManager;
+
 
 //******************************************************************************//
 //***                                 States                                 ***//
@@ -194,6 +215,8 @@ typedef struct  Engine
 	Ray3D			ray;
 	Mouse			mouse;
 
+	ErrorManager	errorManager;	
+
 	// Tests
 	Texture2D       testTexture;
 	TestWorkspace   testWorkspace;
@@ -223,6 +246,7 @@ void    dr_exit(Engine *engine);
 void		open_window(Vector2 screenSize, Vector2 minSize, char *title, bool resizable);
 void		print_memory_usage(const char* phase);
 Rectangle	rectangle_addition(Rectangle rect01, Rectangle rect02);
+Rectangle	get_camera07_rect(void);
 
 //******************************************************************************//
 //***                              sideUpPanel.h                             ***//
