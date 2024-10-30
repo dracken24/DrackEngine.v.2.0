@@ -33,6 +33,7 @@ void    dr_init(Engine *engine)
 	engine->allStates.blockMouseStates = false;
     engine->screenSize = (Vector2){1500, 750};
 	engine->screenSizeWindow = WINDOW_OTHERS;
+	engine->inputEventCt = false;
 
 #ifdef DE_PLATFORM_LINUX
 	setenv("__NV_PRIME_RENDER_OFFLOAD", "1", 1);

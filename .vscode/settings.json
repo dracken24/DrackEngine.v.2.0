@@ -92,6 +92,8 @@
       "fcntl.h": "c",
       "tinyfiledialogs.h": "c",
       "window07.h": "c",
-      "file_dialog.h": "c"
+      "file_dialog.h": "c",
+      "stat.h": "c",
+      "typeinfo": "c"
     },
 }

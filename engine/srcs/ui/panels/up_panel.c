@@ -43,7 +43,10 @@ void    change_view(Engine *engine, ViewState state, bl8 resize_window, int *sel
     engine->allStates.currentStateView = state;
 
     change_state_mouse(MOUSE_STATE_ON_OTHER_WINDOW);
-    unselect_tab(selectedTab, isDropdownOpen);
+    if (selectedTab && isDropdownOpen)
+    {
+        unselect_tab(selectedTab, isDropdownOpen);
+    }
 
     Rectangle *rec07 = &engine->allCameras->camera07.rectForCam;
     rec07->x = engine->screenSize.x / 2 - rec07->width / 2;

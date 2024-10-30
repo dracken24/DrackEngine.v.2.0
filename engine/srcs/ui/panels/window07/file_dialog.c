@@ -111,7 +111,7 @@ static Rectangle list_directory(FileDialog* dialog, Vector2 camPos)
             DE_ERROR("Cannot open directory: %s (errno: %d)", dialog->currentPath, errno);
             return viewArea;
         }
-        strncpy(dialog->currentPath, getcwd(NULL, 0), sizeof(dialog->currentPath) - 1);
+        ft_strlcpy(dialog->currentPath, getcwd(NULL, 0), sizeof(dialog->currentPath) - 1);
         dialog->currentPath[sizeof(dialog->currentPath) - 1] = '\0';
     }
     
@@ -269,15 +269,15 @@ void draw_file_dialog(FileDialog* dialog, Vector2 camPos)
         scrollRec.width, scrollRec.height}, 2, DARKPURPLE2);
 
     // Control buttons
-    if (custom_button((Rectangle){dialog->position.x + dialog->size.x - 160, 
+    if (custom_button((Rectangle){dialog->position.x + dialog->size.x - 80, 
         dialog->position.y + dialog->size.y - 30, 70, 20}, "Select", camPos))
     {
         strncpy(dialog->selectedPath, dialog->currentPath, sizeof(dialog->selectedPath) - 1);
         dialog->shouldClose = true;
     }
     
-    if (custom_button((Rectangle){dialog->position.x + dialog->size.x - 80, 
-        dialog->position.y + dialog->size.y - 30, 70, 20}, "Cancel", camPos))
+    if (custom_button((Rectangle){dialog->position.x + dialog->size.x - 160, 
+        dialog->position.y + dialog->size.y - 30, 70, 20}, "Close", camPos))
     {
         dialog->shouldClose = true;
     }

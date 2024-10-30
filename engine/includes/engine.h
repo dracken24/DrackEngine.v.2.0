@@ -186,6 +186,7 @@ typedef struct  Engine
 	AllStates       allStates;
 
 	bl8             introCt;
+	bl8				inputEventCt;
 
 	Cube3D	        cube_01;
 	Ray3D			ray;
@@ -252,5 +253,6 @@ void    ftControlMainPanel(Engine *engine, Camera *camera);
 
 void    quit_menu_window(Engine *engine);
 void    change_language(Engine *engine, const char *language);
+void    change_view(Engine *engine, ViewState state, bl8 resize_window, int *selectedTab, bl8 *isDropdownOpen);
 
 #endif

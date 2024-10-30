@@ -28,7 +28,7 @@ void    dr_exit(Engine *engine)
     // DE_WARNING("engine Files EXIT PID: %d", engine->new_window_pid[FILES_NEW].engine_pid);
     // DE_WARNING("engine Open EXIT PID: %d", engine->new_window_pid[FILES_OPEN].engine_pid);
 
-    DE_INFO("Waiting for 750ms in engine");
+    DE_INFO("Waiting for 350ms in engine");
     usleep(350000);  // Attendre 350ms
 
     rgizmo_unload();

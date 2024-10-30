@@ -111,8 +111,8 @@ void    draw_button(Button* button, intptr_t fontSize, sint32 spacing,
             {
                 button->onClickCallback(button->userData);
                 button->isClicked = true;
-                if (button->isAllocate)
-                    DE_WARNING("click: %s", button->text);
+                // if (button->isAllocate)
+                //     DE_WARNING("click: %s", button->text);
             }
 
             draw_rectangle_borders(button->rect, borderColor, borderThick);

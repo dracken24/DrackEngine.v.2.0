@@ -21,6 +21,7 @@ bl8 refresh_frame = true;
 
 void    quit_menu_window(Engine *engine)
 {
+	DE_DEBUG("quit_menu_window()");
 	switch (engine->allStates.currentStateView)
 	{
 		case STATE_VIEW_FILES_NEW_PROJECT:
@@ -89,9 +90,12 @@ void    quit_menu_window(Engine *engine)
 
 void    keys_events(Engine *engine)
 {
-	if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
+	if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose()  || engine->inputEventCt == true)
 	{
+		DE_DEBUG("Debug 1");
 		quit_menu_window(engine);
+		DE_DEBUG("Debug 2");
+		g_engine->inputEventCt = false;
 	}
 }
 

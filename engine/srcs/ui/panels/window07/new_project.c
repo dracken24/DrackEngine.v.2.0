@@ -14,16 +14,83 @@
 #include "file_dialog.h"
 #include "../../../memory/dmemory.h"
 
+void creerStructureProjet(const char *cheminBase, const char *jsonString, BuildProject project);
+
 FilesNew g_files_new;
 
 // --------------------------------------------------------------------------------
+
+// typedef struct BuildProject
+// {
+// 	FilesNew	fileNew;
+// } BuildProject;
+
+void	build_new_project(BuildProject project)
+{
+	// Read the JSON from a file
+    FILE *file = fopen("../engine/srcs/save_system/config_files/structure_projet.json", "r");
+    if (file == NULL)
+    {
+		DE_WARNING("Null file path open");
+        return;
+    }
+	// DE_WARNING("Good path open");
+	// return;
+    
+    // Read the content of the file
+    fseek(file, 0, SEEK_END);
+    long taille = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    
+    char *jsonString = malloc(taille + 1);
+    fread(jsonString, 1, taille, file);
+    jsonString[taille] = '\0';
+    fclose(file);
+    
+    // Create the project structure
+    creerStructureProjet(project.fileNew.pathEntry.text, jsonString, project);
+    
+    free(jsonString);
+}
+
+// Fn pointer button change path
+static FileDialog g_fileDialog;
+
 // Fn pointer button create project
 void	create_new_project(void *userData)
 {
-	DE_DEBUG("Button create_new_project Clicked: %s", userData);
+	FilesNew *projectVars = (FilesNew *)userData;
+	DE_WARNING("A");
+	DE_DEBUG("Name: %s", projectVars->projectNameEntry.text);
+	if (!projectVars->projectNameEntry.text || ft_strlen(projectVars->projectNameEntry.text) <= 0)
+	{
+		DE_WARNING("*** Need A Project Name ***", projectVars->projectNameEntry.text);
+		return;
+	}
+	DE_WARNING("B");
+	if (!projectVars->versionEntry.text || ft_strlen(projectVars->versionEntry.text) <= 0)
+	{
+		DE_WARNING("*** Need A Project Vertion ***", projectVars->versionEntry.text);
+		return;
+	}
+	DE_WARNING("C");
+	if (!projectVars->pathEntry.text || ft_strlen(projectVars->pathEntry.text) <= 0)
+	{
+		DE_WARNING("*** Need A Valid Path ***", projectVars->pathEntry.text);
+		return;
+	}
+
+	DE_DEBUG("create_new_project Validate: %s", projectVars->projectNameEntry.text);
+	BuildProject project;
+	project.fileNew = *projectVars;
+	build_new_project(project);
+
+	// Free
+	// change_view(g_engine, STATE_VIEW_ENGINE, true, NULL, NULL);
+	g_engine->inputEventCt = true;
+	// new_project_clean();
+	// new_project_destroy();
 }
-// Fn pointer button change parh
-static FileDialog g_fileDialog;
 
 void	update_new_project(void)
 {
@@ -72,8 +139,16 @@ void    new_project_init(void)
 	rect.y += 52;
 	rect.width *= 2;
 	g_files_new.pathEntry = create_textBox(rect, 512);
-	const char* default_path = GetWorkingDirectory();
-    strncpy(g_files_new.pathEntry.text, default_path, g_files_new.pathEntry.maxLength);
+
+
+	char* default_path = GetWorkingDirectory();
+	default_path = GetDirectoryPath(default_path);
+	default_path = strcat(default_path, "/projects");
+
+	ft_strlcpy(g_files_new.pathEntry.text, default_path, g_files_new.pathEntry.maxLength);
+
+	// DE_DEBUG("Default Path: %s", default_path);
+
 	g_files_new.pathEntry.textSize = strlen(default_path);
 	g_files_new.pathEntry.cursorPosition = g_files_new.pathEntry.textSize;
 
@@ -85,7 +160,7 @@ void    new_project_init(void)
 	button_set_bg_hover_color(&g_files_new.confirmButton, GRAY);
 	button_set_bg_click_color(&g_files_new.confirmButton, LIGHTGRAY);
 	button_set_font(&g_files_new.confirmButton, g_engine->fonts.defaultFont);
-	button_set_function(&g_files_new.confirmButton ,*create_new_project, g_files_new.projectNameEntry.text);
+	button_set_function(&g_files_new.confirmButton ,*create_new_project, &g_files_new.projectNameEntry);
 	// Button Change Path
 	rect = g_files_new.pathEntry.rect;
 	size = (Vector2){140, 35};

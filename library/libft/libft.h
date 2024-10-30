@@ -59,7 +59,7 @@ t_list	*ft_lstlast(t_list *lst);
 int		ft_strncmp_tab(char **tab, char *str, size_t len, size_t nbr_turn);
 int		ft_memcmp(const void *s1, const void *s2, size_t len);
 int		ft_nbr_sign_in_str(const char *str, int c);
-int		ft_strncmp(char *s1, char *s2, size_t n);
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
 int		ft_nbr_sign_in_tab(char **tab, char c);
 int		ft_atoi_base(char *str, char *base);
 int		ft_str_to_hexa(const char *str);

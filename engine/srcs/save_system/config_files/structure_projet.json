@@ -1,9 +1,9 @@
 {
-    "nomProjet": "MonProjet",
+    "nomProjet": "ProjetName",
     "structure":
     {
       "type": "dossier",
-      "nom": "MonProjet",
+      "nom": "ProjetName",
       "contenu":
       [
         {

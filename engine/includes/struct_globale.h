@@ -141,4 +141,9 @@ typedef struct HelpDoc
 	TextBox	testEntry;
 }	HelpDoc;
 
+typedef struct BuildProject
+{
+	FilesNew	fileNew;
+} BuildProject;
+
 #endif
