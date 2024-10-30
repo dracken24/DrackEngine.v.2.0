@@ -85,11 +85,7 @@ void	create_new_project(void *userData)
 	project.fileNew = *projectVars;
 	build_new_project(project);
 
-	// Free
-	// change_view(g_engine, STATE_VIEW_ENGINE, true, NULL, NULL);
 	g_engine->inputEventCt = true;
-	// new_project_clean();
-	// new_project_destroy();
 }
 
 void	update_new_project(void)
@@ -99,6 +95,7 @@ void	update_new_project(void)
     {
 		Vector2 camPos = (Vector2){g_engine->allCameras->camera07.rectForCam.x, g_engine->allCameras->camera07.rectForCam.y};
         draw_file_dialog(&g_fileDialog, camPos);
+
         
         if (file_dialog_should_close(&g_fileDialog))
         {
@@ -112,6 +109,13 @@ void	update_new_project(void)
             }
             g_fileDialog.isOpen = false;
         }
+		if (IsKeyPressed(KEY_ESCAPE) || file_dialog_should_close(&g_fileDialog))
+		{
+			// DE_DEBUG("Debug 3");
+			g_fileDialog.shouldClose = true;
+			g_engine->allStates.lastStateView = g_engine->allStates.currentStateView;
+    		g_engine->allStates.currentStateView = STATE_VIEW_FILES_NEW_PROJECT;
+		}
         return; // Stop the rest of the update when the dialog is open
     }
 }
@@ -122,11 +126,11 @@ void change_path(void *userData)
     TextBox* pathEntry = (TextBox*)userData;
     init_file_dialog(&g_fileDialog, pathEntry->text, g_engine->allCameras->camera07.rectForCam);
 	g_fileDialog.isOpen = true;
+	change_view(g_engine, STATE_VIEW_SUB_WINDOW, true, NULL, NULL);
 }
 
 
 // --------------------------------------------------------------------------------
-// comment
 
 void    new_project_init(void)
 {
@@ -141,9 +145,8 @@ void    new_project_init(void)
 	rect.width *= 2;
 	g_files_new.pathEntry = create_textBox(rect, 512);
 
-
-	char* default_path = GetWorkingDirectory();
-	default_path = GetDirectoryPath(default_path);
+	char* default_path = (char *)GetWorkingDirectory();
+	default_path = (char *)GetDirectoryPath(default_path);
 	default_path = strcat(default_path, "/projects");
 
 	ft_strlcpy(g_files_new.pathEntry.text, default_path, g_files_new.pathEntry.maxLength);

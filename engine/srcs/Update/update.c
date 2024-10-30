@@ -13,6 +13,7 @@
 #include "engine.h"
 #include "struct_globale.h"
 #include "Config/menus.h"
+#include "../ui/panels/window07/file_dialog.h"
 #include "../srcs/ui/panels/window07/window07.h"
 
 #include <fcntl.h>
@@ -21,6 +22,8 @@
 
 void    check_mouse_state(void);
 void    resize_screen(Engine *engine);
+
+// extern FileDialog g_fileDialog;
 
 void    draw_msg_intro(void)
 {
@@ -45,6 +48,9 @@ void    input_events(Engine *engine)
 		case STATE_VIEW_ENGINE:
 			engine->exitCt = true;
 			break;
+		// case STATE_VIEW_SUB_WINDOW:
+		// 	g_fileDialog.shouldClose = false;
+		// 	break;
 		default:
 			quit_menu_window(engine);
 			break;
@@ -248,6 +254,7 @@ void    dr_update(Engine *engine)
 		engine->mouse.pos = GetMousePosition();
 		check_mouse_state();
 		// DE_WARNING("Mouse Current State: %d", engine->allStates.currentStateMouse);
+		// DE_WARNING("VIEW Current State: %d", engine->allStates.currentStateView);
 		// Andle resize in others windows than Build mode
 		if (IsWindowResized() && engine->allStates.currentStateView != STATE_VIEW_ENGINE)
 		{
@@ -321,6 +328,9 @@ void    dr_update(Engine *engine)
                 break;
 			case STATE_VIEW_HELP_DOCUMENTATION:
                 menu_help_documentation(engine);
+                break;
+			case STATE_VIEW_SUB_WINDOW:
+				menu_files_new(engine);
                 break;
         }
 

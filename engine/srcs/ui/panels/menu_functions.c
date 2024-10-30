@@ -82,17 +82,22 @@ void    quit_menu_window(Engine *engine)
 		default:
 			break;
 	}
-	engine->allStates.lastStateView = engine->allStates.currentStateView;
-	engine->allStates.currentStateView = STATE_VIEW_ENGINE;
-	SetWindowSize(engine->screenSize.x, engine->screenSize.y);
-	window_in_operation = false;
+	if (engine->allStates.currentStateView != STATE_VIEW_SUB_WINDOW)
+	{
+		engine->allStates.lastStateView = engine->allStates.currentStateView;
+		engine->allStates.currentStateView = STATE_VIEW_ENGINE;
+		SetWindowSize(engine->screenSize.x, engine->screenSize.y);
+		window_in_operation = false;
+	}
 }
 
 void    keys_events(Engine *engine)
 {
-	if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose()  || engine->inputEventCt == true)
+	// DE_DEBUG("Debug 10");
+	if ((IsKeyPressed(KEY_ESCAPE) || WindowShouldClose()  || engine->inputEventCt == true) &&
+		!engine->allStates.currentStateView != STATE_VIEW_SUB_WINDOW)
 	{
-		DE_DEBUG("Debug 1");
+		DE_DEBUG("Debug 1: %d", engine->allStates.currentStateView);
 		quit_menu_window(engine);
 		DE_DEBUG("Debug 2");
 		g_engine->inputEventCt = false;

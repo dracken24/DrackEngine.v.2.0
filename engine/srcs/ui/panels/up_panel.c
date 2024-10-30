@@ -52,7 +52,7 @@ void    change_view(Engine *engine, ViewState state, bl8 resize_window, int *sel
     rec07->x = engine->screenSize.x / 2 - rec07->width / 2;
     rec07->y = engine->screenSize.y / 2 - rec07->height / 2;
 
-    refresh_frame = true;
+    // refresh_frame = true;
 }
 
 void ftDrawDropdownMenu(Engine *engine)

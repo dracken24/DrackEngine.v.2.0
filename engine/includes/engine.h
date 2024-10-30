@@ -124,6 +124,8 @@ typedef enum ViewState
 	STATE_VIEW_HELP_ABOUT,
 	STATE_VIEW_HELP_SUPPORT,
 	STATE_VIEW_HELP_DOCUMENTATION,
+
+	STATE_VIEW_SUB_WINDOW,
 }   ViewState;
 
 typedef enum MouseState
