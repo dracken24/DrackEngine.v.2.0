@@ -190,6 +190,24 @@ typedef struct TestWorkspace
 }   TestWorkspace;
 
 //******************************************************************************//
+//***                               User Struct                              ***//
+//******************************************************************************//
+
+typedef struct UserSettings
+{
+
+} UserSettings;
+
+typedef struct ProjectSettings
+{
+	char	*projectName;
+	char	*projectVersion;
+	char	*projectPath;
+
+	char	*engineVersion;
+} ProjrctSettings;
+
+//******************************************************************************//
 //***                               MAIN STRUCT                              ***//
 //******************************************************************************//
 
@@ -249,11 +267,11 @@ Rectangle	rectangle_addition(Rectangle rect01, Rectangle rect02);
 Rectangle	get_camera07_rect(void);
 
 //******************************************************************************//
-//***                              sideUpPanel.h                             ***//
+//***                              up_panel.h                                ***//
 //******************************************************************************//
 
-void	ftUpMenu2D(Engine *engine, Camera2D *camera);
-void    ftDrawDropdownMenu(Engine *engine);
+void	up_menu(Engine *engine, Camera2D *camera);
+void    draw_drop_down_menu(Engine *engine);
 
 //******************************************************************************//
 //***                             windows_events.c                           ***//
@@ -271,7 +289,7 @@ void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness);
 //***                                Workspace.c                             ***//
 //******************************************************************************//
 
-void    ftControlMainPanel(Engine *engine, Camera *camera);
+void    control_main_panel(Engine *engine, Camera *camera);
 
 //******************************************************************************//
 //***                           menu_functions.c                             ***//

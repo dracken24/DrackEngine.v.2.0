@@ -15,49 +15,40 @@
 #include "../../../memory/dmemory.h"
 #include "../../../errors_manager/popUp/error_to_popUp.h"
 
-void creerStructureProjet(const char *cheminBase, const char *jsonString, BuildProject project);
+void	create_structure_projet(const char *cheminBase, const char *jsonString, BuildProject project);
+FILE	*open_file(char const *fileName, const char *mode);
+char	*file_to_jsonString(FILE *file);
 
 FilesNew g_files_new;
 
 // --------------------------------------------------------------------------------
 
-// typedef struct BuildProject
-// {
-// 	FilesNew	fileNew;
-// } BuildProject;
 
 void	build_new_project(BuildProject project)
 {
-	// Read the JSON from a file
-    FILE *file = fopen("../engine/srcs/save_system/config_files/structure_projet.json", "r");
+	char const	path[] = "../engine/srcs/save_system/config_files/structure_projet.json";
+    FILE *file = open_file(path, "r");
+	// fopen("../engine/srcs/save_system/config_files/structure_projet.json", "r");
     if (file == NULL)
     {
-		DE_WARNING("Null file path open");
+		DE_WARNING("Null file path open with path: %s", path);
         return;
     }
-	// DE_WARNING("Good path open");
-	// return;
-    
-    // Read the content of the file
-    fseek(file, 0, SEEK_END);
-    long taille = ftell(file);
-    fseek(file, 0, SEEK_SET);
-    
-    char *jsonString = malloc(taille + 1);
-    fread(jsonString, 1, taille, file);
-    jsonString[taille] = '\0';
-    fclose(file);
-    
+
+    char *jsonString = file_to_jsonString(file);
+
     // Create the project structure
-    creerStructureProjet(project.fileNew.pathEntry.text, jsonString, project);
+    create_structure_projet(project.fileNew.pathEntry.text, jsonString, project);
     
-    free(jsonString);
+    de_free(jsonString, sizeof(char) * ftell(file) + 1, MEMORY_TAG_STRING);
+	fclose(file);
 }
 
 // Fn pointer button change path
 static FileDialog g_fileDialog;
 static bl8	delayCt = false;
 static bl8	popUpInUse = false;
+static int msgNumber = -1;
 
 void	update_popUp(void)
 {
@@ -68,7 +59,22 @@ void	update_popUp(void)
 	}
 	else if (popUpInUse == true)
 	{
-		draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Project Name ***");
+		if (msgNumber >= 0)
+		{
+			switch (msgNumber)
+			{
+			case 0:
+				draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Project Name ***");
+				break;
+			case 1:
+				draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Version Number ***");
+				break;
+			case 2:
+				draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Valid Path ***");
+				break;
+			}
+		}
+
 		Rectangle cam07Rect = get_camera07_rect();
 		Rectangle collisionRec = g_engine->errorManager.errorToPopUp.rect;
 		collisionRec.x += cam07Rect.x;
@@ -76,36 +82,61 @@ void	update_popUp(void)
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !CheckCollisionPointRec(GetMousePosition(), collisionRec))
 		{
 			popUpInUse = false;
+			msgNumber = -1;
 		}
 	}
 }
 
-// Fn pointer button create project
+bl8	check_new_Project_entry(FilesNew *projectVars)
+{
+	DE_WARNING("*** valid path name ***: %s", projectVars->pathEntry.text);
+	DE_WARNING("*** valid path ***: %d", DirectoryExists(projectVars->pathEntry.text));
+	// Check if project have a name
+	if (!projectVars->projectNameEntry.text || ft_strlen(projectVars->projectNameEntry.text) <= 0)
+	{
+		DE_WARNING("*** Need A Project Name ***");
+		init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
+		delayCt = true;
+		msgNumber = 0;
+
+		return false;
+	}
+	// Check if project have a version
+	if (!projectVars->versionEntry.text || ft_strlen(projectVars->versionEntry.text) <= 0)
+	{
+		DE_WARNING("*** Need A Project Vertion ***");
+		init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
+		delayCt = true;
+		msgNumber = 1;
+
+		return false;
+	}
+	// Check if project have a valid path
+	if (!DirectoryExists(projectVars->pathEntry.text))
+	{
+		DE_WARNING("*** Need A Valid Path ***");
+		init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
+		delayCt = true;
+		msgNumber = 2;
+
+		return false;
+	}
+
+	return true;
+}
+
+// Fn pointer fo button create project
 void	create_new_project(void *userData)
 {
 	FilesNew *projectVars = (FilesNew *)userData;
-	DE_WARNING("A");
-	DE_DEBUG("Name: %s", projectVars->projectNameEntry.text);
-	if (!projectVars->projectNameEntry.text || ft_strlen(projectVars->projectNameEntry.text) <= 0)
-	{
-		DE_WARNING("*** Need A Project Name ***", projectVars->projectNameEntry.text);
-		init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
-		delayCt = true;
 
-		return;
-	}
-	DE_WARNING("B");
-	if (!projectVars->versionEntry.text || ft_strlen(projectVars->versionEntry.text) <= 0)
+	DE_DEBUG("Name: %s", projectVars->projectNameEntry.text);
+
+	if (check_new_Project_entry(projectVars) == false)
 	{
-		DE_WARNING("*** Need A Project Vertion ***", projectVars->versionEntry.text);
 		return;
 	}
-	DE_WARNING("C");
-	if (!projectVars->pathEntry.text || ft_strlen(projectVars->pathEntry.text) <= 0)
-	{
-		DE_WARNING("*** Need A Valid Path ***", projectVars->pathEntry.text);
-		return;
-	}
+	
 
 	DE_DEBUG("create_new_project Validate: %s", projectVars->projectNameEntry.text);
 	BuildProject project;
@@ -122,7 +153,6 @@ void	update_new_project(void)
     {
 		Vector2 camPos = (Vector2){g_engine->allCameras->camera07.rectForCam.x, g_engine->allCameras->camera07.rectForCam.y};
         draw_file_dialog(&g_fileDialog, camPos);
-
         
         if (file_dialog_should_close(&g_fileDialog))
         {
@@ -159,6 +189,12 @@ void change_path(void *userData)
 
 // --------------------------------------------------------------------------------
 
+void	init_textboxes(void)
+{
+	ft_strlcpy(g_files_new.versionEntry.text, "v1.0.0.1", 9);
+	// DE_DEBUG("versionEntry: %s", g_files_new.versionEntry.text);
+}
+
 void    new_project_init(void)
 {
 	// Entry Types
@@ -191,7 +227,7 @@ void    new_project_init(void)
 	button_set_bg_hover_color(&g_files_new.confirmButton, GRAY);
 	button_set_bg_click_color(&g_files_new.confirmButton, LIGHTGRAY);
 	button_set_font(&g_files_new.confirmButton, g_engine->fonts.defaultFont);
-	button_set_function(&g_files_new.confirmButton ,*create_new_project, &g_files_new.projectNameEntry);
+	button_set_function(&g_files_new.confirmButton ,*create_new_project, &g_files_new);
 	// Button Change Path
 	rect = g_files_new.pathEntry.rect;
 	size = (Vector2){140, 35};
@@ -201,6 +237,8 @@ void    new_project_init(void)
 	button_set_bg_click_color(&g_files_new.changePathButton, LIGHTGRAY);
 	button_set_font(&g_files_new.changePathButton, g_engine->fonts.defaultFont);
 	button_set_function(&g_files_new.changePathButton ,*change_path, &g_files_new.pathEntry);
+
+	init_textboxes();
 }
 
 void    new_project_update(void)

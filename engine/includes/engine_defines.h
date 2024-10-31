@@ -60,6 +60,7 @@ STATIC_ASSERT(sizeof(dbl64) == 8, "Expected dbl64 to be 8 bytes.");
 
 # define true 1
 # define false 0
+# define null NULL
 
 // Platform detection
 # if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)

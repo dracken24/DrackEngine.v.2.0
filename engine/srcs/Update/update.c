@@ -118,7 +118,7 @@ void	draw_cameras_textures(Engine *engine)
 		draw_rectangle_borders(engine->allCameras->camera04.rectForCam, BORDER_COLOR, BORDER_THICK);
 		draw_rectangle_borders(engine->allCameras->camera05.rectForCam, BORDER_COLOR, BORDER_THICK);
 
-		ftDrawDropdownMenu(engine);
+		draw_drop_down_menu(engine);
 }
 
 #define MAIN_BG_COLOR	CLITERAL(Color){ 105, 104, 111, 188 }
@@ -134,7 +134,7 @@ void	mount_all_cameras_engine(Engine *engine)
 	{
 		update_camera(camera);
 	}
-		ftControlMainPanel(engine, camera);
+		control_main_panel(engine, camera);
 
 //--------------------------------------------------------------------------------------//
 
@@ -175,7 +175,7 @@ void	mount_all_cameras_engine(Engine *engine)
 		ClearBackground(MAIN_BG_COLOR);
 		BeginMode2D(engine->allCameras->camera03.camera2D);
 
-			ftUpMenu2D(engine, &engine->allCameras->camera03.camera2D);
+			up_menu(engine, &engine->allCameras->camera03.camera2D);
 			// use_image(engine, rec03, zero);
 
 		EndMode2D();

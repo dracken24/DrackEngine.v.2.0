@@ -78,11 +78,10 @@ void	draw_grid(int slices, float spacing, Color color)
     }
     rlEnd();
 }
-
 bl8	g_reset_workspace = false;
 void    change_language(Engine *engine, const char *language);
 
-void    ftControlMainPanel(Engine *engine, Camera *camera)
+void    control_main_panel(Engine *engine, Camera *camera)
 {
 	Model *model = &engine->testWorkspace.model;
 	Model *modelCube = &engine->testWorkspace.modelCube;
@@ -96,17 +95,13 @@ void    ftControlMainPanel(Engine *engine, Camera *camera)
 		{
 			position = (Vector3){ modelCube->transform.m12, modelCube->transform.m13, modelCube->transform.m14};
 			rgizmo_update(gizmo, *camera, position);
-			modelCube->transform = MatrixMultiply(
-				modelCube->transform, rgizmo_get_tranform(*gizmo, position)
-			);
+			modelCube->transform = MatrixMultiply(modelCube->transform, rgizmo_get_tranform(*gizmo, position));
 		}
 		else
 		{
 			position = (Vector3){ model->transform.m12, model->transform.m13, model->transform.m14};
 			rgizmo_update(gizmo, *camera, position);
-			model->transform = MatrixMultiply(
-				model->transform, rgizmo_get_tranform(*gizmo, position)
-			);
+			model->transform = MatrixMultiply(model->transform, rgizmo_get_tranform(*gizmo, position));
 		}
 
 		// Release Gizmo whel leave workspace

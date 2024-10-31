@@ -9,8 +9,14 @@
 #include <sys/stat.h>
 #include <cjson/cJSON.h>
 
+cJSON   *open_json_file(const char *jsonString);
+
+//******************************************************************************//
+//***                      create_files_tree Function                        ***//
+//******************************************************************************//
+
 // Function to create a directory
-void create_dir(const char *chemin)
+void    create_dir(const char *chemin)
 {
 #ifdef DE_PLATFORM_WINDOWS
     mkdir(chemin);
@@ -20,7 +26,7 @@ void create_dir(const char *chemin)
 }
 
 // Recursive function to create the project structure
-void create_arborescence(const char *cheminParent, cJSON *node, BuildProject project)
+void    create_arborescence(const char *cheminParent, cJSON *node, BuildProject project)
 {
     char nouveauChemin[512];
     const char *type = cJSON_GetObjectItem(node, "type")->valuestring;
@@ -47,7 +53,8 @@ void create_arborescence(const char *cheminParent, cJSON *node, BuildProject pro
         
         // Process the directory content
         cJSON *contenu = cJSON_GetObjectItem(node, "contenu");
-        if (contenu != NULL) {
+        if (contenu != NULL)
+        {
             cJSON *element;
             cJSON_ArrayForEach(element, contenu)
             {
@@ -72,16 +79,16 @@ void create_arborescence(const char *cheminParent, cJSON *node, BuildProject pro
 }
 
 // Main function to create the project structure
-void creerStructureProjet(const char *cheminBase, const char *jsonString, BuildProject project)
+void    create_structure_projet(const char *cheminBase, const char *jsonString, BuildProject project)
 {
-    cJSON *root = cJSON_Parse(jsonString);
+    // DE_DEBUG("JSON String reçu: %s", jsonString);
+    cJSON *root = open_json_file(jsonString);
     if (root == NULL)
     {
-        printf("Erreur de parsing JSON\n");
         return;
     }
+    // DE_DEBUG("JSON String reçu: %s", root->valuestring);
 
-    // printf("cheminBase: %s\n", cheminBase);
     // Create the project structure
     cJSON *structure = cJSON_GetObjectItem(root, "structure");
     create_arborescence(cheminBase, structure, project);
@@ -89,29 +96,46 @@ void creerStructureProjet(const char *cheminBase, const char *jsonString, BuildP
     cJSON_Delete(root);
 }
 
-// int main(void)
-// {
-//     // Read the JSON from a file
-//     FILE *file = fopen("config_files/structure_projet.json", "r");
-//     if (file == NULL)
-//     {
-//         return 1;
-//     }
-    
-//     // Read the content of the file
-//     fseek(file, 0, SEEK_END);
-//     long taille = ftell(file);
-//     fseek(file, 0, SEEK_SET);
-    
-//     char *jsonString = malloc(taille + 1);
-//     fread(jsonString, 1, taille, file);
-//     jsonString[taille] = '\0';
-//     fclose(file);
-    
-//     // Create the project structure
-//     creerStructureProjet(".", jsonString);
-    
-//     free(jsonString);
+//******************************************************************************//
+//***                        JSON Globales Function                          ***//
+//******************************************************************************//
 
-//     return 0;
-// }
+cJSON   *open_json_file(const char *jsonString)
+{
+    cJSON *jsonFile;
+    jsonFile = cJSON_Parse(jsonString);
+    if (jsonFile == NULL)
+    {
+        DE_WARNING("ERROR, on open json file with path: %s", jsonFile->valuestring);
+        return NULL;
+    }
+
+    return jsonFile;
+}
+
+// malloc use, need to free return
+char	*file_to_jsonString(FILE *file)
+{
+	fseek(file, 0, SEEK_END);
+    long fileLen = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    
+	char *jsonString = de_allocate(sizeof(char) * fileLen + 1, MEMORY_TAG_STRING);
+    // char *jsonString = malloc(fileLen + 1);
+    fread(jsonString, 1, fileLen, file);
+    jsonString[fileLen] = '\0';
+
+	return jsonString;
+}
+
+FILE *open_file(char const *fileName, const char *mode)
+{
+	FILE *file = fopen(fileName, mode);
+    if (file == NULL)
+    {
+		DE_WARNING("Null file path open with path: %s", fileName);
+        return NULL;
+    }
+
+	return file;
+}

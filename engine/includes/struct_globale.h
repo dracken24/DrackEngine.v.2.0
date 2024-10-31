@@ -36,7 +36,7 @@ typedef struct Mouse
 
 typedef struct NeedBy3DCam
 {
-	RenderTexture 	textForCam2;
+	// RenderTexture 	textForCam2;
 	RenderTexture 	textForCam;
 	Rectangle		rectForCam;
 	Camera2D 		camera2D;
