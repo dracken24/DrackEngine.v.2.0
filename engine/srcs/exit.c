@@ -21,9 +21,10 @@
 # include <unistd.h>
 
 void    free_engine(Engine *engine);
+void    free_coreInfos(CoreInfos *coreInfos);
 // void	destroy_all_other_windows_textBox(void);
 
-void    dr_exit(Engine *engine)
+void    dr_exit(Engine *engine, CoreInfos *coreInfos)
 {
     // DE_WARNING("engine Files EXIT PID: %d", engine->new_window_pid[FILES_NEW].engine_pid);
     // DE_WARNING("engine Open EXIT PID: %d", engine->new_window_pid[FILES_OPEN].engine_pid);
@@ -38,11 +39,17 @@ void    dr_exit(Engine *engine)
     // destroy_all_other_windows_textBox();
     
     DE_INFO("Freeing engine in engine");
+    free_coreInfos(coreInfos);
     free_engine(engine);
 
 
     DE_INFO("Closing window in engine");
     CloseWindow();
+}
+
+void    free_coreInfos(CoreInfos *coreInfos)
+{
+    de_free(coreInfos->coreVersion, sizeof(char) * 10, MEMORY_TAG_STRING);
 }
 
 void    free_engine(Engine *engine)

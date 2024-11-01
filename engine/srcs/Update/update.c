@@ -229,7 +229,7 @@ void    update_main_view(Engine *engine)
 
 ViewState   state_for_window_resize = STATE_VIEW_ENGINE;
 
-void    dr_update(Engine *engine)
+void    dr_update(Engine *engine, CoreInfos const *coreInfos)
 {
 	// put intro screen
 	if (engine->introCt)
@@ -282,7 +282,7 @@ void    dr_update(Engine *engine)
 				update_main_view(engine);
                 break;
             case STATE_VIEW_FILES_NEW_PROJECT:
-                menu_files_new(engine);
+                menu_files_new(engine, coreInfos);
                 break;
             case STATE_VIEW_FILES_OPEN_PROJECT:
                 menu_files_open(engine);
@@ -330,7 +330,7 @@ void    dr_update(Engine *engine)
                 menu_help_documentation(engine);
                 break;
 			case STATE_VIEW_SUB_WINDOW:
-				menu_files_new(engine);
+				menu_files_new(engine, coreInfos);
                 break;
         }
 

@@ -53,8 +53,8 @@ void	draw_cameras_textures(Engine *engine);
 //***                             new_project.c                              ***//
 //******************************************************************************//
 
-void    new_project_init(void);
-void    new_project_update(void);
+void    new_project_init(CoreInfos const *coreInfos);
+void    new_project_update(CoreInfos const *coreInfos);
 void    new_project_clean(void);
 void    new_project_destroy(void);
 

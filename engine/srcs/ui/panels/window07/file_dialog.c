@@ -69,7 +69,7 @@ static bool custom_button(Rectangle bounds, char* text, Vector2 camPos)
 	btn.scale = 1.0f;
 
 	// Draw the button
-	draw_button(&btn, 20, 1, 2, DARKGRAY, camPos);
+	draw_button(&btn, 20, 1, 2, DARKGRAY, camPos, false);
 	DrawTextEx(btn.font, text, (Vector2){bounds.x + bounds.width / 2 - MeasureText(text, btn.font.baseSize / 2),
 		bounds.y}, btn.font.baseSize, 1, btn.text_color);
 	

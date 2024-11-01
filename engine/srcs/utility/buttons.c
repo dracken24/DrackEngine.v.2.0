@@ -67,16 +67,19 @@ void    button_unload(Button* button)
         UnloadTexture(button->texture_hover);
     if (button->texture_click.id >= 0)
         UnloadTexture(button->texture_click);
+    
 
     if (button->isAllocate == true)
     {
         // DE_WARNING("Free In Button");
-        de_free(button->text, sizeof(char) * (ft_strlen(button->text) + 1), MEMORY_TAG_BUTTONS);
+        int len = ft_strlen(button->text);
+        button->text[0] = '\0';
+        de_free(button->text, sizeof(char) * (len + 1), MEMORY_TAG_BUTTONS);
     }
 }
 
 void    draw_button(Button* button, intptr_t fontSize, sint32 spacing,
-            sint32 borderThick, Color borderColor, Vector2 cameraOrigin)
+            sint32 borderThick, Color borderColor, Vector2 cameraOrigin, bl8 skipUpdate)
 {
     Vector2 mousePos = GetMousePosition();
     Vector2 textPos = {button->rect.x + button->rect.width / 2 , button->rect.y + button->rect.height / 2};
@@ -92,7 +95,7 @@ void    draw_button(Button* button, intptr_t fontSize, sint32 spacing,
     hitBox.x += cameraOrigin.x;
     hitBox.y += cameraOrigin.y;
 
-    if (CheckCollisionPointRec(mousePos, hitBox))
+    if (CheckCollisionPointRec(mousePos, hitBox) && skipUpdate == false)
     {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {

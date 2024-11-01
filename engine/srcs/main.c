@@ -27,23 +27,25 @@ int main(void)
 {
     Engine engine;
     g_engine = &engine;
-    ViewState currentView = STATE_VIEW_ENGINE;
+
+    CoreInfos coreInfos;
+    // ViewState currentView = STATE_VIEW_ENGINE;
 
     initialize_memory();
-    dr_init(&engine);
+    dr_init(&engine, &coreInfos);
     print_memory_usage("INIT");
     // test_log();
 
     while (!engine.exitCt)
     {
-        dr_update(&engine);
+        dr_update(&engine, &coreInfos);
         if (IsKeyPressed(KEY_M))
         {
             print_memory_usage("Update");
         }
     }
 
-    dr_exit(&engine);
+    dr_exit(&engine, &coreInfos);
     shutdown_memory();
     print_memory_usage("EXIT");
 

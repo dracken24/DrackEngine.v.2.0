@@ -1,0 +1,10 @@
+{
+	"projectName":	"Banana Bomb",
+	"version":	"v1.399.4",
+	"path":	"/home/dracken24/prog/DrackEngine.v.2.0/projects",
+	"config":	{
+		"engineVersion":	"v1.0.0.0",
+		"debugMode":	true,
+		"targetFPS":	1800
+	}
+}

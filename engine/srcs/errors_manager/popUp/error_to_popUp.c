@@ -21,6 +21,7 @@ void	init_ErrorToPopUp(ErrorToPopUp *errToPopUp, Rectangle rect ,logLevel level,
 	errToPopUp->level = level;
 	errToPopUp->rect = rect;
 	errToPopUp->cam07 = get_camera07_rect();
+	errToPopUp->popUpInUse = false;
 }
 
 void    draw_popUp_now(ErrorToPopUp errToPop, const char *message)

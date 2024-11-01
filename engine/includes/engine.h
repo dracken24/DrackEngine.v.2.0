@@ -101,7 +101,7 @@ typedef struct Ray3D
 typedef struct Language
 {
 	char* language;
-	char*** dropdown_menus_03;
+	// char*** dropdown_menus_03;
 }	Language;
 
 typedef struct ErrorToPopUp
@@ -111,6 +111,7 @@ typedef struct ErrorToPopUp
     Rectangle   cam07;
 
     Color   bgColor;
+	bl8		popUpInUse;
 } ErrorToPopUp;
 
 typedef struct ErrorManager
@@ -162,6 +163,7 @@ typedef enum MouseState
 	MOUSE_STATE_ON_RESIZE_LINES_RIGHT,	// 8
 	MOUSE_STATE_ON_RESIZE_LINES_LEFT,	// 9
 	MOUSE_STATE_ON_OTHER_WINDOW,		// 10
+	MOUSE_STATE_ON_POP_UP,				// 11
 }   MouseState;
 
 // TODO: Gerer le mouse state quand dropdown menu is open
@@ -195,7 +197,10 @@ typedef struct TestWorkspace
 
 typedef struct UserSettings
 {
+	char	*engineVersion;
 
+	// Default 60 FPS
+	sint16	currentFPS;
 } UserSettings;
 
 typedef struct ProjectSettings
@@ -205,11 +210,20 @@ typedef struct ProjectSettings
 	char	*projectPath;
 
 	char	*engineVersion;
-} ProjrctSettings;
+	
+	// Default 60 FPS
+	sint16	currentFPS;
+} ProjectSettings;
 
 //******************************************************************************//
 //***                               MAIN STRUCT                              ***//
 //******************************************************************************//
+
+typedef struct CoreInfos
+{
+	char	*coreVersion;
+} CoreInfos;
+
 
 typedef struct  Engine
 {
@@ -244,6 +258,9 @@ typedef struct  Engine
 	Language        language;
 	// Exit Engine
 	volatile sig_atomic_t   exitCt;
+
+	ProjectSettings	projectSettings;
+	UserSettings	userSettings;
 }   Engine;
 
 //##############################################################################//
@@ -253,9 +270,9 @@ typedef struct  Engine
 //***                               engine                                   ***//
 //******************************************************************************//
 
-void    dr_init(Engine *engine);
-void    dr_update(Engine *engine);
-void    dr_exit(Engine *engine);
+void    dr_init(Engine *engine, CoreInfos *coreInfos);
+void    dr_update(Engine *engine, CoreInfos const *coreInfos);
+void    dr_exit(Engine *engine, CoreInfos *coreInfos);
 
 //******************************************************************************//
 //***                              utility.C                                 ***//

@@ -104,9 +104,9 @@ void    keys_events(Engine *engine)
 	}
 }
 
-void    menu_files_new(Engine *engine)
+void    menu_files_new(Engine *engine, CoreInfos const *coreInfos)
 {
-	new_project_update();
+	new_project_update(coreInfos);
 }
 
 void    menu_files_open(Engine *engine)
