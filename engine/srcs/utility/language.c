@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Utiliser des identifiants au lieu de chaînes :
+// // Utiliser des identifiants au lieu de chaînes :
 // enum TextID {
 //     TEXT_MENU_FILE,
 //     TEXT_MENU_EDIT,

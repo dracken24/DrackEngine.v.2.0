@@ -25,15 +25,24 @@ void			init_fonts(Engine *engine);
 void			init_workspace(Engine *engine);
 void			init_all_other_windows_textBox(void);
 
-void    dr_init(Engine *engine)
+void    dr_init(Engine *engine, CoreInfos *coreInfos)
 {
-    engine->exitCt = false;
-	engine->allStates.currentStateView = STATE_VIEW_ENGINE;
-	engine->allStates.currentStateView = MOUSE_STATE_ON_WORKSPACE;
-	engine->allStates.blockMouseStates = false;
-    engine->screenSize = (Vector2){1500, 750};
-	engine->screenSizeWindow = WINDOW_OTHERS;
-	engine->inputEventCt = false;
+	// init Engine
+	{
+		engine->exitCt = false;
+		engine->allStates.currentStateView = STATE_VIEW_ENGINE;
+		engine->allStates.currentStateView = MOUSE_STATE_ON_WORKSPACE;
+		engine->allStates.blockMouseStates = false;
+		engine->screenSize = (Vector2){1500, 750};
+		engine->screenSizeWindow = WINDOW_OTHERS;
+		engine->inputEventCt = false;
+		
+	}
+	// Init CoreInfos
+	{
+		coreInfos->coreVersion = de_allocate(sizeof(char) * 10, MEMORY_TAG_STRING);
+		ft_strlcpy(coreInfos->coreVersion, "v.1.0.0.0", 10);
+	}
 
 #ifdef DE_PLATFORM_LINUX
 	setenv("__NV_PRIME_RENDER_OFFLOAD", "1", 1);
@@ -41,6 +50,7 @@ void    dr_init(Engine *engine)
 #endif
     open_window(engine->screenSize, engine->screenSize, "DrackEngine", true);
 	SetTargetFPS(60);
+	engine->userSettings.currentFPS = 60;
 
     // DE_DEBUG("init %f", 1);
 

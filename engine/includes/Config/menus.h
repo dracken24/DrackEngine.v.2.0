@@ -27,7 +27,7 @@ struct Engine;
 //***                             menu_functions.c                           ***//
 //******************************************************************************//
 
-void    menu_files_new(struct Engine *engine);
+void    menu_files_new(struct Engine *engine, CoreInfos const *coreInfos);
 void    menu_files_open(struct Engine *engine);
 void    menu_files_save(struct Engine *engine);
 void    menu_files_save_as(struct Engine *engine);

@@ -16,17 +16,16 @@
 #include "../../memory/dmemory.h"
 
 void	change_state_mouse(MouseState mouse_state);
-void    ftControlMainPanel(Engine *engine, Camera *camera);
 
 extern bl8 refresh_frame;
 
 void    draw_play_stop(Engine *engine)
 {
-    draw_button(&engine->buttonsMenuUp.play, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0});
-    draw_button(&engine->buttonsMenuUp.stop, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0});
+    draw_button(&engine->buttonsMenuUp.play, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0}, false);
+    draw_button(&engine->buttonsMenuUp.stop, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0}, false);
 }
 
-void	ftDrawMenuUp(Engine *engine)
+void	draw_menu_up(Engine *engine)
 {
 	    draw_play_stop(engine);
 }
@@ -55,7 +54,7 @@ void    change_view(Engine *engine, ViewState state, bl8 resize_window, int *sel
     // refresh_frame = true;
 }
 
-void ftDrawDropdownMenu(Engine *engine)
+void draw_drop_down_menu(Engine *engine)
 {
     static int selectedTab = -1;
     static bl8 isDropdownOpen = false;
@@ -297,8 +296,8 @@ void ftDrawDropdownMenu(Engine *engine)
 }
 
 //*** Control buttons side up panel ***//
-void	ftUpMenu2D(Engine *engine, Camera2D *camera)
+void	up_menu(Engine *engine, Camera2D *camera)
 {
 	(void)camera;
-	ftDrawMenuUp(engine);
+	draw_menu_up(engine);
 }

@@ -298,5 +298,7 @@ void    resize_texBox_rectangle(TextBox *textBox, Rectangle newSizeRec)
 
 void    destroy_textBox(TextBox *textBox)
 {
+    textBox->text[0] = '\0';
+    textBox->textSize = 0;
     de_free(textBox->text, textBox->maxLength + 1, MEMORY_TAG_TEXTBOX);
 }

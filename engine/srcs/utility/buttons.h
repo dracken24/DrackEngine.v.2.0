@@ -45,8 +45,8 @@ typedef struct Button
 Button		button_init(Vector2 pos, Vector2 size, Color bg_color,
 				Color text_color, char* texturePath, char* text, fl32 scale, int nbr);
 void		button_unload(Button* button);
-void		draw_button(Button* button, intptr_t fontSize, sint32 spacing,
-				sint32 borderThick, Color borderColor, Vector2 cameraOrigin);
+void		draw_button(Button* button, intptr_t fontSize, sint32 spacing, sint32 borderThick,
+				Color borderColor, Vector2 cameraOrigin, bl8 skipUpdate);
 
 Vector2		button_get_position(Button* const button);
 Vector2		button_get_size(Button* const button);

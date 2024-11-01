@@ -101,7 +101,7 @@ typedef struct Ray3D
 typedef struct Language
 {
 	char* language;
-	char*** dropdown_menus_03;
+	// char*** dropdown_menus_03;
 }	Language;
 
 typedef struct ErrorToPopUp
@@ -111,6 +111,7 @@ typedef struct ErrorToPopUp
     Rectangle   cam07;
 
     Color   bgColor;
+	bl8		popUpInUse;
 } ErrorToPopUp;
 
 typedef struct ErrorManager
@@ -162,6 +163,7 @@ typedef enum MouseState
 	MOUSE_STATE_ON_RESIZE_LINES_RIGHT,	// 8
 	MOUSE_STATE_ON_RESIZE_LINES_LEFT,	// 9
 	MOUSE_STATE_ON_OTHER_WINDOW,		// 10
+	MOUSE_STATE_ON_POP_UP,				// 11
 }   MouseState;
 
 // TODO: Gerer le mouse state quand dropdown menu is open
@@ -190,8 +192,38 @@ typedef struct TestWorkspace
 }   TestWorkspace;
 
 //******************************************************************************//
+//***                               User Struct                              ***//
+//******************************************************************************//
+
+typedef struct UserSettings
+{
+	char	*engineVersion;
+
+	// Default 60 FPS
+	sint16	currentFPS;
+} UserSettings;
+
+typedef struct ProjectSettings
+{
+	char	*projectName;
+	char	*projectVersion;
+	char	*projectPath;
+
+	char	*engineVersion;
+	
+	// Default 60 FPS
+	sint16	currentFPS;
+} ProjectSettings;
+
+//******************************************************************************//
 //***                               MAIN STRUCT                              ***//
 //******************************************************************************//
+
+typedef struct CoreInfos
+{
+	char	*coreVersion;
+} CoreInfos;
+
 
 typedef struct  Engine
 {
@@ -226,6 +258,9 @@ typedef struct  Engine
 	Language        language;
 	// Exit Engine
 	volatile sig_atomic_t   exitCt;
+
+	ProjectSettings	projectSettings;
+	UserSettings	userSettings;
 }   Engine;
 
 //##############################################################################//
@@ -235,9 +270,9 @@ typedef struct  Engine
 //***                               engine                                   ***//
 //******************************************************************************//
 
-void    dr_init(Engine *engine);
-void    dr_update(Engine *engine);
-void    dr_exit(Engine *engine);
+void    dr_init(Engine *engine, CoreInfos *coreInfos);
+void    dr_update(Engine *engine, CoreInfos const *coreInfos);
+void    dr_exit(Engine *engine, CoreInfos *coreInfos);
 
 //******************************************************************************//
 //***                              utility.C                                 ***//
@@ -249,11 +284,11 @@ Rectangle	rectangle_addition(Rectangle rect01, Rectangle rect02);
 Rectangle	get_camera07_rect(void);
 
 //******************************************************************************//
-//***                              sideUpPanel.h                             ***//
+//***                              up_panel.h                                ***//
 //******************************************************************************//
 
-void	ftUpMenu2D(Engine *engine, Camera2D *camera);
-void    ftDrawDropdownMenu(Engine *engine);
+void	up_menu(Engine *engine, Camera2D *camera);
+void    draw_drop_down_menu(Engine *engine);
 
 //******************************************************************************//
 //***                             windows_events.c                           ***//
@@ -271,7 +306,7 @@ void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness);
 //***                                Workspace.c                             ***//
 //******************************************************************************//
 
-void    ftControlMainPanel(Engine *engine, Camera *camera);
+void    control_main_panel(Engine *engine, Camera *camera);
 
 //******************************************************************************//
 //***                           menu_functions.c                             ***//

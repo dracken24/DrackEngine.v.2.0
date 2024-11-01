@@ -15,102 +15,177 @@
 #include "../../../memory/dmemory.h"
 #include "../../../errors_manager/popUp/error_to_popUp.h"
 
-void creerStructureProjet(const char *cheminBase, const char *jsonString, BuildProject project);
+#include <cjson/cJSON.h>
+
+void	create_structure_projet(const char *cheminBase, const char *jsonString, BuildProject project);
+FILE	*open_file(char const *fileName, const char *mode);
+char	*file_to_string(FILE *file);
+bl8		write_json_to_file(const char *filePath, cJSON *jsonObject);
 
 FilesNew g_files_new;
 
 // --------------------------------------------------------------------------------
 
-// typedef struct BuildProject
-// {
-// 	FilesNew	fileNew;
-// } BuildProject;
 
 void	build_new_project(BuildProject project)
 {
-	// Read the JSON from a file
-    FILE *file = fopen("../engine/srcs/save_system/config_files/structure_projet.json", "r");
+	char const	path[] = "../engine/srcs/save_system/config_files/structure_projet.json";
+    FILE *file = open_file(path, "r");
+	// fopen("../engine/srcs/save_system/config_files/structure_projet.json", "r");
     if (file == NULL)
     {
-		DE_WARNING("Null file path open");
+		DE_WARNING("Null file path open with path: %s", path);
         return;
     }
-	// DE_WARNING("Good path open");
-	// return;
-    
-    // Read the content of the file
-    fseek(file, 0, SEEK_END);
-    long taille = ftell(file);
-    fseek(file, 0, SEEK_SET);
-    
-    char *jsonString = malloc(taille + 1);
-    fread(jsonString, 1, taille, file);
-    jsonString[taille] = '\0';
-    fclose(file);
-    
+
+    char *jsonString = file_to_string(file);
+
     // Create the project structure
-    creerStructureProjet(project.fileNew.pathEntry.text, jsonString, project);
+    create_structure_projet(project.fileNew.pathEntry.text, jsonString, project);
     
-    free(jsonString);
+    de_free(jsonString, sizeof(char) * ftell(file) + 1, MEMORY_TAG_STRING);
+	fclose(file);
 }
 
 // Fn pointer button change path
 static FileDialog g_fileDialog;
 static bl8	delayCt = false;
-static bl8	popUpInUse = false;
+static CoreInfos core_infos;
+// static bl8	popUpInUse = false;
+static int msgNumber = -1;
 
 void	update_popUp(void)
 {
+	bl8	*popUpInUse = &g_engine->errorManager.errorToPopUp.popUpInUse;
+
 	if (delayCt == true)
 	{
-		popUpInUse = true;
+		*popUpInUse = true;
 		delayCt = false;
 	}
-	else if (popUpInUse == true)
+	else if (*popUpInUse == true)
 	{
-		draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Project Name ***");
+		if (msgNumber >= 0)
+		{
+			switch (msgNumber)
+			{
+			case 0:
+				draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Project Name ***");
+				break;
+			case 1:
+				draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Version Number ***");
+				break;
+			case 2:
+				draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Valid Path ***");
+				break;
+			}
+		}
+
 		Rectangle cam07Rect = get_camera07_rect();
 		Rectangle collisionRec = g_engine->errorManager.errorToPopUp.rect;
 		collisionRec.x += cam07Rect.x;
 		collisionRec.y += cam07Rect.y;
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !CheckCollisionPointRec(GetMousePosition(), collisionRec))
+		if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !CheckCollisionPointRec(GetMousePosition(), collisionRec))
+			|| IsKeyPressed(KEY_ESCAPE))
 		{
-			popUpInUse = false;
+			change_view(g_engine, STATE_VIEW_FILES_NEW_PROJECT, true, NULL, NULL);
+			*popUpInUse = false;
+			msgNumber = -1;
 		}
 	}
 }
 
-// Fn pointer button create project
+bl8	check_new_Project_entry(FilesNew *projectVars)
+{
+	// DE_WARNING("*** valid path name ***: %s", projectVars->pathEntry.text);
+	// DE_WARNING("*** valid path ***: %d", DirectoryExists(projectVars->pathEntry.text));
+	// Check if project have a name
+	if (!projectVars->projectNameEntry.text || ft_strlen(projectVars->projectNameEntry.text) <= 0)
+	{
+		DE_WARNING("*** Need A Project Name ***");
+		change_view(g_engine, STATE_VIEW_SUB_WINDOW, true, NULL, NULL);
+		delayCt = true;
+		msgNumber = 0;
+		// init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
+
+		return false;
+	}
+	// Check if project have a version
+	if (!projectVars->versionEntry.text || ft_strlen(projectVars->versionEntry.text) <= 0)
+	{
+		DE_WARNING("*** Need A Project Vertion ***");
+		// init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
+		change_view(g_engine, STATE_VIEW_SUB_WINDOW, true, NULL, NULL);
+		delayCt = true;
+		msgNumber = 1;
+
+		return false;
+	}
+	// Check if project have a valid path
+	if (!DirectoryExists(projectVars->pathEntry.text))
+	{
+		DE_WARNING("*** Need A Valid Path ***");
+		// init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
+		change_view(g_engine, STATE_VIEW_SUB_WINDOW, true, NULL, NULL);
+		delayCt = true;
+		msgNumber = 2;
+
+		return false;
+	}
+
+	return true;
+}
+
+// Fn pointer fo button create project
 void	create_new_project(void *userData)
 {
 	FilesNew *projectVars = (FilesNew *)userData;
-	DE_WARNING("A");
-	DE_DEBUG("Name: %s", projectVars->projectNameEntry.text);
-	if (!projectVars->projectNameEntry.text || ft_strlen(projectVars->projectNameEntry.text) <= 0)
-	{
-		DE_WARNING("*** Need A Project Name ***", projectVars->projectNameEntry.text);
-		init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
-		delayCt = true;
 
-		return;
-	}
-	DE_WARNING("B");
-	if (!projectVars->versionEntry.text || ft_strlen(projectVars->versionEntry.text) <= 0)
+	DE_DEBUG("Name: %s", projectVars->projectNameEntry.text);
+
+	if (check_new_Project_entry(projectVars) == false)
 	{
-		DE_WARNING("*** Need A Project Vertion ***", projectVars->versionEntry.text);
 		return;
 	}
-	DE_WARNING("C");
-	if (!projectVars->pathEntry.text || ft_strlen(projectVars->pathEntry.text) <= 0)
-	{
-		DE_WARNING("*** Need A Valid Path ***", projectVars->pathEntry.text);
-		return;
-	}
+	
 
 	DE_DEBUG("create_new_project Validate: %s", projectVars->projectNameEntry.text);
 	BuildProject project;
 	project.fileNew = *projectVars;
 	build_new_project(project);
+
+	// Mount path for write in projectSettings.json
+	char *filePath = malloc(sizeof(char));
+	filePath[0] = '\0';
+	filePath = ft_strjoin(filePath, projectVars->pathEntry.text, 1);
+	filePath = ft_strjoin(filePath, "/", 1);
+	filePath = ft_strjoin(filePath, projectVars->projectNameEntry.text, 1);
+	filePath = ft_strjoin(filePath, "/Engine System/ProjectSettings.json", 1);
+
+	// DE_DEBUG("Path for settings json: %s", filePath);
+
+	// Create json object
+	{
+		cJSON *jsonObj = cJSON_CreateObject();
+
+		// Add project informations
+		cJSON_AddStringToObject(jsonObj, "projectName", projectVars->projectNameEntry.text);
+		cJSON_AddStringToObject(jsonObj, "projectVersion", projectVars->versionEntry.text);
+		cJSON_AddStringToObject(jsonObj, "path", projectVars->pathEntry.text);
+
+		// Add config informations
+		cJSON *configObj = cJSON_CreateObject();
+		cJSON_AddStringToObject(configObj, "engineVersion", core_infos.coreVersion);
+		cJSON_AddBoolToObject(configObj, "debugMode", true);
+		cJSON_AddNumberToObject(configObj, "targetFPS", g_engine->userSettings.currentFPS);
+		cJSON_AddItemToObject(jsonObj, "config", configObj);
+
+		// Write to file
+		write_json_to_file(filePath, jsonObj);
+
+		cJSON_Delete(jsonObj);
+	}
+	free(filePath);
 
 	g_engine->inputEventCt = true;
 }
@@ -118,11 +193,13 @@ void	create_new_project(void *userData)
 void	update_new_project(void)
 {
     // DE_DEBUG("Debug 1");
+	// DE_DEBUG("Debug 1: %d", sizeof(int));
+	// DE_DEBUG("Debug 1: %d", sizeof(float));
+	// DE_DEBUG("Debug 1: %d", sizeof(double));
 	if (g_fileDialog.isOpen)
     {
 		Vector2 camPos = (Vector2){g_engine->allCameras->camera07.rectForCam.x, g_engine->allCameras->camera07.rectForCam.y};
         draw_file_dialog(&g_fileDialog, camPos);
-
         
         if (file_dialog_should_close(&g_fileDialog))
         {
@@ -159,8 +236,15 @@ void change_path(void *userData)
 
 // --------------------------------------------------------------------------------
 
-void    new_project_init(void)
+void	init_textboxes(void)
 {
+	ft_strlcpy(g_files_new.versionEntry.text, "v1.0.0.1", 9);
+	// DE_DEBUG("versionEntry: %s", g_files_new.versionEntry.text);
+}
+
+void    new_project_init(CoreInfos const *coreInfos)
+{
+	core_infos = *coreInfos;
 	// Entry Types
     Rectangle rect = { 20, 62, 300, 22};
 	g_files_new.projectNameEntry = create_textBox(rect, 64);
@@ -191,7 +275,7 @@ void    new_project_init(void)
 	button_set_bg_hover_color(&g_files_new.confirmButton, GRAY);
 	button_set_bg_click_color(&g_files_new.confirmButton, LIGHTGRAY);
 	button_set_font(&g_files_new.confirmButton, g_engine->fonts.defaultFont);
-	button_set_function(&g_files_new.confirmButton ,*create_new_project, &g_files_new.projectNameEntry);
+	button_set_function(&g_files_new.confirmButton ,*create_new_project, &g_files_new);
 	// Button Change Path
 	rect = g_files_new.pathEntry.rect;
 	size = (Vector2){140, 35};
@@ -201,9 +285,12 @@ void    new_project_init(void)
 	button_set_bg_click_color(&g_files_new.changePathButton, LIGHTGRAY);
 	button_set_font(&g_files_new.changePathButton, g_engine->fonts.defaultFont);
 	button_set_function(&g_files_new.changePathButton ,*change_path, &g_files_new.pathEntry);
+
+	init_textboxes();
+	init_ErrorToPopUp(&g_engine->errorManager.errorToPopUp, REC_ERR_TO_POPUP_DEFAULT_CAM07, 2, GRAY);
 }
 
-void    new_project_update(void)
+void    new_project_update(CoreInfos const *coreInfos)
 {
     Vector2 mpos = GetMousePosition();
 	NeedBy3DCam camera_07 = g_engine->allCameras->camera07;
@@ -219,18 +306,23 @@ void    new_project_update(void)
 
 	if (window_in_operation == false)
 	{
-		new_project_init();
+		new_project_init(coreInfos);
 		window_in_operation = true;
 	}
 
 	keys_events(g_engine);
 
 	Rectangle adjust = {rect07.x, rect07.y, 0, 0};
+	// DE_DEBUG("popUpInUse: %d", g_engine->errorManager.errorToPopUp.popUpInUse);
 
 	// Update TextBox
-	update_textBox(&g_files_new.projectNameEntry, adjust, CAM07_DEFAULT_FONT, CAM07_SPACING, (intptr_t)NULL);
-	update_textBox(&g_files_new.versionEntry, adjust, CAM07_DEFAULT_FONT, CAM07_SPACING, (intptr_t)NULL);
-	update_textBox(&g_files_new.pathEntry, adjust, CAM07_DEFAULT_FONT, CAM07_SPACING, (intptr_t)NULL);
+	bl8 popUpInUse = g_engine->errorManager.errorToPopUp.popUpInUse;
+	if (popUpInUse == false)
+	{
+		update_textBox(&g_files_new.projectNameEntry, adjust, CAM07_DEFAULT_FONT, CAM07_SPACING, (intptr_t)NULL);
+		update_textBox(&g_files_new.versionEntry, adjust, CAM07_DEFAULT_FONT, CAM07_SPACING, (intptr_t)NULL);
+		update_textBox(&g_files_new.pathEntry, adjust, CAM07_DEFAULT_FONT, CAM07_SPACING, (intptr_t)NULL);
+	}
 
 	// Update all cameras
 	mount_all_cameras_engine(g_engine);
@@ -241,7 +333,6 @@ void    new_project_update(void)
 		ClearBackground(CAM07_CLEAR_BACKGROUND);
 		BeginMode2D(g_engine->allCameras->camera07.camera2D);
 
-			// Draw Title
 			DrawTextEx(CAM07_DEFAULT_FONT, "New Project", (Vector2){rect07.width / 2 - MeasureText("New Project", 30 + CAM07_FONT_ADJUST) / 2, 20}, 30, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 
 			// Draw and catch Project Name
@@ -254,10 +345,10 @@ void    new_project_update(void)
 			DrawTextEx(CAM07_DEFAULT_FONT, "Saving Path", (Vector2){20, 144}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 			draw_textBox(g_files_new.pathEntry, CAM07_DEFAULT_FONT, VERRYDARKGRAY, CAM07_SPACING, (intptr_t)NULL);
 			// Draw Change Path Button
-			draw_button(&g_files_new.changePathButton, (intptr_t)NULL, 1, 2, CAM07_BORDER_COLOR, (Vector2){rect07.x, rect07.y});
+			draw_button(&g_files_new.changePathButton, (intptr_t)NULL, 1, 2, CAM07_BORDER_COLOR, (Vector2){rect07.x, rect07.y}, popUpInUse);
 			
 			// Draw Confirm Button
-			draw_button(&g_files_new.confirmButton, (intptr_t)NULL, 1, 2, CAM07_BORDER_COLOR, (Vector2){rect07.x, rect07.y});
+			draw_button(&g_files_new.confirmButton, (intptr_t)NULL, 1, 2, CAM07_BORDER_COLOR, (Vector2){rect07.x, rect07.y}, popUpInUse);
 
 			update_new_project();
 			update_popUp();
@@ -285,6 +376,7 @@ void    new_project_clean(void)
 
 void    new_project_destroy(void)
 {
+	DE_DEBUG("Unload for new_project");
     destroy_textBox(&g_files_new.projectNameEntry);
 	destroy_textBox(&g_files_new.versionEntry);
 	destroy_textBox(&g_files_new.pathEntry);
