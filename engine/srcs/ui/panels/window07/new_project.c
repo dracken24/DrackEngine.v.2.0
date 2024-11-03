@@ -78,6 +78,9 @@ void	update_popUp(void)
 			case 2:
 				draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Need A Valid Path ***");
 				break;
+			case 3:
+				draw_popUp(g_engine->errorManager.errorToPopUp, false, "*** Project name exist ***");
+				break;
 			}
 		}
 
@@ -132,6 +135,31 @@ bl8	check_new_Project_entry(FilesNew *projectVars)
 
 		return false;
 	}
+	FilePathList allPath = LoadDirectoryFiles(projectVars->pathEntry.text);
+	DE_DEBUG("capacity: %d", allPath.capacity);
+	DE_DEBUG("count: %d", allPath.count);
+
+#ifdef DE_PLATFORM_LINUX
+	// Check if file existe Linux style
+	for (int i = 0; i < allPath.count; i++)
+	{
+		// DE_WARNING("PTR len: %s", allPath.paths[i]);
+		char **splitName = ft_split(allPath.paths[i], '/');
+		int len = ft_nbr_ptr(splitName) - 2;
+		
+		// DE_WARNING("File Name: %s", splitName[len]);
+		if (ft_strncmp(splitName[len], projectVars->projectNameEntry.text, ft_strlen(splitName[len])) == 0)
+		{
+			DE_WARNING("Project Exist");
+			change_view(g_engine, STATE_VIEW_SUB_WINDOW, true, NULL, NULL);
+			msgNumber = 3;
+			delayCt = true;
+			ft_free_ptr((void **)splitName);
+			return false;
+		}
+		ft_free_ptr((void **)splitName);
+	}
+#endif
 
 	return true;
 }
