@@ -12,4 +12,4 @@
 #ifndef RAYGIZMO_IMPLEMENTATION
     #define RAYGIZMO_IMPLEMENTATION
 #endif
-#include "../../library/extern/raygizmo/include/raygizmo.h"
+#include "../../../library/extern/raygizmo/include/raygizmo.h"

@@ -1,6 +1,5 @@
 #ifndef DARRAY_H
 # define DARRAY_H
-
 #ifdef __cplusplus
 extern "C" {
 #endif

@@ -11,11 +11,11 @@
 /*******************************************************************************/
 
 #include "file_dialog.h"
-#include "../../library/drackengine_lib/logger.h"
+#include "../../../../library/drackengine_lib/logger.h"
 #include "../../../utility/buttons.h"
 #include "../../../memory/dmemory.h"
-#include "engine.h"
-#include "struct_globale.h"
+#include "../../../../includes/engine.h"
+#include "../../../../includes/struct_globale.h"
 
 #include <dirent.h>
 #include <sys/stat.h>

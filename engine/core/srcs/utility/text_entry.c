@@ -12,9 +12,9 @@
 
 #include "text_entry.h"
 #include "../memory/dmemory.h"
-#include "../../library/drackengine_lib/logger.h"
-#include "utility.h"
-#include "struct_globale.h"
+#include "../../../../library/drackengine_lib/logger.h"
+#include "../../includes/utility.h"
+#include "../../includes/struct_globale.h"
 
 #include <string.h>
 

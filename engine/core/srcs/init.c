@@ -25,13 +25,14 @@ void			init_fonts(Engine *engine);
 void			init_workspace(Engine *engine);
 void			init_all_other_windows_textBox(void);
 
-void    dr_init(Engine *engine, CoreInfos *coreInfos)
+bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
 {
+	DE_DEBUG("Init Core");
 	// init Engine
 	{
 		engine->exitCt = false;
 		engine->allStates.currentStateView = STATE_VIEW_ENGINE;
-		engine->allStates.currentStateView = MOUSE_STATE_ON_WORKSPACE;
+		engine->allStates.currentStateMouse = MOUSE_STATE_ON_WORKSPACE;
 		engine->allStates.blockMouseStates = false;
 		engine->screenSize = (Vector2){1500, 750};
 		engine->screenSizeWindow = WINDOW_OTHERS;
@@ -75,6 +76,8 @@ void    dr_init(Engine *engine, CoreInfos *coreInfos)
 	// init_all_other_windows_textBox();
 	// change_language(engine, "en");
 	// DE_DEBUG("In init Language: %s", engine->language.dropdown_menus_03[0][0]);
+
+	return true;
 }
 
 void	init_gizmo(Engine *engine)

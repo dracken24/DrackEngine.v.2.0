@@ -88,6 +88,8 @@ void    control_main_panel(Engine *engine, Camera *camera)
 	RGizmo *gizmo = &engine->testWorkspace.gizmo;
 	Vector3 position = { model->transform.m12, model->transform.m13, model->transform.m14};
 
+		// DE_DEBUG("REACH");
+		// DE_DEBUG("MOUSE_STATE_ON_WORKSPACE: %d", engine->allStates.currentStateMouse);
 	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE || g_reset_workspace)
 	{
 		// DE_DEBUG("g_reset_workspace: %d", g_reset_workspace);

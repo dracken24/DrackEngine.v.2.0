@@ -1,5 +1,4 @@
-#ifndef DSTRING_H
-# define DSTRING_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,6 +16,4 @@ DE_API bl8 strings_equal(const char* str0, const char* str1);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

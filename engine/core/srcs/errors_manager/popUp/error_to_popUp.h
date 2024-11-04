@@ -16,9 +16,9 @@
 extern "C" {
 #endif
 
-#include "../../library/drackengine_lib/drackengine_lib.h"
+#include "../../../../library/drackengine_lib/drackengine_lib.h"
 
-#include "engine.h"
+#include "../../../includes/engine.h"
 
 // typedef struct ErrorToPopUp
 // {
@@ -30,7 +30,7 @@ extern "C" {
 // } ErrorToPopUp;
 
 void	init_ErrorToPopUp(ErrorToPopUp *errToPopUp, Rectangle rect ,logLevel level, Color bgColor);
-void    draw_popUp(ErrorToPopUp errToPop, bl8 skipWord00, const char *message, ...);
+void    draw_popUp(Engine *engine, ErrorToPopUp errToPop, bl8 skipWord00, const char *message, ...);
 
 #ifdef __cplusplus
 }

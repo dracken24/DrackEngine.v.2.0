@@ -11,7 +11,7 @@
 /*******************************************************************************/
 
 #include "../includes/temp_for_build.h"
-#include "../../library/drackengine_lib/utility/colors.h"
+#include "../../../../library/drackengine_lib/utility/colors.h"
 
 void test_log(void)
 {

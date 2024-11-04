@@ -12,8 +12,8 @@
 
 #include "buttons.h"
 #include "../memory/dmemory.h"
-#include "../../../library/drackengine_lib/logger.h"
-#include "../../../library/libft/libft.h"
+#include "../../../../library/drackengine_lib/logger.h"
+#include "../../../../library/libft/libft.h"
 
 Rectangle rectangle_addition(Rectangle rect01, Rectangle rect02);
 void    draw_rectangle_borders(Rectangle rect, Color color, int thickness);

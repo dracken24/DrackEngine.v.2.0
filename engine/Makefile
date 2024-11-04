@@ -1,3 +1,6 @@
+# $(info CORE_SRCS = $(CORE_SRCS))
+# $(info CORE_OBJS = $(CORE_OBJS))
+
 # Nom des exécutables et bibliothèques
 NAME = DrackEngine
 CORE_LIB = libdrackcore.a
@@ -5,7 +8,7 @@ CORE_LIB = libdrackcore.a
 # Compilateurs et options
 CC = gcc
 CXX = g++
-CFLAGS = -Wall -Wextra -I./includes -I../library/extern/raylib/src
+CFLAGS = -I./includes -I../library/extern/raylib/src
 CFLAGS += -I./engine/includes -I./engine/srcs/utility
 CFLAGS += -I./library/libft
 CFLAGS += -I./library/drackengine_lib
@@ -21,13 +24,13 @@ LIBFT_DIR = ../library/libft
 RAYLIB_DIR = ../library/extern/raylib/src
 LIBDRACKENGINE_DIR = ../library/drackengine_lib
 
-# Sources
+# Sources avec chemins complets
 CORE_SRCS = $(shell find $(CORE_DIR) -name '*.c')
 WRAPPER_SRCS = $(shell find $(WRAPPER_DIR) -name '*.cpp')
 
-# Objets
-CORE_OBJS = $(CORE_SRCS:$(CORE_DIR)/%.c=$(OBJ_DIR)/core/%.o)
-WRAPPER_OBJS = $(WRAPPER_SRCS:$(WRAPPER_DIR)/%.cpp=$(OBJ_DIR)/wrapper/%.o)
+# Objets - Modification de la transformation des chemins
+CORE_OBJS = $(CORE_SRCS:%.c=$(OBJ_DIR)/%.o)
+WRAPPER_OBJS = $(WRAPPER_SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 # Bibliothèques externes
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -48,10 +51,16 @@ $(NAME): $(CORE_LIB) $(WRAPPER_OBJS) $(LIBFT) $(RAYLIB) $(LIBDRACKENGINE)
 	@echo "$(GREEN)✓ Exécutable $(NAME) créé avec succès !$(RESET)"
 
 # Compilation des fichiers sources
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
 	@echo "$(YELLOW)Compilation de $<...$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Compilation des fichiers sources C++
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(@D)
+	@echo "$(YELLOW)Compilation de $<...$(RESET)"
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Création de la bibliothèque core (C)
 $(CORE_LIB): $(CORE_OBJS)
@@ -60,12 +69,6 @@ $(CORE_LIB): $(CORE_OBJS)
 	@echo "$(BLUE)╚══════════════════════════════════════╝$(RESET)"
 	@ar rcs $(CORE_LIB) $(CORE_OBJS)
 	@echo "$(GREEN)✓ Bibliothèque core créée avec succès !$(RESET)"
-
-# Compilation des fichiers sources C++
-$(OBJ_DIR)/wrapper/%.o: $(WRAPPER_DIR)/%.cpp
-	@mkdir -p $(@D)
-	@echo "$(YELLOW)Compilation de $<...$(RESET)"
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Compilation de la libft
 $(LIBFT):
@@ -102,10 +105,9 @@ fclean: clean
 	@$(MAKE) -C $(LIBDRACKENGINE_DIR) fclean
 	@echo "$(GREEN)✓ Nettoyage complet terminé !$(RESET)"
 
-re: fclean all
+re: clean all
 
 .PHONY: all clean fclean re
-
 # # Nom de l'exécutable
 # NAME = DrackEngine
 

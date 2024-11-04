@@ -12,7 +12,7 @@
 
 #include "dmemory.h"
 
-#include "../../library/drackengine_lib/logger.h"
+#include "../../../../library/drackengine_lib/logger.h"
 #include "../containers/dstring.h"
 #include "../platform/platform.h"
 

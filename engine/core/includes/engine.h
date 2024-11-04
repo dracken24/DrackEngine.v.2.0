@@ -20,14 +20,14 @@ extern "C" {
 # include "raylib.h"
 # include "raymath.h"
 # include "rlgl.h"
-# include "../../library/libft/libft.h"
+# include "../../../library/libft/libft.h"
 # include "struct_globale.h"
-# include "../../library/drackengine_lib/drackengine_lib.h"
+# include "../../../library/drackengine_lib/drackengine_lib.h"
 # include "../srcs/utility/buttons.h"
 // #include "../srcs/errors_manager/popUp/error_to_popUp.h"
 
 // # include "Config/menus.h"
-# include "../../library/extern/raygizmo/include/raygizmo.h"
+# include "../../../library/extern/raygizmo/include/raygizmo.h"
 
 # include <signal.h>
 
@@ -274,7 +274,7 @@ typedef struct  Engine
 //***                               engine                                   ***//
 //******************************************************************************//
 
-void    dr_init(Engine *engine, CoreInfos *coreInfos);
+bl8		dr_init(Engine *engine, CoreInfos *coreInfos);
 void    dr_update(Engine *engine, CoreInfos const *coreInfos);
 void    dr_exit(Engine *engine, CoreInfos *coreInfos);
 

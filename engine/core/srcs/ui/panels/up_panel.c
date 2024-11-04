@@ -15,7 +15,7 @@
 #include "../../../includes/Config/menus.h"
 #include "../../memory/dmemory.h"
 
-void	change_state_mouse(MouseState mouse_state);
+void	change_state_mouse(Engine *engine, MouseState mouse_state);
 
 extern bl8 refresh_frame;
 
@@ -41,7 +41,7 @@ void    change_view(Engine *engine, ViewState state, bl8 resize_window, int *sel
     engine->allStates.lastStateView = engine->allStates.currentStateView;
     engine->allStates.currentStateView = state;
 
-    change_state_mouse(MOUSE_STATE_ON_OTHER_WINDOW);
+    change_state_mouse(engine, MOUSE_STATE_ON_OTHER_WINDOW);
     if (selectedTab && isDropdownOpen)
     {
         unselect_tab(selectedTab, isDropdownOpen);

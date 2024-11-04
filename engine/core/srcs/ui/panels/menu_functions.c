@@ -25,8 +25,8 @@ void    quit_menu_window(Engine *engine)
 	switch (engine->allStates.currentStateView)
 	{
 		case STATE_VIEW_FILES_NEW_PROJECT:
-			new_project_clean();
-			new_project_destroy();
+			new_project_clean(engine);
+			new_project_destroy(engine);
 			break;
 		case STATE_VIEW_FILES_OPEN_PROJECT:
 			open_project_clean();
@@ -100,33 +100,33 @@ void    keys_events(Engine *engine)
 		DE_DEBUG("Debug 1: %d", engine->allStates.currentStateView);
 		quit_menu_window(engine);
 		DE_DEBUG("Debug 2");
-		g_engine->inputEventCt = false;
+		engine->inputEventCt = false;
 	}
 }
 
 void    menu_files_new(Engine *engine, CoreInfos const *coreInfos)
 {
-	new_project_update(coreInfos);
+	new_project_update(engine, coreInfos);
 }
 
 void    menu_files_open(Engine *engine)
 {
-	open_project_update();
+	open_project_update(engine);
 }
 
 void    menu_files_save(Engine *engine)
 {
-	save_project_update();
+	save_project_update(engine);
 }
 
 void    menu_files_save_as(Engine *engine)
 {
-	save_as_project_update();
+	save_as_project_update(engine);
 }
 
 void    menu_files_export(Engine *engine)
 {
-	export_project_update();
+	export_project_update(engine);
 }
 
 //******************************************************************************//
@@ -169,17 +169,17 @@ void    menu_edit_paste(Engine *engine)
 
 void    menu_settings_engine(Engine *engine)
 {
-	settings_engine_update();
+	settings_engine_update(engine);
 }
 
 void    menu_settings_project(Engine *engine)
 {
-	settings_project_update();
+	settings_project_update(engine);
 }
 
 void    menu_settings_options(Engine *engine)
 {
-	settings_options_update();
+	settings_options_update(engine);
 }
 
 //******************************************************************************//
@@ -188,15 +188,15 @@ void    menu_settings_options(Engine *engine)
 
 void    menu_help_about(Engine *engine)
 {
-	help_about_update();
+	help_about_update(engine);
 }
 
 void    menu_help_support(Engine *engine)
 {
-	help_support_update();
+	help_support_update(engine);
 }
 
 void    menu_help_documentation(Engine *engine)
 {
-	help_doc_update();
+	help_doc_update(engine);
 }

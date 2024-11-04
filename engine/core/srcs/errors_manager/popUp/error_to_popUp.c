@@ -13,8 +13,6 @@
 #include "error_to_popUp.h"
 Rectangle	get_camera07_rect(void);
 
-extern Engine *g_engine;
-
 void	init_ErrorToPopUp(ErrorToPopUp *errToPopUp, Rectangle rect ,logLevel level, Color bgColor)
 {
 	errToPopUp->bgColor = bgColor;
@@ -24,7 +22,7 @@ void	init_ErrorToPopUp(ErrorToPopUp *errToPopUp, Rectangle rect ,logLevel level,
 	errToPopUp->popUpInUse = false;
 }
 
-void    draw_popUp_now(ErrorToPopUp errToPop, const char *message)
+void    draw_popUp_now(Engine *engine, ErrorToPopUp errToPop, const char *message)
 {
     Rectangle rect = errToPop.rect;
     DrawRectangleRec(rect, errToPop.bgColor);
@@ -32,14 +30,14 @@ void    draw_popUp_now(ErrorToPopUp errToPop, const char *message)
     const Color *colors[] = {&RED, &MAROON, &ORANGE, &YELLOW, &BLUE, &GREEN};
     DrawRectangleLinesEx(rect, 4, *colors[errToPop.level]);
 	
-	Font font = g_engine->fonts.defaultFont;
+	Font font = engine->fonts.defaultFont;
 	Vector2 mesureText = MeasureTextEx(font, message, font.baseSize , 1);
 	Vector2 rectPos = (Vector2){rect.x + rect.width / 2 - mesureText.x / 2,
 		rect.y + rect.height / 2 - mesureText.y / 4};
 	DrawTextEx(font, message, rectPos, font.baseSize, 1, *colors[errToPop.level]);
 }
 
-void    draw_popUp(ErrorToPopUp errToPop, bl8 skipWord00, const char *message, ...)
+void    draw_popUp(Engine *engine, ErrorToPopUp errToPop, bl8 skipWord00, const char *message, ...)
 {
     const char	*levelStr[6] = {"[*FATAL*]   : ", "[*ERROR*]   : ", "[*WARNING*] : ",
 		"[*INFO*]    : ", "[*DEBUG*]   : ", "[*TRACE*]   : "};
@@ -62,5 +60,5 @@ void    draw_popUp(ErrorToPopUp errToPop, bl8 skipWord00, const char *message, .
 	strcat(outBuffer, outMessage);
 	strcat(outBuffer, "\n");
 
-    draw_popUp_now(errToPop, outBuffer);
+    draw_popUp_now(engine, errToPop, outBuffer);
 }

@@ -1,7 +1,7 @@
-#include "struct_globale.h"
-#include "../srcs/memory/dmemory.h"
-#include "../../library/libft/libft.h"
-#include "../../library/drackengine_lib/drackengine_lib.h"
+#include "../../includes/struct_globale.h"
+#include "../memory/dmemory.h"
+#include "../../../../library/libft/libft.h"
+#include "../../../../library/drackengine_lib/drackengine_lib.h"
 
 #include <stdio.h>
 #include <stdlib.h>

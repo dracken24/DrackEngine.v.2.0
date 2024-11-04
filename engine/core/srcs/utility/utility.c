@@ -11,8 +11,8 @@
 /*******************************************************************************/
 
 #include "../memory/dmemory.h"
-#include "engine.h"
-#include "../../library/drackengine_lib/logger.h"
+#include "../../includes/engine.h"
+#include "../../../../library/drackengine_lib/logger.h"
 
 #include <raylib.h>
 

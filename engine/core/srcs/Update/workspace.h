@@ -20,7 +20,7 @@ extern "C" {
 #include "raylib.h"
 #include "raymath.h"
 #include "rlgl.h"
-#include "../../library/extern/raygizmo/include/raygizmo.h"
+#include "../../../../library/extern/raygizmo/include/raygizmo.h"
 
 #define CAMERA_ROT_SPEED 0.003f
 #define CAMERA_MOVE_SPEED 0.02f

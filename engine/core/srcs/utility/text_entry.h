@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-# include "engine_defines.h"
-# include "struct_globale.h"
+# include "../../includes/engine_defines.h"
+# include "../../includes/struct_globale.h"
 
 # include "raylib.h"
 

@@ -1,5 +1,4 @@
-#ifndef EVENT_H
-# define EVENT_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -118,6 +117,4 @@ typedef enum system_event_code {
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

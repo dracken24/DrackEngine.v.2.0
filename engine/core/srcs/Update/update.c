@@ -10,17 +10,17 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-#include "engine.h"
-#include "struct_globale.h"
-#include "Config/menus.h"
+#include "../../includes/engine.h"
+#include "../../includes/struct_globale.h"
+#include "../../includes/Config/menus.h"
 #include "../ui/panels/window07/file_dialog.h"
-#include "../srcs/ui/panels/window07/window07.h"
+#include "../ui/panels/window07/window07.h"
 
 #include <fcntl.h>
 #include "rlgl.h" 
 #include "workspace.h"
 
-void    check_mouse_state(void);
+void    check_mouse_state(Engine *engine);
 void    resize_screen(Engine *engine);
 
 // extern FileDialog g_fileDialog;
@@ -252,7 +252,7 @@ void    dr_update(Engine *engine, CoreInfos const *coreInfos)
 	else
 	{
 		engine->mouse.pos = GetMousePosition();
-		check_mouse_state();
+		check_mouse_state(engine);
 		// DE_WARNING("Mouse Current State: %d", engine->allStates.currentStateMouse);
 		// DE_WARNING("VIEW Current State: %d", engine->allStates.currentStateView);
 		// Andle resize in others windows than Build mode
@@ -273,6 +273,8 @@ void    dr_update(Engine *engine, CoreInfos const *coreInfos)
 			refresh_frame = false;
 			update_main_view(engine);
 		}
+
+		// DE_DEBUG("MOUSE_STATE_ON_WORKSPACE: %s", engine->allStates.currentStateMouse);
 
 		switch(engine->allStates.currentStateView)
         {

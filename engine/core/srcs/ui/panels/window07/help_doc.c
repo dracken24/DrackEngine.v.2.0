@@ -20,10 +20,10 @@ void    help_doc_init(void)
 	g_help_support.testEntry = create_textBox(rec, 64);
 }
 
-void    help_doc_update(void)
+void    help_doc_update(Engine *engine)
 {
     Vector2 mpos = GetMousePosition();
-	NeedBy3DCam camera_07 = g_engine->allCameras->camera07;
+	NeedBy3DCam camera_07 = engine->allCameras->camera07;
 	Rectangle rect = camera_07.rectForCam;
 
 	if (window_in_operation == false)
@@ -32,20 +32,20 @@ void    help_doc_update(void)
 		window_in_operation = true;
 	}
 
-	keys_events(g_engine);
+	keys_events(engine);
 
 	Rectangle adjust = {rect.x, rect.y, 0, 0};
 
 	update_textBox(&g_help_support.testEntry, adjust, CAM07_DEFAULT_FONT, CAM07_SPACING, (intptr_t)NULL);
 
 	// Update all cameras
-	mount_all_cameras_engine(g_engine);
-	draw_cameras_textures(g_engine);
+	mount_all_cameras_engine(engine);
+	draw_cameras_textures(engine);
 
 	// Mount current texture camera 07
-	BeginTextureMode(g_engine->allCameras->camera07.textForCam);
+	BeginTextureMode(engine->allCameras->camera07.textForCam);
 		ClearBackground(CAM07_CLEAR_BACKGROUND);
-		BeginMode2D(g_engine->allCameras->camera07.camera2D);
+		BeginMode2D(engine->allCameras->camera07.camera2D);
 
 			DrawTextEx(CAM07_DEFAULT_FONT, "Documentation", (Vector2){rect.width / 2 - MeasureText("Documentation", 30 + CAM07_FONT_ADJUST) / 2, 20}, 30, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
 			DrawTextEx(CAM07_DEFAULT_FONT, "Test Documentation Entry", (Vector2){20, 40}, CAM07_DEFAULT_FONT.baseSize, CAM07_SPACING, CAM07_MAIN_TEXT_COLOR);
