@@ -95,6 +95,7 @@
     "file_dialog.h": "c",
     "stat.h": "c",
     "typeinfo": "c",
-    "random": "c"
+    "random": "c",
+    "system_error": "c"
   },
 }
