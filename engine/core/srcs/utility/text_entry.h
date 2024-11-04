@@ -1,5 +1,4 @@
-#ifndef TEXT_ENTRY_H
-# define TEXT_ENTRY_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,6 +21,4 @@ void    resize_texBox_rectangle(TextBox *textBox, Rectangle newSizeRec);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

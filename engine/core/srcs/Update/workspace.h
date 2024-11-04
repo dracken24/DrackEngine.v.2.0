@@ -10,8 +10,7 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-#ifndef WORKSPACE_H
-# define WORKSPACE_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,6 +30,4 @@ void    update_camera(Camera3D *camera);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

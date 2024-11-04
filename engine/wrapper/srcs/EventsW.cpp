@@ -1,5 +1,7 @@
 #include "../includes/EventsW.hpp"
 
+using namespace DrackEngine;
+
 void Events::processEvents(Engine* engine)
 {
     window_events(engine);

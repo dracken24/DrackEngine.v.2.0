@@ -1,13 +1,14 @@
-#ifndef UIW_HPP
-# define UIW_HPP
+#pragma once
 
 #include "../../core/includes/engine.h"
 
-class UI {
-public:
-    static void renderPanels(Engine* coreInfos);
-    static void renderMenus(Engine* coreInfos);
-    static void handleUIEvents(Engine* coreInfos);
-};
-
-#endif
+namespace DrackEngine
+{
+    class UI
+    {
+        public:
+            static void renderPanels(Engine* coreInfos);
+            static void renderMenus(Engine* coreInfos);
+            static void handleUIEvents(Engine* coreInfos);
+    };
+}

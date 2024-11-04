@@ -4,6 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}/***",
                 "${workspaceFolder}/engine/core/includes",
                 "${workspaceFolder}/engine/core/srcs",
                 "${workspaceFolder}/engine/core/srcs/utility",

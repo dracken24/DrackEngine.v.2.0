@@ -1,5 +1,4 @@
-#ifndef WINDOW07_H
-# define WINDOW07_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -154,6 +153,4 @@ void    help_doc_destroy(void);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

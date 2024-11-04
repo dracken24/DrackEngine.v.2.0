@@ -10,8 +10,7 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-#ifndef TEMP_FOR_BUILD_H
-# define TEMP_FOR_BUILD_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,6 +22,4 @@ void test_log(void);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

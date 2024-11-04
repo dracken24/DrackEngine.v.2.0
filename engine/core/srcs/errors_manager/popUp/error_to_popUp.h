@@ -9,8 +9,8 @@
 /* |             ---------------------------------------------             | */
 /*/|\~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~/|\*/
 /*****************************************************************************/
-#ifndef ERROR_TO_POPUP_H
-# define ERROR_TO_POPUP_H
+
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,6 +34,4 @@ void    draw_popUp(Engine *engine, ErrorToPopUp errToPop, bl8 skipWord00, const 
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

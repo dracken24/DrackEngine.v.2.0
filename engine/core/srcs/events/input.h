@@ -1,5 +1,4 @@
-#ifndef INPUT_H
-# define INPUT_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -175,6 +174,4 @@ void input_process_mouse_wheel(sint8 z_delta);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif
