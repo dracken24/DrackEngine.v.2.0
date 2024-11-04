@@ -10,8 +10,7 @@
 /*/|\~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~/|\*/
 /*****************************************************************************/
 
-#ifndef MENUS_H
-# define MENUS_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -53,6 +52,4 @@ void    menu_help_support(Engine *engine);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

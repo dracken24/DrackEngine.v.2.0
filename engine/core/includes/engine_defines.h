@@ -10,8 +10,7 @@
 /*/|\~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~/|\*/
 /*****************************************************************************/
 
-#ifndef ENGINE_DEFINES_HPP
-# define ENGINE_DEFINES_HPP
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,6 +64,10 @@ STATIC_ASSERT(sizeof(dbl64) == 8, "Expected dbl64 to be 8 bytes.");
 # define true 1
 # define false 0
 # define null NULL
+
+# ifndef nullptr
+#  define nullptr 0
+# endif
 
 // Platform detection
 # if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
@@ -157,6 +160,4 @@ DE_INLINE range get_aligned_range(uint64 offset, uint64 size, uint64 granularity
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

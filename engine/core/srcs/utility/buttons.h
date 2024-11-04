@@ -10,8 +10,7 @@
 /*/|\~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~/|\*/
 /*****************************************************************************/
 
-#ifndef BUTTONS_H
-# define BUTTONS_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -84,6 +83,4 @@ void		button_unload_texture(Button* button);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

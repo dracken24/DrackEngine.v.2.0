@@ -10,8 +10,7 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-#ifndef FILE_DIALOG_H
-# define FILE_DIALOG_H
+#pragma once
 
 #ifdef __cplusplus
 }
@@ -37,6 +36,4 @@ bl8 file_dialog_should_close(FileDialog* dialog);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

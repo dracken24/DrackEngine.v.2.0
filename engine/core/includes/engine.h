@@ -10,8 +10,7 @@
 /*/|\~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~/|\*/
 /*****************************************************************************/
 
-#ifndef ENGINE_H
-# define ENGINE_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -322,6 +321,4 @@ void    change_view(Engine *engine, ViewState state, bl8 resize_window, int *sel
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

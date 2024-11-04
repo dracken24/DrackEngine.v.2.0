@@ -1,5 +1,5 @@
-#ifndef DARRAY_H
-# define DARRAY_H
+#pragma once
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -84,6 +84,4 @@ DE_API void* _darray_insert_at(void* array, uint64 index, void* value_ptr);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

@@ -10,8 +10,7 @@
 /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 /*******************************************************************************/
 
-#ifndef DMEMORY_H
-# define DMEMORY_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,5 +64,3 @@ DE_API char* get_memory_usage_str(const char* type);
 #ifdef __cplusplus
 }
 #endif
-
-#endif // DMEMORY_H

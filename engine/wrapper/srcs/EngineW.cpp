@@ -3,11 +3,13 @@
 
 #include <iostream>
 
+using namespace DrackEngine;
+
 EngineW::EngineW() : w_isInitialized(false)
 {
     // Initialisation des membres à zéro
-    // memset(&coreInfos, 0, sizeof(CoreInfos));
-    // memset(&w_engine, 0, sizeof(Engine));
+    memset(&coreInfos, 0, sizeof(CoreInfos));
+    memset(&w_engine, 0, sizeof(Engine));
     Init();
 }
 

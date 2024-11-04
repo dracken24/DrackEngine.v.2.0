@@ -1,5 +1,4 @@
-#ifndef PLATFORM_H
-# define PLATFORM_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,5 +42,3 @@ void platform_sleep(uint64 ms);
 #ifdef __cplusplus
 }
 #endif
-
-#endif // PLATFORM_H

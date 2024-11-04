@@ -1,5 +1,4 @@
-#ifndef STRUCT_GLOBLE_H
-# define STRUCT_GLOBLE_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -152,6 +151,4 @@ typedef struct BuildProject
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

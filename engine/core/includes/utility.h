@@ -1,5 +1,4 @@
-#ifndef UTILITY_H
-# define UTILITY_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,6 +12,4 @@ Rectangle	rectangle_addition(Rectangle rect01, Rectangle rect02);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif
