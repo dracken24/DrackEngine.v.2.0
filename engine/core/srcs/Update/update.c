@@ -45,17 +45,45 @@ void    input_events(Engine *engine)
 	{
 		switch (engine->allStates.currentStateView)
 		{
-		case STATE_VIEW_ENGINE:
-			engine->exitCt = true;
-			break;
-		// case STATE_VIEW_SUB_WINDOW:
-		// 	g_fileDialog.shouldClose = false;
-		// 	break;
-		default:
-			quit_menu_window(engine);
-			break;
+			case STATE_VIEW_ENGINE:
+				engine->exitCt = true;
+				break;
+			// case STATE_VIEW_SUB_WINDOW:
+			// 	g_fileDialog.shouldClose = false;
+			// 	break;
+			default:
+				quit_menu_window(engine);
+				break;
 		}
 	}
+
+	if (IsKeyDown(KEY_LEFT_CONTROL))
+	{
+		if (IsKeyPressed(KEY_C))
+		{
+			change_view(engine, STATE_VIEW_EDIT_COPY, false, null, null);
+		}
+		else if (IsKeyPressed(KEY_V))
+		{
+			change_view(engine, STATE_VIEW_EDIT_PASTE, false, null, null);
+		}
+		else if (IsKeyPressed(KEY_X))
+		{
+			change_view(engine, STATE_VIEW_EDIT_CUT, false, null, null);
+		}
+		else if (IsKeyPressed(KEY_Z))
+		{
+			change_view(engine, STATE_VIEW_EDIT_UNDO, false, null, null);
+		}
+		else if (IsKeyPressed(KEY_Y))
+		{
+			change_view(engine, STATE_VIEW_EDIT_REDO, false, null, null);
+		}
+	}
+
+	// int keyPress = GetKeyPressed();
+	// if (keyPress != 0)
+	// 	DE_DEBUG("Key Pressed: %d", keyPress);
 }
 
 void    draw_rectangle_borders(Rectangle rect, Color color, int thickness)

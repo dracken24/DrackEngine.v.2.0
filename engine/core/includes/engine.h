@@ -28,6 +28,7 @@ extern "C" {
 // # include "Config/menus.h"
 # include "../../../library/extern/raygizmo/include/raygizmo.h"
 
+// #include <sys/types.h>
 # include <signal.h>
 
 struct RGizmo;
@@ -201,6 +202,9 @@ typedef struct TestWorkspace
 typedef struct UserSettings
 {
 	char	*engineVersion;
+	Color	engineMenusBgColor;
+	Color	engineBgColor;
+	Color	engineBorderColor;
 
 	// Default 60 FPS
 	sint16	currentFPS;
