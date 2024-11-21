@@ -148,9 +148,11 @@
 // Some compilers (mostly macos clang) default to C++98,
 // where aggregate initialization can't be used
 // So, give a more clear error stating how to fix this
-#if !defined(_MSC_VER) && (defined(__cplusplus) && __cplusplus < 201103L)
-    #error "C++11 or later is required. Add -std=c++11"
-#endif
+
+// NOTE: void by dracken24
+// #if !defined(_MSC_VER) && (defined(__cplusplus) && __cplusplus < 201103L)
+//     #error "C++11 or later is required. Add -std=c++11"
+// #endif
 
 // NOTE: We set some defines with some data types declared by raylib
 // Other modules (raymath, rlgl) also require some of those types, so,
