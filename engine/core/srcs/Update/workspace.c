@@ -102,12 +102,12 @@ void    control_main_panel(Engine *engine, Camera *camera)
 		}
 		else
 		{
-			position = (Vector3){ model->transform.m12, model->transform.m13, model->transform.m14};
+			// position = (Vector3){ model->transform.m12, model->transform.m13, model->transform.m14};
 			rgizmo_update(gizmo, *camera, position);
 			model->transform = MatrixMultiply(model->transform, rgizmo_get_tranform(*gizmo, position));
 		}
 
-		// Release Gizmo whel leave workspace
+		// Release Gizmo when leave workspace
 		if (g_reset_workspace)
 		{
 			g_reset_workspace = false;
