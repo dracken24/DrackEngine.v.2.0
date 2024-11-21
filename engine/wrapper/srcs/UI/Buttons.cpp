@@ -16,7 +16,7 @@ using namespace DrackEngine::UI;
 
 Button::Button()
 	: rect((Rectangle){0.0f, 0.0f, 0.0f, 0.0f})
-	, texture((Texture2D){0})
+	, textureBase((Texture2D){0})
 	, textureHover((Texture2D){0})
 	, textureClick((Texture2D){0})
 	, bgColor(DEFAULT_BG)
@@ -33,22 +33,22 @@ Button::Button()
 {
 }
 
-Button::Button(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
-		const std::string& texturePath, const std::string& text, float scale)
-	: rect((Rectangle){pos.x, pos.y, size.x, size.y})
-	, bgColor(bgColor)
-	, textColor(textColor)
-	, text(text)
-	, font(GetFontDefault())
-	, isClicked(false)
-	, scale(scale)
-	, userData(nullptr)
-{
-	if (!texturePath.empty())
-	{
-		texture = LoadTexture(texturePath.c_str());
-	}
-}
+// Button::Button(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
+// 		const std::string& texturePath, const std::string& text, float scale)
+// 	: rect((Rectangle){pos.x, pos.y, size.x, size.y})
+// 	, bgColor(bgColor)
+// 	, textColor(textColor)
+// 	, text(text)
+// 	, font(GetFontDefault())
+// 	, isClicked(false)
+// 	, scale(scale)
+// 	, userData(nullptr)
+// {
+// 	if (!texturePath.empty())
+// 	{
+// 		textureBase = LoadTexture(texturePath.c_str());
+// 	}
+// }
 
 Button::Button(const Button& other)
 {
@@ -59,7 +59,6 @@ Button& Button::operator=(const Button& other)
 {
 	if (this != &other)
 	{
-		cleanup();
 		copyFrom(other);
 	}
 	return *this;
@@ -67,27 +66,17 @@ Button& Button::operator=(const Button& other)
 
 Button::~Button()
 {
-	cleanup();
-}
 
-void Button::cleanup()
-{
-	if (texture.id > 0)
-		UnloadTexture(texture);
-	if (textureHover.id > 0)
-		UnloadTexture(textureHover);
-	if (textureClick.id > 0)
-		UnloadTexture(textureClick);
 }
 
 void Button::copyFrom(const Button& other)
 {
 	rect = other.rect;
-	if (other.texture.id > 0)
+	if (other.textureBase.id > 0)
 	{
 		// Charger une nouvelle copie de la texture
-		Image img = LoadImageFromTexture(other.texture);
-		texture = LoadTextureFromImage(img);
+		Image img = LoadImageFromTexture(other.textureBase);
+		textureBase = LoadTextureFromImage(img);
 		UnloadImage(img);
 	}
 	// Même chose pour textureHover et textureClick
@@ -104,6 +93,41 @@ void Button::copyFrom(const Button& other)
 	scale = other.scale;
 	onClickCallback = other.onClickCallback;
 	userData = other.userData;
+}
+
+void	DrackEngine::UI::Button::initButton(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
+    		const std::string& texturePath, const std::string& text, float scale)
+{
+    // Initialisation des propriétés de base
+    this->rect = (Rectangle){pos.x, pos.y, size.x, size.y};
+    this->bgColor = bgColor;
+    this->textColor = textColor;
+    this->text = text;
+    this->scale = scale;
+    
+    // Couleurs par défaut pour les états hover et click
+    this->bgHoverColor = HOVER_BG;
+    this->bgClickColor = CLICK_BG;
+    this->textHoverColor = textColor;
+    this->textClickColor = textColor;
+    
+    // Position du texte au centre du bouton par défaut
+    this->textPosition = (Vector2)
+	{
+        pos.x + size.x/2,
+        pos.y + size.y/2
+    };
+    
+    // Initialisation des autres membres
+    this->isClicked = false;
+    this->onClickCallback = nullptr;
+    this->userData = nullptr;
+
+    // Chargement de la texture si un chemin est fourni
+    if (!texturePath.empty())
+	{
+        this->textureBase = LoadTexture(texturePath.c_str());
+    }
 }
 
 void Button::draw(int fontSize, int spacing, int borderThick,
@@ -171,9 +195,9 @@ void Button::draw(int fontSize, int spacing, int borderThick,
 	}
 	else
 	{
-		if (texture.id > 0)
+		if (textureBase.id > 0)
 		{
-			DrawTextureEx(texture, (Vector2){rect.x, rect.y}, 0, scale, W);
+			DrawTextureEx(textureBase, (Vector2){rect.x, rect.y}, 0, scale, W);
 		}
 		else
 		{
@@ -193,8 +217,84 @@ void Button::draw(int fontSize, int spacing, int borderThick,
 	}
 }
 
-void Button::setCallback(Callback callback, void* data)
+//******************************************************************************//
+//***                                 Setters                                ***//
+//******************************************************************************//
+
+void    Button::setPosition(Vector2 &pos)
+{
+	rect.x = pos.x;
+	rect.y = pos.y;
+}
+
+void    Button::setSize(Vector2 &size)
+{
+	rect.width = size.x;
+	rect.height = size.y;
+}
+
+void    Button::setBgColor(Color &bg_color)
+{
+	bg_color = bg_color;
+}
+
+void    Button::setBgHoverColor(Color &bg_hover_color)
+{
+	bg_hover_color = bg_hover_color;
+}
+
+void    Button::setBgClickColor(Color &bg_click_color)
+{
+	bg_click_color = bg_click_color;
+}
+
+void    Button::setTexture(Texture2D texture)
+{
+	textureBase = texture;
+}
+
+void    Button::setTextureHover(Texture2D texture)
+{
+	textureHover = texture;
+}
+
+void    Button::setTextureClick(Texture2D texture)
+{
+	textureClick = texture;
+}
+
+void    Button::setFont(Font &font)
+{
+	font = font;
+}
+
+void    Button::setTextPosition(Vector2 &text_position)
+{
+	text_position = text_position;
+}
+
+void    Button::setTextColor(Color &text_color)
+{
+	text_color = text_color;
+}
+
+void    Button::setTextHoverColor(Color &text_hover_color)
+{
+	text_hover_color = text_hover_color;
+}
+
+void    Button::setTextClickColor(Color &text_click_color)
+{
+	text_click_color = text_click_color;
+}
+
+void	Button::setText(const std::string& newText)
+{
+	text = newText;
+}
+
+void    Button::setCallback(Callback callback, void* userData)
 {
 	onClickCallback = callback;
-	userData = data;
+	userData = userData;
 }

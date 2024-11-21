@@ -160,7 +160,7 @@ void	mount_all_cameras_engine(Engine *engine)
 
 	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE)
 	{
-		update_camera(camera);
+		// update_camera(camera);
 	}
 		control_main_panel(engine, camera);
 

@@ -90,11 +90,11 @@ typedef struct Cube3D
 	char*	name;
 } Cube3D;
 
-typedef struct ButtonsMenu
-{
-	Button  play;
-	Button  stop;
-}   ButtonsMenu;
+// typedef struct ButtonsMenu
+// {
+// 	Button  play;
+// 	Button  stop;
+// }   ButtonsMenu;
 
 typedef struct Ray3D
 {
@@ -242,7 +242,7 @@ typedef struct  Engine
 	MultipleCam3D   *allCameras;
 
 	// Buttons Menu Up Bar
-	ButtonsMenu     buttonsMenuUp;
+	// ButtonsMenu     buttonsMenuUp;
 
 	// Window state
 	AllStates       allStates;

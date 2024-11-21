@@ -12,7 +12,7 @@
 
 #pragma once
 
-// #include <iostream>
+#include <iostream>
 #include <string>
 #include <functional>
 
@@ -39,8 +39,8 @@ namespace DrackEngine::UI
 
 	public:
 	    Button(); 
-	    Button(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
-		const std::string& texturePath = "", const std::string& text = "", float scale = 1.0f);
+	    // Button(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
+		// const std::string& texturePath = "", const std::string& text = "", float scale = 1.0f);
 	    Button(const Button& other);
 	    Button& operator=(const Button& other);
 	    ~Button();
@@ -50,6 +50,8 @@ namespace DrackEngine::UI
     //******************************************************************************//
 
 	    // Méthodes principales
+		void	initButton(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
+					const std::string& texturePath = "", const std::string& text = "", float scale = 1.0f);
 	    void draw(int fontSize = 0, int spacing = 0, int borderThick = 0,
 		    Color borderColor = TEXT_COLOR, Vector2 cameraOrigin = (Vector2){0, 0}, bool skipUpdate = false);
 	    void unload();
@@ -58,20 +60,22 @@ namespace DrackEngine::UI
     //***                                 Setters                                ***//
     //******************************************************************************//
 
-	    void setPosition(Vector2 pos);
-	    void setSize(Vector2 size);
-	    void setBgColor(Color color);
-	    void setBgHoverColor(Color color);
-	    void setBgClickColor(Color color);
-	    void setTexture(const std::string& path);
-	    void setFont(Font newFont);
-	    void setTextPosition(Vector2 pos);
-	    void setTextColor(Color color);
-	    void setTextHoverColor(Color color);
-	    void setTextClickColor(Color color);
+	    void setPosition(Vector2 &pos);
+	    void setSize(Vector2 &size);
+	    void setBgColor(Color &color);
+	    void setBgHoverColor(Color &color);
+	    void setBgClickColor(Color &color);
+	    void setTexture(Texture2D texture);
+		void setTextureHover(Texture2D texture);
+		void setTextureClick(Texture2D texture);
+	    void setFont(Font &newFont);
+	    void setTextPosition(Vector2 &pos);
+	    void setTextColor(Color &color);
+	    void setTextHoverColor(Color &color);
+	    void setTextClickColor(Color &color);
 	    void setText(const std::string& newText);
 
-	    void setCallback(Callback callback, void* userData = nullptr);
+	    void setCallback(Callback callback, void* userData);
 
     //******************************************************************************//
     //***                                Getters                                 ***//
@@ -88,7 +92,7 @@ namespace DrackEngine::UI
 	    Color	endregiongetTextColor()	const { return textColor; }
 	    Color	getTextHoverColor()     const { return textHoverColor; }
 	    Color	getTextClickColor()     const { return textClickColor; }
-	    const Texture2D& getTexture()   	const { return texture; }
+	    const Texture2D& getTexture()   	const { return textureBase; }
 
     //******************************************************************************//
     //***                                Variables                               ***//
@@ -96,7 +100,7 @@ namespace DrackEngine::UI
 
 	private:
 	    Rectangle	rect;
-	    Texture2D	texture;
+	    Texture2D	textureBase;
 	    Texture2D	textureHover;
 	    Texture2D	textureClick;
 	    Color	bgColor;
@@ -111,6 +115,7 @@ namespace DrackEngine::UI
 	    Color	textClickColor;
 
 	    bool	isClicked;
+		// bl8		isAllocate;
 	    float	scale;
 
 	    // Fn pointer

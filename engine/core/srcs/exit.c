@@ -54,8 +54,8 @@ void    free_coreInfos(CoreInfos *coreInfos)
 
 void    free_engine(Engine *engine)
 {
-    button_unload(&engine->buttonsMenuUp.play);
-    button_unload(&engine->buttonsMenuUp.stop);
+    // button_unload(&engine->buttonsMenuUp.play);
+    // button_unload(&engine->buttonsMenuUp.stop);
 
     UnloadTexture(engine->testTexture);
 

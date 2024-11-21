@@ -20,7 +20,7 @@
 #include <stdio.h>
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras);
-void			init_buttons_menu_up(Engine *engine);
+// void			init_buttons_menu_up(Engine *engine);
 void			init_fonts(Engine *engine);
 void			init_workspace(Engine *engine);
 void			init_all_other_windows_textBox(void);
@@ -61,7 +61,7 @@ bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
 	engine->introCt = true;
 
 	// Init Buttons 
-	init_buttons_menu_up(engine);
+	// init_buttons_menu_up(engine);
 
 	engine->ray.ray = (Ray){0};
 	engine->ray.collision = (RayCollision){0};
@@ -97,19 +97,19 @@ void	init_workspace(Engine *engine)
 	init_gizmo(engine);
 }
 
-void	init_buttons_menu_up(Engine *engine)
-{
-	engine->buttonsMenuUp.play = button_init((Vector2){engine->screenSize.x /2 - 15, 2}, (Vector2){25, 25}, RED, WHITE, "../assets/buttons/play_00.png", "", 0.085, 0);
-	button_set_texture(&engine->buttonsMenuUp.play, LoadTexture("../assets/buttons/play_00.png"));
-	engine->buttonsMenuUp.play.texture_hover = LoadTexture("../assets/buttons/play_00_selected.png");
-	engine->buttonsMenuUp.play.texture_click = LoadTexture("../assets/buttons/play_00_selected.png");
-	engine->buttonsMenuUp.stop = button_init((Vector2){engine->screenSize.x /2 + 15, 2}, (Vector2){25, 25}, RED, WHITE, "../assets/buttons/stop_00.png", "", 0.085, 0);
-	button_set_texture(&engine->buttonsMenuUp.stop, LoadTexture("../assets/buttons/stop_00.png"));
-	engine->buttonsMenuUp.stop.texture_hover = LoadTexture("../assets/buttons/stop_00_selected.png");
-	engine->buttonsMenuUp.stop.texture_click = LoadTexture("../assets/buttons/stop_00_selected.png");
-	// DE_DEBUG("Play texture : %f, %f", engine->buttonsMenuUp.play->texture.width, engine->buttonsMenuUp.play->texture.height);
+// void	init_buttons_menu_up(Engine *engine)
+// {
+// 	engine->buttonsMenuUp.play = button_init((Vector2){engine->screenSize.x /2 - 15, 2}, (Vector2){25, 25}, RED, WHITE, "../assets/buttons/play_00.png", "", 0.085, 0);
+// 	button_set_texture(&engine->buttonsMenuUp.play, LoadTexture("../assets/buttons/play_00.png"));
+// 	engine->buttonsMenuUp.play.texture_hover = LoadTexture("../assets/buttons/play_00_selected.png");
+// 	engine->buttonsMenuUp.play.texture_click = LoadTexture("../assets/buttons/play_00_selected.png");
+// 	engine->buttonsMenuUp.stop = button_init((Vector2){engine->screenSize.x /2 + 15, 2}, (Vector2){25, 25}, RED, WHITE, "../assets/buttons/stop_00.png", "", 0.085, 0);
+// 	button_set_texture(&engine->buttonsMenuUp.stop, LoadTexture("../assets/buttons/stop_00.png"));
+// 	engine->buttonsMenuUp.stop.texture_hover = LoadTexture("../assets/buttons/stop_00_selected.png");
+// 	engine->buttonsMenuUp.stop.texture_click = LoadTexture("../assets/buttons/stop_00_selected.png");
+// 	// DE_DEBUG("Play texture : %f, %f", engine->buttonsMenuUp.play->texture.width, engine->buttonsMenuUp.play->texture.height);
 
-}
+// }
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 {

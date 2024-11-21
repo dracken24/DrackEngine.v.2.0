@@ -207,8 +207,8 @@ void    resize_screen(Engine *engine)
 	// DE_DEBUG("engine screen size x: %f y: %f", engine->screenSize.x, engine->screenSize.y);
 
 	// Adjust buttons menus
-	button_set_position(&engine->buttonsMenuUp.play, (Vector2){engine->screenSize.x /2 - 15, 2});
-	button_set_position(&engine->buttonsMenuUp.stop, (Vector2){engine->screenSize.x /2 + 15, 2});
+	// button_set_position(&engine->buttonsMenuUp.play, (Vector2){engine->screenSize.x /2 - 15, 2});
+	// button_set_position(&engine->buttonsMenuUp.stop, (Vector2){engine->screenSize.x /2 + 15, 2});
 }
 
 void    adjust_right_panel_vert(Engine *engine, int x)
