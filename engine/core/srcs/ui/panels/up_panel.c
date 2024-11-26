@@ -19,15 +19,15 @@ void	change_state_mouse(Engine *engine, MouseState mouse_state);
 
 extern bl8 refresh_frame;
 
-void    draw_play_stop(Engine *engine)
-{
-    draw_button(&engine->buttonsMenuUp.play, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0}, false);
-    draw_button(&engine->buttonsMenuUp.stop, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0}, false);
-}
+// void    draw_play_stop(Engine *engine)
+// {
+//     draw_button(&engine->buttonsMenuUp.play, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0}, false);
+//     draw_button(&engine->buttonsMenuUp.stop, (intptr_t)NULL, 1, 2, DARKPURPLE2, (Vector2){0, 0}, false);
+// }
 
 void	draw_menu_up(Engine *engine)
 {
-	    draw_play_stop(engine);
+	    // draw_play_stop(engine);
 }
 
 void    unselect_tab(int *selectedTab, bl8 *isDropdownOpen)

@@ -62,10 +62,11 @@ void update_camera(Camera3D *camera)
 }
 
 // Draw a grid centered at (0, 0, 0)
-void	draw_grid(int slices, float spacing, Color color)
+void	draw_grid(int slices, float spacing, float thickness, Color color)
 {
     int halfSlices = (int)(slices / 2);
 
+	rlSetLineWidth(thickness);
     rlBegin(RL_LINES);
     rlColor4ub(color.r, color.g, color.b, color.a);
 
@@ -79,6 +80,7 @@ void	draw_grid(int slices, float spacing, Color color)
     }
     rlEnd();
 }
+
 bl8	g_reset_workspace = false;
 void    change_language(Engine *engine, const char *language);
 
@@ -102,12 +104,12 @@ void    control_main_panel(Engine *engine, Camera *camera)
 		}
 		else
 		{
-			position = (Vector3){ model->transform.m12, model->transform.m13, model->transform.m14};
+			// position = (Vector3){ model->transform.m12, model->transform.m13, model->transform.m14};
 			rgizmo_update(gizmo, *camera, position);
 			model->transform = MatrixMultiply(model->transform, rgizmo_get_tranform(*gizmo, position));
 		}
 
-		// Release Gizmo whel leave workspace
+		// Release Gizmo when leave workspace
 		if (g_reset_workspace)
 		{
 			g_reset_workspace = false;
@@ -124,10 +126,10 @@ void    control_main_panel(Engine *engine, Camera *camera)
 
 	BeginMode3D(*camera);
 	{
+		draw_grid(100.0, 1.0, 1.0, GRAY);
+
 		DrawModel(*model, (Vector3){0.0, 0.0, 0.0}, 1.0, PURPLE);
 		DrawModel(*modelCube, (Vector3){0.0, 0.0, 0.0}, 1.0, PURPLE);
-
-		draw_grid(100.0, 1.0, GRAY);
 
 		DrawLine3D(
 			(Vector3){-50.0f, 0.0f, 0.0f},

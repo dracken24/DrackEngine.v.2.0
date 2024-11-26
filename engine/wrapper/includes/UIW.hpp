@@ -4,7 +4,7 @@
 
 namespace DrackEngine
 {
-    class UI
+    class Engine_UI
     {
         public:
             static void renderPanels(Engine* coreInfos);

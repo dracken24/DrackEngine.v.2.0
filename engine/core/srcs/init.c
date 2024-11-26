@@ -20,7 +20,6 @@
 #include <stdio.h>
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras);
-void			init_buttons_menu_up(Engine *engine);
 void			init_fonts(Engine *engine);
 void			init_workspace(Engine *engine);
 void			init_all_other_windows_textBox(void);
@@ -61,7 +60,7 @@ bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
 	engine->introCt = true;
 
 	// Init Buttons 
-	init_buttons_menu_up(engine);
+	// init_buttons_menu_up(engine);
 
 	engine->ray.ray = (Ray){0};
 	engine->ray.collision = (RayCollision){0};
@@ -85,6 +84,9 @@ void	init_gizmo(Engine *engine)
 	engine->testWorkspace.gizmo = rgizmo_create();;
 	engine->testWorkspace.model = LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0));
 	engine->testWorkspace.modelCube = LoadModelFromMesh(GenMeshCube(1, 1, 1));
+	engine->testWorkspace.modelCube.transform.m12 = -7;
+	engine->testWorkspace.modelCube.transform.m13 = 3;
+	engine->testWorkspace.modelCube.transform.m14 = 5;
 }
 
 void	init_fonts(Engine *engine)
@@ -97,35 +99,9 @@ void	init_workspace(Engine *engine)
 	init_gizmo(engine);
 }
 
-void	init_buttons_menu_up(Engine *engine)
-{
-	engine->buttonsMenuUp.play = button_init((Vector2){engine->screenSize.x /2 - 15, 2}, (Vector2){25, 25}, RED, WHITE, "../assets/buttons/play_00.png", "", 0.085, 0);
-	button_set_texture(&engine->buttonsMenuUp.play, LoadTexture("../assets/buttons/play_00.png"));
-	engine->buttonsMenuUp.play.texture_hover = LoadTexture("../assets/buttons/play_00_selected.png");
-	engine->buttonsMenuUp.play.texture_click = LoadTexture("../assets/buttons/play_00_selected.png");
-	engine->buttonsMenuUp.stop = button_init((Vector2){engine->screenSize.x /2 + 15, 2}, (Vector2){25, 25}, RED, WHITE, "../assets/buttons/stop_00.png", "", 0.085, 0);
-	button_set_texture(&engine->buttonsMenuUp.stop, LoadTexture("../assets/buttons/stop_00.png"));
-	engine->buttonsMenuUp.stop.texture_hover = LoadTexture("../assets/buttons/stop_00_selected.png");
-	engine->buttonsMenuUp.stop.texture_click = LoadTexture("../assets/buttons/stop_00_selected.png");
-	// DE_DEBUG("Play texture : %f, %f", engine->buttonsMenuUp.play->texture.width, engine->buttonsMenuUp.play->texture.height);
-
-}
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 {
-	// allCameras->camera00.camera2D = (Camera2D){0};
-	// allCameras->camera00.camera2D.target = (Vector2){0, 0};
-	// allCameras->camera00.camera2D.offset = (Vector2){0.0f, 0.0f};
-	// allCameras->camera00.camera2D.rotation = 0.0f;
-	// allCameras->camera00.camera2D.zoom = 1.0f;
-	// allCameras->camera00.textForCam = LoadRenderTexture(engine->screenSize.x - 600, engine->screenSize.y - 30 -120);
-	// allCameras->camera00.rectForCam = (Rectangle){
-	// 	300,
-	// 	30,
-	// 	allCameras->camera00.textForCam.texture.width,
-	// 	allCameras->camera00.textForCam.texture.height
-	// };
-
     // Define the camera to look into 3d world
 	allCameras->camera00.camera3D = (Camera){ 0 };
 	allCameras->camera00.camera3D.position = (Vector3){ 10.0f, 10.0f, -10.0f }; // Camera position
