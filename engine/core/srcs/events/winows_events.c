@@ -340,7 +340,7 @@ bl8		check_max_min_panels(Engine *engine)
 	return (false);
 }
 
-void    resize_right_panel(Engine *engine)
+void    resize_panels(Engine *engine)
 {
 	if (skipTurnResize)
 	{
@@ -473,5 +473,5 @@ void    window_events(Engine *engine)
 		// DE_INFO("Window resized in engine");
 	}
 
-	resize_right_panel(engine);
+	resize_panels(engine);
 }

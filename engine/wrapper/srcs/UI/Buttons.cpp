@@ -33,23 +33,6 @@ Button::Button()
 {
 }
 
-// Button::Button(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
-// 		const std::string& texturePath, const std::string& text, float scale)
-// 	: rect((Rectangle){pos.x, pos.y, size.x, size.y})
-// 	, bgColor(bgColor)
-// 	, textColor(textColor)
-// 	, text(text)
-// 	, font(GetFontDefault())
-// 	, isClicked(false)
-// 	, scale(scale)
-// 	, userData(nullptr)
-// {
-// 	if (!texturePath.empty())
-// 	{
-// 		textureBase = LoadTexture(texturePath.c_str());
-// 	}
-// }
-
 Button::Button(const Button& other)
 {
 	copyFrom(other);
@@ -98,32 +81,32 @@ void Button::copyFrom(const Button& other)
 void	DrackEngine::UI::Button::initButton(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
     		const std::string& texturePath, const std::string& text, float scale)
 {
-    // Initialisation des propriétés de base
+    // Initialize base properties
     this->rect = (Rectangle){pos.x, pos.y, size.x, size.y};
     this->bgColor = bgColor;
     this->textColor = textColor;
     this->text = text;
     this->scale = scale;
     
-    // Couleurs par défaut pour les états hover et click
+    // Default colors for hover and click states
     this->bgHoverColor = HOVER_BG;
     this->bgClickColor = CLICK_BG;
     this->textHoverColor = textColor;
     this->textClickColor = textColor;
     
-    // Position du texte au centre du bouton par défaut
+    // Default text position at the center of the button
     this->textPosition = (Vector2)
 	{
         pos.x + size.x/2,
         pos.y + size.y/2
     };
     
-    // Initialisation des autres membres
+    // Initialize other members
     this->isClicked = false;
     this->onClickCallback = nullptr;
     this->userData = nullptr;
 
-    // Chargement de la texture si un chemin est fourni
+    // Load texture if a path is provided
     if (!texturePath.empty())
 	{
         this->textureBase = LoadTexture(texturePath.c_str());

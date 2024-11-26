@@ -161,6 +161,8 @@ bl8	check_new_Project_entry(Engine *engine, FilesNew *projectVars)
 		}
 		ft_free_ptr((void **)splitName);
 	}
+# elif DE_PLATFORM_WINDOWS
+	flkjfgjijgjker
 #endif
 
 	return true;

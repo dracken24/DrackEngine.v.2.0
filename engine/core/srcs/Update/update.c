@@ -118,35 +118,35 @@ void	draw_cameras_textures(Engine *engine)
 					(Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y}, 
 					WHITE);
 		
-		DrawTextureRec(engine->allCameras->camera02.textForCam.texture, 
-					(Rectangle){0, 0, engine->allCameras->camera02.rectForCam.width, -engine->allCameras->camera02.rectForCam.height},
-					(Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y}, 
-					WHITE);
-		
-		DrawTextureRec(engine->allCameras->camera03.textForCam.texture, 
-					(Rectangle){0, 0, engine->allCameras->camera03.rectForCam.width, -engine->allCameras->camera03.rectForCam.height},
-					(Vector2){engine->allCameras->camera03.rectForCam.x, engine->allCameras->camera03.rectForCam.y}, 
-					WHITE);
-		
-		DrawTextureRec(engine->allCameras->camera04.textForCam.texture, 
-					(Rectangle){0, 0, engine->allCameras->camera04.rectForCam.width, -engine->allCameras->camera04.rectForCam.height},
-					(Vector2){engine->allCameras->camera04.rectForCam.x, engine->allCameras->camera04.rectForCam.y}, 
-					WHITE);
-		
-		DrawTextureRec(engine->allCameras->camera05.textForCam.texture, 
-					(Rectangle){0, 0, engine->allCameras->camera05.rectForCam.width, -engine->allCameras->camera05.rectForCam.height},
-					(Vector2){engine->allCameras->camera05.rectForCam.x, engine->allCameras->camera05.rectForCam.y}, 
-					WHITE);
+	DrawTextureRec(engine->allCameras->camera02.textForCam.texture, 
+				(Rectangle){0, 0, engine->allCameras->camera02.rectForCam.width, -engine->allCameras->camera02.rectForCam.height},
+				(Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y}, 
+				WHITE);
+	
+	DrawTextureRec(engine->allCameras->camera03.textForCam.texture, 
+				(Rectangle){0, 0, engine->allCameras->camera03.rectForCam.width, -engine->allCameras->camera03.rectForCam.height},
+				(Vector2){engine->allCameras->camera03.rectForCam.x, engine->allCameras->camera03.rectForCam.y}, 
+				WHITE);
+	
+	DrawTextureRec(engine->allCameras->camera04.textForCam.texture, 
+				(Rectangle){0, 0, engine->allCameras->camera04.rectForCam.width, -engine->allCameras->camera04.rectForCam.height},
+				(Vector2){engine->allCameras->camera04.rectForCam.x, engine->allCameras->camera04.rectForCam.y}, 
+				WHITE);
+	
+	DrawTextureRec(engine->allCameras->camera05.textForCam.texture, 
+				(Rectangle){0, 0, engine->allCameras->camera05.rectForCam.width, -engine->allCameras->camera05.rectForCam.height},
+				(Vector2){engine->allCameras->camera05.rectForCam.x, engine->allCameras->camera05.rectForCam.y}, 
+				WHITE);
 
-		// Draw borders
-		// draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera01.rectForCam, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera02.rectForCam, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera03.rectForCam, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera04.rectForCam, BORDER_COLOR, BORDER_THICK);
-		draw_rectangle_borders(engine->allCameras->camera05.rectForCam, BORDER_COLOR, BORDER_THICK);
+	// Draw borders
+	// draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BORDER_COLOR, BORDER_THICK);
+	draw_rectangle_borders(engine->allCameras->camera01.rectForCam, BORDER_COLOR, BORDER_THICK);
+	draw_rectangle_borders(engine->allCameras->camera02.rectForCam, BORDER_COLOR, BORDER_THICK);
+	draw_rectangle_borders(engine->allCameras->camera03.rectForCam, BORDER_COLOR, BORDER_THICK);
+	draw_rectangle_borders(engine->allCameras->camera04.rectForCam, BORDER_COLOR, BORDER_THICK);
+	draw_rectangle_borders(engine->allCameras->camera05.rectForCam, BORDER_COLOR, BORDER_THICK);
 
-		draw_drop_down_menu(engine);
+	draw_drop_down_menu(engine);
 }
 
 #define MAIN_BG_COLOR	CLITERAL(Color){ 105, 104, 111, 188 }
@@ -160,7 +160,7 @@ void	mount_all_cameras_engine(Engine *engine)
 
 	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE)
 	{
-		// update_camera(camera);
+		update_camera(camera);
 	}
 		control_main_panel(engine, camera);
 
@@ -200,7 +200,7 @@ void	mount_all_cameras_engine(Engine *engine)
 	// Draw Control Panel Up
 	Rectangle rec03 = engine->allCameras->camera03.rectForCam;
 	BeginTextureMode(engine->allCameras->camera03.textForCam);
-		ClearBackground(MAIN_BG_COLOR);
+		// ClearBackground(MAIN_BG_COLOR);
 		BeginMode2D(engine->allCameras->camera03.camera2D);
 
 			up_menu(engine, &engine->allCameras->camera03.camera2D);
@@ -298,11 +298,12 @@ void    dr_update(Engine *engine, CoreInfos const *coreInfos)
 		}
 		if (refresh_frame)
 		{
+			DE_WARNING("refresh_frame");
 			refresh_frame = false;
 			update_main_view(engine);
 		}
 
-		// DE_DEBUG("MOUSE_STATE_ON_WORKSPACE: %s", engine->allStates.currentStateMouse);
+		// DE_DEBUG("currentStateMouse update.c: %d", engine->allStates.currentStateMouse);
 
 		switch(engine->allStates.currentStateView)
         {

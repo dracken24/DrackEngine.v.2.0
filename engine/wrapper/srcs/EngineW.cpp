@@ -7,9 +7,9 @@ using namespace DrackEngine;
 
 EngineW::EngineW() : w_isInitialized(false)
 {
-    // Initialisation des membres à zéro
     memset(&coreInfos, 0, sizeof(CoreInfos));
     memset(&w_engine, 0, sizeof(Engine));
+    // memset(&engineButtons, 0, sizeof(EngineButtons));
     Init();
 }
 
@@ -21,20 +21,6 @@ EngineW::~EngineW()
     }
     print_memory_usage("Exit");
 }
-
-// void	EngineW::initButtonsMenuUp(void)
-// {
-// 	w_engine.buttonsMenuUp.play = button_init((Vector2){w_engine.screenSize.x /2 - 15, 2}, (Vector2){25, 25}, RED, WHITE, "../assets/buttons/play_00.png", "", 0.085, 0);
-// 	button_set_texture(&w_engine.buttonsMenuUp.play, LoadTexture("../assets/buttons/play_00.png"));
-// 	w_engine.buttonsMenuUp.play.texture_hover = LoadTexture("../assets/buttons/play_00_selected.png");
-// 	w_engine.buttonsMenuUp.play.texture_click = LoadTexture("../assets/buttons/play_00_selected.png");
-// 	w_engine.buttonsMenuUp.stop = button_init((Vector2){w_engine.screenSize.x /2 + 15, 2}, (Vector2){25, 25}, RED, WHITE, "../assets/buttons/stop_00.png", "", 0.085, 0);
-// 	button_set_texture(&w_engine.buttonsMenuUp.stop, LoadTexture("../assets/buttons/stop_00.png"));
-// 	w_engine.buttonsMenuUp.stop.texture_hover = LoadTexture("../assets/buttons/stop_00_selected.png");
-// 	w_engine.buttonsMenuUp.stop.texture_click = LoadTexture("../assets/buttons/stop_00_selected.png");
-// 	// DE_DEBUG("Play texture : %f, %f", engine->buttonsMenuUp.play->texture.width, engine->buttonsMenuUp.play->texture.height);
-
-// }
 
 bool EngineW::Init()
 {
@@ -61,7 +47,6 @@ void EngineW::Update()
 {
     if (!w_isInitialized)
         return;
-    
     dr_update(&w_engine, &coreInfos);
     engineButtons.DrawUpButtons();
 }
@@ -115,6 +100,14 @@ void	EngineButtons::setStopButton(void)
 
 void	EngineButtons::DrawUpButtons(void)
 {
-    play.draw();
-    stop.draw();
+    Rectangle rec03 = engineRef->allCameras->camera03.rectForCam;
+	BeginTextureMode(engineRef->allCameras->camera03.textForCam);
+		ClearBackground(CLITERAL(Color){ 105, 104, 111, 188 });
+		BeginMode2D(engineRef->allCameras->camera03.camera2D);
+
+            play.draw();
+            stop.draw();
+
+		EndMode2D();
+	EndTextureMode();
 }

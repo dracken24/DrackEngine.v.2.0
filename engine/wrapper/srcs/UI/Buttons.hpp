@@ -39,8 +39,6 @@ namespace DrackEngine::UI
 
 	public:
 	    Button(); 
-	    // Button(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
-		// const std::string& texturePath = "", const std::string& text = "", float scale = 1.0f);
 	    Button(const Button& other);
 	    Button& operator=(const Button& other);
 	    ~Button();
@@ -52,9 +50,9 @@ namespace DrackEngine::UI
 	    // Méthodes principales
 		void	initButton(Vector2 pos, Vector2 size, Color bgColor, Color textColor,
 					const std::string& texturePath = "", const std::string& text = "", float scale = 1.0f);
-	    void draw(int fontSize = 0, int spacing = 0, int borderThick = 0,
-		    Color borderColor = TEXT_COLOR, Vector2 cameraOrigin = (Vector2){0, 0}, bool skipUpdate = false);
-	    void unload();
+	    void	draw(int fontSize = 0, int spacing = 0, int borderThick = 0,
+		    		Color borderColor = TEXT_COLOR, Vector2 cameraOrigin = (Vector2){0, 0}, bool skipUpdate = false);
+	    void	unload();
 
     //******************************************************************************//
     //***                                 Setters                                ***//
@@ -81,17 +79,17 @@ namespace DrackEngine::UI
     //***                                Getters                                 ***//
     //******************************************************************************//
 
-	    Vector2	getPosition()		const { return {rect.x, rect.y}; }
-	    Vector2	getSize()		const { return {rect.width, rect.height}; }
-	    Color	getBgColor()		const { return bgColor; }
-	    Color	getBgHoverColor()	const { return bgHoverColor; }
-	    Color	getBgClickColor()	const { return bgClickColor; }
-	    Rectangle	getRectangle()		const { return rect; }
-	    Font	getFont()		const { return font; }
-	    Vector2	getTextPosition()	const { return textPosition; }
-	    Color	endregiongetTextColor()	const { return textColor; }
-	    Color	getTextHoverColor()     const { return textHoverColor; }
-	    Color	getTextClickColor()     const { return textClickColor; }
+	    Vector2		getPosition()			const { return {rect.x, rect.y}; }
+	    Vector2		getSize()				const { return {rect.width, rect.height}; }
+	    Color		getBgColor()			const { return bgColor; }
+	    Color		getBgHoverColor()		const { return bgHoverColor; }
+	    Color		getBgClickColor()		const { return bgClickColor; }
+	    Rectangle	getRectangle()			const { return rect; }
+	    Font		getFont()				const { return font; }
+	    Vector2		getTextPosition()		const { return textPosition; }
+	    Color		endregiongetTextColor()	const { return textColor; }
+	    Color		getTextHoverColor()     const { return textHoverColor; }
+	    Color		getTextClickColor()     const { return textClickColor; }
 	    const Texture2D& getTexture()   	const { return textureBase; }
 
     //******************************************************************************//
@@ -103,9 +101,9 @@ namespace DrackEngine::UI
 	    Texture2D	textureBase;
 	    Texture2D	textureHover;
 	    Texture2D	textureClick;
-	    Color	bgColor;
-	    Color	bgHoverColor;
-	    Color	bgClickColor;
+	    Color		bgColor;
+	    Color		bgHoverColor;
+	    Color		bgClickColor;
 
 	    std::string text;
 	    Font	font;
@@ -120,9 +118,9 @@ namespace DrackEngine::UI
 
 	    // Fn pointer
 	    Callback	onClickCallback;
-	    void*	userData;
+	    void*		userData;
 
-	    void cleanup();
-	    void copyFrom(const Button& other);
+	    void	cleanup();
+	    void	copyFrom(const Button& other);
     };
 };
