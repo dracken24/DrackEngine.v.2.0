@@ -132,10 +132,31 @@ void draw_drop_down_menu(Engine *engine)
         DrawRectangleLinesEx(dropdownRect, 1, BLACK);
 
         // TODO: Add options from enum
-        const char *files[] = {"New", "Open", "Save", "Save as", "Export", "Exit"};
-        const char *edit[] = {"Undo", "Redo", "Cut", "Copy", "Paste"};
-        const char *settings[] = {"Engine", "Project", "Options"};
-        const char *help[] = {"About", "Documentation", "Support"};
+        const char *files[] = {
+            "New",
+            "Open",
+            "Save",
+            "Save as",
+            "Export",
+            "Exit"
+        };
+        const char *edit[] = {
+            "Undo          (ctrl + z)",
+            "Redo          (ctrl + y)",
+            "Cut            (ctrl + x)",
+            "Copy          (ctrl + c)",
+            "Paste         (ctrl + v)"
+        };
+        const char *settings[] = {
+            "Engine",
+            "Project",
+            "Options"
+        };
+        const char *help[] = {
+            "About",
+            "Documentation",
+            "Support"
+        };
 
         int numOptions;
         switch (selectedTab)
@@ -219,27 +240,27 @@ void draw_drop_down_menu(Engine *engine)
                         break;
                     case (enum MainMenus)EDIT:
                         // DE_DEBUG("Option selected: %d", selectedTab);
-                        if (edit[i] && edit[i] == "Undo")
+                        if (edit[i] && ft_strncmp(edit[i], "Undo", 4) == 0)
                         {
                             change_view(engine, STATE_VIEW_EDIT_UNDO, false, &selectedTab, &isDropdownOpen);
                             break;
                         }
-                        else if (edit[i] && edit[i] == "Redo")
+                        else if (edit[i] && ft_strncmp(edit[i], "Redo", 4) == 0)
                         {
                             change_view(engine, STATE_VIEW_EDIT_REDO, false, &selectedTab, &isDropdownOpen);
                             break;
                         }
-                        else if (edit[i] && edit[i] == "Cut")
+                        else if (edit[i] && ft_strncmp(edit[i], "Cut", 3) == 0)
                         {
                             change_view(engine, STATE_VIEW_EDIT_CUT, false, &selectedTab, &isDropdownOpen);
                             break;
                         }
-                        else if (edit[i] && edit[i] == "Copy")
+                        else if (edit[i] && ft_strncmp(edit[i], "Copy", 4) == 0)
                         {
                             change_view(engine, STATE_VIEW_EDIT_COPY, false, &selectedTab, &isDropdownOpen);
                             break;
                         }
-                        else if (edit[i] && edit[i] == "Paste")
+                        else if (edit[i] && ft_strncmp(edit[i], "Paste", 5) == 0)
                         {
                             change_view(engine, STATE_VIEW_EDIT_PASTE, false, &selectedTab, &isDropdownOpen);
                             break;

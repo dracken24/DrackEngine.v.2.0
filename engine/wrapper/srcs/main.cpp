@@ -17,7 +17,7 @@
 
 using namespace DrackEngine;
 
-int main()
+int main(int argc, char **argv)
 {
     DE_DEBUG("Starting engine...");
     EngineW engine;
