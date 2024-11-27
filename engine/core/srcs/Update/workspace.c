@@ -83,13 +83,14 @@ void	draw_grid(int slices, float spacing, float thickness, Color color)
 
 bl8	g_reset_workspace = false;
 void    change_language(Engine *engine, const char *language);
+#define ORANGE_SELECT     CLITERAL(Color){ 255, 185, 61, 255 }
 
 void    control_main_panel(Engine *engine, Camera *camera)
 {
 	Model *model = &engine->testWorkspace.model;
 	Model *modelCube = &engine->testWorkspace.modelCube;
 	RGizmo *gizmo = &engine->testWorkspace.gizmo;
-	Vector3 position = { model->transform.m12, model->transform.m13, model->transform.m14};
+	Vector3 position = { model->transform.m12, model->transform.m13, model->transform.m14 };
 
 		// DE_DEBUG("REACH");
 		// DE_DEBUG("MOUSE_STATE_ON_WORKSPACE: %d", engine->allStates.currentStateMouse);
@@ -115,7 +116,7 @@ void    control_main_panel(Engine *engine, Camera *camera)
 			g_reset_workspace = false;
 			if (gizmo->state > 5)
 			{
-				gizmo->state = RGIZMO_STATE_COLD;	
+				gizmo->state = RGIZMO_STATE_COLD;
 			}
 		}
 	}
@@ -129,7 +130,20 @@ void    control_main_panel(Engine *engine, Camera *camera)
 		draw_grid(100.0, 1.0, 1.0, GRAY);
 
 		DrawModel(*model, (Vector3){0.0, 0.0, 0.0}, 1.0, PURPLE);
+		DrawModelWiresEx(*model, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 0.0, 0.0}, 0.0, (Vector3){1.0, 1.0, 1.0}, BLUE);
 		DrawModel(*modelCube, (Vector3){0.0, 0.0, 0.0}, 1.0, PURPLE);
+		DrawModelWiresEx(*modelCube, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 0.0, 0.0}, 0.0, (Vector3){1.0, 1.0, 1.0}, BLUE);
+		
+		rlSetLineWidth(2);
+			if (IsKeyDown(KEY_H))
+			{
+				DrawModelWiresEx(*modelCube, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 0.0, 0.0}, 0.0, (Vector3){1.0, 1.0, 1.0}, ORANGE_SELECT);	
+			}
+			else
+			{
+				DrawModelWiresEx(*model, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 0.0, 0.0}, 0.0, (Vector3){1.0, 1.0, 1.0}, ORANGE_SELECT);
+			}
+		rlEnd();
 
 		DrawLine3D(
 			(Vector3){-50.0f, 0.0f, 0.0f},
