@@ -231,6 +231,7 @@ typedef struct CoreInfos
 	char	*coreVersion;
 } CoreInfos;
 
+typedef void (*UICallback)(void* userData);
 
 typedef struct  Engine
 {
@@ -249,6 +250,7 @@ typedef struct  Engine
 
 	bl8             introCt;
 	bl8				inputEventCt;
+	bl8				resizeCppCt;
 
 	Cube3D	        cube_01;
 	Ray3D			ray;
@@ -268,6 +270,10 @@ typedef struct  Engine
 
 	ProjectSettings	projectSettings;
 	UserSettings	userSettings;
+
+	// For UI resize
+	UICallback uiCallback;
+    void* uiUserData;
 }   Engine;
 
 //##############################################################################//

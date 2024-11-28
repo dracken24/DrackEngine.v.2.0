@@ -36,6 +36,7 @@ bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
 		engine->screenSize = (Vector2){1500, 750};
 		engine->screenSizeWindow = WINDOW_OTHERS;
 		engine->inputEventCt = false;
+		engine->resizeCppCt = false;
 		
 	}
 	// Init CoreInfos
