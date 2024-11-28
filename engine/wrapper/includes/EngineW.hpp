@@ -34,6 +34,8 @@ namespace DrackEngine
 			Engine *engineRef;
 	};
 
+//******************************************************************************//
+
 	class EngineW
 	{
 		public:
@@ -46,18 +48,23 @@ namespace DrackEngine
 			
 			// Getters
 			bool		IsRunning() const { return w_isInitialized && !w_engine.exitCt; }
-			CoreInfos*	GetCoreInfos() { return &coreInfos; }
+			CoreInfos*	GetCoreInfos() { return &w_coreInfos; }
 			Engine*		GetCoreEngine() { return &w_engine; }
+			void		DrawUI();
 
 			ButtonsHPP	GetButton(EngineButtonsEnum button);
+		
+		private:
 		
 		public:
 			EngineButtons engineButtons;
 
 		private:
 			Engine w_engine;
-			CoreInfos coreInfos;
+			CoreInfos w_coreInfos;
 			bool w_isInitialized;
+
+			RenderTexture2D w_uiLayer;
 
 			void	initButtonsMenuUp(void);
 	};

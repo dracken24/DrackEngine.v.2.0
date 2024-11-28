@@ -48,7 +48,7 @@ void    reset_resize_values(Engine *engine)
 	SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 	mouse_clicked = false;
 	engine->allStates.blockMouseStates = false;
-	// DE_DEBUG("RESET");
+	DE_DEBUG("RESET");
 }
 
 void	reset_camera_options(Camera2D camera)
@@ -204,11 +204,17 @@ void    resize_screen(Engine *engine)
 		reload_texture(&engine->allCameras->camera04);
 		reload_texture(&engine->allCameras->camera05);
 	}
-	// DE_DEBUG("engine screen size x: %f y: %f", engine->screenSize.x, engine->screenSize.y);
 
-	// Adjust buttons menus
-	// button_set_position(&engine->buttonsMenuUp.play, (Vector2){engine->screenSize.x /2 - 15, 2});
-	// button_set_position(&engine->buttonsMenuUp.stop, (Vector2){engine->screenSize.x /2 + 15, 2});
+	BeginTextureMode(engine->allCameras->camera03.textForCam);
+        ClearBackground(CLITERAL(Color){ 105, 104, 111, 188 });
+        BeginMode2D(engine->allCameras->camera03.camera2D);
+            if (engine->uiCallback)
+			{
+                engine->uiCallback(engine->uiUserData);
+            }
+        EndMode2D();
+    EndTextureMode();
+	// DE_DEBUG("engine screen size x: %f y: %f", engine->screenSize.x, engine->screenSize.y);
 }
 
 void    adjust_right_panel_vert(Engine *engine, int x)
@@ -352,6 +358,17 @@ void    resize_panels(Engine *engine)
 		return;
 	}
 
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && (mouse_on_line_vert_hyerarchy_ct || mouse_on_line_hori_center_panels_ct
+		|| mouse_on_line_hori_right_panels_ct || mouse_on_line_vert_ct))
+	{
+		mouse_clicked = true;
+	}
+	else if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && mouse_clicked)
+	{
+		reset_resize_values(engine);
+		return;
+	}
+
 	Rectangle rec01 = engine->allCameras->camera01.rectForCam;
 	Rectangle rec02 = engine->allCameras->camera02.rectForCam;
 	Rectangle rec04 = engine->allCameras->camera04.rectForCam;
@@ -411,6 +428,7 @@ void    resize_panels(Engine *engine)
 			{
 				// DE_INFO("Mouse move on line");
 				adjust_right_panel_vert(engine, mouse_on_line_pos.x - mouse_on_line_pos_old.x);
+				engine->resizeCppCt = true;
 			}
 		}
 		else if (mouse_on_line_hori_right_panels_ct)
@@ -421,6 +439,7 @@ void    resize_panels(Engine *engine)
 			{
 				// DE_INFO("Mouse move on line");
 				adjust_hori_right_panels(engine, mouse_on_line_pos.y - mouse_on_line_pos_old.y);
+				engine->resizeCppCt = true;
 			}
 		}
 		else if (mouse_on_line_hori_center_panels_ct)
@@ -432,6 +451,7 @@ void    resize_panels(Engine *engine)
 			{
 				// DE_INFO("Mouse move on line");
 				adjust_hori_center_panels(engine, mouse_on_line_pos.y - mouse_on_line_pos_old.y);
+				engine->resizeCppCt = true;
 			}
 		}
 		else if (mouse_on_line_vert_hyerarchy_ct)
@@ -443,31 +463,34 @@ void    resize_panels(Engine *engine)
 			{
 				// DE_INFO("Mouse move on line");
 				adjust_vert_hyerarchy_panels(engine, mouse_on_line_pos.x - mouse_on_line_pos_old.x);
+				engine->resizeCppCt = true;
 			}
 		}
 	}
 
 	mouse_on_line_pos_old = mouse_on_line_pos;
 
-	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && (mouse_on_line_vert_hyerarchy_ct || mouse_on_line_hori_center_panels_ct
-		|| mouse_on_line_hori_right_panels_ct || mouse_on_line_vert_ct))
-	{
-		mouse_clicked = true;
-	}
-	else if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && (mouse_on_line_vert_hyerarchy_ct || mouse_on_line_hori_center_panels_ct
-		|| mouse_on_line_hori_right_panels_ct || mouse_on_line_vert_ct))
-	{
-		reset_resize_values(engine);
-	}
+	// if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && (mouse_on_line_vert_hyerarchy_ct || mouse_on_line_hori_center_panels_ct
+	// 	|| mouse_on_line_hori_right_panels_ct || mouse_on_line_vert_ct))
+	// {
+	// 	mouse_clicked = true;
+	// }
+	// else if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && mouse_clicked)
+	// {
+	// 	reset_resize_values(engine);
+	// }
 }
 
 void    window_events(Engine *engine)
 {
-	if (IsWindowResized()) // Resize window events
+	if (IsWindowResized() || engine->screenSize.x != GetScreenWidth()
+		|| engine->screenSize.y != GetScreenHeight()) // Resize window events
 	{
 		engine->lastScreenSize = engine->screenSize;
 		engine->screenSize.x = GetScreenWidth();
 		engine->screenSize.y = GetScreenHeight();
+
+		engine->resizeCppCt = true;
 		
 		resize_screen(engine);
 		// DE_INFO("Window resized in engine");
