@@ -66,7 +66,7 @@ $(OBJ_DIR)/%.o: %.cpp
 # Création de la bibliothèque core (C)
 $(CORE_LIB): $(CORE_OBJS)
 	@echo "$(BLUE)╔══════════════════════════════════════╗$(RESET)"
-	@echo "$(BLUE)║  Création de la bibliothèque core... ║$(RESET)"
+	@echo "$(BLUE)║  Création de la library core in c... ║$(RESET)"
 	@echo "$(BLUE)╚══════════════════════════════════════╝$(RESET)"
 	@ar rcs $(CORE_LIB) $(CORE_OBJS)
 	@echo "$(GREEN)✓ Bibliothèque core créée avec succès !$(RESET)"

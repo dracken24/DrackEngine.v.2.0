@@ -2,8 +2,10 @@
 
 #include "../../core/includes/engine.h"
 #include "../../core/includes/struct_globale.h"
-#include "../srcs/UI/Buttons.hpp"
 #include "../../../library/drackengine_lib/drackengine_lib.h"
+
+#include "../srcs/UI/Buttons.hpp"
+#include "../srcs/workspace/workspace.h"
 
 #define ButtonsHPP DrackEngine::UI::Button
 

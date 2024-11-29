@@ -48,7 +48,7 @@ void    reset_resize_values(Engine *engine)
 	SetMouseCursor(MOUSE_CURSOR_DEFAULT);
 	mouse_clicked = false;
 	engine->allStates.blockMouseStates = false;
-	DE_DEBUG("RESET");
+	// DE_DEBUG("RESET");
 }
 
 void	reset_camera_options(Camera2D camera)
@@ -363,7 +363,7 @@ void    resize_panels(Engine *engine)
 	{
 		mouse_clicked = true;
 	}
-	else if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && mouse_clicked)
+	if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && mouse_clicked)
 	{
 		reset_resize_values(engine);
 		return;

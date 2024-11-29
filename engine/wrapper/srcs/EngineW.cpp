@@ -1,3 +1,15 @@
+/*****************************************************************************/
+/*\|/~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~\|/*/
+/* |             ---------------------------------------------             | */
+/* |             *--*  PROJET: DrackEngine PAR: Dracken24 *--*             | */
+/* |             ---------------------------------------------             | */
+/* |             *--*  DATE:		 06-09-2024           *--*             | */
+/* |             ---------------------------------------------             | */
+/* |             *--*  FILE: 	     EngineW.cpp          *--*             | */
+/* |             ---------------------------------------------             | */
+/*/|\~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~/|\*/
+/*****************************************************************************/
+
 #include "../includes/EngineW.hpp"
 #include "../../core/srcs/memory/dmemory.h"
 
@@ -62,6 +74,18 @@ void EngineW::Update()
 {
     if (!w_isInitialized)
         return;
+    
+    //*******************************************************************************//
+    // Draw Workspace
+	Camera3D *camera = &w_engine.allCameras->camera00.camera3D;
+
+	if (w_engine.allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE)
+	{
+		update_camera(camera);
+	}
+	control_main_panel(&w_engine, camera);
+    //*******************************************************************************//
+
     dr_update(&w_engine, &w_coreInfos);
 
     if (w_engine.resizeCppCt == true)
@@ -95,14 +119,6 @@ void EngineW::Update()
             ClearBackground(BLANK);
             engineButtons.DrawUpButtons();
         EndTextureMode();
-        
-        // Draw UI
-        BeginDrawing();
-            DrawTextureRec(w_uiLayer.texture,
-                (Rectangle){ 0, 0, (float)w_uiLayer.texture.width, (float)-w_uiLayer.texture.height },
-                (Vector2){ 0, 0 },
-                WHITE);
-        EndDrawing();
     }
 }
 

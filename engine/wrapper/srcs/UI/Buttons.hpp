@@ -20,7 +20,6 @@
 
 #include "../../../core/includes/engine_defines.h"
 
-
 namespace DrackEngine::UI
 {
     typedef void (*Callback)(void*);
