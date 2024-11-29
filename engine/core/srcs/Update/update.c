@@ -18,7 +18,7 @@
 
 #include <fcntl.h>
 #include "rlgl.h" 
-#include "workspace.h"
+// #include "workspace.h"
 
 void    check_mouse_state(Engine *engine);
 void    resize_screen(Engine *engine);
@@ -41,7 +41,8 @@ void    draw_msg_intro(void)
 
 void    input_events(Engine *engine)
 {
-	if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
+	if (WindowShouldClose())
+	// if (IsKeyPressed(KEY_ESCAPE) || WindowShouldClose())
 	{
 		switch (engine->allStates.currentStateView)
 		{
@@ -155,14 +156,14 @@ void	draw_cameras_textures(Engine *engine)
 
 void	mount_all_cameras_engine(Engine *engine)
 {
-	// Draw Workspace
-	Camera3D *camera = &engine->allCameras->camera00.camera3D;
+	// Draw Workspace in cpp
+	// Camera3D *camera = &engine->allCameras->camera00.camera3D;
 
-	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE)
-	{
-		update_camera(camera);
-	}
-		control_main_panel(engine, camera);
+	// if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE)
+	// {
+	// 	update_camera(camera);
+	// }
+	// 	control_main_panel(engine, camera);
 
 //--------------------------------------------------------------------------------------//
 

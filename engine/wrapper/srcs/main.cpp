@@ -10,6 +10,8 @@
 // /*/|\-~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~-/|\*/
 // /*******************************************************************************/
 
+#include "DrackEngine.hpp"
+
 #include "../includes/EngineW.hpp"
 #include "../includes/EventsW.hpp"
 #include "../includes/UpdateW.hpp"
