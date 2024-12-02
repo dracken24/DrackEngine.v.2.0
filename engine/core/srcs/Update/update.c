@@ -35,7 +35,7 @@ void    draw_msg_intro(void)
 
 	DrawText("Welcome to the", center_text.x, center_text.y, 40, BLACK);
 	DrawText("DrackEngine", center_text2.x, center_text2.y, 60, BLACK);
-	
+
 	EndDrawing();
 }
 
