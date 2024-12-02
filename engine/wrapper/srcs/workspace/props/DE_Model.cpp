@@ -18,7 +18,7 @@
 DrEng::DE_Model::DE_Model(void)
 {
 }
-    
+
 DrEng::DE_Model::~DE_Model(void)
 {
 }

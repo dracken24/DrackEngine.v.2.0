@@ -17,20 +17,20 @@
 
 namespace DrackEngine::Props
 {
-    class DE_Model
-    {
-        public:
-            DE_Model(void);
-            ~DE_Model(void);
-            DE_Model(const DE_Model& other);
-	        DE_Model& operator=(const DE_Model& other);
+	class DE_Model
+	{
+		public:
+			DE_Model(void);
+			~DE_Model(void);
+			DE_Model(const DE_Model& other);
+			DE_Model& operator=(const DE_Model& other);
 
-        private:
-            void	copyFrom(const DE_Model& other);    
-        
-        private:
-            Model   _model;
-    }; 
+		private:
+			void	copyFrom(const DE_Model& other);    
+		
+		private:
+			Model   _model;
+	}; 
 };
 
 //*****************************************************************/

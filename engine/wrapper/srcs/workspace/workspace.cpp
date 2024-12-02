@@ -49,6 +49,7 @@ void	draw_grid(int slices, float spacing, float thickness, Color color)
     rlBegin(RL_LINES);
     rlColor4ub(color.r, color.g, color.b, color.a);
 
+
     for (int i = -halfSlices; i <= halfSlices; i++)
     {
         rlVertex3f((float)i*spacing, 0.0f, (float)-halfSlices*spacing);
