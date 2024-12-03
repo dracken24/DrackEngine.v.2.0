@@ -4,11 +4,12 @@
   "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/7/pwsh.exe",
   "terminal.integrated.fontWeight": "1",
   "editor.fontFamily": "'Fira Code', 'Consolas', 'Courier New', monospace",
-  "editor.fontSize": 16,
+  "editor.fontSize": 18,
   "editor.tabSize": 4,
   "editor.fontWeight": "1",
   "workbench.editor.showTabs": "multiple",
-  "workbench.colorCustomizations": {
+  "workbench.colorCustomizations":
+  {
     "editorCursor.foreground": "#d748b8",
     "editor.lineHighlightBackground": "#8a43945f",
     "editor.lineHighlightBorder": "#00e1ff5f"
@@ -46,13 +47,15 @@
       "backgroundColor": "rgba(0,0,0,0)"
     }
   ],
-  "todohighlight.defaultStyle": {
+  "todohighlight.defaultStyle":
+  {
     "color": "red",
     "backgroundColor": "#ffab00",
     "overviewRulerColor": "rgba(0,0,0,0)",
     "isWholeLine": false
   },
-  "psi-header.config": {
+  "psi-header.config":
+  {
         "forceToTop": true,
         "blankLinesAfter": 1,
         "spacesBetweenYears": false,
@@ -63,7 +66,8 @@
         "creationDateZero": "asIs",
         "hostname": "dracken24",
     },
-    "psi-header.changes-tracking": {
+    "psi-header.changes-tracking":
+    {
         "isActive": true,
         "modAuthor": "Modified By:",
         "modDate": "Last Modified:",
@@ -119,7 +123,8 @@
         }
     ],
   "cmake.sourceDirectory": "/home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib",
-  "files.associations": {
+  "files.associations":
+  {
     "stdio.h": "c",
     "logger.h": "c",
     "temp_for_build.h": "c",

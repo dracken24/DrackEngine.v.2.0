@@ -101,7 +101,7 @@ std::vector<CollisionInfo> check_what_under_mouse(Engine *engine, Camera *camera
     }
     
     
-    // Trier les collisions par distance (la plus proche en premier)
+    // Put all object in distance order
     std::sort(collisions.begin(), collisions.end(), 
         [](const CollisionInfo& a, const CollisionInfo& b)
 	{
