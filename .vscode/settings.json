@@ -91,7 +91,7 @@
             "end": "*/",
             "prefix": "/* ",
             "suffix": "*/",
-            "lineLength": 86,
+            "lineLength": 85,
             "lineEnding": "lf"
         }
     ],

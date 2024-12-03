@@ -12,10 +12,12 @@
 
 #include "../includes/EngineW.hpp"
 #include "../../core/srcs/memory/dmemory.h"
+#include "workspace/DragDropDetect.hpp"
 
 #include <iostream>
 
 using namespace DrackEngine;
+using namespace DrackEngine::Workspace;
 
 EngineW::EngineW() : w_isInitialized(false)
 {
@@ -43,6 +45,21 @@ static void UICallbackWrapper(void* userData)
     EngineW* engine = static_cast<EngineW*>(userData);
     engine->DrawUI();
 }
+
+// void add_object_to_scene(Engine* engine, Model* model, CollisionInfo::Type type)
+// {
+//     SceneObject newObject;
+//     newObject.model = model;
+//     newObject.type = type;
+//     engine->testWorkspace.sceneObjects.push_back(newObject);
+// }
+
+// void init_workspace(Engine* engine)
+// {
+//     // Ajouter les objets initiaux
+//     add_object_to_scene(engine, &engine->testWorkspace.model, CollisionInfo::MODEL1);
+//     add_object_to_scene(engine, &engine->testWorkspace.modelCube, CollisionInfo::CUBE);
+// }
 
 bool EngineW::Init()
 {

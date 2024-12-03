@@ -64,50 +64,32 @@ void	draw_grid(int slices, float spacing, float thickness, Color color)
     rlEnd();
 }
 
-struct CollisionInfo
-{
-    enum Type
-	{
-        NONE,
-        MODEL1,
-        CUBE,
-        PLANE
-    };
-    
-    Type type;
-    RayCollision collision;
-};
+
 
 std::vector<CollisionInfo> check_what_under_mouse(Engine *engine, Camera *camera)
 {
     std::vector<CollisionInfo> collisions;
     Vector2 mouse_position = GetMousePosition();
     Ray ray = GetMouseRay(mouse_position, *camera);
-    
-    // Vérification de collision avec le premier modèle
-	Model m1 = engine->testWorkspace.model;
-    RayCollision modelCollision = GetRayCollisionMesh(ray, *m1.meshes, m1.transform);
-    if (modelCollision.hit)
-	{
-        collisions.push_back({CollisionInfo::MODEL1, modelCollision});
+
+    // Check collisions for all objects in the scene
+    for (const auto& sceneObject : engine->testWorkspace.sceneObjects)
+    {
+        RayCollision collision = GetRayCollisionMesh(ray, *sceneObject.model->meshes, 
+            sceneObject.model->transform);
+        if (collision.hit)
+        {
+            collisions.push_back({sceneObject.type, collision});
+        }
     }
-    
-    // Vérification de collision avec le cube
-	Model m2 = engine->testWorkspace.modelCube;
-    RayCollision cubeCollision = GetRayCollisionMesh(ray, *m2.meshes, m2.transform);
-    if (cubeCollision.hit)
-	{
-        collisions.push_back({CollisionInfo::CUBE, cubeCollision});
-    }
-    
-    
-    // Put all object in distance order
+
+    // Sort by distance
     std::sort(collisions.begin(), collisions.end(), 
         [](const CollisionInfo& a, const CollisionInfo& b)
-	{
-		return a.collision.distance < b.collision.distance;
-	});
-    
+    {
+        return a.collision.distance < b.collision.distance;
+    });
+
     return collisions;
 }
 
@@ -117,10 +99,10 @@ void    change_language(Engine *engine, const char *language);
 
 void    control_main_panel(Engine *engine, Camera *camera)
 {
-	Model *model = &engine->testWorkspace.model;
-	Model *modelCube = &engine->testWorkspace.modelCube;
-	RGizmo *gizmo = &engine->testWorkspace.gizmo;
-	Vector3 position = { model->transform.m12, model->transform.m13, model->transform.m14 };
+	// Model *model = &engine->testWorkspace.model;
+	// Model *modelCube = &engine->testWorkspace.modelCube;
+	RGizmo *gizmo = &engine->gizmo;
+	// Vector3 position = { model->transform.m12, model->transform.m13, model->transform.m14 };
 
 		// DE_DEBUG("REACH");
 		// DE_DEBUG("MOUSE_STATE_ON_WORKSPACE: %d", engine->allStates.currentStateMouse);
@@ -130,7 +112,7 @@ void    control_main_panel(Engine *engine, Camera *camera)
 		{
 			std::vector<CollisionInfo> hits = check_what_under_mouse(engine, camera);
 
-			// Parcourir toutes les collisions
+			// Iterate through all collisions
 			for (const auto& hit : hits)
 			{
 				DE_INFO("*********************************************************");
@@ -149,10 +131,10 @@ void    control_main_panel(Engine *engine, Camera *camera)
 						break;
 				}
 				
-				// Accéder aux informations de collision
-				Vector3 hitPoint = hit.collision.point;    // Point d'impact
-				Vector3 normal = hit.collision.normal;     // Normale de la surface
-				float distance = hit.collision.distance;   // Distance depuis l'origine du rayon
+				// Access collision information
+				Vector3 hitPoint = hit.collision.point;    // Impact point
+				Vector3 normal = hit.collision.normal;     // Surface normal
+				float distance = hit.collision.distance;   // Distance from ray origin
 
 				DE_DEBUG("distance : %f", distance);
 				DE_DEBUG("normal   : %f, %f, %f", normal.x, normal.y, normal.z);
