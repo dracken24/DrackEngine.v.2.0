@@ -21,7 +21,7 @@
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras);
 void			init_fonts(Engine *engine);
-void			init_workspace(Engine *engine);
+// void			init_workspace(Engine *engine);
 void			init_all_other_windows_textBox(void);
 
 bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
@@ -71,7 +71,7 @@ bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
 	engine->testTexture = LoadTextureFromImage(imgTest);
 	UnloadImage(imgTest);
 
-	init_workspace(engine);
+	// init_workspace(engine);
 	init_fonts(engine);
 	// init_all_other_windows_textBox();
 	// change_language(engine, "en");
@@ -80,25 +80,25 @@ bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
 	return true;
 }
 
-void	init_gizmo(Engine *engine)
-{
-	engine->testWorkspace.gizmo = rgizmo_create();;
-	engine->testWorkspace.model = LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0));
-	engine->testWorkspace.modelCube = LoadModelFromMesh(GenMeshCube(1, 1, 1));
-	engine->testWorkspace.modelCube.transform.m12 = -7;
-	engine->testWorkspace.modelCube.transform.m13 = 3;
-	engine->testWorkspace.modelCube.transform.m14 = 5;
-}
+// void	init_gizmo(Engine *engine)
+// {
+// 	engine->testWorkspace.gizmo = rgizmo_create();;
+// 	engine->testWorkspace.model = LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0));
+// 	engine->testWorkspace.modelCube = LoadModelFromMesh(GenMeshCube(1, 1, 1));
+// 	engine->testWorkspace.modelCube.transform.m12 = -7;
+// 	engine->testWorkspace.modelCube.transform.m13 = 3;
+// 	engine->testWorkspace.modelCube.transform.m14 = 5;
+// }
 
 void	init_fonts(Engine *engine)
 {
 	engine->fonts.defaultFont = LoadFontEx("../assets/fonts/HighlandGothicFLF.ttf", 20, 0, 0);
 }
 
-void	init_workspace(Engine *engine)
-{
-	init_gizmo(engine);
-}
+// void	init_workspace(Engine *engine)
+// {
+// 	init_gizmo(engine);
+// }
 
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)

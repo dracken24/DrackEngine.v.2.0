@@ -318,7 +318,7 @@ void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness);
 //***                                Workspace.c                             ***//
 //******************************************************************************//
 
-void    control_main_panel(Engine *engine, Camera *camera);
+// void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camera *camera);
 
 //******************************************************************************//
 //***                           menu_functions.c                             ***//

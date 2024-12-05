@@ -46,21 +46,6 @@ static void UICallbackWrapper(void* userData)
     engine->DrawUI();
 }
 
-// void add_object_to_scene(Engine* engine, Model* model, CollisionInfo::Type type)
-// {
-//     SceneObject newObject;
-//     newObject.model = model;
-//     newObject.type = type;
-//     engine->testWorkspace.sceneObjects.push_back(newObject);
-// }
-
-// void init_workspace(Engine* engine)
-// {
-//     // Ajouter les objets initiaux
-//     add_object_to_scene(engine, &engine->testWorkspace.model, CollisionInfo::MODEL1);
-//     add_object_to_scene(engine, &engine->testWorkspace.modelCube, CollisionInfo::CUBE);
-// }
-
 bool EngineW::Init()
 {
     DE_DEBUG("w_isInitialized: %d", w_isInitialized);
@@ -100,10 +85,13 @@ void EngineW::Update()
 	{
 		update_camera(camera);
 	}
-	control_main_panel(&w_engine, camera);
+	control_main_panel(&w_engine, &_dragDropDetect, camera);
     //*******************************************************************************//
 
     dr_update(&w_engine, &w_coreInfos);
+
+    // _dragDropDetect.
+    // TODO: call le wirkspace ici
 
     if (w_engine.resizeCppCt == true)
     {

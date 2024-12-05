@@ -14,6 +14,8 @@
 
 #include "DragDropDetect.hpp"
 
+#include <algorithm>
+
 using namespace DrackEngine::Workspace;
 
 DragDropDetect::DragDropDetect()
@@ -37,7 +39,10 @@ DragDropDetect& DragDropDetect::operator=(const DragDropDetect& other)
 
 DragDropDetect::~DragDropDetect()
 {
+    UnloadModel(_modelTest01);
+    UnloadModel(_modelTest02);
 
+    rgizmo_unload();
 }
 
 void	DragDropDetect::copyFrom(const DragDropDetect& other)
@@ -73,7 +78,7 @@ SceneObject	DragDropDetect::GetSceneObjectByName(std::string name) const
     // Return a default object
     SceneObject objEmpty;
     objEmpty.name = "null";
-    objEmpty.type = CollisionInfo::NONE;
+    objEmpty.type = Type::NONE;
 
     return objEmpty;
 }
@@ -100,7 +105,7 @@ bl8 	DragDropDetect::RemoveSceneObjectByName(std::string name)
 }
 
 // Add a sceneObject in vector scene
-void    DragDropDetect::AddObjectToScene(Model* model, std::string name, CollisionInfo::Type type)
+void    DragDropDetect::AddObjectToScene(Model* model, std::string name, Type type)
 {
     SceneObject newObject;
     newObject.model = model;
@@ -112,7 +117,42 @@ void    DragDropDetect::AddObjectToScene(Model* model, std::string name, Collisi
 
 void    DragDropDetect::InitWorkspace(void)
 {
+    _gizmo = rgizmo_create();;
+
     // TODO: ajouter des objest tests
-    AddObjectToScene(engine, &engine->testWorkspace.model, CollisionInfo::MODEL1);
-    AddObjectToScene(engine, &engine->testWorkspace.modelCube, CollisionInfo::CUBE);
+    Model m1 = LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0));
+	Model m2 = LoadModelFromMesh(GenMeshCube(1, 1, 1));
+	m2.transform.m12 = -7;
+	m2.transform.m13 = 3;
+	m2.transform.m14 = 5;
+
+    AddObjectToScene(&m1, "Model Torus", Type::TORUS);
+    AddObjectToScene(&m2, "Model Cube", Type::CUBE);
+}
+
+std::vector<CollisionInfo> DragDropDetect::CheckUnderTheMouse(Camera *camera)
+{
+    std::vector<CollisionInfo> collisions;
+    Vector2 mouse_position = GetMousePosition();
+    Ray ray = GetMouseRay(mouse_position, *camera);
+
+    // Check collisions for all objects in the scene
+    for (auto& sceneObject : _workspace.sceneObjects)
+    {
+        RayCollision collision = GetRayCollisionMesh(ray, *sceneObject.model->meshes, 
+            sceneObject.model->transform);
+        if (collision.hit)
+        {
+            collisions.emplace_back(sceneObject.type, collision, sceneObject);
+        }
+    }
+
+    // Sort by distance
+    std::sort(collisions.begin(), collisions.end(), 
+        [](const CollisionInfo& a, const CollisionInfo& b)
+    {
+        return a.collision.distance < b.collision.distance;
+    });
+
+    return collisions;
 }

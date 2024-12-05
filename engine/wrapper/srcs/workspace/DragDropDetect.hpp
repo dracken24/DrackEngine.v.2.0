@@ -15,30 +15,25 @@
 #pragma once
 
 #include "raylib.h"
-#include "../../../library/extern/raygizmo/include/raygizmo.h"
+#include "../../../../library/extern/raygizmo/include/raygizmo.h"
 
-#include "../../core/includes/engine_defines.h"
+#include "../../../core/includes/engine_defines.h"
 
 #include <vector>
 #include <string>
 
 namespace DrackEngine::Workspace
 {
-	struct CollisionInfo
+	enum Type
 	{
-		enum Type
-		{
-			NONE,
-			MODEL,
-			MESH,
-			TRIANGLE,
-			CUBE,
-			SPHERE,
-			PLANE
-		};
-		
-		Type type;
-		RayCollision collision;
+		NONE,
+		MODEL,
+		MESH,
+		TORUS,
+		TRIANGLE,
+		CUBE,
+		SPHERE,
+		PLANE
 	};
 
 	struct SceneObject
@@ -46,7 +41,48 @@ namespace DrackEngine::Workspace
 		std::string			name;
 
 		Model*				model;
-		CollisionInfo::Type type;
+		Type type;
+	};
+
+	struct CollisionInfo
+	{
+		Type type;
+		RayCollision collision;
+
+		SceneObject	&sceneObject;
+
+		// Default contructor
+		CollisionInfo(Type t, RayCollision c, SceneObject& obj) 
+			: type(t), collision(c), sceneObject(obj)
+		{ }
+
+		// Copy Constructor
+		CollisionInfo(const CollisionInfo& other)
+			: type(other.type), collision(other.collision), sceneObject(other.sceneObject)
+		{ }
+
+		// Overload affectation 
+		CollisionInfo& operator=(const CollisionInfo& other)
+		{
+			if (this != &other)
+			{
+				type = other.type;
+				collision = other.collision;
+				sceneObject = other.sceneObject;
+			}
+			return *this;
+		}
+
+		// Fonction friend for swap
+		friend void swap(CollisionInfo& a, CollisionInfo& b) noexcept
+		{
+			using std::swap;
+			swap(a.type, b.type);
+			swap(a.collision, b.collision);
+			SceneObject& tempRef = a.sceneObject;
+			a.sceneObject = b.sceneObject;
+			b.sceneObject = tempRef;
+		}
 	};
 
 	struct Workspace
@@ -86,11 +122,15 @@ namespace DrackEngine::Workspace
 	//******************************************************************************//
 
 			bl8		RemoveSceneObjectByName(std::string name);
-			void    AddObjectToScene(Model* model, std::string name, CollisionInfo::Type type);
+			void    AddObjectToScene(Model* model, std::string name, Type type);
+			std::vector<CollisionInfo> CheckUnderTheMouse(Camera *camera);
 
 		private:
 			Workspace   _workspace;
 			struct RGizmo	_gizmo;
+
+			Model	_modelTest01;
+			Model	_modelTest02;
 
 			void	InitWorkspace(void);
 	};
