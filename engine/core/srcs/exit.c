@@ -32,10 +32,6 @@ void    dr_exit(Engine *engine, CoreInfos *coreInfos)
     DE_INFO("Waiting for 350ms in engine");
     usleep(350000);  // Attendre 350ms
 
-    rgizmo_unload();
-    UnloadModel(engine->testWorkspace.model);
-    UnloadModel(engine->testWorkspace.modelCube);
-
     // destroy_all_other_windows_textBox();
     
     DE_INFO("Freeing engine in engine");

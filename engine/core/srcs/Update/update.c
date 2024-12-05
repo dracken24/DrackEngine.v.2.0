@@ -307,64 +307,64 @@ void    dr_update(Engine *engine, CoreInfos const *coreInfos)
 		// DE_DEBUG("currentStateMouse update.c: %d", engine->allStates.currentStateMouse);
 
 		switch(engine->allStates.currentStateView)
-        {
-            case STATE_VIEW_ENGINE:
+		{
+			case STATE_VIEW_ENGINE:
 				input_events(engine);
 				window_events(engine);
 				update_main_view(engine);
-                break;
-            case STATE_VIEW_FILES_NEW_PROJECT:
-                menu_files_new(engine, coreInfos);
-                break;
-            case STATE_VIEW_FILES_OPEN_PROJECT:
-                menu_files_open(engine);
-                break;
+				break;
+			case STATE_VIEW_FILES_NEW_PROJECT:
+				menu_files_new(engine, coreInfos);
+				break;
+			case STATE_VIEW_FILES_OPEN_PROJECT:
+				menu_files_open(engine);
+				break;
 			case STATE_VIEW_FILES_SAVE:
-                menu_files_save(engine);
-                break;
+				menu_files_save(engine);
+				break;
 			case STATE_VIEW_FILES_SAVE_AS:
-                menu_files_save_as(engine);
-                break;
+				menu_files_save_as(engine);
+				break;
 			case STATE_VIEW_FILES_EXPORT:
-                menu_files_export(engine);
-                break;
+				menu_files_export(engine);
+				break;
 			case STATE_VIEW_EDIT_UNDO:
-            	menu_edit_undo(engine);
-                break;
+				menu_edit_undo(engine);
+				break;
 			case STATE_VIEW_EDIT_REDO:
-            	menu_edit_redo(engine);
-                break;
+				menu_edit_redo(engine);
+				break;
 			case STATE_VIEW_EDIT_CUT:
-            	menu_edit_cut(engine);
-                break;
+				menu_edit_cut(engine);
+				break;
 			case STATE_VIEW_EDIT_COPY:
-            	menu_edit_copy(engine);
-                break;
+				menu_edit_copy(engine);
+				break;
 			case STATE_VIEW_EDIT_PASTE:
-            	menu_edit_paste(engine);
-                break;
+				menu_edit_paste(engine);
+				break;
 			case STATE_VIEW_SETTINGS_ENGINE:
-                menu_settings_engine(engine);
-                break;
+				menu_settings_engine(engine);
+				break;
 			case STATE_VIEW_SETTINGS_PROJECT:
-                menu_settings_project(engine);
-                break;
+				menu_settings_project(engine);
+				break;
 			case STATE_VIEW_SETTINGS_OPTIONS:
-                menu_settings_options(engine);
-                break;
+				menu_settings_options(engine);
+				break;
 			case STATE_VIEW_HELP_ABOUT:
-                menu_help_about(engine);
-                break;
+				menu_help_about(engine);
+				break;
 			case STATE_VIEW_HELP_SUPPORT:
 				menu_help_support(engine);
-                break;
+				break;
 			case STATE_VIEW_HELP_DOCUMENTATION:
-                menu_help_documentation(engine);
-                break;
+				menu_help_documentation(engine);
+				break;
 			case STATE_VIEW_SUB_WINDOW:
 				menu_files_new(engine, coreInfos);
-                break;
-        }
+				break;
+		}
 
 		engine->mouse.lastPos = engine->mouse.pos;
 	}

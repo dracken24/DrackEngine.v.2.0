@@ -1,6 +1,6 @@
 # DrackEngine 2.0
 
-Rebuild of DrackEngine with a new architecture and new features
+Rebuild of DrackEngine with a new architecture and new features. Core in c wrapped in a cpp program.
 
 *** Project under construction ***
 

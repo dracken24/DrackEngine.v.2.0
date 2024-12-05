@@ -25,6 +25,20 @@ extern "C" {
 #define CAMERA_MOVE_SPEED 0.02f
 #define CAMERA_ZOOM_SPEED 1.5f
 
+// struct CollisionInfo
+// {
+//     enum Type
+// 	{
+//         NONE,
+//         MODEL1,
+//         CUBE,
+//         PLANE
+//     };
+    
+//     Type type;
+//     RayCollision collision;
+// };
+
 void	draw_grid(int slices, float spacing, float thickness, Color color);
 void    update_camera(Camera3D *camera);
 

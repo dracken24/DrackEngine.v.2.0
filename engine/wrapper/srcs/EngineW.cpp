@@ -12,10 +12,12 @@
 
 #include "../includes/EngineW.hpp"
 #include "../../core/srcs/memory/dmemory.h"
+#include "workspace/DragDropDetect.hpp"
 
 #include <iostream>
 
 using namespace DrackEngine;
+using namespace DrackEngine::Workspace;
 
 EngineW::EngineW() : w_isInitialized(false)
 {
@@ -83,10 +85,13 @@ void EngineW::Update()
 	{
 		update_camera(camera);
 	}
-	control_main_panel(&w_engine, camera);
+	control_main_panel(&w_engine, &_dragDropDetect, camera);
     //*******************************************************************************//
 
     dr_update(&w_engine, &w_coreInfos);
+
+    // _dragDropDetect.
+    // TODO: call le wirkspace ici
 
     if (w_engine.resizeCppCt == true)
     {

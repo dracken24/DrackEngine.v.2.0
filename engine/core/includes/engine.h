@@ -26,7 +26,7 @@ extern "C" {
 // #include "../srcs/errors_manager/popUp/error_to_popUp.h"
 
 // # include "Config/menus.h"
-# include "../../../library/extern/raygizmo/include/raygizmo.h"
+// # include "../../../library/extern/raygizmo/include/raygizmo.h"
 
 // #include <sys/types.h>
 # include <signal.h>
@@ -187,13 +187,13 @@ typedef struct AllStates
 //***                                 Tests                                  ***//
 //******************************************************************************//
 
-typedef struct TestWorkspace
-{
-	Model model;
-	Model modelCube;
-	struct RGizmo gizmo;
+// typedef struct TestWorkspace
+// {
+// 	Model model;
+// 	Model modelCube;
+// 	struct RGizmo gizmo;
 
-}   TestWorkspace;
+// }   TestWorkspace;
 
 //******************************************************************************//
 //***                               User Struct                              ***//
@@ -260,7 +260,6 @@ typedef struct  Engine
 
 	// Tests
 	Texture2D       testTexture;
-	TestWorkspace   testWorkspace;
 
 	// For Text
 	DE_Font         fonts;
@@ -319,7 +318,7 @@ void    draw_rectangle_borders(Rectangle rectangle, Color color, int thickness);
 //***                                Workspace.c                             ***//
 //******************************************************************************//
 
-void    control_main_panel(Engine *engine, Camera *camera);
+// void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camera *camera);
 
 //******************************************************************************//
 //***                           menu_functions.c                             ***//

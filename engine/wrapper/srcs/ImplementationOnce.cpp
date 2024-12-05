@@ -7,23 +7,12 @@
 /*                MODIFIED BY: Dracken24                                           */
 /*                LAST MODIFIED: 05-12th-2024                                      */
 /*               -------------------------------------------------                 */
-/*                FILE: UpdateW.hpp                                                */
+/*                FILE: ImplementationOnce.cpp                                     */
 /*               -------------------------------------------------                 */
 /* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
 /* =============================================================================== */
 
-#pragma once
-
-// #include "../../core/includes/struct_globale.h"
-#include "../../core/includes/engine.h"
-
-namespace DrackEngine
-{
-    class Update
-    {
-        // public:
-        //     static void updateEngine(CoreInfos* coreInfos);
-        //     static void updateWorkspace(CoreInfos* coreInfos);
-        //     static void updateStates(CoreInfos* coreInfos);
-    };
-}
+#ifndef RAYGIZMO_IMPLEMENTATION
+    #define RAYGIZMO_IMPLEMENTATION
+#endif
+#include "../../../library/extern/raygizmo/include/raygizmo.h"
