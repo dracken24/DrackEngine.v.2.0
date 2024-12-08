@@ -31,6 +31,7 @@ void	change_state_mouse(Engine *engine, MouseState mouse_state)
 		// DE_DEBUG("Enter Workspace");
 		engine->mouseOnWorkspaceCpp = true;
 	}
+	
 	engine->allStates.lastStateMouse = engine->allStates.currentStateMouse;
 	engine->allStates.currentStateMouse = mouse_state;
 	// DE_DEBUG("CT: %d", engine->mouseOnWorkspaceCpp);
