@@ -43,6 +43,9 @@ int main(int argc, char **argv)
             print_memory_usage("Update");
         }
     }
+    DE_DEBUG("Exit Main loop");
+
+    engine.Shutdown();
 
     DE_DEBUG("Engine shutdown");
     return 0;

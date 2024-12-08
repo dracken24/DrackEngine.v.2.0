@@ -75,120 +75,95 @@ void    change_language(Engine *engine, const char *language);
 
 void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camera *camera)
 {
-	// Model *model = &engine->testWorkspace.model;
-	// Model *modelCube = &engine->testWorkspace.modelCube;
-	// RGizmo *gizmo = &engine->gizmo;
-	// Vector3 position = { model->transform.m12, model->transform.m13, model->transform.m14 };
+    if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE || g_reset_workspace)
+    {
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            auto hits = dragDropDetect->CheckUnderTheMouse(camera);
+            if (!hits.empty())
+            {
+                dragDropDetect->SetSelectedObject(hits[0].objectName);
+                DE_DEBUG("object hit: %s", hits[0].objectName.c_str());
+            }
+            else
+            {
+                dragDropDetect->ClearSelection();
+            }
+        }
 
-		// DE_DEBUG("REACH");
-		// DE_DEBUG("MOUSE_STATE_ON_WORKSPACE: %d", engine->allStates.currentStateMouse);
-	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE || g_reset_workspace)
-	{
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-		{
-			auto hits = dragDropDetect->CheckUnderTheMouse(camera);
-			if (!hits.empty())
-			{
-				std::string objectName = hits[0].sceneObject.name;  // Nom du premier objet touché
-			}
+        // Mise à jour du gizmo pour l'objet sélectionné
+        SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
+        if (selectedObj && selectedObj->model)
+        {
+            Vector3 position = {
+                selectedObj->model->transform.m12,
+                selectedObj->model->transform.m13,
+                selectedObj->model->transform.m14
+            };
+            
+            rgizmo_update(&dragDropDetect->GetGizmo(), *camera, position);
+            selectedObj->model->transform = MatrixMultiply(
+                selectedObj->model->transform, 
+                rgizmo_get_tranform(dragDropDetect->GetGizmo(), position)
+            );
+        }
+    }
 
-			// // Iterate through all collisions
-			// for (const auto& hit : hits)
-			// {
-			// 	DE_INFO("*********************************************************");
-			// 	switch (hit.type)
-			// 	{
-			// 		case CollisionInfo::MODEL:
-			// 			DE_DEBUG("Hit MODEL1");
-			// 			break;
-			// 		case CollisionInfo::CUBE:
-			// 			DE_DEBUG("Hit CUBE");
-			// 			break;
-			// 		case CollisionInfo::PLANE:
-			// 			DE_DEBUG("Hit PLANE");
-			// 			break;
-			// 		default:
-			// 			break;
-			// 	}
-				
-			// 	// Access collision information
-			// 	Vector3 hitPoint = hit.collision.point;    // Impact point
-			// 	Vector3 normal = hit.collision.normal;     // Surface normal
-			// 	float distance = hit.collision.distance;   // Distance from ray origin
+    ClearBackground(DARKGRAY);
 
-			// 	DE_DEBUG("distance : %f", distance);
-			// 	DE_DEBUG("normal   : %f, %f, %f", normal.x, normal.y, normal.z);
-			// 	DE_DEBUG("hitPoint : %f, %f, %f", hitPoint.x, hitPoint.y, hitPoint.z);
-				DE_INFO("*********************************************************");
-			// }
-		}
-		// DE_DEBUG("g_reset_workspace: %d", g_reset_workspace);
-		//NOTE: attach Guizmo to an object 
-		// if (IsKeyDown(KEY_H))
-		// {
-		// 	position = (Vector3){ modelCube->transform.m12, modelCube->transform.m13, modelCube->transform.m14};
-		// 	rgizmo_update(gizmo, *camera, position);
-		// 	modelCube->transform = MatrixMultiply(modelCube->transform, rgizmo_get_tranform(*gizmo, position));
-		// }
-		// else
-		// {
-		// 	// position = (Vector3){ model->transform.m12, model->transform.m13, model->transform.m14};
-		// 	rgizmo_update(gizmo, *camera, position);
-		// 	model->transform = MatrixMultiply(model->transform, rgizmo_get_tranform(*gizmo, position));
-		// }
+    BeginMode3D(*camera);
+    {
+        // Dessiner la grille
+        draw_grid(100.0, 1.0, 1.0, GRAY);
 
-		// NOTE: Release Gizmo when leave workspace
-		// if (g_reset_workspace)
-		// {
-		// 	g_reset_workspace = false;
-		// 	if (gizmo->state > 5)
-		// 	{
-		// 		gizmo->state = RGIZMO_STATE_COLD;
-		// 	}
-		// }
-	}
-	// DE_DEBUG("gizmo->state: %d", gizmo->state);
+        // Dessiner tous les objets de la scène
+        for (const auto& obj : dragDropDetect->GetSceneObjects())
+        {
+            if (obj.model)
+            {
+                // Dessiner le modèle
+                DrawModel(*obj.model, (Vector3){0.0f, 0.0f, 0.0f}, 1.0f, PURPLE);
+                
+                // Si l'objet est sélectionné, utilisez une couleur différente pour les contours
+                Color wireColor = (&obj == dragDropDetect->GetSelectedObject()) ? ORANGE : BLUE;
+                
+                DrawModelWiresEx(*obj.model, 
+                    (Vector3){0.0f, 0.0f, 0.0f},
+                    (Vector3){0.0f, 0.0f, 0.0f},
+                    0.0f,
+                    (Vector3){1.0f, 1.0f, 1.0f},
+                    wireColor);
+            }
+        }
 
-	ClearBackground(DARKGRAY);
-	// rlEnableDepthTest();
+        // Dessiner les axes X, Y, Z
+        DrawLine3D(
+            (Vector3){-50.0f, 0.0f, 0.0f},
+            (Vector3){50.0f, 0.0f, 0.0f},
+            (Color){ 230, 41, 55, 124 } // RED - X axis
+        );
+        DrawLine3D(
+            (Vector3){0.0f, -50.0f, 0.0f},
+            (Vector3){0.0f, 50.0f, 0.0f},
+            (Color){ 0, 228, 48, 124 } // GREEN - Y axis
+        );
+        DrawLine3D(
+            (Vector3){0.0f, 0.0f, -50.0f},
+            (Vector3){0.0f, 0.0f, 50.0f},
+            (Color){ 0, 82, 172, 124 } // DARKBLUE - Z axis
+        );
 
-	BeginMode3D(*camera);
-	{
-		draw_grid(100.0, 1.0, 1.0, GRAY);
-
-		// DrawModel(*model, (Vector3){0.0, 0.0, 0.0}, 1.0, PURPLE);
-		// DrawModelWiresEx(*model, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 0.0, 0.0}, 0.0, (Vector3){1.0, 1.0, 1.0}, BLUE);
-		// DrawModel(*modelCube, (Vector3){0.0, 0.0, 0.0}, 1.0, PURPLE);
-		// DrawModelWiresEx(*modelCube, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 0.0, 0.0}, 0.0, (Vector3){1.0, 1.0, 1.0}, BLUE);
-		
-		// rlSetLineWidth(2);
-		// 	if (IsKeyDown(KEY_H))
-		// 	{
-		// 		DrawModelWiresEx(*modelCube, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 0.0, 0.0}, 0.0, (Vector3){1.0, 1.0, 1.0}, ORANGE_SELECT);	
-		// 	}
-		// 	else
-		// 	{
-		// 		DrawModelWiresEx(*model, (Vector3){0.0, 0.0, 0.0}, (Vector3){0.0, 0.0, 0.0}, 0.0, (Vector3){1.0, 1.0, 1.0}, ORANGE_SELECT);
-		// 	}
-		// rlEnd();
-
-		DrawLine3D(
-			(Vector3){-50.0f, 0.0f, 0.0f},
-			(Vector3){50.0f, 0.0f, 0.0f},
-			(Color){ 230, 41, 55, 124 } // RED
-		);
-		DrawLine3D(
-			(Vector3){0.0f, -50.0f, 0.0f},
-			(Vector3){0.0f, 50.0f, 0.0f},
-			(Color){ 0, 228, 48, 124 } // GREEN
-		);
-		DrawLine3D(
-			(Vector3){0.0f, 0.0f, -50.0f},
-			(Vector3){0.0f, 0.0f, 50.0f},
-			(Color){ 0, 82, 172, 124 } // DARKBLUE
-		);
-
-		// rgizmo_draw(*gizmo, *camera, position);
-	}
-	EndMode3D();
+        // Dessiner le gizmo si un objet est sélectionné
+        SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
+        if (selectedObj && selectedObj->model)
+        {
+            Vector3 position = {
+                selectedObj->model->transform.m12,
+                selectedObj->model->transform.m13,
+                selectedObj->model->transform.m14
+            };
+            rgizmo_draw(dragDropDetect->GetGizmo(), *camera, position);
+        }
+    }
+    EndMode3D();
 }

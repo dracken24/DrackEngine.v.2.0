@@ -69,6 +69,8 @@ bool EngineW::Init()
     w_uiLayer = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
 
     w_isInitialized = true;
+
+    _dragDropDetect.InitWorkspace();
     return true;
 }
 
@@ -91,7 +93,7 @@ void EngineW::Update()
     dr_update(&w_engine, &w_coreInfos);
 
     // _dragDropDetect.
-    // TODO: call le wirkspace ici
+    // TODO: call le workspace ici
 
     if (w_engine.resizeCppCt == true)
     {
@@ -129,14 +131,23 @@ void EngineW::Update()
 
 void EngineW::Shutdown()
 {
+    DE_DEBUG("Exit 1");
     if (!w_isInitialized)
         return;
+    DE_DEBUG("Exit 2");
 
     UnloadRenderTexture(w_uiLayer);
+    DE_DEBUG("Exit 3");
 
+    _dragDropDetect.FreeWorkspace();
+    DE_DEBUG("Exit 4");
     dr_exit(&w_engine, &w_coreInfos);
+    DE_DEBUG("Exit 5");
     shutdown_memory();
+    DE_DEBUG("Exit 6");
     w_isInitialized = false;
+    DE_DEBUG("Exit 7");
+
 }
 
 //******************************************************************************//
