@@ -90,12 +90,6 @@ typedef struct Cube3D
 	char*	name;
 } Cube3D;
 
-// typedef struct ButtonsMenu
-// {
-// 	Button  play;
-// 	Button  stop;
-// }   ButtonsMenu;
-
 typedef struct Ray3D
 {
 	Ray 			ray; // Picking line ray
@@ -251,6 +245,7 @@ typedef struct  Engine
 	bl8             introCt;
 	bl8				inputEventCt;
 	bl8				resizeCppCt;
+	bl8				mouseOnWorkspaceCpp;
 
 	Cube3D	        cube_01;
 	Ray3D			ray;

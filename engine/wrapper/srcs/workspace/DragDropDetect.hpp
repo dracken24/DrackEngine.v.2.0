@@ -112,17 +112,12 @@ namespace DrackEngine::Workspace
 
 			SceneObject	GetSceneObjectByName(std::string name) const;
 			std::vector<SceneObject> GetSceneObjects(void);
-
 			void SetSelectedObject(const std::string& name);
-			void ClearSelection() { _selectedObject = nullptr; }
-			SceneObject* GetSelectedObject() { return _selectedObject; }
-			RGizmo &GetGizmo() { return _gizmo; }
-			bool IsGizmoInUse() const 
-			{ 
-				return _gizmo.state == RGIZMO_STATE_ACTIVE_ROT ||
-					_gizmo.state == RGIZMO_STATE_ACTIVE_AXIS ||
-					_gizmo.state == RGIZMO_STATE_ACTIVE_PLANE;
-			}
+
+			void ClearSelection();
+			SceneObject* GetSelectedObject();
+			RGizmo &GetGizmo();
+			bl8 IsGizmoInUse() const;
 
 	//******************************************************************************//
 	//***                            Member functions                            ***//
