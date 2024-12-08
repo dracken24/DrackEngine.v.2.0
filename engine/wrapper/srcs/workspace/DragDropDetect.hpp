@@ -48,27 +48,24 @@ namespace DrackEngine::Workspace
 	{
 		Type type;
 		RayCollision collision;
+		std::string objectName;
 
-		SceneObject	&sceneObject;
-
-		// Default contructor
-		CollisionInfo(Type t, RayCollision c, SceneObject& obj) 
-			: type(t), collision(c), sceneObject(obj)
+		CollisionInfo(Type t, RayCollision c, const SceneObject& obj) 
+			: type(t), collision(c), objectName(obj.name)
 		{ }
 
 		// Copy Constructor
 		CollisionInfo(const CollisionInfo& other)
-			: type(other.type), collision(other.collision), sceneObject(other.sceneObject)
+			: type(other.type), collision(other.collision), objectName(other.objectName)
 		{ }
 
-		// Overload affectation 
 		CollisionInfo& operator=(const CollisionInfo& other)
 		{
 			if (this != &other)
 			{
 				type = other.type;
 				collision = other.collision;
-				sceneObject = other.sceneObject;
+				objectName = other.objectName;
 			}
 			return *this;
 		}
@@ -79,9 +76,7 @@ namespace DrackEngine::Workspace
 			using std::swap;
 			swap(a.type, b.type);
 			swap(a.collision, b.collision);
-			SceneObject& tempRef = a.sceneObject;
-			a.sceneObject = b.sceneObject;
-			b.sceneObject = tempRef;
+			swap(a.objectName, b.objectName);
 		}
 	};
 
@@ -116,6 +111,12 @@ namespace DrackEngine::Workspace
 	//******************************************************************************//
 
 			SceneObject	GetSceneObjectByName(std::string name) const;
+			std::vector<SceneObject> GetSceneObjects(void);
+
+			void SetSelectedObject(const std::string& name);
+			void ClearSelection() { _selectedObject = nullptr; }
+			SceneObject* GetSelectedObject() { return _selectedObject; }
+			RGizmo &GetGizmo() { return _gizmo; }
 
 	//******************************************************************************//
 	//***                            Member functions                            ***//
@@ -124,14 +125,15 @@ namespace DrackEngine::Workspace
 			bl8		RemoveSceneObjectByName(std::string name);
 			void    AddObjectToScene(Model* model, std::string name, Type type);
 			std::vector<CollisionInfo> CheckUnderTheMouse(Camera *camera);
+			void	InitWorkspace(void);
+			void    FreeWorkspace(void);
 
 		private:
-			Workspace   _workspace;
+			Workspace  		_workspace;
 			struct RGizmo	_gizmo;
 
-			Model	_modelTest01;
-			Model	_modelTest02;
-
-			void	InitWorkspace(void);
+			SceneObject*	_selectedObject;
+			Model			_modelTest01;
+			Model			_modelTest02;
 	};
 };

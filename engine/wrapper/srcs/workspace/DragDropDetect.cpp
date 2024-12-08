@@ -12,15 +12,17 @@
 /* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
 /* =============================================================================== */
 
+#include "../../../../library/drackengine_lib/drackengine_lib.h"
 #include "DragDropDetect.hpp"
 
 #include <algorithm>
+#include <iostream>
 
 using namespace DrackEngine::Workspace;
 
 DragDropDetect::DragDropDetect()
 {
-
+    _selectedObject = nullptr;
 }
 
 DragDropDetect::DragDropDetect(const DragDropDetect& other)
@@ -39,10 +41,7 @@ DragDropDetect& DragDropDetect::operator=(const DragDropDetect& other)
 
 DragDropDetect::~DragDropDetect()
 {
-    UnloadModel(_modelTest01);
-    UnloadModel(_modelTest02);
 
-    rgizmo_unload();
 }
 
 void	DragDropDetect::copyFrom(const DragDropDetect& other)
@@ -58,6 +57,19 @@ void	DragDropDetect::copyFrom(const DragDropDetect& other)
 void	DragDropDetect::AddSceneObject(SceneObject const &sceneObject)
 {
     _workspace.sceneObjects.push_back(sceneObject);
+}
+
+void    DragDropDetect::SetSelectedObject(const std::string& name)
+{
+    for (auto& obj : _workspace.sceneObjects)
+    {
+        if (obj.name == name)
+        {
+            _selectedObject = &obj;
+            return;
+        }
+    }
+    _selectedObject = nullptr;
 }
 
 //******************************************************************************//
@@ -81,6 +93,11 @@ SceneObject	DragDropDetect::GetSceneObjectByName(std::string name) const
     objEmpty.type = Type::NONE;
 
     return objEmpty;
+}
+
+std::vector<SceneObject> DragDropDetect::GetSceneObjects(void)
+{
+    return _workspace.sceneObjects;
 }
 
 //******************************************************************************//
@@ -107,8 +124,14 @@ bl8 	DragDropDetect::RemoveSceneObjectByName(std::string name)
 // Add a sceneObject in vector scene
 void    DragDropDetect::AddObjectToScene(Model* model, std::string name, Type type)
 {
+    if (!model)
+    {
+        std::cout << "Tentative d'ajout d'un modèle invalide: " << name.c_str() << std::endl;
+        return;
+    }
+
     SceneObject newObject;
-    newObject.model = model;
+    newObject.model = new Model(*model);  // Créer une copie du modèle
     newObject.type = type;
     newObject.name = name;
 
@@ -117,33 +140,72 @@ void    DragDropDetect::AddObjectToScene(Model* model, std::string name, Type ty
 
 void    DragDropDetect::InitWorkspace(void)
 {
-    _gizmo = rgizmo_create();;
+    _gizmo = rgizmo_create();
 
     // TODO: ajouter des objest tests
-    Model m1 = LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0));
-	Model m2 = LoadModelFromMesh(GenMeshCube(1, 1, 1));
-	m2.transform.m12 = -7;
-	m2.transform.m13 = 3;
-	m2.transform.m14 = 5;
+    SceneObject torusObject;
+    torusObject.model = new Model(LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0)));
+    torusObject.name = "Model Torus";
+    torusObject.type = Type::TORUS;
+    _workspace.sceneObjects.push_back(torusObject);
 
-    AddObjectToScene(&m1, "Model Torus", Type::TORUS);
-    AddObjectToScene(&m2, "Model Cube", Type::CUBE);
+    SceneObject cubeObject;
+    cubeObject.model = new Model(LoadModelFromMesh(GenMeshCube(1, 1, 1)));
+    cubeObject.model->transform.m12 = -7;
+    cubeObject.model->transform.m13 = 3;
+    cubeObject.model->transform.m14 = 5;
+    cubeObject.name = "Model Cube";
+    cubeObject.type = Type::CUBE;
+    _workspace.sceneObjects.push_back(cubeObject);
+}
+
+void    DragDropDetect::FreeWorkspace(void)
+{
+    // Libérer la mémoire des modèles
+    for (auto& obj : _workspace.sceneObjects)
+    {
+        if (obj.model != nullptr)
+        {
+            UnloadModel(*obj.model);
+            delete obj.model;
+        }
+    }
+    _workspace.sceneObjects.clear();
+
+    rgizmo_unload();
+    std::cout << "Exit DD" << std::endl;
 }
 
 std::vector<CollisionInfo> DragDropDetect::CheckUnderTheMouse(Camera *camera)
 {
+    std::cout << "AAA" << std::endl;
     std::vector<CollisionInfo> collisions;
     Vector2 mouse_position = GetMousePosition();
     Ray ray = GetMouseRay(mouse_position, *camera);
 
-    // Check collisions for all objects in the scene
-    for (auto& sceneObject : _workspace.sceneObjects)
+    for (const auto& sceneObject : _workspace.sceneObjects)
     {
+        // Vérification des pointeurs
+        if (!sceneObject.model || !sceneObject.model->meshes)
+        {
+            std::cout << "Invalid model or mesh for object: " << sceneObject.name.c_str() << std::endl;
+            continue;
+        }
+
+        // Debug des informations du modèle
+        Matrix mm = sceneObject.model->transform;
+        std::cout << "Checking collision for " << sceneObject.name.c_str() << std::endl;
+        std::cout << "Model transform: " << mm.m12 << " " << mm.m13 << " " << mm.m14 << std::endl; 
+
         RayCollision collision = GetRayCollisionMesh(ray, *sceneObject.model->meshes, 
             sceneObject.model->transform);
+        
+        std::cout << "BB" << std::endl;
+
         if (collision.hit)
         {
             collisions.emplace_back(sceneObject.type, collision, sceneObject);
+            std::cout << "HIT: " << sceneObject.name.c_str() << std::endl;
         }
     }
 
