@@ -178,7 +178,7 @@ void    DragDropDetect::FreeWorkspace(void)
 
 std::vector<CollisionInfo> DragDropDetect::CheckUnderTheMouse(Camera *camera)
 {
-    std::cout << "AAA" << std::endl;
+    // std::cout << "AAA" << std::endl;
     std::vector<CollisionInfo> collisions;
     Vector2 mouse_position = GetMousePosition();
     Ray ray = GetMouseRay(mouse_position, *camera);
@@ -193,14 +193,14 @@ std::vector<CollisionInfo> DragDropDetect::CheckUnderTheMouse(Camera *camera)
         }
 
         // Debug des informations du modèle
-        Matrix mm = sceneObject.model->transform;
-        std::cout << "Checking collision for " << sceneObject.name.c_str() << std::endl;
-        std::cout << "Model transform: " << mm.m12 << " " << mm.m13 << " " << mm.m14 << std::endl; 
+        // Matrix mm = sceneObject.model->transform;
+        // std::cout << "Checking collision for " << sceneObject.name.c_str() << std::endl;
+        // std::cout << "Model transform: " << mm.m12 << " " << mm.m13 << " " << mm.m14 << std::endl; 
 
         RayCollision collision = GetRayCollisionMesh(ray, *sceneObject.model->meshes, 
             sceneObject.model->transform);
         
-        std::cout << "BB" << std::endl;
+        // std::cout << "BB" << std::endl;
 
         if (collision.hit)
         {

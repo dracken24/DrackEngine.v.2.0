@@ -77,21 +77,6 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
 {
     if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE || g_reset_workspace)
     {
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-        {
-            auto hits = dragDropDetect->CheckUnderTheMouse(camera);
-            if (!hits.empty())
-            {
-                dragDropDetect->SetSelectedObject(hits[0].objectName);
-                DE_DEBUG("object hit: %s", hits[0].objectName.c_str());
-            }
-            else
-            {
-                dragDropDetect->ClearSelection();
-            }
-        }
-
-        // Mise à jour du gizmo pour l'objet sélectionné
         SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
         if (selectedObj && selectedObj->model)
         {
@@ -101,11 +86,40 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
                 selectedObj->model->transform.m14
             };
             
+            // Update the gizmo before checking clicks
             rgizmo_update(&dragDropDetect->GetGizmo(), *camera, position);
-            selectedObj->model->transform = MatrixMultiply(
-                selectedObj->model->transform, 
-                rgizmo_get_tranform(dragDropDetect->GetGizmo(), position)
-            );
+            
+            // If the gizmo is in use or has been clicked
+            if (dragDropDetect->IsGizmoInUse() || dragDropDetect->GetGizmo().state != RGIZMO_STATE_COLD)
+            {
+                selectedObj->model->transform = MatrixMultiply(
+                    selectedObj->model->transform, 
+                    rgizmo_get_tranform(dragDropDetect->GetGizmo(), position)
+                );
+            }
+            // Otherwise, check for clicks on objects
+            else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                auto hits = dragDropDetect->CheckUnderTheMouse(camera);
+                if (!hits.empty())
+                {
+                    dragDropDetect->SetSelectedObject(hits[0].objectName);
+                    DE_DEBUG("object hit: %s", hits[0].objectName.c_str());
+                }
+                else
+                {
+                    dragDropDetect->ClearSelection();
+                }
+            }
+        }
+        else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            auto hits = dragDropDetect->CheckUnderTheMouse(camera);
+            if (!hits.empty())
+            {
+                dragDropDetect->SetSelectedObject(hits[0].objectName);
+                DE_DEBUG("object hit: %s", hits[0].objectName.c_str());
+            }
         }
     }
 
@@ -113,30 +127,35 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
 
     BeginMode3D(*camera);
     {
-        // Dessiner la grille
+        // Draw the grid
         draw_grid(100.0, 1.0, 1.0, GRAY);
 
-        // Dessiner tous les objets de la scène
+        // Draw all objects in the scene
         for (const auto& obj : dragDropDetect->GetSceneObjects())
         {
             if (obj.model)
             {
-                // Dessiner le modèle
+                // Draw the model
                 DrawModel(*obj.model, (Vector3){0.0f, 0.0f, 0.0f}, 1.0f, PURPLE);
                 
-                // Si l'objet est sélectionné, utilisez une couleur différente pour les contours
-                Color wireColor = (&obj == dragDropDetect->GetSelectedObject()) ? ORANGE : BLUE;
-                
-                DrawModelWiresEx(*obj.model, 
-                    (Vector3){0.0f, 0.0f, 0.0f},
-                    (Vector3){0.0f, 0.0f, 0.0f},
-                    0.0f,
-                    (Vector3){1.0f, 1.0f, 1.0f},
-                    wireColor);
+                // null pointer check
+                Color wireColor = BLUE;  // Default color
+                SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
+                if (selectedObj != nullptr && obj.name == selectedObj->name)
+                {
+                    wireColor = ORANGE_SELECT;
+                }
+
+				DrawModelWiresEx(*obj.model, 
+					(Vector3){0.0f, 0.0f, 0.0f},
+					(Vector3){0.0f, 0.0f, 0.0f},
+					0.0f,
+					(Vector3){1.0f, 1.0f, 1.0f},
+					wireColor);
             }
         }
 
-        // Dessiner les axes X, Y, Z
+        // Draw the X, Y, Z axes
         DrawLine3D(
             (Vector3){-50.0f, 0.0f, 0.0f},
             (Vector3){50.0f, 0.0f, 0.0f},
@@ -153,7 +172,7 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
             (Color){ 0, 82, 172, 124 } // DARKBLUE - Z axis
         );
 
-        // Dessiner le gizmo si un objet est sélectionné
+        // Draw the gizmo if an object is selected
         SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
         if (selectedObj && selectedObj->model)
         {
