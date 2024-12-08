@@ -23,10 +23,18 @@ void	change_state_mouse(Engine *engine, MouseState mouse_state)
 	if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE && mouse_state != MOUSE_STATE_ON_WORKSPACE)
 	{
 		g_reset_workspace = true;
+		engine->mouseOnWorkspaceCpp = false;
 		// DE_DEBUG("Exit Workspace");
 	}
+	else if (engine->allStates.currentStateMouse != MOUSE_STATE_ON_WORKSPACE && mouse_state == MOUSE_STATE_ON_WORKSPACE)
+	{
+		// DE_DEBUG("Enter Workspace");
+		engine->mouseOnWorkspaceCpp = true;
+	}
+	
 	engine->allStates.lastStateMouse = engine->allStates.currentStateMouse;
 	engine->allStates.currentStateMouse = mouse_state;
+	// DE_DEBUG("CT: %d", engine->mouseOnWorkspaceCpp);
 }
 
 void    check_mouse_state(Engine *engine)

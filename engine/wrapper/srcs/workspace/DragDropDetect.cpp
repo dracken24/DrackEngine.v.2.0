@@ -95,9 +95,31 @@ SceneObject	DragDropDetect::GetSceneObjectByName(std::string name) const
     return objEmpty;
 }
 
-std::vector<SceneObject> DragDropDetect::GetSceneObjects(void)
+std::vector<SceneObject>    DragDropDetect::GetSceneObjects(void)
 {
     return _workspace.sceneObjects;
+}
+
+void    DragDropDetect::ClearSelection()
+{
+    _selectedObject = nullptr;
+}
+
+SceneObject*    DragDropDetect::GetSelectedObject()
+{
+    return _selectedObject;
+}
+
+RGizmo  &DragDropDetect::GetGizmo()
+{
+    return _gizmo;
+}
+
+bl8     DragDropDetect::IsGizmoInUse() const 
+{ 
+    return _gizmo.state == RGIZMO_STATE_ACTIVE_ROT ||
+        _gizmo.state == RGIZMO_STATE_ACTIVE_AXIS ||
+        _gizmo.state == RGIZMO_STATE_ACTIVE_PLANE;
 }
 
 //******************************************************************************//

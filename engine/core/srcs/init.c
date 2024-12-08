@@ -37,7 +37,7 @@ bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
 		engine->screenSizeWindow = WINDOW_OTHERS;
 		engine->inputEventCt = false;
 		engine->resizeCppCt = false;
-		
+		engine->mouseOnWorkspaceCpp = true;
 	}
 	// Init CoreInfos
 	{

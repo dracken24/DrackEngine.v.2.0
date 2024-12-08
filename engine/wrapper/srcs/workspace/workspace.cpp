@@ -75,8 +75,9 @@ void    change_language(Engine *engine, const char *language);
 
 void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camera *camera)
 {
-    if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE || g_reset_workspace)
+    if (engine->mouseOnWorkspaceCpp == true || g_reset_workspace)
     {
+		// DE_WARNING("IN: %d %d", engine->mouseOnWorkspaceCpp, g_reset_workspace);
         SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
         if (selectedObj && selectedObj->model)
         {
@@ -122,6 +123,10 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
             }
         }
     }
+	else if (dragDropDetect->GetGizmo().state != RGIZMO_STATE_COLD)
+	{
+		dragDropDetect->GetGizmo().state = RGIZMO_STATE_COLD;
+	}
 
     ClearBackground(DARKGRAY);
 
@@ -184,5 +189,10 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
             rgizmo_draw(dragDropDetect->GetGizmo(), *camera, position);
         }
     }
+
+	if (g_reset_workspace == true)
+	{
+		g_reset_workspace = false;
+	}
     EndMode3D();
 }
