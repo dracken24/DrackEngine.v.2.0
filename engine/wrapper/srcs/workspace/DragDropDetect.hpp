@@ -117,6 +117,12 @@ namespace DrackEngine::Workspace
 			void ClearSelection() { _selectedObject = nullptr; }
 			SceneObject* GetSelectedObject() { return _selectedObject; }
 			RGizmo &GetGizmo() { return _gizmo; }
+			bool IsGizmoInUse() const 
+			{ 
+				return _gizmo.state == RGIZMO_STATE_ACTIVE_ROT ||
+					_gizmo.state == RGIZMO_STATE_ACTIVE_AXIS ||
+					_gizmo.state == RGIZMO_STATE_ACTIVE_PLANE;
+			}
 
 	//******************************************************************************//
 	//***                            Member functions                            ***//

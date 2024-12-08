@@ -60,9 +60,6 @@ bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
 	
 	engine->introCt = true;
 
-	// Init Buttons 
-	// init_buttons_menu_up(engine);
-
 	engine->ray.ray = (Ray){0};
 	engine->ray.collision = (RayCollision){0};
     // DE_DEBUG("init %f", 2);
@@ -80,26 +77,11 @@ bl8    dr_init(Engine *engine, CoreInfos *coreInfos)
 	return true;
 }
 
-// void	init_gizmo(Engine *engine)
-// {
-// 	engine->testWorkspace.gizmo = rgizmo_create();;
-// 	engine->testWorkspace.model = LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0));
-// 	engine->testWorkspace.modelCube = LoadModelFromMesh(GenMeshCube(1, 1, 1));
-// 	engine->testWorkspace.modelCube.transform.m12 = -7;
-// 	engine->testWorkspace.modelCube.transform.m13 = 3;
-// 	engine->testWorkspace.modelCube.transform.m14 = 5;
-// }
 
 void	init_fonts(Engine *engine)
 {
 	engine->fonts.defaultFont = LoadFontEx("../assets/fonts/HighlandGothicFLF.ttf", 20, 0, 0);
 }
-
-// void	init_workspace(Engine *engine)
-// {
-// 	init_gizmo(engine);
-// }
-
 
 MultipleCam3D	*ftInitCameras(Engine *engine, MultipleCam3D *allCameras)
 {

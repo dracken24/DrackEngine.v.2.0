@@ -77,21 +77,6 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
 {
     if (engine->allStates.currentStateMouse == MOUSE_STATE_ON_WORKSPACE || g_reset_workspace)
     {
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-        {
-            auto hits = dragDropDetect->CheckUnderTheMouse(camera);
-            if (!hits.empty())
-            {
-                dragDropDetect->SetSelectedObject(hits[0].objectName);
-                DE_DEBUG("object hit: %s", hits[0].objectName.c_str());
-            }
-            else
-            {
-                dragDropDetect->ClearSelection();
-            }
-        }
-
-        // Mise à jour du gizmo pour l'objet sélectionné
         SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
         if (selectedObj && selectedObj->model)
         {
@@ -101,11 +86,40 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
                 selectedObj->model->transform.m14
             };
             
+            // Mettre à jour le gizmo avant de vérifier les clics
             rgizmo_update(&dragDropDetect->GetGizmo(), *camera, position);
-            selectedObj->model->transform = MatrixMultiply(
-                selectedObj->model->transform, 
-                rgizmo_get_tranform(dragDropDetect->GetGizmo(), position)
-            );
+            
+            // Si le gizmo est en cours d'utilisation ou vient d'être cliqué
+            if (dragDropDetect->IsGizmoInUse() || dragDropDetect->GetGizmo().state != RGIZMO_STATE_COLD)
+            {
+                selectedObj->model->transform = MatrixMultiply(
+                    selectedObj->model->transform, 
+                    rgizmo_get_tranform(dragDropDetect->GetGizmo(), position)
+                );
+            }
+            // Sinon, vérifier les clics sur les objets
+            else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+            {
+                auto hits = dragDropDetect->CheckUnderTheMouse(camera);
+                if (!hits.empty())
+                {
+                    dragDropDetect->SetSelectedObject(hits[0].objectName);
+                    DE_DEBUG("object hit: %s", hits[0].objectName.c_str());
+                }
+                else
+                {
+                    dragDropDetect->ClearSelection();
+                }
+            }
+        }
+        else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            auto hits = dragDropDetect->CheckUnderTheMouse(camera);
+            if (!hits.empty())
+            {
+                dragDropDetect->SetSelectedObject(hits[0].objectName);
+                DE_DEBUG("object hit: %s", hits[0].objectName.c_str());
+            }
         }
     }
 
