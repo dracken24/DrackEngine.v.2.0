@@ -89,7 +89,7 @@ SceneObject	DragDropDetect::GetSceneObjectByName(std::string name) const
     
     // Return a default object
     SceneObject objEmpty;
-    objEmpty.GetName() = "null";
+    objEmpty.SetName("null");
     objEmpty.SetType(Type::NONE);
 
     return objEmpty;
