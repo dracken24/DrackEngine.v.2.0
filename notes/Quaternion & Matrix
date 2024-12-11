@@ -1,0 +1,92 @@
+/* =============================================================================== */
+/* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
+/*               -------------------------------------------------                 */
+/*                PROJET: DrackEngine   PAR: Dracken24                             */
+/*               -------------------------------------------------                 */
+/*                CREATED: 11-12th-2024                                            */
+/*                MODIFIED BY: Dracken24                                           */
+/*                LAST MODIFIED: 11-12th-2024                                      */
+/*               -------------------------------------------------                 */
+/*                FILE: Quaternion & Matrix                                        */
+/*               -------------------------------------------------                 */
+/* ---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~---~--- */
+/* =============================================================================== */
+
+Raylib :
+MatrixIdentity() et QuaternionIdentity() sont des fonctions qui retournent respectivement une matrice identité et un quaternion identité. Ces éléments sont fondamentaux pour plusieurs raisons :
+MatrixIdentity :
+Retourne une matrice 4x4 avec des 1 sur la diagonale et des 0 partout ailleurs
+Sert de "point de départ neutre" pour les transformations 3D
+Utilisations principales :
+Réinitialiser une matrice de transformation
+Commencer une nouvelle séquence de transformations
+Représenter l'absence de transformation (pas de rotation, translation ou mise à l'échelle)
+QuaternionIdentity :
+Retourne un quaternion représentant une rotation nulle (0, 0, 0, 1)
+Sert de "point de départ neutre" pour les rotations
+Utilisations principales :
+Réinitialiser une rotation
+Représenter l'absence de rotation
+Point de départ pour les interpolations de rotation
+Ces fonctions sont particulièrement utiles dans les cas suivants :
+Animation 3D
+Systèmes de caméra
+Transformations d'objets 3D
+Réinitialisation d'états
+Interpolation de mouvements
+
+Par exemple, en code :
+// Réinitialiser la transformation d'un objet
+object.transform = MatrixIdentity();
+
+// Démarrer une nouvelle animation de rotation
+object.rotation = QuaternionIdentity();
+
+les différences principales entre un quaternion et une matrice 4x4 (16 éléments) :
+
+typedef struct Vector4 {
+    float x;    // Composante x
+    float y;    // Composante y
+    float z;    // Composante z
+    float w;    // Composante w (scalaire)
+} Quaternion;   // 4 floats = 16 bytes
+
+typedef struct Matrix {
+    float m0, m4, m8,  m12;  // Première ligne
+    float m1, m5, m9,  m13;  // Deuxième ligne
+    float m2, m6, m10, m14;  // Troisième ligne
+    float m3, m7, m11, m15;  // Quatrième ligne
+} Matrix;   // 16 floats = 64 bytes
+
+Les différences principales sont :
+Représentation :
+Quaternion : Représente uniquement des rotations 3D
+Matrice 4x4 : Peut représenter toutes les transformations (rotation, translation, échelle, projection)
+Taille en mémoire :
+Quaternion : 16 bytes (4 floats)
+Matrice 4x4 : 64 bytes (16 floats)
+Avantages des quaternions :
+Plus compacts en mémoire
+Meilleure interpolation des rotations (évite le "gimbal lock")
+Plus stables numériquement
+Plus efficaces pour les calculs de rotation
+Avantages des matrices :
+Représentation complète de toutes les transformations
+Application directe aux vertices
+Plus intuitives pour certaines opérations
+Standard dans les pipelines graphiques
+
+Utilisations typiques :
+
+// Quaternions : pour les rotations
+Quaternion rotation = QuaternionFromEuler(pitch, yaw, roll);
+Model.rotation = rotation;
+
+// Matrices : pour les transformations complètes
+Matrix transform = MatrixIdentity();
+transform = MatrixMultiply(transform, MatrixTranslate(x, y, z));
+transform = MatrixMultiply(transform, MatrixRotate(axis, angle));
+transform = MatrixMultiply(transform, MatrixScale(sx, sy, sz));
+
+
+En pratique, on utilise souvent les deux : quaternions pour stocker et interpoler les rotations, puis conversion en matrices pour le rendu final.
