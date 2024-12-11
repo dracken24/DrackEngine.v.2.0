@@ -1,0 +1,10 @@
+{
+	"projectName":	"opSys",
+	"projectVersion":	"v1.0.0.0",
+	"path":	"/home/dracken24/prog/DrackEngine.v.2.0/projects",
+	"config":	{
+		"engineVersion":	"v.1.0.0.0",
+		"debugMode":	true,
+		"targetFPS":	60
+	}
+}
