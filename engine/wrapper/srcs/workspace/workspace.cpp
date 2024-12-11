@@ -79,12 +79,12 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
     {
 		// DE_WARNING("IN: %d %d", engine->mouseOnWorkspaceCpp, g_reset_workspace);
         SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
-        if (selectedObj && selectedObj->model)
+        if (selectedObj && selectedObj->GetModel())
         {
             Vector3 position = {
-                selectedObj->model->transform.m12,
-                selectedObj->model->transform.m13,
-                selectedObj->model->transform.m14
+                selectedObj->GetModel()->transform.m12,
+                selectedObj->GetModel()->transform.m13,
+                selectedObj->GetModel()->transform.m14
             };
             
             // Update the gizmo before checking clicks
@@ -93,8 +93,8 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
             // If the gizmo is in use or has been clicked
             if (dragDropDetect->IsGizmoInUse() || dragDropDetect->GetGizmo().state != RGIZMO_STATE_COLD)
             {
-                selectedObj->model->transform = MatrixMultiply(
-                    selectedObj->model->transform, 
+                selectedObj->GetModel()->transform = MatrixMultiply(
+                    selectedObj->GetModel()->transform, 
                     rgizmo_get_tranform(dragDropDetect->GetGizmo(), position)
                 );
             }
@@ -138,20 +138,20 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
         // Draw all objects in the scene
         for (const auto& obj : dragDropDetect->GetSceneObjects())
         {
-            if (obj.model)
+            if (obj.GetModel())
             {
                 // Draw the model
-                DrawModel(*obj.model, (Vector3){0.0f, 0.0f, 0.0f}, 1.0f, PURPLE);
+                DrawModel(*obj.GetModel(), (Vector3){0.0f, 0.0f, 0.0f}, 1.0f, PURPLE);
                 
                 // null pointer check
                 Color wireColor = BLUE;  // Default color
                 SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
-                if (selectedObj != nullptr && obj.name == selectedObj->name)
+                if (selectedObj != nullptr && obj.GetName() == selectedObj->GetName())
                 {
                     wireColor = ORANGE_SELECT;
                 }
 
-				DrawModelWiresEx(*obj.model, 
+				DrawModelWiresEx(*obj.GetModel(), 
 					(Vector3){0.0f, 0.0f, 0.0f},
 					(Vector3){0.0f, 0.0f, 0.0f},
 					0.0f,
@@ -179,12 +179,12 @@ void    control_main_panel(Engine *engine, DragDropDetect *dragDropDetect, Camer
 
         // Draw the gizmo if an object is selected
         SceneObject* selectedObj = dragDropDetect->GetSelectedObject();
-        if (selectedObj && selectedObj->model)
+        if (selectedObj && selectedObj->GetModel())
         {
             Vector3 position = {
-                selectedObj->model->transform.m12,
-                selectedObj->model->transform.m13,
-                selectedObj->model->transform.m14
+                selectedObj->GetModel()->transform.m12,
+                selectedObj->GetModel()->transform.m13,
+                selectedObj->GetModel()->transform.m14
             };
             rgizmo_draw(dragDropDetect->GetGizmo(), *camera, position);
         }

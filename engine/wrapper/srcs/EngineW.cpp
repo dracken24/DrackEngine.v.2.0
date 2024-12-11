@@ -131,22 +131,22 @@ void EngineW::Update()
 
 void EngineW::Shutdown()
 {
-    DE_DEBUG("Exit 1");
+    // DE_DEBUG("Exit 1");
     if (!w_isInitialized)
         return;
-    DE_DEBUG("Exit 2");
+    // DE_DEBUG("Exit 2");
 
     UnloadRenderTexture(w_uiLayer);
-    DE_DEBUG("Exit 3");
+    // DE_DEBUG("Exit 3");
 
     _dragDropDetect.FreeWorkspace();
-    DE_DEBUG("Exit 4");
+    // DE_DEBUG("Exit 4");
     dr_exit(&w_engine, &w_coreInfos);
-    DE_DEBUG("Exit 5");
+    // DE_DEBUG("Exit 5");
     shutdown_memory();
-    DE_DEBUG("Exit 6");
+    // DE_DEBUG("Exit 6");
     w_isInitialized = false;
-    DE_DEBUG("Exit 7");
+    // DE_DEBUG("Exit 7");
 
 }
 

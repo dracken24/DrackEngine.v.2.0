@@ -16,34 +16,16 @@
 
 #include "raylib.h"
 #include "../../../../library/extern/raygizmo/include/raygizmo.h"
-
 #include "../../../core/includes/engine_defines.h"
+
+#include "props/SceneObject.hpp"
+#include "props/PropsUtility.hpp"
 
 #include <vector>
 #include <string>
 
 namespace DrackEngine::Workspace
 {
-	enum Type
-	{
-		NONE,
-		MODEL,
-		MESH,
-		TORUS,
-		TRIANGLE,
-		CUBE,
-		SPHERE,
-		PLANE
-	};
-
-	struct SceneObject
-	{
-		std::string			name;
-
-		Model*				model;
-		Type type;
-	};
-
 	struct CollisionInfo
 	{
 		Type type;
@@ -51,7 +33,7 @@ namespace DrackEngine::Workspace
 		std::string objectName;
 
 		CollisionInfo(Type t, RayCollision c, const SceneObject& obj) 
-			: type(t), collision(c), objectName(obj.name)
+			: type(t), collision(c), objectName(obj.GetName())
 		{ }
 
 		// Copy Constructor
@@ -128,6 +110,10 @@ namespace DrackEngine::Workspace
 			std::vector<CollisionInfo> CheckUnderTheMouse(Camera *camera);
 			void	InitWorkspace(void);
 			void    FreeWorkspace(void);
+
+	//******************************************************************************//
+	//***                                Variables                               ***//
+	//******************************************************************************//
 
 		private:
 			Workspace  		_workspace;

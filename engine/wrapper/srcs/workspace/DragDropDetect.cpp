@@ -63,7 +63,7 @@ void    DragDropDetect::SetSelectedObject(const std::string& name)
 {
     for (auto& obj : _workspace.sceneObjects)
     {
-        if (obj.name == name)
+        if (obj.GetName() == name)
         {
             _selectedObject = &obj;
             return;
@@ -81,7 +81,7 @@ SceneObject	DragDropDetect::GetSceneObjectByName(std::string name) const
 {
     for(const auto& obj : _workspace.sceneObjects)
     {
-        if (obj.name == name)
+        if (obj.GetName() == name)
         {
             return obj;
         }
@@ -89,8 +89,8 @@ SceneObject	DragDropDetect::GetSceneObjectByName(std::string name) const
     
     // Return a default object
     SceneObject objEmpty;
-    objEmpty.name = "null";
-    objEmpty.type = Type::NONE;
+    objEmpty.GetName() = "null";
+    objEmpty.SetType(Type::NONE);
 
     return objEmpty;
 }
@@ -130,7 +130,7 @@ bl8 	DragDropDetect::RemoveSceneObjectByName(std::string name)
 {
     for(auto it = _workspace.sceneObjects.begin(); it != _workspace.sceneObjects.end();)
     {
-        if (it->name == name)
+        if (it->GetName() == name)
         {
             it = _workspace.sceneObjects.erase(it);
             return true;
@@ -153,9 +153,9 @@ void    DragDropDetect::AddObjectToScene(Model* model, std::string name, Type ty
     }
 
     SceneObject newObject;
-    newObject.model = new Model(*model);  // Créer une copie du modèle
-    newObject.type = type;
-    newObject.name = name;
+    newObject.SetModel(new Model(*model));  // Create a copy
+    newObject.SetType(type);
+    newObject.SetName(name);
 
     _workspace.sceneObjects.push_back(newObject);
 }
@@ -166,18 +166,19 @@ void    DragDropDetect::InitWorkspace(void)
 
     // TODO: ajouter des objest tests
     SceneObject torusObject;
-    torusObject.model = new Model(LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0)));
-    torusObject.name = "Model Torus";
-    torusObject.type = Type::TORUS;
+    torusObject.SetModel(new Model(LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0))));
+    torusObject.SetName("Model Torus");
+    torusObject.SetType(Type::TORUS);
     _workspace.sceneObjects.push_back(torusObject);
 
     SceneObject cubeObject;
-    cubeObject.model = new Model(LoadModelFromMesh(GenMeshCube(1, 1, 1)));
-    cubeObject.model->transform.m12 = -7;
-    cubeObject.model->transform.m13 = 3;
-    cubeObject.model->transform.m14 = 5;
-    cubeObject.name = "Model Cube";
-    cubeObject.type = Type::CUBE;
+    Model *m = new Model(LoadModelFromMesh(GenMeshCube(1, 1, 1)));
+    m->transform.m12 = -7;
+    m->transform.m13 = 3;
+    m->transform.m14 = 5;
+    cubeObject.SetModel(m);
+    cubeObject.SetName("Model Cube");
+    cubeObject.SetType(Type::CUBE);
     _workspace.sceneObjects.push_back(cubeObject);
 }
 
@@ -186,10 +187,10 @@ void    DragDropDetect::FreeWorkspace(void)
     // Libérer la mémoire des modèles
     for (auto& obj : _workspace.sceneObjects)
     {
-        if (obj.model != nullptr)
+        if (obj.GetModel() != nullptr)
         {
-            UnloadModel(*obj.model);
-            delete obj.model;
+            UnloadModel(*obj.GetModel());
+            delete obj.GetModel();
         }
     }
     _workspace.sceneObjects.clear();
@@ -207,27 +208,21 @@ std::vector<CollisionInfo> DragDropDetect::CheckUnderTheMouse(Camera *camera)
 
     for (const auto& sceneObject : _workspace.sceneObjects)
     {
-        // Vérification des pointeurs
-        if (!sceneObject.model || !sceneObject.model->meshes)
+        // verification
+        if (!sceneObject.GetModel() || !sceneObject.GetModel()->meshes)
         {
-            std::cout << "Invalid model or mesh for object: " << sceneObject.name.c_str() << std::endl;
+            std::cout << "Invalid model or mesh for object: " << sceneObject.GetName().c_str() << std::endl;
             continue;
         }
 
-        // Debug des informations du modèle
-        // Matrix mm = sceneObject.model->transform;
-        // std::cout << "Checking collision for " << sceneObject.name.c_str() << std::endl;
-        // std::cout << "Model transform: " << mm.m12 << " " << mm.m13 << " " << mm.m14 << std::endl; 
+        RayCollision collision = GetRayCollisionMesh(ray, *sceneObject.GetModel()->meshes, 
+            sceneObject.GetModel()->transform);
 
-        RayCollision collision = GetRayCollisionMesh(ray, *sceneObject.model->meshes, 
-            sceneObject.model->transform);
-        
-        // std::cout << "BB" << std::endl;
-
+        // Collision with a SceneObject
         if (collision.hit)
         {
-            collisions.emplace_back(sceneObject.type, collision, sceneObject);
-            std::cout << "HIT: " << sceneObject.name.c_str() << std::endl;
+            collisions.emplace_back(sceneObject.GetType(), collision, sceneObject);
+            std::cout << "HIT: " << sceneObject.GetName().c_str() << std::endl;
         }
     }
 
