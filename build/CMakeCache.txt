@@ -32,8 +32,8 @@ CMAKE_BUILD_TYPE:STRING=Debug
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
-//CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
+//No help, variable specified on the command line.
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -58,8 +58,8 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//C compiler
-CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
+//No help, variable specified on the command line.
+CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -392,7 +392,7 @@ OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
 PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
-PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
+PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
 
 //Platform to build for.
 PLATFORM:STRING=Desktop
@@ -632,10 +632,10 @@ X11_xcb_dri2_INCLUDE_PATH:PATH=X11_xcb_dri2_INCLUDE_PATH-NOTFOUND
 X11_xcb_dri2_LIB:FILEPATH=X11_xcb_dri2_LIB-NOTFOUND
 
 //Path to a file.
-X11_xcb_dri3_INCLUDE_PATH:PATH=/usr/include
+X11_xcb_dri3_INCLUDE_PATH:PATH=X11_xcb_dri3_INCLUDE_PATH-NOTFOUND
 
 //Path to a library.
-X11_xcb_dri3_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libxcb-dri3.so
+X11_xcb_dri3_LIB:FILEPATH=X11_xcb_dri3_LIB-NOTFOUND
 
 //Path to a file.
 X11_xcb_errors_INCLUDE_PATH:PATH=X11_xcb_errors_INCLUDE_PATH-NOTFOUND
@@ -644,10 +644,10 @@ X11_xcb_errors_INCLUDE_PATH:PATH=X11_xcb_errors_INCLUDE_PATH-NOTFOUND
 X11_xcb_errors_LIB:FILEPATH=X11_xcb_errors_LIB-NOTFOUND
 
 //Path to a file.
-X11_xcb_ewmh_INCLUDE_PATH:PATH=/usr/include
+X11_xcb_ewmh_INCLUDE_PATH:PATH=X11_xcb_ewmh_INCLUDE_PATH-NOTFOUND
 
 //Path to a library.
-X11_xcb_ewmh_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libxcb-ewmh.so
+X11_xcb_ewmh_LIB:FILEPATH=X11_xcb_ewmh_LIB-NOTFOUND
 
 //Path to a file.
 X11_xcb_glx_INCLUDE_PATH:PATH=X11_xcb_glx_INCLUDE_PATH-NOTFOUND
@@ -668,10 +668,10 @@ X11_xcb_image_INCLUDE_PATH:PATH=X11_xcb_image_INCLUDE_PATH-NOTFOUND
 X11_xcb_image_LIB:FILEPATH=X11_xcb_image_LIB-NOTFOUND
 
 //Path to a file.
-X11_xcb_keysyms_INCLUDE_PATH:PATH=/usr/include
+X11_xcb_keysyms_INCLUDE_PATH:PATH=X11_xcb_keysyms_INCLUDE_PATH-NOTFOUND
 
 //Path to a library.
-X11_xcb_keysyms_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libxcb-keysyms.so
+X11_xcb_keysyms_LIB:FILEPATH=X11_xcb_keysyms_LIB-NOTFOUND
 
 //Path to a file.
 X11_xcb_present_INCLUDE_PATH:PATH=X11_xcb_present_INCLUDE_PATH-NOTFOUND
@@ -680,10 +680,10 @@ X11_xcb_present_INCLUDE_PATH:PATH=X11_xcb_present_INCLUDE_PATH-NOTFOUND
 X11_xcb_present_LIB:FILEPATH=X11_xcb_present_LIB-NOTFOUND
 
 //Path to a file.
-X11_xcb_randr_INCLUDE_PATH:PATH=/usr/include
+X11_xcb_randr_INCLUDE_PATH:PATH=X11_xcb_randr_INCLUDE_PATH-NOTFOUND
 
 //Path to a library.
-X11_xcb_randr_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libxcb-randr.so
+X11_xcb_randr_LIB:FILEPATH=X11_xcb_randr_LIB-NOTFOUND
 
 //Path to a file.
 X11_xcb_record_INCLUDE_PATH:PATH=X11_xcb_record_INCLUDE_PATH-NOTFOUND
@@ -692,10 +692,10 @@ X11_xcb_record_INCLUDE_PATH:PATH=X11_xcb_record_INCLUDE_PATH-NOTFOUND
 X11_xcb_record_LIB:FILEPATH=X11_xcb_record_LIB-NOTFOUND
 
 //Path to a file.
-X11_xcb_render_INCLUDE_PATH:PATH=/usr/include
+X11_xcb_render_INCLUDE_PATH:PATH=X11_xcb_render_INCLUDE_PATH-NOTFOUND
 
 //Path to a library.
-X11_xcb_render_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libxcb-render.so
+X11_xcb_render_LIB:FILEPATH=X11_xcb_render_LIB-NOTFOUND
 
 //Path to a file.
 X11_xcb_render_util_INCLUDE_PATH:PATH=X11_xcb_render_util_INCLUDE_PATH-NOTFOUND
@@ -821,18 +821,6 @@ examples_IS_TOP_LEVEL:STATIC=OFF
 examples_SOURCE_DIR:STATIC=/home/dracken24/prog/DrackEngine.v.2.0/library/extern/raylib/examples
 
 //Path to a library.
-pkgcfg_lib_Wayland_wayland-client:FILEPATH=/usr/lib/x86_64-linux-gnu/libwayland-client.so
-
-//Path to a library.
-pkgcfg_lib_Wayland_wayland-cursor:FILEPATH=/usr/lib/x86_64-linux-gnu/libwayland-cursor.so
-
-//Path to a library.
-pkgcfg_lib_Wayland_wayland-egl:FILEPATH=/usr/lib/x86_64-linux-gnu/libwayland-egl.so
-
-//Path to a library.
-pkgcfg_lib_Wayland_xkbcommon:FILEPATH=/usr/lib/x86_64-linux-gnu/libxkbcommon.so
-
-//Path to a library.
 pthread:FILEPATH=/usr/lib/x86_64-linux-gnu/libpthread.a
 
 //Value Computed by CMake
@@ -856,6 +844,8 @@ raylib_SOURCE_DIR:STATIC=/home/dracken24/prog/DrackEngine.v.2.0/library/extern/r
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
+//STRINGS property for variable: CMAKE_BUILD_TYPE
+CMAKE_BUILD_TYPE-STRINGS:INTERNAL=Debug;Release;MinSizeRel;RelWithDebInfo
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/home/dracken24/prog/DrackEngine.v.2.0/build
 //Major version of cmake used to create the current loaded cache
@@ -918,6 +908,8 @@ CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXPORT_COMPILE_COMMANDS
+CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.
@@ -1051,8 +1043,6 @@ CPACK_SOURCE_TXZ-ADVANCED:INTERNAL=1
 CPACK_SOURCE_TZ-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_SOURCE_ZIP
 CPACK_SOURCE_ZIP-ADVANCED:INTERNAL=1
-//Details about finding PkgConfig
-FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v1.8.1()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding X11
@@ -1110,57 +1100,27 @@ PLATFORM-STRINGS:INTERNAL=Desktop;Web;Android;Raspberry Pi;DRM;SDL
 RT_LIBRARY-ADVANCED:INTERNAL=1
 //STRINGS property for variable: USE_EXTERNAL_GLFW
 USE_EXTERNAL_GLFW-STRINGS:INTERNAL=OFF;IF_POSSIBLE;ON
-Wayland_CFLAGS:INTERNAL=-I/usr/include
+Wayland_CFLAGS:INTERNAL=
 Wayland_CFLAGS_I:INTERNAL=
 Wayland_CFLAGS_OTHER:INTERNAL=
-Wayland_FOUND:INTERNAL=1
+Wayland_FOUND:INTERNAL=
 Wayland_INCLUDEDIR:INTERNAL=
-Wayland_INCLUDE_DIRS:INTERNAL=/usr/include
-Wayland_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lwayland-cursor;-lwayland-egl;-lwayland-client;-lxkbcommon
-Wayland_LDFLAGS_OTHER:INTERNAL=
 Wayland_LIBDIR:INTERNAL=
-Wayland_LIBRARIES:INTERNAL=wayland-cursor;wayland-egl;wayland-client;xkbcommon
-Wayland_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
 Wayland_LIBS:INTERNAL=
 Wayland_LIBS_L:INTERNAL=
 Wayland_LIBS_OTHER:INTERNAL=
 Wayland_LIBS_PATHS:INTERNAL=
 Wayland_MODULE_NAME:INTERNAL=
 Wayland_PREFIX:INTERNAL=
-Wayland_STATIC_CFLAGS:INTERNAL=-I/usr/include
+Wayland_STATIC_CFLAGS:INTERNAL=
 Wayland_STATIC_CFLAGS_I:INTERNAL=
 Wayland_STATIC_CFLAGS_OTHER:INTERNAL=
-Wayland_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include
-Wayland_STATIC_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lwayland-client;-lm;-pthread;-lrt;-lffi;-lwayland-cursor;-L/usr/lib/x86_64-linux-gnu;-lm;-pthread;-lrt;-lffi;-lwayland-egl;-lwayland-client;-lm;-pthread;-lrt;-lffi;-lxkbcommon
-Wayland_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread;-pthread;-pthread
 Wayland_STATIC_LIBDIR:INTERNAL=
-Wayland_STATIC_LIBRARIES:INTERNAL=wayland-client;m;rt;ffi;wayland-cursor;m;rt;ffi;wayland-egl;wayland-client;m;rt;ffi;xkbcommon
-Wayland_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu
 Wayland_STATIC_LIBS:INTERNAL=
 Wayland_STATIC_LIBS_L:INTERNAL=
 Wayland_STATIC_LIBS_OTHER:INTERNAL=
 Wayland_STATIC_LIBS_PATHS:INTERNAL=
 Wayland_VERSION:INTERNAL=
-Wayland_wayland-client_INCLUDEDIR:INTERNAL=/usr/include
-Wayland_wayland-client_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
-Wayland_wayland-client_MODULE_NAME:INTERNAL=wayland-client
-Wayland_wayland-client_PREFIX:INTERNAL=/usr
-Wayland_wayland-client_VERSION:INTERNAL=1.22.0
-Wayland_wayland-cursor_INCLUDEDIR:INTERNAL=/usr/include
-Wayland_wayland-cursor_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
-Wayland_wayland-cursor_MODULE_NAME:INTERNAL=wayland-cursor
-Wayland_wayland-cursor_PREFIX:INTERNAL=/usr
-Wayland_wayland-cursor_VERSION:INTERNAL=1.22.0
-Wayland_wayland-egl_INCLUDEDIR:INTERNAL=/usr/include
-Wayland_wayland-egl_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
-Wayland_wayland-egl_MODULE_NAME:INTERNAL=wayland-egl
-Wayland_wayland-egl_PREFIX:INTERNAL=/usr
-Wayland_wayland-egl_VERSION:INTERNAL=18.1.0
-Wayland_xkbcommon_INCLUDEDIR:INTERNAL=/usr/include
-Wayland_xkbcommon_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
-Wayland_xkbcommon_MODULE_NAME:INTERNAL=xkbcommon
-Wayland_xkbcommon_PREFIX:INTERNAL=/usr
-Wayland_xkbcommon_VERSION:INTERNAL=1.6.0
 //ADVANCED property for variable: X11_ICE_INCLUDE_PATH
 X11_ICE_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_ICE_LIB
@@ -1433,15 +1393,5 @@ X11_xkbfile_LIB-ADVANCED:INTERNAL=1
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
-__pkg_config_arguments_Wayland:INTERNAL=REQUIRED;wayland-client>=0.2.7;wayland-cursor>=0.2.7;wayland-egl>=0.2.7;xkbcommon>=0.5.0
 __pkg_config_checked_Wayland:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_Wayland_wayland-client
-pkgcfg_lib_Wayland_wayland-client-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_Wayland_wayland-cursor
-pkgcfg_lib_Wayland_wayland-cursor-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_Wayland_wayland-egl
-pkgcfg_lib_Wayland_wayland-egl-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: pkgcfg_lib_Wayland_xkbcommon
-pkgcfg_lib_Wayland_xkbcommon-ADVANCED:INTERNAL=1
-prefix_result:INTERNAL=/usr/lib/x86_64-linux-gnu
 
