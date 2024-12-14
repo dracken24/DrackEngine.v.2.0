@@ -14,6 +14,8 @@
 
 #pragma once
 
+#include "../engine/core/includes/engine_defines.h"
+
 #include <raylib.h>
 
 //******************************************************************************//
@@ -34,7 +36,20 @@
 //***                                 Matrix                                 ***//
 //******************************************************************************//
 
-// Return m1 + m2
+// Return matrix renitialize
+Matrix  matrix_identity(void)
+{
+    Matrix m = {
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1
+    };
+
+    return m;
+}
+
+// Return matrix1 + matrix2
 Matrix  matrix_add_matrix(Matrix m1, Matrix m2)
 {
     Matrix ret_m;
@@ -61,7 +76,7 @@ Matrix  matrix_add_matrix(Matrix m1, Matrix m2)
     return ret_m;
 }
 
-// Return m1 - m2
+// Return matrix1 - matrix2
 Matrix  matrix_sub_matrix(Matrix m1, Matrix m2)
 {
     Matrix ret_m;
@@ -88,7 +103,7 @@ Matrix  matrix_sub_matrix(Matrix m1, Matrix m2)
     return ret_m;
 }
 
-// Return m1 * m2
+// Return matrix1 * matrix2
 Matrix  matrix_x_matrix(Matrix m1, Matrix m2)
 {
     Matrix ret_m;
@@ -115,7 +130,7 @@ Matrix  matrix_x_matrix(Matrix m1, Matrix m2)
     return ret_m;
 }
 
-// Return m1 / m2
+// Return matrix1 / matrix2
 Matrix  matrix_div_matrix(Matrix m1, Matrix m2)
 {
     Matrix ret_m;
@@ -142,17 +157,36 @@ Matrix  matrix_div_matrix(Matrix m1, Matrix m2)
     return ret_m;
 }
 
-// Return matrice renitialize
-Matrix  matrix_identity(void)
+/**
+ * @brief Creates and returns a translation matrix from the given position.
+ *
+ * @param position The position to be used to create the matrix.
+ * @return A newly created translation matrix.
+ */
+DE_API Matrix mat4_translation(Vector3 position)
 {
-    Matrix m = {
-        1, 0, 0, 0,
-        0, 1, 0, 0,
-        0, 0, 1, 0,
-        0, 0, 0, 1
-    };
+    Matrix out_matrix = matrix_identity();
+    out_matrix.m12 = position.x;
+    out_matrix.m13 = position.y;
+    out_matrix.m14 = position.z;
 
-    return m;
+    return out_matrix;
+}
+
+/**
+ * @brief Returns a scale matrix using the provided scale.
+ *
+ * @param scale The 3-component scale.
+ * @return A scale matrix.
+ */
+DE_API Matrix mat4_scale(Vector3 scale)
+{
+    Matrix out_matrix = matrix_identity();
+    out_matrix.m0 = scale.x;
+    out_matrix.m5 = scale.y;
+    out_matrix.m10 = scale.z;
+    
+    return out_matrix;
 }
 
 //******************************************************************************//
@@ -160,7 +194,7 @@ Matrix  matrix_identity(void)
 //******************************************************************************//
 
 // Return quaternion1 + quaternion2
-Quaternion  matrix_add_matrix(Quaternion q1, Quaternion q2)
+Quaternion  quaternion_add_quaternion(Quaternion q1, Quaternion q2)
 {
     Quaternion ret_q;
     ret_q.w = q1.w + q2.w;
@@ -172,7 +206,7 @@ Quaternion  matrix_add_matrix(Quaternion q1, Quaternion q2)
 }
 
 // Return quaternion1 - quaternion2
-Quaternion  matrix_sud_matrix(Quaternion q1, Quaternion q2)
+Quaternion  quaternion_sud_quaternion(Quaternion q1, Quaternion q2)
 {
     Quaternion ret_q;
     ret_q.w = q1.w - q2.w;
@@ -184,7 +218,7 @@ Quaternion  matrix_sud_matrix(Quaternion q1, Quaternion q2)
 }
 
 // Return quaternion1 * quaternion2
-Quaternion  matrix_x_matrix(Quaternion q1, Quaternion q2)
+Quaternion  quaternion_x_quaternion(Quaternion q1, Quaternion q2)
 {
     Quaternion ret_q;
     ret_q.w = q1.w * q2.w;
@@ -196,7 +230,7 @@ Quaternion  matrix_x_matrix(Quaternion q1, Quaternion q2)
 }
 
 // Return quaternion1 / quaternion2
-Quaternion  matrix_div_matrix(Quaternion q1, Quaternion q2)
+Quaternion  quaternion_div_quaternion(Quaternion q1, Quaternion q2)
 {
     Quaternion ret_q;
     ret_q.w = q1.w / q2.w;

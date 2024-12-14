@@ -80,7 +80,7 @@ static bool custom_button(Rectangle bounds, char* text, Vector2 camPos)
 	hitBox.y += camPos.y;
 	
 	bool clicked = IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && 
-				  CheckCollisionPointRec(mousePos, hitBox);
+					CheckCollisionPointRec(mousePos, hitBox);
 
 	if (clicked)
 	{

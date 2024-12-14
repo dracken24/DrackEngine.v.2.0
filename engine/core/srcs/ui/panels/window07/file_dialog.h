@@ -13,7 +13,7 @@
 #pragma once
 
 #ifdef __cplusplus
-}
+{
 #endif
 
 # include "../../../../includes/engine_defines.h"
