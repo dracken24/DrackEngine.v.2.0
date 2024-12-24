@@ -15,6 +15,7 @@
 #pragma once
 
 #include <raylib.h>
+#include <math.h>
 
 //******************************************************************************//
 //***                                 defines                                ***//
@@ -91,55 +92,94 @@ Matrix  matrix_sub_matrix(Matrix m1, Matrix m2)
 // Return m1 * m2
 Matrix  matrix_x_matrix(Matrix m1, Matrix m2)
 {
-    Matrix ret_m;
-    ret_m.m0 = m1.m0 * m2.m0;
-    ret_m.m1 = m1.m1 * m2.m1;
-    ret_m.m2 = m1.m2 * m2.m2;
-    ret_m.m3 = m1.m3 * m2.m3;
+    Matrix result = { 0 };
+    
+    // Calcul de chaque élément de la matrice résultante
+    result.m0 = m1.m0*m2.m0 + m1.m1*m2.m4 + m1.m2*m2.m8 + m1.m3*m2.m12;
+    result.m1 = m1.m0*m2.m1 + m1.m1*m2.m5 + m1.m2*m2.m9 + m1.m3*m2.m13;
+    result.m2 = m1.m0*m2.m2 + m1.m1*m2.m6 + m1.m2*m2.m10 + m1.m3*m2.m14;
+    result.m3 = m1.m0*m2.m3 + m1.m1*m2.m7 + m1.m2*m2.m11 + m1.m3*m2.m15;
 
-    ret_m.m4 = m1.m4 * m2.m4;
-    ret_m.m5 = m1.m5 * m2.m5;
-    ret_m.m6 = m1.m6 * m2.m6;
-    ret_m.m7 = m1.m7 * m2.m7;
+    result.m4 = m1.m4*m2.m0 + m1.m5*m2.m4 + m1.m6*m2.m8 + m1.m7*m2.m12;
+    result.m5 = m1.m4*m2.m1 + m1.m5*m2.m5 + m1.m6*m2.m9 + m1.m7*m2.m13;
+    result.m6 = m1.m4*m2.m2 + m1.m5*m2.m6 + m1.m6*m2.m10 + m1.m7*m2.m14;
+    result.m7 = m1.m4*m2.m3 + m1.m5*m2.m7 + m1.m6*m2.m11 + m1.m7*m2.m15;
 
-    ret_m.m8 = m1.m8 * m2.m8;
-    ret_m.m9 = m1.m9 * m2.m9;
-    ret_m.m10 = m1.m10 * m2.m10;
-    ret_m.m11 = m1.m11 * m2.m11;
+    result.m8 = m1.m8*m2.m0 + m1.m9*m2.m4 + m1.m10*m2.m8 + m1.m11*m2.m12;
+    result.m9 = m1.m8*m2.m1 + m1.m9*m2.m5 + m1.m10*m2.m9 + m1.m11*m2.m13;
+    result.m10 = m1.m8*m2.m2 + m1.m9*m2.m6 + m1.m10*m2.m10 + m1.m11*m2.m14;
+    result.m11 = m1.m8*m2.m3 + m1.m9*m2.m7 + m1.m10*m2.m11 + m1.m11*m2.m15;
 
-    ret_m.m12 = m1.m12 * m2.m12;
-    ret_m.m13 = m1.m13 * m2.m13;
-    ret_m.m14 = m1.m14 * m2.m14;
-    ret_m.m15 = m1.m15 * m2.m15;
+    result.m12 = m1.m12*m2.m0 + m1.m13*m2.m4 + m1.m14*m2.m8 + m1.m15*m2.m12;
+    result.m13 = m1.m12*m2.m1 + m1.m13*m2.m5 + m1.m14*m2.m9 + m1.m15*m2.m13;
+    result.m14 = m1.m12*m2.m2 + m1.m13*m2.m6 + m1.m14*m2.m10 + m1.m15*m2.m14;
+    result.m15 = m1.m12*m2.m3 + m1.m13*m2.m7 + m1.m14*m2.m11 + m1.m15*m2.m15;
 
-    return ret_m;
+    return result;
 }
 
-// Return m1 / m2
-Matrix  matrix_div_matrix(Matrix m1, Matrix m2)
+// Calcule le déterminant d'une matrice 4x4
+float matrix_determinant(Matrix m)
 {
-    Matrix ret_m;
-    ret_m.m0 = m1.m0 / m2.m0;
-    ret_m.m1 = m1.m1 / m2.m1;
-    ret_m.m2 = m1.m2 / m2.m2;
-    ret_m.m3 = m1.m3 / m2.m3;
+    float det;
+    det = m.m0 * (m.m5 * (m.m10 * m.m15 - m.m11 * m.m14) -
+                  m.m6 * (m.m9 * m.m15 - m.m11 * m.m13) +
+                  m.m7 * (m.m9 * m.m14 - m.m10 * m.m13)) -
+          m.m1 * (m.m4 * (m.m10 * m.m15 - m.m11 * m.m14) -
+                  m.m6 * (m.m8 * m.m15 - m.m11 * m.m12) +
+                  m.m7 * (m.m8 * m.m14 - m.m10 * m.m12)) +
+          m.m2 * (m.m4 * (m.m9 * m.m15 - m.m11 * m.m13) -
+                  m.m5 * (m.m8 * m.m15 - m.m11 * m.m12) +
+                  m.m7 * (m.m8 * m.m13 - m.m9 * m.m12)) -
+          m.m3 * (m.m4 * (m.m9 * m.m14 - m.m10 * m.m13) -
+                  m.m5 * (m.m8 * m.m14 - m.m10 * m.m12) +
+                  m.m6 * (m.m8 * m.m13 - m.m9 * m.m12));
+    return det;
+}
 
-    ret_m.m4 = m1.m4 / m2.m4;
-    ret_m.m5 = m1.m5 / m2.m5;
-    ret_m.m6 = m1.m6 / m2.m6;
-    ret_m.m7 = m1.m7 / m2.m7;
+// Calcule l'inverse d'une matrice 4x4
+Matrix matrix_inverse(Matrix m)
+{
+    Matrix inv = { 0 };
+    float det = matrix_determinant(m);
+    
+    if (det == 0) // Retourne la matrice originale si non inversible
+        return m; 
 
-    ret_m.m8 = m1.m8 / m2.m8;
-    ret_m.m9 = m1.m9 / m2.m9;
-    ret_m.m10 = m1.m10 / m2.m10;
-    ret_m.m11 = m1.m11 / m2.m11;
+    float invDet = 1.0f / det;
 
-    ret_m.m12 = m1.m12 / m2.m12;
-    ret_m.m13 = m1.m13 / m2.m13;
-    ret_m.m14 = m1.m14 / m2.m14;
-    ret_m.m15 = m1.m15 / m2.m15;
+    inv.m0 = (m.m5 * (m.m10 * m.m15 - m.m11 * m.m14) - m.m6 * (m.m9 * m.m15 - m.m11 * m.m13) + m.m7 * (m.m9 * m.m14 - m.m10 * m.m13)) * invDet;
+    inv.m1 = -(m.m1 * (m.m10 * m.m15 - m.m11 * m.m14) - m.m2 * (m.m9 * m.m15 - m.m11 * m.m13) + m.m3 * (m.m9 * m.m14 - m.m10 * m.m13)) * invDet;
+    inv.m2 = (m.m1 * (m.m6 * m.m15 - m.m7 * m.m14) - m.m2 * (m.m5 * m.m15 - m.m7 * m.m13) + m.m3 * (m.m5 * m.m14 - m.m6 * m.m13)) * invDet;
+    inv.m3 = -(m.m1 * (m.m6 * m.m11 - m.m7 * m.m10) - m.m2 * (m.m5 * m.m11 - m.m7 * m.m9) + m.m3 * (m.m5 * m.m10 - m.m6 * m.m9)) * invDet;
 
-    return ret_m;
+    inv.m4 = -(m.m4 * (m.m10 * m.m15 - m.m11 * m.m14) - m.m6 * (m.m8 * m.m15 - m.m11 * m.m12) + m.m7 * (m.m8 * m.m14 - m.m10 * m.m12)) * invDet;
+    inv.m5 = (m.m0 * (m.m10 * m.m15 - m.m11 * m.m14) - m.m2 * (m.m8 * m.m15 - m.m11 * m.m12) + m.m3 * (m.m8 * m.m14 - m.m10 * m.m12)) * invDet;
+    inv.m6 = -(m.m0 * (m.m6 * m.m15 - m.m7 * m.m14) - m.m2 * (m.m4 * m.m15 - m.m7 * m.m12) + m.m3 * (m.m4 * m.m14 - m.m6 * m.m12)) * invDet;
+    inv.m7 = (m.m0 * (m.m6 * m.m11 - m.m7 * m.m10) - m.m2 * (m.m4 * m.m11 - m.m7 * m.m8) + m.m3 * (m.m4 * m.m10 - m.m6 * m.m8)) * invDet;
+
+    inv.m8 = (m.m4 * (m.m9 * m.m15 - m.m11 * m.m13) - m.m5 * (m.m8 * m.m15 - m.m11 * m.m12) + m.m7 * (m.m8 * m.m13 - m.m9 * m.m12)) * invDet;
+    inv.m9 = -(m.m0 * (m.m9 * m.m15 - m.m11 * m.m13) - m.m1 * (m.m8 * m.m15 - m.m11 * m.m12) + m.m3 * (m.m8 * m.m13 - m.m9 * m.m12)) * invDet;
+    inv.m10 = (m.m0 * (m.m5 * m.m15 - m.m7 * m.m13) - m.m1 * (m.m4 * m.m15 - m.m7 * m.m12) + m.m3 * (m.m4 * m.m13 - m.m5 * m.m12)) * invDet;
+    inv.m11 = -(m.m0 * (m.m5 * m.m11 - m.m7 * m.m9) - m.m1 * (m.m4 * m.m11 - m.m7 * m.m8) + m.m3 * (m.m4 * m.m9 - m.m5 * m.m8)) * invDet;
+
+    inv.m12 = -(m.m4 * (m.m9 * m.m14 - m.m10 * m.m13) - m.m5 * (m.m8 * m.m14 - m.m10 * m.m12) + m.m6 * (m.m8 * m.m13 - m.m9 * m.m12)) * invDet;
+    inv.m13 = (m.m0 * (m.m9 * m.m14 - m.m10 * m.m13) - m.m1 * (m.m8 * m.m14 - m.m10 * m.m12) + m.m2 * (m.m8 * m.m13 - m.m9 * m.m12)) * invDet;
+    inv.m14 = -(m.m0 * (m.m5 * m.m14 - m.m6 * m.m13) - m.m1 * (m.m4 * m.m14 - m.m6 * m.m12) + m.m2 * (m.m4 * m.m13 - m.m5 * m.m12)) * invDet;
+    inv.m15 = (m.m0 * (m.m5 * m.m10 - m.m6 * m.m9) - m.m1 * (m.m4 * m.m10 - m.m6 * m.m8) + m.m2 * (m.m4 * m.m9 - m.m5 * m.m8)) * invDet;
+
+    return inv;
+}
+
+// Division de matrices (multiplication par l'inverse)
+// Return m1 / m2
+Matrix matrix_div_matrix(Matrix m1, Matrix m2)
+{
+    // 1. Calculer l'inverse de m2
+    Matrix m2_inverse = matrix_inverse(m2);
+    
+    // 2. Multiplier m1 par l'inverse de m2
+    return matrix_x_matrix(m1, m2_inverse);
 }
 
 // Return matrice renitialize
@@ -160,7 +200,7 @@ Matrix  matrix_identity(void)
 //******************************************************************************//
 
 // Return quaternion1 + quaternion2
-Quaternion  matrix_add_matrix(Quaternion q1, Quaternion q2)
+Quaternion  quaternion_add_quaternion(Quaternion q1, Quaternion q2)
 {
     Quaternion ret_q;
     ret_q.w = q1.w + q2.w;
@@ -172,7 +212,7 @@ Quaternion  matrix_add_matrix(Quaternion q1, Quaternion q2)
 }
 
 // Return quaternion1 - quaternion2
-Quaternion  matrix_sud_matrix(Quaternion q1, Quaternion q2)
+Quaternion  quaternion_sub_quaternion(Quaternion q1, Quaternion q2)
 {
     Quaternion ret_q;
     ret_q.w = q1.w - q2.w;
@@ -184,27 +224,81 @@ Quaternion  matrix_sud_matrix(Quaternion q1, Quaternion q2)
 }
 
 // Return quaternion1 * quaternion2
-Quaternion  matrix_x_matrix(Quaternion q1, Quaternion q2)
+Quaternion  quaternion_x_quaternion(Quaternion q1, Quaternion q2)
 {
     Quaternion ret_q;
-    ret_q.w = q1.w * q2.w;
-    ret_q.x = q1.x * q2.x;
-    ret_q.y = q1.y * q2.y;
-    ret_q.z = q1.z * q2.z;
+    ret_q.w = q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z;
+    ret_q.x = q1.x * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y;
+    ret_q.y = q1.w * q2.y - q1.x * q2.z + q1.y * q2.w + q1.z * q2.x;
+    ret_q.z = q1.w * q2.z + q1.x * q2.y - q1.y * q2.x + q1.z * q2.w;
 
     return ret_q;
 }
 
-// Return quaternion1 / quaternion2
-Quaternion  matrix_div_matrix(Quaternion q1, Quaternion q2)
-{
-    Quaternion ret_q;
-    ret_q.w = q1.w / q2.w;
-    ret_q.x = q1.x / q2.x;
-    ret_q.y = q1.y / q2.y;
-    ret_q.z = q1.z / q2.z;
 
-    return ret_q;
+// Fonction auxiliaire pour calculer l'inverse d'un quaternion
+Quaternion quaternion_inverse(Quaternion q)
+{
+    // Calculer la norme au carré
+    float norm_squared = q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w;
+    
+    // Si la norme est trop proche de zéro, retourner un quaternion identité
+    if (norm_squared < 1e-6f)
+    {
+        return quaternion_identity();
+    }
+
+    // Calculer l'inverse
+    float inv_norm_squared = 1.0f / norm_squared;
+
+    Quaternion result;
+    result.w = q.w * inv_norm_squared;
+    result.x = -q.x * inv_norm_squared;
+    result.y = -q.y * inv_norm_squared;
+    result.z = -q.z * inv_norm_squared;
+
+    return result;
+}
+
+// Return quaternion1 / quaternion2
+Quaternion  quaternion_div_quaternion(Quaternion q1, Quaternion q2)
+{
+    // Pour diviser, on multiplie q1 par l'inverse de q2
+    Quaternion q2_inverse = quaternion_inverse(q2);
+    return quaternion_x_quaternion(q1, q2_inverse);
+}
+
+// Normalisation d'un quaternion
+Quaternion quaternion_normalize(Quaternion q)
+{
+    float length = sqrtf(q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w);
+    
+    if (length == 0.0f)
+        return quaternion_identity();
+    
+    float ilength = 1.0f / length;
+    Quaternion result = {
+        .x = q.x * ilength,
+        .y = q.y * ilength,
+        .z = q.z * ilength,
+        .w = q.w * ilength
+    };
+    return result;
+}
+
+// Création d'un quaternion à partir d'un axe et d'un angle
+Quaternion quaternion_from_axis_angle(Vector3 axis, float angle)
+{
+    float half_angle = angle * 0.5f;
+    float sin_half = sinf(half_angle);
+    
+    Quaternion result = {
+        .x = axis.x * sin_half,
+        .y = axis.y * sin_half,
+        .z = axis.z * sin_half,
+        .w = cosf(half_angle)
+    };
+    return quaternion_normalize(result);
 }
 
 // Return quaternion initialize

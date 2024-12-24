@@ -45,52 +45,63 @@ all: $(NAME)
 
 # Création de l'exécutable final (C++)
 $(NAME): $(CORE_LIB) $(WRAPPER_OBJS) $(LIBFT) $(RAYLIB) $(LIBDRACKENGINE)
-	@echo "$(BLUE)╔══════════════════════════════════════╗$(RESET)"
-	@echo "$(BLUE)║     Création de l'exécutable...      ║$(RESET)"
-	@echo "$(BLUE)╚══════════════════════════════════════╝$(RESET)"
+	@echo "$(CYAN)╔══════════════════════════════════════╗$(RESET)"
+	@echo "$(CYAN)║     Création de l'exécutable...      ║$(RESET)"
+	@echo "$(CYAN)╚══════════════════════════════════════╝$(RESET)"
 	@$(CXX) $(CXXFLAGS) $(WRAPPER_OBJS) -L. -ldrackcore -L$(LIBFT_DIR) -lft $(RAYLIB) $(LIBDRACKENGINE) $(LINKFLAGS) -o $(NAME)
 	@echo "$(GREEN)✓ Exécutable $(NAME) créé avec succès !$(RESET)"
 
 # Compilation des fichiers sources
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
-	@echo "$(YELLOW)Compilation de $<...$(RESET)"
+	@echo "$(MAGENTA)Compilation de $<...$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Compilation des fichiers sources C++
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
-	@echo "$(YELLOW)Compilation de $<...$(RESET)"
+	@echo "$(MAGENTA)Compilation de $<...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Création de la bibliothèque core (C)
 $(CORE_LIB): $(CORE_OBJS)
-	@echo "$(BLUE)╔══════════════════════════════════════╗$(RESET)"
-	@echo "$(BLUE)║  Création de la library core in c... ║$(RESET)"
-	@echo "$(BLUE)╚══════════════════════════════════════╝$(RESET)"
+	@echo "$(CYAN)╔══════════════════════════════════════╗$(RESET)"
+	@echo "$(CYAN)║  Création de la library core in c... ║$(RESET)"
+	@echo "$(CYAN)╚══════════════════════════════════════╝$(RESET)"
 	@ar rcs $(CORE_LIB) $(CORE_OBJS)
 	@echo "$(GREEN)✓ Bibliothèque core créée avec succès !$(RESET)"
 
 # Compilation de la libft
 $(LIBFT):
-	@echo "$(BLUE)╔════════════════════════════════════════╗$(RESET)"
-	@echo "$(BLUE)║       Compilation de la libft...       ║$(RESET)"
-	@echo "$(BLUE)╚════════════════════════════════════════╝$(RESET)"
+	@echo "$(CYAN)╔════════════════════════════════════════╗$(RESET)"
+	@echo "$(CYAN)║       Compilation de la libft...       ║$(RESET)"
+	@echo "$(CYAN)╚════════════════════════════════════════╝$(RESET)"
 	@$(MAKE) -C $(LIBFT_DIR)
 
 # Compilation de Raylib
 $(RAYLIB):
-	@echo "$(BLUE)╔════════════════════════════════════════╗$(RESET)"
-	@echo "$(BLUE)║       Compilation de Raylib...         ║$(RESET)"
-	@echo "$(BLUE)╚════════════════════════════════════════╝$(RESET)"
+	@echo "$(CYAN)╔════════════════════════════════════════╗$(RESET)"
+	@echo "$(CYAN)║       Compilation de Raylib...         ║$(RESET)"
+	@echo "$(CYAN)╚════════════════════════════════════════╝$(RESET)"
 	@$(MAKE) -C $(RAYLIB_DIR) PLATFORM=PLATFORM_DESKTOP
 
 # Compilation de la libdrackengine
 $(LIBDRACKENGINE):
-	@echo "$(BLUE)╔════════════════════════════════════════╗$(RESET)"
-	@echo "$(BLUE)║  Compilation de la libdrackengine...   ║$(RESET)"
-	@echo "$(BLUE)╚════════════════════════════════════════╝$(RESET)"
+	@echo "$(CYAN)╔════════════════════════════════════════╗$(RESET)"
+	@echo "$(CYAN)║  Compilation de la libdrackengine...   ║$(RESET)"
+	@echo "$(CYAN)╚════════════════════════════════════════╝$(RESET)"
 	@$(MAKE) -C $(LIBDRACKENGINE_DIR)
+
+# Colors
+
+BLUE = \033[0;34m
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+MAGENTA = \033[0;35m
+CYAN = \033[0;36m
+WHITE = \033[0;37m
+RESET = \033[0m
 
 # Nettoyage
 clean:

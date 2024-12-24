@@ -164,7 +164,7 @@ void    DragDropDetect::InitWorkspace(void)
 {
     _gizmo = rgizmo_create();
 
-    // TODO: ajouter des objest tests
+    // TODO: ajouter des objest tests temporaires
     SceneObject torusObject;
     torusObject.SetModel(new Model(LoadModelFromMesh(GenMeshTorus(0.3, 1.5, 16.0, 16.0))));
     torusObject.SetName("Model Torus");
@@ -173,9 +173,11 @@ void    DragDropDetect::InitWorkspace(void)
 
     SceneObject cubeObject;
     Model *m = new Model(LoadModelFromMesh(GenMeshCube(1, 1, 1)));
+
     m->transform.m12 = -7;
     m->transform.m13 = 3;
     m->transform.m14 = 5;
+
     cubeObject.SetModel(m);
     cubeObject.SetName("Model Cube");
     cubeObject.SetType(Type::CUBE);
