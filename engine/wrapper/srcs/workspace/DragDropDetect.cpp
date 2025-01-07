@@ -36,6 +36,7 @@ DragDropDetect& DragDropDetect::operator=(const DragDropDetect& other)
     {
         copyFrom(other);
     }
+
     return *this;
 }
 
@@ -48,6 +49,7 @@ void	DragDropDetect::copyFrom(const DragDropDetect& other)
 {
     _workspace = other._workspace;
     _gizmo = other._gizmo;
+    _selectedObject = other._selectedObject;
 }
 
 //******************************************************************************//
@@ -137,7 +139,7 @@ bl8 	DragDropDetect::RemoveSceneObjectByName(std::string name)
         }
         else
         {
-            ++it;
+            it++;
         }
     }
     return false;

@@ -14,6 +14,10 @@
 
 #pragma once
 
+#ifdef __cplusplus
+    extern "C" {
+#endif
+
 #include <raylib.h>
 #include <math.h>
 
@@ -94,7 +98,6 @@ Matrix  matrix_x_matrix(Matrix m1, Matrix m2)
 {
     Matrix result = { 0 };
     
-    // Calcul de chaque élément de la matrice résultante
     result.m0 = m1.m0*m2.m0 + m1.m1*m2.m4 + m1.m2*m2.m8 + m1.m3*m2.m12;
     result.m1 = m1.m0*m2.m1 + m1.m1*m2.m5 + m1.m2*m2.m9 + m1.m3*m2.m13;
     result.m2 = m1.m0*m2.m2 + m1.m1*m2.m6 + m1.m2*m2.m10 + m1.m3*m2.m14;
@@ -118,7 +121,7 @@ Matrix  matrix_x_matrix(Matrix m1, Matrix m2)
     return result;
 }
 
-// Calcule le déterminant d'une matrice 4x4
+// Calcul the determinant of a matrix 4x4
 float matrix_determinant(Matrix m)
 {
     float det;
@@ -137,13 +140,13 @@ float matrix_determinant(Matrix m)
     return det;
 }
 
-// Calcule l'inverse d'une matrice 4x4
+// Calculate the inverse of a matrix 4x4
 Matrix matrix_inverse(Matrix m)
 {
     Matrix inv = { 0 };
     float det = matrix_determinant(m);
     
-    if (det == 0) // Retourne la matrice originale si non inversible
+    if (det == 0) // Return the original matrix if not invertible
         return m; 
 
     float invDet = 1.0f / det;
@@ -171,18 +174,18 @@ Matrix matrix_inverse(Matrix m)
     return inv;
 }
 
-// Division de matrices (multiplication par l'inverse)
+// Division of matrices (multiplication by the inverse)
 // Return m1 / m2
 Matrix matrix_div_matrix(Matrix m1, Matrix m2)
 {
-    // 1. Calculer l'inverse de m2
+    // 1. Calculate the inverse of m2
     Matrix m2_inverse = matrix_inverse(m2);
     
-    // 2. Multiplier m1 par l'inverse de m2
+    // 2. Multiply m1 by the inverse of m2
     return matrix_x_matrix(m1, m2_inverse);
 }
 
-// Return matrice renitialize
+// Return matrix initialize
 Matrix  matrix_identity(void)
 {
     Matrix m = {
@@ -236,13 +239,13 @@ Quaternion  quaternion_x_quaternion(Quaternion q1, Quaternion q2)
 }
 
 
-// Fonction auxiliaire pour calculer l'inverse d'un quaternion
+// Auxiliary function to calculate the inverse of a quaternion
 Quaternion quaternion_inverse(Quaternion q)
 {
-    // Calculer la norme au carré
+    // Calculate the square of the norm
     float norm_squared = q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w;
     
-    // Si la norme est trop proche de zéro, retourner un quaternion identité
+    // If the norm is too close to zero, return an identity quaternion
     if (norm_squared < 1e-6f)
     {
         return quaternion_identity();
@@ -263,12 +266,12 @@ Quaternion quaternion_inverse(Quaternion q)
 // Return quaternion1 / quaternion2
 Quaternion  quaternion_div_quaternion(Quaternion q1, Quaternion q2)
 {
-    // Pour diviser, on multiplie q1 par l'inverse de q2
+    // To divide, multiply q1 by the inverse of q2
     Quaternion q2_inverse = quaternion_inverse(q2);
     return quaternion_x_quaternion(q1, q2_inverse);
 }
 
-// Normalisation d'un quaternion
+// Normalization of a quaternion
 Quaternion quaternion_normalize(Quaternion q)
 {
     float length = sqrtf(q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w);
@@ -286,7 +289,7 @@ Quaternion quaternion_normalize(Quaternion q)
     return result;
 }
 
-// Création d'un quaternion à partir d'un axe et d'un angle
+// Creation of a quaternion from an axis and an angle
 Quaternion quaternion_from_axis_angle(Vector3 axis, float angle)
 {
     float half_angle = angle * 0.5f;
@@ -308,3 +311,7 @@ Quaternion  quaternion_identity(void)
 
     return q;
 }
+
+#ifdef __cplusplus
+    }
+#endif

@@ -54,13 +54,13 @@ $(NAME): $(CORE_LIB) $(WRAPPER_OBJS) $(LIBFT) $(RAYLIB) $(LIBDRACKENGINE)
 # Compilation des fichiers sources
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
-	@echo "$(MAGENTA)Compilation de $<...$(RESET)"
+	@echo "$(YELLOW)Compilation de $<...$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Compilation des fichiers sources C++
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
-	@echo "$(MAGENTA)Compilation de $<...$(RESET)"
+	@echo "$(YELLOW)Compilation de $<...$(RESET)"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Création de la bibliothèque core (C)

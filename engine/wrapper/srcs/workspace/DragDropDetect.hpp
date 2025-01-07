@@ -120,7 +120,5 @@ namespace DrackEngine::Workspace
 			struct RGizmo	_gizmo;
 
 			SceneObject*	_selectedObject;
-			Model			_modelTest01;
-			Model			_modelTest02;
 	};
 };
