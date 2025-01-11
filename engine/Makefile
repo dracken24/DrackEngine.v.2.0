@@ -119,4 +119,9 @@ fclean: clean
 
 re: clean all
 
+git:
+	git add .
+	git commit -m "Push make test"
+	git push
+
 .PHONY: all clean fclean re

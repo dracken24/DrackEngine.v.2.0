@@ -189,7 +189,7 @@ void	mount_all_cameras_engine(Engine *engine)
 		ClearBackground(MAIN_BG_COLOR2);
 		BeginMode2D(engine->allCameras->camera02.camera2D);
 
-			// ftSideDownMenu3D(game);
+			// ftSideDownMenu3D(game); 
 			// use_image(engine, rec02, zero);
 			DrawText("Panel side down !", rec02.width / 2 - MeasureText("Panel side down !", 20) / 2, rec02.height / 2 - 10, 20, MAIN_TEXT_COLOR);
 
