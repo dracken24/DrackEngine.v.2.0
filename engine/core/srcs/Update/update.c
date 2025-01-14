@@ -112,40 +112,21 @@ void	use_image(Engine *engine, Rectangle rect, Vector2 offset)
 	);
 }
 
+void	render_camera(NeedBy3DCam *cam)
+{
+	DrawTextureRec(cam->textForCam.texture, (Rectangle){0, 0, cam->rectForCam.width, -cam->rectForCam.height},
+					(Vector2){cam->rectForCam.x, cam->rectForCam.y}, WHITE);
+	
+	draw_rectangle_borders(cam->rectForCam, BORDER_COLOR, BORDER_THICK);
+}
+
 void	draw_cameras_textures(Engine *engine)
 {
-	DrawTextureRec(engine->allCameras->camera01.textForCam.texture, 
-					(Rectangle){0, 0, engine->allCameras->camera01.rectForCam.width, -engine->allCameras->camera01.rectForCam.height},
-					(Vector2){engine->allCameras->camera01.rectForCam.x, engine->allCameras->camera01.rectForCam.y}, 
-					WHITE);
-		
-	DrawTextureRec(engine->allCameras->camera02.textForCam.texture, 
-				(Rectangle){0, 0, engine->allCameras->camera02.rectForCam.width, -engine->allCameras->camera02.rectForCam.height},
-				(Vector2){engine->allCameras->camera02.rectForCam.x, engine->allCameras->camera02.rectForCam.y}, 
-				WHITE);
-	
-	DrawTextureRec(engine->allCameras->camera03.textForCam.texture, 
-				(Rectangle){0, 0, engine->allCameras->camera03.rectForCam.width, -engine->allCameras->camera03.rectForCam.height},
-				(Vector2){engine->allCameras->camera03.rectForCam.x, engine->allCameras->camera03.rectForCam.y}, 
-				WHITE);
-	
-	DrawTextureRec(engine->allCameras->camera04.textForCam.texture, 
-				(Rectangle){0, 0, engine->allCameras->camera04.rectForCam.width, -engine->allCameras->camera04.rectForCam.height},
-				(Vector2){engine->allCameras->camera04.rectForCam.x, engine->allCameras->camera04.rectForCam.y}, 
-				WHITE);
-	
-	DrawTextureRec(engine->allCameras->camera05.textForCam.texture, 
-				(Rectangle){0, 0, engine->allCameras->camera05.rectForCam.width, -engine->allCameras->camera05.rectForCam.height},
-				(Vector2){engine->allCameras->camera05.rectForCam.x, engine->allCameras->camera05.rectForCam.y}, 
-				WHITE);
-
-	// Draw borders
-	// draw_rectangle_borders(engine->allCameras->camera00.rectForCam, BORDER_COLOR, BORDER_THICK);
-	draw_rectangle_borders(engine->allCameras->camera01.rectForCam, BORDER_COLOR, BORDER_THICK);
-	draw_rectangle_borders(engine->allCameras->camera02.rectForCam, BORDER_COLOR, BORDER_THICK);
-	draw_rectangle_borders(engine->allCameras->camera03.rectForCam, BORDER_COLOR, BORDER_THICK);
-	draw_rectangle_borders(engine->allCameras->camera04.rectForCam, BORDER_COLOR, BORDER_THICK);
-	draw_rectangle_borders(engine->allCameras->camera05.rectForCam, BORDER_COLOR, BORDER_THICK);
+	render_camera(&engine->allCameras->camera01);
+	render_camera(&engine->allCameras->camera02);
+	render_camera(&engine->allCameras->camera03);
+	render_camera(&engine->allCameras->camera04);
+	render_camera(&engine->allCameras->camera05);
 
 	draw_drop_down_menu(engine);
 }
