@@ -51,6 +51,7 @@ void	DragDropDetect::copyFrom(const DragDropDetect& other)
     _gizmo = other._gizmo;
     _selectedObject = other._selectedObject;
 }
+// comment
 
 //******************************************************************************//
 //***                                   Set                                  ***//
