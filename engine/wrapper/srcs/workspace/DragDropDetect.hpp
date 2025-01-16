@@ -83,23 +83,27 @@ namespace DrackEngine::Workspace
 			void	copyFrom(const DragDropDetect& other);
 
 	//******************************************************************************//
+	//***                            Members Functions                           ***//
+	//******************************************************************************//
+
+			void	ClearSelection();
+			bl8		IsGizmoInUse() const;
+
+	//******************************************************************************//
 	//***                                   Set                                  ***//
 	//******************************************************************************//
 
 			void	AddSceneObject(SceneObject const &sceneObject);
+			void	SetSelectedObject(const std::string& name);
 
 	//******************************************************************************//
 	//***                                   Get                                  ***//
 	//******************************************************************************//
 
-			SceneObject	GetSceneObjectByName(std::string name) const;
-			std::vector<SceneObject> GetSceneObjects(void);
-			void SetSelectedObject(const std::string& name);
-
-			void ClearSelection();
-			SceneObject* GetSelectedObject();
-			RGizmo &GetGizmo();
-			bl8 IsGizmoInUse() const;
+			std::vector<SceneObject>	GetSceneObjects(void);
+			SceneObject		GetSceneObjectByName(std::string name) const;
+			SceneObject*	GetSelectedObject();
+			RGizmo			&GetGizmo();
 
 	//******************************************************************************//
 	//***                            Member functions                            ***//
