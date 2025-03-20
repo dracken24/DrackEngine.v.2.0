@@ -378,7 +378,7 @@ void    resize_panels(Engine *engine)
 	if (CheckCollisionPointLine(GetMousePosition(), (Vector2){rec01.x, rec01.y}, (Vector2){rec01.x, rec01.y + rec01.height}, line_vert_right_width)
 			|| CheckCollisionPointLine(GetMousePosition(), (Vector2){rec02.x, rec02.y}, (Vector2){rec02.x, rec02.y + rec02.height}, line_vert_right_width))
 	{
-		DE_INFO("Mouse Hit Line Right vertical 01");
+		// DE_INFO("Mouse Hit Line Right vertical 01");
 		mouse_on_line_vert_ct = true;
 		mouse_on_line_pos = GetMousePosition();
 		SetMouseCursor(MOUSE_CURSOR_RESIZE_EW);
